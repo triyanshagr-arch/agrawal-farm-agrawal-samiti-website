@@ -2035,7 +2035,8 @@ ul {
     background-color: #FF6B00;
     margin-left: -30px;
     padding-left: 30px;
-    clip-path: polygon(20px 0, 100% 0, 100% 100%, 0 100%);
+    padding-right: 30px;
+    clip-path: polygon(20px 0, calc(100% - 20px) 0, 100% 100%, 0 100%);
     display: flex;
     align-items: center;
     min-height: 45px;
