@@ -2068,8 +2068,8 @@ ul {
 
 @media (max-width: 992px) {
     .header-main-title { font-size: 1.1rem; white-space: normal; }
-    .header-image-box { flex: 0 0 100px; }
-    .agrasen-img { width: 110px; bottom: -35px; left: 10px; }
+    .header-image-box { flex: 0 0 80px; }
+    .agrasen-img { height: 120px; width: auto; bottom: -20px; left: -10px; }
     .header-container { align-items: stretch; }
     .red-navbar { clip-path: none; margin-left: 0; padding-left: 0; width: 100%; justify-content: space-between; padding: 10px 20px; position: relative; border-radius: 0;}
     .menu-toggle { display: block; cursor: pointer; }
@@ -2212,6 +2212,13 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 
 @media (max-width: 992px) {
     .header-image-box-right {
-        display: none; /* Hide on mobile to save space, or adjust */
+        display: block;
+        flex: 0 0 80px;
+    }
+    .lakshmi-img {
+        height: 105px;
+        width: auto;
+        bottom: -5px;
+        right: -10px;
     }
 }
