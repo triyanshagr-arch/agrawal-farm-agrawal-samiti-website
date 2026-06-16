@@ -495,11 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Language Toggle Logic
-document.addEventListener('DOMContentLoaded', () => {
-    
-    }
-});
 
 // --- Language Manager ---
 document.addEventListener('DOMContentLoaded', () => {
