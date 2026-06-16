@@ -2071,7 +2071,7 @@ ul {
     .header-image-box { flex: 0 0 80px; }
     .agrasen-img { height: 120px; width: auto; bottom: -20px; left: -10px; }
     .header-container { align-items: stretch; }
-    .red-navbar { clip-path: none; margin-left: 0; padding-left: 0; width: 100%; justify-content: space-between; padding: 10px 20px; position: relative; border-radius: 0;}
+    .red-navbar { clip-path: none; margin-left: 0; margin-right: 0; padding-left: 0; width: 100%; justify-content: space-between; padding: 10px 20px; position: relative; border-radius: 0;}
     .menu-toggle { display: block; cursor: pointer; }
     .red-navbar .nav-menu { flex-direction: column; display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #FF6B00; z-index: 999; padding: 10px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.2);}
     .red-navbar .nav-menu.active { display: flex; }
