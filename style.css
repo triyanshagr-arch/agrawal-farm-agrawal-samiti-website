@@ -719,15 +719,25 @@ ul {
 
 /* Committee Section */
 .committee-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.committee-col {
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+.committee-row {
+    display: grid;
+    gap: 30px;
+}
+
+.row-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.row-4 {
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .committee-card {
@@ -1314,7 +1324,7 @@ ul {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-    .committee-grid, .about-cards, .activities-grid {
+    .row-4, .about-cards, .activities-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1414,7 +1424,7 @@ ul {
         gap: 15px;
     }
 
-    .committee-grid, .about-cards, .activities-grid, .gallery-grid, .notices-grid, .agrasen-content {
+    .row-2, .row-4, .about-cards, .activities-grid, .gallery-grid, .notices-grid, .agrasen-content {
         grid-template-columns: 1fr;
     }
     
