@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Dynamic Profile Picture Lightbox
 document.addEventListener('DOMContentLoaded', () => {
-    const profilePics = document.querySelectorAll('.gallery-item .gallery-placeholder, .gallery-item img');
+    const profilePics = document.querySelectorAll('.member-photo, .member-avatar, .gallery-item .gallery-placeholder, .gallery-item img');
 
     if (profilePics.length > 0) {
         // Create lightbox container if it doesn't exist
@@ -208,6 +208,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             pic.addEventListener('click', (e) => {
                 e.stopPropagation();
+                
+                if (pic.classList.contains('member-photo') || pic.classList.contains('member-avatar')) {
+                    lightboxImg.classList.add('circle-profile-lightbox');
+                } else {
+                    lightboxImg.classList.remove('circle-profile-lightbox');
+                }
                 
                 // Try to get src from img tag
                 let src = pic.src;
