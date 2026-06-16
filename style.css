@@ -2028,6 +2028,9 @@ ul {
     transition: 0.3s;
     text-transform: uppercase;
 }
+.red-navbar .nav-links .lang-hi {
+    font-size: 1.05rem;
+}
 .red-navbar .nav-links:hover, .red-navbar .nav-links.active {
     background-color: rgba(0,0,0,0.15);
 }
