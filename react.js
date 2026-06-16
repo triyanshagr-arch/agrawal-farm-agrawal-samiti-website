@@ -345,8 +345,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Member Database for AI
     const membersData = [
         // Executive Committee
-        { name_hi: "दीपक गुप्ता", name_en: "Deepak Gupta", role: "<span class=\"lang-hi\">मुख्य संरक्षक</span><span class=\"lang-en\">Chief Patron</span>", phone: "9829125789" },
-        { name_hi: "डॉ प्रवीण मंगलूनिया", name_en: "Dr. Praveen Manglunia", role: "<span class=\"lang-hi\">मुख्य सलाहकार</span><span class=\"lang-en\">Chief Advisor</span>", phone: "9829011770" },
+        { name_hi: "दीपक गुप्ता", name_en: "Deepak Gupta", role: "<span class=\"lang-hi\">मुख्य संरक्षक</span><span class=\"lang-en\">Chief Patron</span>", phone: "9829125789" , img: "images/deepak_gupta.jpg" },
+        { name_hi: "डॉ प्रवीण मंगलूनिया", name_en: "Dr. Praveen Manglunia", role: "<span class=\"lang-hi\">मुख्य सलाहकार</span><span class=\"lang-en\">Chief Advisor</span>", phone: "9829011770" , img: "images/praveen_manglunia.jpg" },
         { name_hi: "कैलाश गंगल", name_en: "Kailash Gangal", role: "<span class=\"lang-hi\">अध्यक्ष</span><span class=\"lang-en\">President</span>", phone: "8949061612" , img: "images/kailash_gangal.jpg" },
         { name_hi: "जितेंद्र कुमार गुप्ता", name_en: "Jitendra Kumar Gupta", role: "<span class=\"lang-hi\">उपाध्यक्ष</span><span class=\"lang-en\">Vice President</span>", phone: "8209781281" },
         { name_hi: "सुधीर कुमार सिंघल", name_en: "Sudhir Kumar Singhal", role: "<span class=\"lang-hi\">कोषाध्यक्ष</span><span class=\"lang-en\">Treasurer</span>", phone: "9784530000" },
