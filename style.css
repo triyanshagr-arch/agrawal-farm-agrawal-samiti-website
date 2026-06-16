@@ -2067,10 +2067,10 @@ ul {
 }
 
 @media (max-width: 992px) {
-    .header-main-title { font-size: 1.1rem; white-space: normal; }
-    .header-image-box { flex: 0 0 80px; }
-    .agrasen-img { height: 120px; width: auto; bottom: -20px; left: -10px; }
-    .header-container { align-items: stretch; }
+    .header-container { flex-wrap: wrap; justify-content: center; padding-top: 15px; }
+    .header-image-box { flex: 0 0 50%; display: flex; justify-content: center; align-items: flex-end; }
+    .header-content-box { flex: 0 0 100%; padding-left: 0; text-align: center; }
+    .header-main-title { font-size: 1.1rem; white-space: normal; margin-top: 10px; }
     .red-navbar { clip-path: none; margin-left: 0; margin-right: 0; padding-left: 0; width: 100%; justify-content: space-between; padding: 10px 20px; position: relative; border-radius: 0;}
     .menu-toggle { display: block; cursor: pointer; }
     .red-navbar .nav-menu { flex-direction: column; display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #FF6B00; z-index: 999; padding: 10px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.2);}
@@ -2212,13 +2212,17 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 
 @media (max-width: 992px) {
     .header-image-box-right {
-        display: block;
-        flex: 0 0 80px;
+        display: flex !important;
+        flex: 0 0 50%;
+        justify-content: center;
+        align-items: flex-end;
     }
-    .lakshmi-img {
-        height: 105px;
-        width: auto;
-        bottom: -5px;
-        right: -10px;
+    .agrasen-img, .lakshmi-img {
+        position: relative !important;
+        bottom: 0 !important;
+        left: auto !important;
+        right: auto !important;
+        height: 120px !important;
+        width: auto !important;
     }
 }
