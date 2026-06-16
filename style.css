@@ -2195,3 +2195,23 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
         margin-top: 10px;
     }
 }
+
+.header-image-box-right {
+    flex: 0 0 220px;
+    position: relative;
+    z-index: 10;
+}
+.lakshmi-img {
+    position: absolute;
+    bottom: -35px;
+    right: 20px;
+    width: 116px;
+    height: auto;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+}
+
+@media (max-width: 992px) {
+    .header-image-box-right {
+        display: none; /* Hide on mobile to save space, or adjust */
+    }
+}
