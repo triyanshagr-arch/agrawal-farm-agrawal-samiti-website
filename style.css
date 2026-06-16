@@ -2205,8 +2205,8 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
     position: absolute;
     bottom: -35px;
     right: 20px;
-    width: 116px;
-    height: auto;
+    height: 174px;
+    width: auto;
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
 }
 
