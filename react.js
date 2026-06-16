@@ -496,29 +496,33 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// --- Language Manager ---
+// Language Toggle Logic
 document.addEventListener('DOMContentLoaded', () => {
     const langToggleBtn = document.getElementById('lang-toggle');
-    const currentLangText = langToggleBtn ? langToggleBtn.querySelector('.current-lang') : null;
     const body = document.body;
     
-    // Default language is Hindi (hi).
-    let currentLang = localStorage.getItem('lang') || 'hi';
-    body.classList.add('lang-' + currentLang);
-    if(currentLangText) {
-        currentLangText.textContent = currentLang === 'hi' ? 'English' : 'हिंदी';
+    // Check local storage for preference
+    const currentLang = localStorage.getItem('preferredLang') || 'hi';
+    
+    if (currentLang === 'en') {
+        body.classList.add('lang-english-mode');
+        if(langToggleBtn) langToggleBtn.innerHTML = '<i class="fas fa-language"></i> हिंदी';
     }
 
     if(langToggleBtn) {
         langToggleBtn.addEventListener('click', () => {
-            body.classList.remove('lang-' + currentLang);
-            currentLang = currentLang === 'hi' ? 'en' : 'hi';
-            body.classList.add('lang-' + currentLang);
-            localStorage.setItem('lang', currentLang);
+            body.classList.toggle('lang-english-mode');
+            const isEnglish = body.classList.contains('lang-english-mode');
             
-            if(currentLangText) {
-                currentLangText.textContent = currentLang === 'hi' ? 'English' : 'हिंदी';
+            if (isEnglish) {
+                localStorage.setItem('preferredLang', 'en');
+                langToggleBtn.innerHTML = '<i class="fas fa-language"></i> हिंदी';
+            } else {
+                localStorage.setItem('preferredLang', 'hi');
+                langToggleBtn.innerHTML = '<i class="fas fa-language"></i> English';
             }
         });
+    }
+});
     }
 });
