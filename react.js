@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Dynamic Profile Picture Lightbox
 document.addEventListener('DOMContentLoaded', () => {
-    const profilePics = document.querySelectorAll('.member-photo, .member-avatar, .gallery-item .gallery-placeholder, .gallery-item img');
+    const profilePics = document.querySelectorAll('.gallery-item .gallery-placeholder, .gallery-item img');
 
     if (profilePics.length > 0) {
         // Create lightbox container if it doesn't exist
