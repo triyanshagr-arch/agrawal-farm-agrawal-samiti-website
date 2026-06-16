@@ -1564,10 +1564,11 @@ ul {
 .lightbox-content img.circle-profile-lightbox {
     border-radius: 50%;
     object-fit: cover;
+    object-position: top;
     width: 400px;
     height: 400px;
-    max-width: 80vw;
-    max-height: 80vw;
+    max-width: min(90vw, 70vh);
+    max-height: min(90vw, 70vh);
     aspect-ratio: 1 / 1;
 }
 
