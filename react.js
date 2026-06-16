@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name_hi: "दीपक गुप्ता", name_en: "Deepak Gupta", role: "<span class=\"lang-hi\">मुख्य संरक्षक</span><span class=\"lang-en\">Chief Patron</span>", phone: "9829125789" , img: "images/deepak_gupta.jpg" },
         { name_hi: "डॉ प्रवीण मंगलूनिया", name_en: "Dr. Praveen Manglunia", role: "<span class=\"lang-hi\">मुख्य सलाहकार</span><span class=\"lang-en\">Chief Advisor</span>", phone: "9829011770" , img: "images/praveen_manglunia.jpg" },
         { name_hi: "कैलाश गंगल", name_en: "Kailash Gangal", role: "<span class=\"lang-hi\">अध्यक्ष</span><span class=\"lang-en\">President</span>", phone: "8949061612" , img: "images/kailash_gangal.jpg" },
-        { name_hi: "जितेंद्र कुमार गुप्ता", name_en: "Jitendra Kumar Gupta", role: "<span class=\"lang-hi\">उपाध्यक्ष</span><span class=\"lang-en\">Vice President</span>", phone: "8209781281" },
+        { name_hi: "जितेंद्र कुमार गुप्ता", name_en: "Jitendra Kumar Gupta", role: "<span class=\"lang-hi\">उपाध्यक्ष</span><span class=\"lang-en\">Vice President</span>", phone: "8209781281" , img: "images/jitendra_gupta.jpg" },
         { name_hi: "सुधीर कुमार सिंघल", name_en: "Sudhir Kumar Singhal", role: "<span class=\"lang-hi\">कोषाध्यक्ष</span><span class=\"lang-en\">Treasurer</span>", phone: "9784530000" },
         { name_hi: "कृष्णदीप सिंघल", name_en: "Krishnadeep Singhal", role: "<span class=\"lang-hi\">महासचिव</span><span class=\"lang-en\">General Secretary</span>", phone: "9829220486" , img: "images/krishnadeep_singhal.jpg" },
         { name_hi: "सतीश चंद्र अग्रवाल", name_en: "Satish Chandra Agarwal", role: "<span class=\"lang-hi\">संयुक्त सचिव</span><span class=\"lang-en\">Joint Secretary</span>", phone: "9414889212" },
@@ -373,14 +373,14 @@ document.addEventListener('DOMContentLoaded', () => {
         { name_hi: "बृजमोहन गोयल", name_en: "Brijmohan Goyal", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9413186699" , img: "images/brijmohan_goyal.jpg" },
         { name_hi: "लक्ष्मी नारायण अग्रवाल", name_en: "Laxmi Narayan Agarwal", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9413300248" },
         { name_hi: "चन्द्र प्रकाश गोयल", name_en: "Chandra Prakash Goyal", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9314682938" , img: "images/chandra_prakash_goyal.jpg" },
-        { name_hi: "राज कुमार गंगल", name_en: "Raj Kumar Gangal", role: "<span class=\"lang-hi\">सेक्टर 12</span><span class=\"lang-en\">Sector 12</span>", phone: "9413348359" },
-        { name_hi: "अमित कुमार गर्ग", name_en: "Amit Kumar Garg", role: "सेक्टर 15 व अन्य", phone: "9571118777" },
+        { name_hi: "राज कुमार गंगल", name_en: "Raj Kumar Gangal", role: "<span class=\"lang-hi\">सेक्टर 12</span><span class=\"lang-en\">Sector 12</span>", phone: "9413348359" , img: "images/raj_kumar_gangal.jpg" },
+        { name_hi: "अमित कुमार गर्ग", name_en: "Amit Kumar Garg", role: "सेक्टर 15 व अन्य", phone: "9571118777" , img: "images/amit_kumar_garg.jpg" },
         { name_hi: "नवीन चन्द्र अग्रवाल", name_en: "Naveen Chandra Agarwal", role: "SFS, RIICO", phone: "9413975058" , img: "images/naveen_chandra_agarwal.jpg" },
         { name_hi: "हरीश चंद्र गोयल", name_en: "Harish Chandra Goyal", role: "SFS, RIICO", phone: "9414075155" },
-        { name_hi: "आदित्य कुमार गोयल", name_en: "Aditya Kumar Goyal", role: "SFS, RIICO", phone: "9829014291" },
+        { name_hi: "आदित्य कुमार गोयल", name_en: "Aditya Kumar Goyal", role: "SFS, RIICO", phone: "9829014291" , img: "images/aditya_kumar_goyal.jpg" },
         { name_hi: "गोपाल अग्रवाल", name_en: "Gopal Agarwal", role: "PRN", phone: "9784085239" , img: "images/gopal_agarwal.jpg" },
         { name_hi: "राजकुमार गुप्ता", name_en: "Rajkumar Gupta", role: "PRN", phone: "9460309368" , img: "images/rajkumar_gupta.jpg" },
-        { name_hi: "आलोक अग्रवाल", name_en: "Alok Agarwal", role: "PRN", phone: "9887379944" },
+        { name_hi: "आलोक अग्रवाल", name_en: "Alok Agarwal", role: "PRN", phone: "9887379944" , img: "images/alok_agarwal.jpg" },
         { name_hi: "विजय कुमार गुप्ता", name_en: "Vijay Kumar Gupta", role: "PRN", phone: "9351405727" , img: "images/vijay_kumar_gupta.jpg" }
     ];
 
