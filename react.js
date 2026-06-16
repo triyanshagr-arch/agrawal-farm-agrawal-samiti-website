@@ -345,35 +345,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Member Database for AI
     const membersData = [
         // Executive Committee
-        { name_hi: "दीपक गुप्ता", name_en: "Deepak Gupta", role: "मुख्य संरक्षक (Chief Patron)", phone: "9829125789" },
-        { name_hi: "डॉ प्रवीण मंगलूनिया", name_en: "Dr. Praveen Manglunia", role: "मुख्य सलाहकार (Chief Advisor)", phone: "9829011770" },
-        { name_hi: "कैलाश गंगल", name_en: "Kailash Gangal", role: "अध्यक्ष (President)", phone: "8949061612" },
-        { name_hi: "जितेंद्र कुमार गुप्ता", name_en: "Jitendra Kumar Gupta", role: "उपाध्यक्ष (Vice President)", phone: "8209781281" },
-        { name_hi: "सुधीर कुमार सिंघल", name_en: "Sudhir Kumar Singhal", role: "कोषाध्यक्ष (Treasurer)", phone: "9784530000" },
-        { name_hi: "कृष्णदीप सिंघल", name_en: "Krishnadeep Singhal", role: "महासचिव (General Secretary)", phone: "9829220486" },
-        { name_hi: "सतीश चंद्र अग्रवाल", name_en: "Satish Chandra Agarwal", role: "संयुक्त सचिव (Joint Secretary)", phone: "9414889212" },
-        { name_hi: "विजय गुप्ता", name_en: "Vijay Gupta", role: "संगठन मंत्री (Organizing Secretary)", phone: "8764786100" },
-        { name_hi: "अनिल मंगल", name_en: "Anil Mangal", role: "युवाध्यक्ष (Youth President)", phone: "8432314636" },
-        { name_hi: "पुष्पा मंगल", name_en: "Pushpa Mangal", role: "महिला अध्यक्ष (Women's President)", phone: "9413182210" },
+        { name_hi: "दीपक गुप्ता", name_en: "Deepak Gupta", role: "<span class=\"lang-hi\">मुख्य संरक्षक</span><span class=\"lang-en\">Chief Patron</span>", phone: "9829125789" },
+        { name_hi: "डॉ प्रवीण मंगलूनिया", name_en: "Dr. Praveen Manglunia", role: "<span class=\"lang-hi\">मुख्य सलाहकार</span><span class=\"lang-en\">Chief Advisor</span>", phone: "9829011770" },
+        { name_hi: "कैलाश गंगल", name_en: "Kailash Gangal", role: "<span class=\"lang-hi\">अध्यक्ष</span><span class=\"lang-en\">President</span>", phone: "8949061612" },
+        { name_hi: "जितेंद्र कुमार गुप्ता", name_en: "Jitendra Kumar Gupta", role: "<span class=\"lang-hi\">उपाध्यक्ष</span><span class=\"lang-en\">Vice President</span>", phone: "8209781281" },
+        { name_hi: "सुधीर कुमार सिंघल", name_en: "Sudhir Kumar Singhal", role: "<span class=\"lang-hi\">कोषाध्यक्ष</span><span class=\"lang-en\">Treasurer</span>", phone: "9784530000" },
+        { name_hi: "कृष्णदीप सिंघल", name_en: "Krishnadeep Singhal", role: "<span class=\"lang-hi\">महासचिव</span><span class=\"lang-en\">General Secretary</span>", phone: "9829220486" },
+        { name_hi: "सतीश चंद्र अग्रवाल", name_en: "Satish Chandra Agarwal", role: "<span class=\"lang-hi\">संयुक्त सचिव</span><span class=\"lang-en\">Joint Secretary</span>", phone: "9414889212" },
+        { name_hi: "विजय गुप्ता", name_en: "Vijay Gupta", role: "<span class=\"lang-hi\">संगठन मंत्री</span><span class=\"lang-en\">Organizing Secretary</span>", phone: "8764786100" },
+        { name_hi: "अनिल मंगल", name_en: "Anil Mangal", role: "<span class=\"lang-hi\">युवाध्यक्ष</span><span class=\"lang-en\">Youth President</span>", phone: "8432314636" },
+        { name_hi: "पुष्पा मंगल", name_en: "Pushpa Mangal", role: "<span class=\"lang-hi\">महिला अध्यक्ष</span><span class=\"lang-en\">Women's President</span>", phone: "9413182210" },
         
         // Sector Members
-        { name_hi: "रिंकू कुमार मित्तल", name_en: "Rinku Kumar Mittal", role: "सेक्टर 7 (Sector 7)", phone: "9829028209" },
-        { name_hi: "जय प्रकाश कंसल", name_en: "Jay Prakash Kansal", role: "सेक्टर 7 (Sector 7)", phone: "9413308720" },
-        { name_hi: "सुधीर कुमार गोयल", name_en: "Sudhir Kumar Goyal", role: "सेक्टर 7 (Sector 7)", phone: "9413288808" },
-        { name_hi: "गोविन्द शरण गुप्ता", name_en: "Govind Sharan Gupta", role: "सेक्टर 7 (Sector 7)", phone: "9928827690" },
-        { name_hi: "बनवारी लाल गुप्ता", name_en: "Banwari Lal Gupta", role: "सेक्टर 8 (Sector 8)", phone: "9414077760" },
-        { name_hi: "अजय कुमार गुप्ता", name_en: "Ajay Kumar Gupta", role: "सेक्टर 8 (Sector 8)", phone: "9414045505" },
-        { name_hi: "सुनील गोयल", name_en: "Sunil Goyal", role: "सेक्टर 9 (Sector 9)", phone: "9414401644" },
-        { name_hi: "देवकीनन्दन गर्ग", name_en: "Deoki Nandan Garg", role: "सेक्टर 9 (Sector 9)", phone: "8764241268" },
-        { name_hi: "प्रकाश चन्द्र सिंघल", name_en: "Prakash Chandra Singhal", role: "सेक्टर 10 (Sector 10)", phone: "9928909820" },
-        { name_hi: "अशोक अग्रवाल", name_en: "Ashok Agarwal", role: "सेक्टर 10 (Sector 10)", phone: "9828118134" },
-        { name_hi: "बालकृष्ण गर्ग", name_en: "Balkrishna Garg", role: "सेक्टर 11 (Sector 11)", phone: "9314508120" },
-        { name_hi: "पवन अग्रवाल", name_en: "Pawan Agarwal", role: "सेक्टर 11 (Sector 11)", phone: "9352611001" },
-        { name_hi: "सतीश गर्ग", name_en: "Satish Garg", role: "सेक्टर 11 (Sector 11)", phone: "9829578670" },
-        { name_hi: "बृजमोहन गोयल", name_en: "Brijmohan Goyal", role: "सेक्टर 11 (Sector 11)", phone: "9413186699" },
-        { name_hi: "लक्ष्मी नारायण अग्रवाल", name_en: "Laxmi Narayan Agarwal", role: "सेक्टर 11 (Sector 11)", phone: "9413300248" },
-        { name_hi: "चन्द्र प्रकाश गोयल", name_en: "Chandra Prakash Goyal", role: "सेक्टर 11 (Sector 11)", phone: "9314682938" },
-        { name_hi: "राज कुमार गंगल", name_en: "Raj Kumar Gangal", role: "सेक्टर 12 (Sector 12)", phone: "9413348359" },
+        { name_hi: "रिंकू कुमार मित्तल", name_en: "Rinku Kumar Mittal", role: "<span class=\"lang-hi\">सेक्टर 7</span><span class=\"lang-en\">Sector 7</span>", phone: "9829028209" },
+        { name_hi: "जय प्रकाश कंसल", name_en: "Jay Prakash Kansal", role: "<span class=\"lang-hi\">सेक्टर 7</span><span class=\"lang-en\">Sector 7</span>", phone: "9413308720" },
+        { name_hi: "सुधीर कुमार गोयल", name_en: "Sudhir Kumar Goyal", role: "<span class=\"lang-hi\">सेक्टर 7</span><span class=\"lang-en\">Sector 7</span>", phone: "9413288808" },
+        { name_hi: "गोविन्द शरण गुप्ता", name_en: "Govind Sharan Gupta", role: "<span class=\"lang-hi\">सेक्टर 7</span><span class=\"lang-en\">Sector 7</span>", phone: "9928827690" },
+        { name_hi: "बनवारी लाल गुप्ता", name_en: "Banwari Lal Gupta", role: "<span class=\"lang-hi\">सेक्टर 8</span><span class=\"lang-en\">Sector 8</span>", phone: "9414077760" },
+        { name_hi: "अजय कुमार गुप्ता", name_en: "Ajay Kumar Gupta", role: "<span class=\"lang-hi\">सेक्टर 8</span><span class=\"lang-en\">Sector 8</span>", phone: "9414045505" },
+        { name_hi: "सुनील गोयल", name_en: "Sunil Goyal", role: "<span class=\"lang-hi\">सेक्टर 9</span><span class=\"lang-en\">Sector 9</span>", phone: "9414401644" },
+        { name_hi: "देवकीनन्दन गर्ग", name_en: "Deoki Nandan Garg", role: "<span class=\"lang-hi\">सेक्टर 9</span><span class=\"lang-en\">Sector 9</span>", phone: "8764241268" },
+        { name_hi: "प्रकाश चन्द्र सिंघल", name_en: "Prakash Chandra Singhal", role: "<span class=\"lang-hi\">सेक्टर 10</span><span class=\"lang-en\">Sector 10</span>", phone: "9928909820" },
+        { name_hi: "अशोक अग्रवाल", name_en: "Ashok Agarwal", role: "<span class=\"lang-hi\">सेक्टर 10</span><span class=\"lang-en\">Sector 10</span>", phone: "9828118134" },
+        { name_hi: "बालकृष्ण गर्ग", name_en: "Balkrishna Garg", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9314508120" },
+        { name_hi: "पवन अग्रवाल", name_en: "Pawan Agarwal", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9352611001" },
+        { name_hi: "सतीश गर्ग", name_en: "Satish Garg", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9829578670" },
+        { name_hi: "बृजमोहन गोयल", name_en: "Brijmohan Goyal", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9413186699" },
+        { name_hi: "लक्ष्मी नारायण अग्रवाल", name_en: "Laxmi Narayan Agarwal", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9413300248" },
+        { name_hi: "चन्द्र प्रकाश गोयल", name_en: "Chandra Prakash Goyal", role: "<span class=\"lang-hi\">सेक्टर 11</span><span class=\"lang-en\">Sector 11</span>", phone: "9314682938" },
+        { name_hi: "राज कुमार गंगल", name_en: "Raj Kumar Gangal", role: "<span class=\"lang-hi\">सेक्टर 12</span><span class=\"lang-en\">Sector 12</span>", phone: "9413348359" },
         { name_hi: "अमित कुमार गर्ग", name_en: "Amit Kumar Garg", role: "सेक्टर 15 व अन्य", phone: "9571118777" },
         { name_hi: "नवीन चन्द्र अग्रवाल", name_en: "Naveen Chandra Agarwal", role: "SFS, RIICO", phone: "9413975058" },
         { name_hi: "हरीश चंद्र गोयल", name_en: "Harish Chandra Goyal", role: "SFS, RIICO", phone: "9414075155" },
@@ -433,24 +433,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Gotra Information Data
     const gotraInfo = {
-        "गर्ग (Garg)": "गर्ग गोत्र की उत्पत्ति महर्षि गर्ग (गार्ग्य) से हुई है। यह गोत्र विद्या और ज्ञान का प्रतीक माना जाता है। गर्ग ऋषि ज्योतिष और खगोल विज्ञान के महान ज्ञाता थे。<br><br><span class=\"en-text\">The Garg Gotra originated from Maharishi Garg. This Gotra is considered a symbol of wisdom and knowledge. Sage Garg was a great scholar of astrology and astronomy.</span>",
-        "बंसल (Bansal)": "बंसल गोत्र के आदि गुरु महर्षि वत्स्य (वत्स) हैं। इस गोत्र के लोग अपनी बुद्धिमत्ता, व्यापार कौशल और मधुर वाणी के लिए जाने जाते हैं。<br><br><span class=\"en-text\">The founding Guru of the Bansal Gotra is Maharishi Vatsa. People of this Gotra are known for their intelligence, business acumen, and sweet speech.</span>",
-        "बिंदल (Bindal)": "बिंदल गोत्र महर्षि वशिष्ठ से संबंधित है। महर्षि वशिष्ठ भगवान राम के गुरु थे। इस गोत्र के लोग धर्म, न्याय और नेतृत्व में निपुण माने जाते हैं。<br><br><span class=\"en-text\">The Bindal Gotra is associated with Maharishi Vashishtha, the Guru of Lord Rama. People of this Gotra are considered adept in righteousness, justice, and leadership.</span>",
-        "भंदल (Bhandal)": "भंदल गोत्र की उत्पत्ति महर्षि धौम्य से मानी जाती है। धौम्य ऋषि पांडवों के पुरोहित थे। इस गोत्र के लोग धर्म-कर्म और निष्ठा के लिए प्रसिद्ध हैं。<br><br><span class=\"en-text\">The origin of the Bhandal Gotra is traced to Maharishi Dhaumya, the priest of the Pandavas. This Gotra is famous for its religious devotion and loyalty.</span>",
-        "धरण (Dharan)": "धरण गोत्र के प्रणेता महर्षि धृणबु (कुछ स्रोतों में धौम्य या अन्य ऋषि) माने जाते हैं। यह गोत्र स्थिरता, धैर्य और संपत्ति के संरक्षण का प्रतीक है。<br><br><span class=\"en-text\">The pioneer of the Dharan Gotra is believed to be Maharishi Dhrinbu. This Gotra is a symbol of stability, patience, and the preservation of wealth.</span>",
-        "ऐरण (Airan)": "ऐरण गोत्र महर्षि और्व से संबंधित है। इस गोत्र के लोग साहसी, निडर और अपने लक्ष्यों के प्रति अत्यंत समर्पित होते हैं。<br><br><span class=\"en-text\">The Airan Gotra is related to Maharishi Aurva. People of this Gotra are brave, fearless, and highly dedicated to their goals.</span>",
-        "गोयल (Goyal)": "गोयल गोत्र के गोत्रकार महर्षि गौतम हैं। महर्षि गौतम न्याय दर्शन के रचयिता थे। गोयल गोत्र के लोग अपने तार्किक ज्ञान और परोपकारी स्वभाव के लिए विख्यात हैं。<br><br><span class=\"en-text\">The founder of the Goyal Gotra is Maharishi Gautam, the creator of the Nyaya philosophy. People of this Gotra are renowned for their logical wisdom and philanthropic nature.</span>",
-        "जिंदल (Jindal)": "जिंदल गोत्र की उत्पत्ति महर्षि जैमिनि से हुई है। महर्षि जैमिनि वेदव्यास के शिष्य और मीमांसा दर्शन के रचयिता थे। इस गोत्र के लोग बहुत ऊर्जावान माने जाते हैं。<br><br><span class=\"en-text\">The Jindal Gotra originated from Maharishi Jaimini, a disciple of Ved Vyas and creator of the Mimamsa philosophy. People of this Gotra are considered highly energetic.</span>",
-        "कंसल (Kansal)": "कंसल गोत्र महर्षि कश्यप से जुड़ा हुआ है। कश्यप ऋषि सप्तर्षियों में से एक हैं। इस गोत्र के लोग उदार और विशाल हृदय वाले होते हैं。<br><br><span class=\"en-text\">The Kansal Gotra is linked to Maharishi Kashyap, one of the Saptarishis (Seven Sages). People of this Gotra are generous and large-hearted.</span>",
-        "कुच्छल (Kuchhal)": "कुच्छल गोत्र के प्रणेता महर्षि विश्वामित्र (कौशिक) हैं। कुच्छल गोत्र के व्यक्ति दृढ़ निश्चयी और अपनी मेहनत से सफलता प्राप्त करने वाले होते हैं。<br><br><span class=\"en-text\">The pioneer of the Kuchhal Gotra is Maharishi Vishwamitra (Kaushik). Individuals of this Gotra are determined and achieve success through their hard work.</span>",
-        "मधुकुल (Madhukul)": "मधुकुल गोत्र महर्षि मुदगल से संबंधित है। इस गोत्र के लोग मधुर स्वभाव, आतिथ्य सत्कार और पारिवारिक एकता के लिए प्रसिद्ध हैं。<br><br><span class=\"en-text\">The Madhukul Gotra is associated with Maharishi Mudgal. People of this Gotra are famous for their sweet nature, hospitality, and family unity.</span>",
-        "मंगल (Mangal)": "मंगल गोत्र के आदि गुरु महर्षि मांडव्य हैं। इस गोत्र के लोग बहुत शुभचिंतक, शांतिप्रिय और समाज में मंगल (भलाई) करने वाले माने जाते हैं。<br><br><span class=\"en-text\">The founding Guru of the Mangal Gotra is Maharishi Mandavya. People of this Gotra are considered very well-wishing, peace-loving, and bringers of good (Mangal) to society.</span>",
-        "मित्तल (Mittal)": "मित्तल गोत्र महर्षि मैत्रेय से जुड़ा है। मित्तल गोत्र के व्यक्ति अपने मिलनसार स्वभाव, सच्ची मित्रता और वफादारी के लिए जाने जाते हैं。<br><br><span class=\"en-text\">The Mittal Gotra is linked to Maharishi Maitreya. Individuals of this Gotra are known for their friendly nature, true friendship, and loyalty.</span>",
-        "नांगल (Nangal)": "नांगल गोत्र की उत्पत्ति महर्षि नागेंद्र से मानी जाती है। इस गोत्र के लोग अत्यंत बुद्धिमान, दूरदर्शी और कला व साहित्य प्रेमी होते हैं。<br><br><span class=\"en-text\">The origin of the Nangal Gotra is traced to Maharishi Nagendra. People of this Gotra are highly intelligent, visionary, and lovers of art and literature.</span>",
-        "सिंघल (Singhal)": "सिंघल गोत्र महर्षि श्रृंगी से संबंधित है। श्रृंगी ऋषि महान तपस्वी थे। सिंघल गोत्र के लोग निडर, पराक्रमी और नेतृत्व क्षमता से धनी होते हैं。<br><br><span class=\"en-text\">The Singhal Gotra is related to Maharishi Shringi, a great ascetic. People of this Gotra are fearless, valorous, and rich in leadership qualities.</span>",
-        "तायल (Tayal)": "तायल गोत्र महर्षि तैत्तिरीय से जुड़ा है। तायल गोत्र के व्यक्ति बहुत परिश्रमी, आध्यात्मिक और विद्या प्रेमी होते हैं。<br><br><span class=\"en-text\">The Tayal Gotra is linked to Maharishi Taittiriya. Individuals of this Gotra are very hardworking, spiritual, and lovers of knowledge.</span>",
-        "तिंगल (Tingal)": "तिंगल गोत्र महर्षि तांड्य से संबंधित है। इस गोत्र के लोग कला, संगीत और रचनात्मक कार्यों में विशेष रुचि रखते हैं。<br><br><span class=\"en-text\">The Tingal Gotra is associated with Maharishi Tandya. People of this Gotra have a special interest in art, music, and creative endeavors.</span>",
-        "गोयन (Goyan)": "गोयन गोत्र के प्रणेता महर्षि गौतम (कुछ स्रोतों में गोभिल) माने जाते हैं। गोयन गोत्र के लोग धर्म-परायण और गहरे वैचारिक विचारों वाले होते हैं。<br><br><span class=\"en-text\">The pioneer of the Goyan Gotra is considered to be Maharishi Gautam (or Gobhil). People of this Gotra are religiously devoted and have deep philosophical thoughts.</span>"
+        "गर्ग (Garg)": "<span class=\"lang-hi\">गर्ग गोत्र की उत्पत्ति महर्षि गर्ग (गार्ग्य) से हुई है। यह गोत्र विद्या और ज्ञान का प्रतीक माना जाता है। गर्ग ऋषि ज्योतिष और खगोल विज्ञान के महान ज्ञाता थे。</span><span class=\"lang-en\">The Garg Gotra originated from Maharishi Garg. This Gotra is considered a symbol of wisdom and knowledge. Sage Garg was a great scholar of astrology and astronomy.</span>",
+        "बंसल (Bansal)": "<span class=\"lang-hi\">बंसल गोत्र के आदि गुरु महर्षि वत्स्य (वत्स) हैं। इस गोत्र के लोग अपनी बुद्धिमत्ता, व्यापार कौशल और मधुर वाणी के लिए जाने जाते हैं。</span><span class=\"lang-en\">The founding Guru of the Bansal Gotra is Maharishi Vatsa. People of this Gotra are known for their intelligence, business acumen, and sweet speech.</span>",
+        "बिंदल (Bindal)": "<span class=\"lang-hi\">बिंदल गोत्र महर्षि वशिष्ठ से संबंधित है। महर्षि वशिष्ठ भगवान राम के गुरु थे। इस गोत्र के लोग धर्म, न्याय और नेतृत्व में निपुण माने जाते हैं。</span><span class=\"lang-en\">The Bindal Gotra is associated with Maharishi Vashishtha, the Guru of Lord Rama. People of this Gotra are considered adept in righteousness, justice, and leadership.</span>",
+        "भंदल (Bhandal)": "<span class=\"lang-hi\">भंदल गोत्र की उत्पत्ति महर्षि धौम्य से मानी जाती है। धौम्य ऋषि पांडवों के पुरोहित थे। इस गोत्र के लोग धर्म-कर्म और निष्ठा के लिए प्रसिद्ध हैं。</span><span class=\"lang-en\">The origin of the Bhandal Gotra is traced to Maharishi Dhaumya, the priest of the Pandavas. This Gotra is famous for its religious devotion and loyalty.</span>",
+        "धरण (Dharan)": "<span class=\"lang-hi\">धरण गोत्र के प्रणेता महर्षि धृणबु (कुछ स्रोतों में धौम्य या अन्य ऋषि) माने जाते हैं। यह गोत्र स्थिरता, धैर्य और संपत्ति के संरक्षण का प्रतीक है。</span><span class=\"lang-en\">The pioneer of the Dharan Gotra is believed to be Maharishi Dhrinbu. This Gotra is a symbol of stability, patience, and the preservation of wealth.</span>",
+        "ऐरण (Airan)": "<span class=\"lang-hi\">ऐरण गोत्र महर्षि और्व से संबंधित है। इस गोत्र के लोग साहसी, निडर और अपने लक्ष्यों के प्रति अत्यंत समर्पित होते हैं。</span><span class=\"lang-en\">The Airan Gotra is related to Maharishi Aurva. People of this Gotra are brave, fearless, and highly dedicated to their goals.</span>",
+        "गोयल (Goyal)": "<span class=\"lang-hi\">गोयल गोत्र के गोत्रकार महर्षि गौतम हैं। महर्षि गौतम न्याय दर्शन के रचयिता थे। गोयल गोत्र के लोग अपने तार्किक ज्ञान और परोपकारी स्वभाव के लिए विख्यात हैं。</span><span class=\"lang-en\">The founder of the Goyal Gotra is Maharishi Gautam, the creator of the Nyaya philosophy. People of this Gotra are renowned for their logical wisdom and philanthropic nature.</span>",
+        "जिंदल (Jindal)": "<span class=\"lang-hi\">जिंदल गोत्र की उत्पत्ति महर्षि जैमिनि से हुई है। महर्षि जैमिनि वेदव्यास के शिष्य और मीमांसा दर्शन के रचयिता थे। इस गोत्र के लोग बहुत ऊर्जावान माने जाते हैं。</span><span class=\"lang-en\">The Jindal Gotra originated from Maharishi Jaimini, a disciple of Ved Vyas and creator of the Mimamsa philosophy. People of this Gotra are considered highly energetic.</span>",
+        "कंसल (Kansal)": "<span class=\"lang-hi\">कंसल गोत्र महर्षि कश्यप से जुड़ा हुआ है। कश्यप ऋषि सप्तर्षियों में से एक हैं। इस गोत्र के लोग उदार और विशाल हृदय वाले होते हैं。</span><span class=\"lang-en\">The Kansal Gotra is linked to Maharishi Kashyap, one of the Saptarishis (Seven Sages). People of this Gotra are generous and large-hearted.</span>",
+        "कुच्छल (Kuchhal)": "<span class=\"lang-hi\">कुच्छल गोत्र के प्रणेता महर्षि विश्वामित्र (कौशिक) हैं। कुच्छल गोत्र के व्यक्ति दृढ़ निश्चयी और अपनी मेहनत से सफलता प्राप्त करने वाले होते हैं。</span><span class=\"lang-en\">The pioneer of the Kuchhal Gotra is Maharishi Vishwamitra (Kaushik). Individuals of this Gotra are determined and achieve success through their hard work.</span>",
+        "मधुकुल (Madhukul)": "<span class=\"lang-hi\">मधुकुल गोत्र महर्षि मुदगल से संबंधित है। इस गोत्र के लोग मधुर स्वभाव, आतिथ्य सत्कार और पारिवारिक एकता के लिए प्रसिद्ध हैं。</span><span class=\"lang-en\">The Madhukul Gotra is associated with Maharishi Mudgal. People of this Gotra are famous for their sweet nature, hospitality, and family unity.</span>",
+        "मंगल (Mangal)": "<span class=\"lang-hi\">मंगल गोत्र के आदि गुरु महर्षि मांडव्य हैं। इस गोत्र के लोग बहुत शुभचिंतक, शांतिप्रिय और समाज में मंगल (भलाई) करने वाले माने जाते हैं。</span><span class=\"lang-en\">The founding Guru of the Mangal Gotra is Maharishi Mandavya. People of this Gotra are considered very well-wishing, peace-loving, and bringers of good (Mangal) to society.</span>",
+        "मित्तल (Mittal)": "<span class=\"lang-hi\">मित्तल गोत्र महर्षि मैत्रेय से जुड़ा है। मित्तल गोत्र के व्यक्ति अपने मिलनसार स्वभाव, सच्ची मित्रता और वफादारी के लिए जाने जाते हैं。</span><span class=\"lang-en\">The Mittal Gotra is linked to Maharishi Maitreya. Individuals of this Gotra are known for their friendly nature, true friendship, and loyalty.</span>",
+        "नांगल (Nangal)": "<span class=\"lang-hi\">नांगल गोत्र की उत्पत्ति महर्षि नागेंद्र से मानी जाती है। इस गोत्र के लोग अत्यंत बुद्धिमान, दूरदर्शी और कला व साहित्य प्रेमी होते हैं。</span><span class=\"lang-en\">The origin of the Nangal Gotra is traced to Maharishi Nagendra. People of this Gotra are highly intelligent, visionary, and lovers of art and literature.</span>",
+        "सिंघल (Singhal)": "<span class=\"lang-hi\">सिंघल गोत्र महर्षि श्रृंगी से संबंधित है। श्रृंगी ऋषि महान तपस्वी थे। सिंघल गोत्र के लोग निडर, पराक्रमी और नेतृत्व क्षमता से धनी होते हैं。</span><span class=\"lang-en\">The Singhal Gotra is related to Maharishi Shringi, a great ascetic. People of this Gotra are fearless, valorous, and rich in leadership qualities.</span>",
+        "तायल (Tayal)": "<span class=\"lang-hi\">तायल गोत्र महर्षि तैत्तिरीय से जुड़ा है। तायल गोत्र के व्यक्ति बहुत परिश्रमी, आध्यात्मिक और विद्या प्रेमी होते हैं。</span><span class=\"lang-en\">The Tayal Gotra is linked to Maharishi Taittiriya. Individuals of this Gotra are very hardworking, spiritual, and lovers of knowledge.</span>",
+        "तिंगल (Tingal)": "<span class=\"lang-hi\">तिंगल गोत्र महर्षि तांड्य से संबंधित है। इस गोत्र के लोग कला, संगीत और रचनात्मक कार्यों में विशेष रुचि रखते हैं。</span><span class=\"lang-en\">The Tingal Gotra is associated with Maharishi Tandya. People of this Gotra have a special interest in art, music, and creative endeavors.</span>",
+        "गोयन (Goyan)": "<span class=\"lang-hi\">गोयन गोत्र के प्रणेता महर्षि गौतम (कुछ स्रोतों में गोभिल) माने जाते हैं। गोयन गोत्र के लोग धर्म-परायण और गहरे वैचारिक विचारों वाले होते हैं。</span><span class=\"lang-en\">The pioneer of the Goyan Gotra is considered to be Maharishi Gautam (or Gobhil). People of this Gotra are religiously devoted and have deep philosophical thoughts.</span>"
     };
 
     // Gotra Modal Logic
@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const info = gotraInfo[gotraName];
                 
                 modalGotraTitle.textContent = gotraName;
-                modalGotraInfo.innerHTML = info ? info : "इस गोत्र की विस्तृत जानकारी जल्द ही अपडेट की जाएगी।<br><br><span class=\"en-text\">Detailed information for this Gotra will be updated soon.</span>";
+                modalGotraInfo.innerHTML = info ? info : "<span class=\"lang-hi\">इस गोत्र की विस्तृत जानकारी जल्द ही अपडेट की जाएगी।</span><span class=\"lang-en\">Detailed information for this Gotra will be updated soon.</span>";
                 
                 gotraModal.classList.add('show');
             });
@@ -487,4 +487,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+});
+
+// Language Toggle Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const langToggleBtn = document.getElementById('lang-toggle');
+    const body = document.body;
+    
+    // Check local storage for preference
+    const savedLang = localStorage.getItem('preferredLang');
+    if (savedLang === 'en') {
+        body.classList.add('lang-english-mode');
+        if (langToggleBtn) {
+            langToggleBtn.innerHTML = '<i class="fas fa-language"></i> हिंदी';
+        }
+    } else {
+        // Default is Hindi
+        body.classList.remove('lang-english-mode');
+        if (langToggleBtn) {
+            langToggleBtn.innerHTML = '<i class="fas fa-language"></i> English';
+        }
+    }
+
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('lang-english-mode');
+            const isEnglish = body.classList.contains('lang-english-mode');
+            
+            if (isEnglish) {
+                localStorage.setItem('preferredLang', 'en');
+                langToggleBtn.innerHTML = '<i class="fas fa-language"></i> हिंदी';
+            } else {
+                localStorage.setItem('preferredLang', 'hi');
+                langToggleBtn.innerHTML = '<i class="fas fa-language"></i> English';
+            }
+        });
+    }
 });

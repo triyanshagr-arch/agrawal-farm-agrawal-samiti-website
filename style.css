@@ -2120,3 +2120,30 @@ ul {
     margin-bottom: 10px;
     text-align: center;
 }
+
+/* Language Toggle Logic */
+.lang-en { display: none !important; }
+body.lang-english-mode .lang-hi { display: none !important; }
+body.lang-english-mode .lang-en { display: block !important; }
+body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang-english-mode strong.lang-en { display: inline !important; }
+
+.language-toggle {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 1px solid var(--white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.language-toggle:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
