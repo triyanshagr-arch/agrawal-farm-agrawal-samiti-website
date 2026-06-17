@@ -13,12 +13,12 @@
     --error: #C62828;
     --warning: #F9A825;
     
-    /* Neutral Palette (Dark Burgundy Theme) */
-    --bg-main: #2C0B0E; /* Dark Burgundy */
-    --bg-card: #4A1217; /* Lighter Burgundy for cards */
-    --text-main: #FDFBF7; /* Soft Ivory for main text */
-    --text-muted: #E0C097; /* Muted Gold for secondary text */
-    --border-color: #5C1A22; /* Dark red border */
+    /* Neutral Palette (Traditional Parchment Theme) */
+    --bg-main: #F5F2EB; /* Warm Sandstone/Parchment */
+    --bg-card: #FFFFFF; /* Crisp white for cards */
+    --text-main: #2C1E16; /* Deep Espresso */
+    --text-muted: #5D4037; /* Brown */
+    --border-color: #E6DFCD; /* Sandstone border */
     
     /* UI Variables */
     --radius-sm: 8px;
@@ -44,7 +44,7 @@ body {
 
 h1, h2, h3, h4, h5, h6, .hindi-text, .section-title {
     font-family: 'Playfair Display', serif !important;
-    color: var(--accent-color); /* Switched to Gold for contrast against dark background */
+    color: var(--primary-color);
 }
 
 .bg-cream {
