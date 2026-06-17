@@ -542,8 +542,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-}
-});
 
 // Scroll Animations & Back to Top
 document.addEventListener('DOMContentLoaded', () => {

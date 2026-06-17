@@ -2030,27 +2030,17 @@ ul {
     align-items: stretch;
     position: relative;
 }
-.header-image-box {
-    flex: 0 0 220px;
-    position: relative;
-    z-index: 10;
-}
+
+
 .agrasen-img {
-    position: absolute;
-    bottom: -35px;
-    left: -355px;
-    width: 142px;
-    height: 192px;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+    width: auto;
+    height: 160px;
+    max-width: 100%;
+    object-fit: contain;
 }
 
-.header-content-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 20px;
-}
+
+
 .header-title-row {
     display: flex;
     align-items: center;
@@ -2121,8 +2111,8 @@ ul {
 
 @media (max-width: 992px) {
     .header-container { flex-wrap: wrap; justify-content: center; padding-top: 15px; }
-    .header-image-box { order: 1; flex: 0 0 50%; min-width: 0; display: flex; justify-content: center; align-items: flex-end; }
-    .header-content-box { order: 3; flex: 0 0 100%; min-width: 0; padding-left: 0; text-align: center; }
+    
+    
     .header-main-title { font-size: 1.1rem; white-space: normal; margin-top: 10px; }
     .red-navbar { clip-path: none; margin-left: 0; margin-right: 0; padding-left: 0; width: 100%; justify-content: space-between; padding: 10px 20px; position: relative; border-radius: 0;}
     .menu-toggle { display: block; cursor: pointer; }
@@ -2232,29 +2222,18 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
     }
 }
 
-.header-image-box-right {
-    flex: 0 0 220px;
-    position: relative;
-    z-index: 10;
-}
+
+
 .lakshmi-img {
-    position: absolute;
-    bottom: -10px;
-    right: -253px;
-    height: 168px;
     width: auto;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+    height: 160px;
+    max-width: 100%;
+    object-fit: contain;
 }
 
+
 @media (max-width: 992px) {
-    .header-image-box-right {
-        order: 2;
-        display: flex !important;
-        flex: 0 0 50%;
-        min-width: 0;
-        justify-content: center;
-        align-items: flex-end;
-    }
+    
     .agrasen-img, .lakshmi-img {
         position: relative !important;
         bottom: 0 !important;
@@ -2320,11 +2299,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 }
 
 /* Deities Image Framing */
-.header-image-box, .header-image-box-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+.header-image-box, 
 .agrasen-img, .lakshmi-img {
     filter: drop-shadow(0 10px 15px rgba(211, 47, 47, 0.15)) !important;
     border-radius: var(--radius-md);
@@ -2385,14 +2360,8 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
         flex-wrap: wrap;
         justify-content: space-between !important;
     }
-    .header-image-box, .header-image-box-right {
-        flex: 0 0 45% !important;
-        order: 1 !important;
-    }
-    .header-content-box {
-        flex: 0 0 100% !important;
-        order: 2 !important;
-    }
+    .header-image-box, 
+    
 }
 
 /* Modern UI Components (Festive 2026) */
@@ -2558,4 +2527,25 @@ footer a:hover {
 .whatsapp-float:hover {
     transform: translateY(-5px) !important;
     box-shadow: var(--shadow-glow) !important;
+}
+
+
+.header-image-box {
+    flex: 0 0 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-image-box-right {
+    flex: 0 0 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-content-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
 }
