@@ -569,6 +569,10 @@ ul {
     cursor: pointer;
 }
 
+.mobile-drawer-close {
+    display: none;
+}
+
 .bar {
     display: block;
     width: 25px;
