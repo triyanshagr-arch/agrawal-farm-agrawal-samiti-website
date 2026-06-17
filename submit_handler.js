@@ -1,3 +1,13 @@
+// Helper to read file as Data URL
+function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.onerror = (e) => reject(e);
+        reader.readAsDataURL(file);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('membershipForm');
     
@@ -7,13 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Forms...';
             submitBtn.disabled = true;
 
             try {
-                // Collect Form Data
-                const formData = new FormData();
-                const dataObj = {}; // For local PDF generation
+                // Generate Randomized ID (Since there is no database)
+                const date = new Date();
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const randomString = Math.random().toString(36).substring(2, 6).toUpperCase();
+                const membershipNo = `ASS-${year}${month}${day}-${randomString}`;
+
+                const dataObj = {}; 
                 
                 // Text fields
                 const textFields = ['title-dropdown', 'fullName', 'guardianName', 'dob', 'bloodGroup', 'gotra', 
@@ -24,45 +40,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 textFields.forEach(id => {
                     const el = document.getElementById(id);
                     if(el) {
-                        // For title-dropdown we send it as 'title'
                         const name = id === 'title-dropdown' ? 'title' : id;
-                        formData.append(name, el.value);
                         dataObj[name] = el.value;
                     }
                 });
 
-                // File fields
-                const applicantPhoto = document.getElementById('applicantPhoto').files[0];
-                if(applicantPhoto) formData.append('applicantPhoto', applicantPhoto);
+                // Read Images (Photos)
+                const applicantPhotoInput = document.getElementById('applicantPhoto');
+                const applicantSignatureInput = document.getElementById('applicantSignature');
+                
+                const photoUrl = applicantPhotoInput.files.length > 0 ? await readFileAsDataURL(applicantPhotoInput.files[0]) : null;
+                const signatureUrl = applicantSignatureInput.files.length > 0 ? await readFileAsDataURL(applicantSignatureInput.files[0]) : null;
 
-                const applicantSignature = document.getElementById('applicantSignature').files[0];
-                if(applicantSignature) formData.append('applicantSignature', applicantSignature);
+                // Generate Local PDFs and Download
+                generateReceiptPDF(membershipNo, dataObj, 'save');
+                await generateFilledTemplate(membershipNo, dataObj, photoUrl, signatureUrl, 'save');
 
-                const paymentScreenshot = document.getElementById('paymentScreenshot').files[0];
-                if(paymentScreenshot) formData.append('paymentScreenshot', paymentScreenshot);
-
-                // Send to Backend API
-                const response = await fetch('/api/submit-form', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    try {
-                        generateReceiptPDF(result.membershipNo, dataObj, 'save');
-                    } catch(e) { console.error("PDF local generation failed", e); }
-
-                    alert(`Form Submitted Successfully!\nYour Membership No. is: ${result.membershipNo}\n\nYour receipt has been downloaded and your application sent for review.`);
-                    form.reset();
-                } else {
-                    alert(`Submission failed: ${result.error || 'Unknown error'}`);
-                }
+                // Alert User
+                alert(`Forms Generated Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Both the Receipt and Membership Form PDFs have been automatically downloaded to your computer/phone.\n\nSince there is no backend server to save these, YOU MUST MANUALLY EMAIL both of these downloaded PDFs to: atriyanshagr@gmail.com for Admin Approval!`);
+                
+                form.reset();
 
             } catch (error) {
                 console.error("Error submitting form:", error);
-                alert("An error occurred while communicating with the server. Please check if the backend is running.");
+                alert("An error occurred while generating the PDFs. Please try again.");
             } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
