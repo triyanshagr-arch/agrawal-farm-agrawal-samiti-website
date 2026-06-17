@@ -2295,3 +2295,102 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
+
+/* Modern Crimson Navbar */
+.red-navbar {
+    background: rgba(211, 47, 47, 0.95) !important; /* Crimson */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: var(--shadow-md) !important;
+    border-bottom: 2px solid var(--accent-color); /* Gold bottom border */
+    border-radius: var(--radius-lg);
+    margin-top: 15px;
+}
+.nav-links {
+    font-weight: 500 !important;
+    letter-spacing: 0.3px;
+    padding: 12px 20px !important;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast) !important;
+}
+.nav-links:hover, .nav-links.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: var(--accent-color) !important; /* Highlight gold on hover */
+    transform: translateY(-1px);
+}
+
+/* Deities Image Framing */
+.header-image-box, .header-image-box-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.agrasen-img, .lakshmi-img {
+    filter: drop-shadow(0 10px 15px rgba(211, 47, 47, 0.15)) !important;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+.agrasen-img:hover, .lakshmi-img:hover {
+    transform: scale(1.03) translateY(-5px);
+    filter: drop-shadow(0 15px 25px rgba(211, 47, 47, 0.25)) !important;
+}
+
+/* Modern Mobile Drawer */
+@media (max-width: 992px) {
+    .nav-menu {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: 300px !important;
+        height: 100vh !important;
+        background: rgba(255, 253, 248, 0.98) !important; /* Ivory Drawer */
+        backdrop-filter: blur(20px) !important;
+        flex-direction: column !important;
+        padding: 80px 20px 30px !important;
+        transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        box-shadow: -10px 0 30px rgba(211, 47, 47, 0.1) !important;
+        z-index: 9999 !important;
+    }
+    .nav-menu.active {
+        right: 0 !important;
+        display: flex !important;
+    }
+    .nav-links {
+        color: var(--primary-color) !important;
+        font-size: 1.2rem !important;
+        font-family: 'Playfair Display', serif !important;
+        padding: 15px !important;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .nav-links:hover {
+        background: rgba(211, 47, 47, 0.05) !important;
+    }
+    
+    /* Close Button for Drawer */
+    .mobile-drawer-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 28px;
+        color: var(--primary-color);
+        cursor: pointer;
+        display: none;
+    }
+    .nav-menu.active .mobile-drawer-close {
+        display: block;
+    }
+    
+    /* Responsive deities side-by-side */
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: space-between !important;
+    }
+    .header-image-box, .header-image-box-right {
+        flex: 0 0 45% !important;
+        order: 1 !important;
+    }
+    .header-content-box {
+        flex: 0 0 100% !important;
+        order: 2 !important;
+    }
+}

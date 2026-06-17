@@ -8,6 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.classList.toggle('active');
     });
 
+    // Drawer Close Button
+    const drawerCloseBtn = document.getElementById('drawer-close-btn');
+    if (drawerCloseBtn) {
+        drawerCloseBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-active');
+            navMenu.classList.remove('active');
+        });
+    }
+
+
     // Close mobile menu when link is clicked (unless it's a dropdown toggle)
     document.querySelectorAll('.nav-links:not(.dropdown-toggle), .dropdown-link').forEach(link => {
         link.addEventListener('click', () => {
