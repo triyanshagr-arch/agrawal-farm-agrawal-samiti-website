@@ -13,12 +13,12 @@
     --error: #C62828;
     --warning: #F9A825;
     
-    /* Neutral Palette (Warm Saffron Theme) */
-    --bg-main: #FFF3E0; /* Pale Marigold/Saffron */
-    --bg-card: #FFFFFF; /* Crisp white for cards */
+    /* Neutral Palette (Light Mode) */
+    --bg-main: #FFFDF8; /* Soft Ivory */
+    --bg-card: #FFFFFF;
     --text-main: #2C1E16; /* Deep Espresso */
     --text-muted: #5D4037; /* Brown */
-    --border-color: #FFE0B2; /* Saffron border */
+    --border-color: #EFEBE0; /* Ivory border */
     
     /* UI Variables */
     --radius-sm: 8px;
