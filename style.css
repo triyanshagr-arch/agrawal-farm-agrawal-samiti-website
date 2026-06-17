@@ -2588,10 +2588,4 @@ footer a:hover {
         right: 10px;
         display: block; /* Ensure it stays visible */
     }
-    .agrasen-img {
-        height: 80px; /* slightly smaller on mobile */
-    }
-    .lakshmi-img {
-        height: 80px; /* slightly smaller on mobile */
-    }
 }
