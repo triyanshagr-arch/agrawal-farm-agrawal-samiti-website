@@ -2545,7 +2545,7 @@ footer a:hover {
 }
 .agrasen-img, .lakshmi-img {
     width: auto;
-    height: 140px; /* Adjusted slightly so they don't break the layout but sit nicely at top */
+    height: 180px;
     max-width: 100%;
     object-fit: contain;
 }
