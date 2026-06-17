@@ -65,14 +65,14 @@
                 <div class="divider">❋ ༺ ॐ ༻ ❋</div>
 
                 <div class="form-container" style="background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 30px;">
-                    <form action="#" method="POST" onsubmit="alert('Form Submitted Successfully! This is a demo submission.'); return false;">
+                    <form id="membershipForm" action="#" method="POST">
                         
                         <!-- Personal Details -->
                         <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">व्यक्तिगत विवरण</span><span class="lang-en">Personal Details</span></h3>
                         
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आवेदक का फोटो <span style="color:red">*</span></span><span class="lang-en">Applicant Photo <span style="color:red">*</span></span></label>
-                            <input type="file" required accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                            <input type="file" id="applicantPhoto" required accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                         </div>
 
                         <div class="form-grid">
@@ -84,16 +84,16 @@
                                         <option value="Mrs.">श्रीमती</option>
                                         <option value="Miss">कुमारी</option>
                                     </select>
-                                    <input type="text" required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" placeholder="Enter Name">
+                                    <input type="text" id="fullName" required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" placeholder="Enter Name">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label id="guardian-name-label" style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पिता/पति का नाम <span style="color:red">*</span></span><span class="lang-en">Father's/Husband's Name <span style="color:red">*</span></span></label>
-                                <input type="text" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="text" id="guardianName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">जन्म तिथि</span><span class="lang-en">Date of Birth</span></label>
-                                <input type="date" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="date" id="dob" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                             <div class="form-group" id="married-status-group" style="display: none;">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाहित?</span><span class="lang-en">Married?</span></label>
@@ -104,11 +104,11 @@
                             </div>
                             <div class="form-group" id="marriage-date-group" style="display: none;">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाह तिथि</span><span class="lang-en">Marriage Date</span></label>
-                                <input type="date" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="date" id="marriageDate" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">रक्त समूह</span><span class="lang-en">Blood Group</span></label>
-                                <select style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+                                <select id="bloodGroup" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
                                     <option value="">Select / चुनें</option>
                                     <option value="A+">A+</option><option value="A-">A-</option>
                                     <option value="B+">B+</option><option value="B-">B-</option>
@@ -118,7 +118,7 @@
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">गोत्र <span style="color:red">*</span></span><span class="lang-en">Gotra <span style="color:red">*</span></span></label>
-                                <select required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+                                <select id="gotra" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
                                     <option value="">Select Gotra / गोत्र चुनें</option>
                                     <option value="Airan">Airan (ऐरन)</option>
                                     <option value="Bansal">Bansal (बंसल)</option>
@@ -142,15 +142,15 @@
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">व्यवसाय / Occupation</span><span class="lang-en">Occupation / Profession</span></label>
-                                <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="text" id="occupation" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">शिक्षा</span><span class="lang-en">Education</span></label>
-                                <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="text" id="education" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मूल निवास</span><span class="lang-en">Domicile</span></label>
-                                <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="text" id="domicile" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                         </div>
 
@@ -158,16 +158,16 @@
                         <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">संपर्क विवरण</span><span class="lang-en">Contact Details</span></h3>
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">स्थाई पता <span style="color:red">*</span></span><span class="lang-en">Permanent Address <span style="color:red">*</span></span></label>
-                            <textarea required rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
+                            <textarea id="permanentAddress" required rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
                         </div>
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">कार्यालय का पता</span><span class="lang-en">Office Address</span></label>
-                            <textarea rows="2" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
+                            <textarea id="officeAddress" rows="2" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
                         </div>
                         <div class="form-grid">
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मकान</span><span class="lang-en">House Type</span></label>
-                                <select style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+                                <select id="houseType" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
                                     <option value="">Select / चुनें</option>
                                     <option value="Private">Private / निजी</option>
                                     <option value="Rented">Rented / किराए का</option>
@@ -175,11 +175,11 @@
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
-                                <input type="tel" required pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="tel" id="mobileNumber" required pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
-                                <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="email" id="emailId" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                         </div>
 
@@ -187,7 +187,7 @@
                         <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">परिवार और बच्चों का विवरण</span><span class="lang-en">Family & Children Details</span></h3>
                         <div class="form-group" style="margin-bottom: 30px;">
                             <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पति/पत्नी और बच्चों के नाम एवं उम्र (यदि लागू हो)</span><span class="lang-en">Names & Ages of Spouse and Children (if applicable)</span></label>
-                            <textarea rows="4" placeholder="Example: 
+                            <textarea id="familyDetails" rows="4" placeholder="Example: 
 Spouse: [Name], Age: [Age]
 Child 1: [Name], Age: [Age]
 Child 2: [Name], Age: [Age]" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
@@ -249,19 +249,19 @@ Child 2: [Name], Age: [Age]" style="width: 100%; padding: 12px; border: 1px soli
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">UPI / पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">UPI / Payment Screenshot <span style="color:red">*</span></span></label>
-                                    <input type="file" required accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    <input type="file" id="paymentScreenshot" required accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                                 </div>
                                 <div class="form-group">
                                     <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ट्रांजेक्शन आईडी / संदर्भ संख्या <span style="color:red">*</span></span><span class="lang-en">Transaction ID / Reference No. <span style="color:red">*</span></span></label>
-                                    <input type="text" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    <input type="text" id="transactionId" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                                 </div>
                                 <div class="form-group">
                                     <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आवेदक के बैंक खाते का नाम <span style="color:red">*</span></span><span class="lang-en">Applicant Bank Account Name <span style="color:red">*</span></span></label>
-                                    <input type="text" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    <input type="text" id="bankAccountName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                                 </div>
                                 <div class="form-group">
                                     <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">यूटीआर (UTR) नंबर</span><span class="lang-en">UTR No.</span></label>
-                                    <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    <input type="text" id="utrNo" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                                 </div>
                             </div>
                         </div>
@@ -278,7 +278,7 @@ Child 2: [Name], Age: [Age]" style="width: 100%; padding: 12px; border: 1px soli
                         <div class="form-group" style="margin-bottom: 30px; text-align: center;">
                             <label style="display: block; font-weight: bold; margin-bottom: 12px; color: #333; font-size: 1.1rem;"><span class="lang-hi">आवेदक के हस्ताक्षर <span style="color:red">*</span></span><span class="lang-en">Signature of Applicant <span style="color:red">*</span></span></label>
                             <div style="max-width: 400px; margin: 0 auto;">
-                                <input type="file" required accept="image/*" style="width: 100%; padding: 10px; border: 2px dashed #ccc; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fafafa; cursor: pointer;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ccc'">
+                                <input type="file" id="applicantSignature" required accept="image/*" style="width: 100%; padding: 10px; border: 2px dashed #ccc; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fafafa; cursor: pointer;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ccc'">
                                 <small style="display: block; margin-top: 8px; color: #666;"><span class="lang-hi">कृपया अपने हस्ताक्षर की फोटो अपलोड करें</span><span class="lang-en">Please upload a photo of your signature</span></small>
                             </div>
                         </div>
@@ -381,5 +381,7 @@ Child 2: [Name], Age: [Age]" style="width: 100%; padding: 12px; border: 1px soli
             observer.observe(document.body, { attributes: true });
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="pdf_generator.js"></script>
 </body>
 </html>
