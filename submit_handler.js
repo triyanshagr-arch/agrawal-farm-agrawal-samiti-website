@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Collect Form Data
                 const formData = new FormData();
+                const dataObj = {}; // For local PDF generation
                 
                 // Text fields
                 const textFields = ['title-dropdown', 'fullName', 'guardianName', 'dob', 'bloodGroup', 'gotra', 
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         // For title-dropdown we send it as 'title'
                         const name = id === 'title-dropdown' ? 'title' : id;
                         formData.append(name, el.value);
+                        dataObj[name] = el.value;
                     }
                 });
 
@@ -48,7 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
 
                 if (response.ok) {
-                    alert(`Form Submitted Successfully!\nYour Membership No. is: ${result.membershipNo}\n\nYour application has been sent for admin review.`);
+                    try {
+                        generateReceiptPDF(result.membershipNo, dataObj, 'save');
+                    } catch(e) { console.error("PDF local generation failed", e); }
+
+                    alert(`Form Submitted Successfully!\nYour Membership No. is: ${result.membershipNo}\n\nYour receipt has been downloaded and your application sent for review.`);
                     form.reset();
                 } else {
                     alert(`Submission failed: ${result.error || 'Unknown error'}`);

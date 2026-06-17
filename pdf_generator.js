@@ -95,7 +95,7 @@ function loadImage(src) {
 }
 
 // Generate Receipt PDF
-function generateReceiptPDF(membershipNo, data) {
+function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
@@ -119,10 +119,10 @@ function generateReceiptPDF(membershipNo, data) {
     doc.text(`Membership No: ${membershipNo}`, 120, y);
     y += 15;
 
-    doc.text(`Name: ${data.title} ${data.fullName}`, 20, y);
+    doc.text(`Name: ${data.title || ''} ${data.fullName || 'NA'}`, 20, y);
     y += 10;
-    doc.text(`Mobile Number: ${data.mobileNumber}`, 20, y);
-    doc.text(`Email: ${data.emailId}`, 120, y);
+    doc.text(`Mobile Number: ${data.mobileNumber || 'NA'}`, 20, y);
+    doc.text(`Email: ${data.emailId || 'NA'}`, 120, y);
     y += 10;
     doc.text(`Membership Type: Lifetime Membership (Rs. 501/-)`, 20, y);
     
@@ -136,22 +136,26 @@ function generateReceiptPDF(membershipNo, data) {
     doc.text("Transaction Details", 20, y);
     y += 10;
     doc.setFontSize(12);
-    doc.text(`Transaction ID / Ref: ${data.transactionId}`, 20, y);
+    doc.text(`Transaction ID / Ref: ${data.transactionId || 'NA'}`, 20, y);
     y += 10;
-    doc.text(`UTR No: ${data.utrNo || "N/A"}`, 20, y);
+    doc.text(`UTR No: ${data.utrNo || "NA"}`, 20, y);
     y += 10;
-    doc.text(`Bank Account Name: ${data.bankAccountName}`, 20, y);
+    doc.text(`Bank Account Name: ${data.bankAccountName || 'NA'}`, 20, y);
 
     y += 20;
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     doc.text("This is a computer-generated receipt and does not require a physical signature.", 105, 280, null, null, "center");
 
-    doc.save(`Receipt_${data.fullName.replace(/\s+/g, '_')}_${membershipNo}.pdf`);
+    if (returnType === 'save') {
+        doc.save(`Receipt_${(data.fullName || 'User').replace(/\s+/g, '_')}_${membershipNo}.pdf`);
+    } else if (returnType === 'datauristring') {
+        return doc.output('datauristring');
+    }
 }
 
 // Generate Filled Template
-async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl) {
+async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl, returnType = 'save') {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     
@@ -167,57 +171,65 @@ async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl
     
     // Setup Font
     ctx.fillStyle = '#111111';
-    // The template is likely high-res, adjust font size accordingly. 
-    // Assuming a standard A4 scan around 1500-2000px wide.
     const fontSize = Math.floor(canvas.width * 0.015); 
     ctx.font = `bold ${fontSize}px sans-serif`;
 
-    // Coordinates mapping (These will likely need adjustment based on the actual image)
     const cw = canvas.width;
     const ch = canvas.height;
 
-    // Helper to draw text
+    // Helper to draw text with NA fallback
     const drawText = (text, xPct, yPct) => {
-        if(text) ctx.fillText(text, cw * xPct, ch * yPct);
+        const val = (text && String(text).trim() !== '') ? text : 'NA';
+        ctx.fillText(val, cw * xPct, ch * yPct);
     };
 
     // Est. Coordinates for Agrawal Farm Template
     drawText(membershipNo, 0.80, 0.04); // Top right
     
-    drawText(`${data.title} ${data.fullName}`, 0.22, 0.198);
+    drawText(`${data.title || ''} ${data.fullName || ''}`, 0.22, 0.198);
     drawText(data.guardianName, 0.22, 0.235);
     drawText(data.education, 0.12, 0.275);
     drawText(data.occupation, 0.45, 0.275);
     drawText(data.gotra, 0.70, 0.275);
     drawText(data.domicile, 0.12, 0.315);
     drawText(data.dob, 0.45, 0.315);
+    drawText(data.marriageDate, 0.75, 0.315); // Will naturally fall back to NA
     
-    drawText(data.permanentAddress.substring(0, 80), 0.22, 0.355);
+    drawText(data.permanentAddress ? data.permanentAddress.substring(0, 80) : '', 0.22, 0.355);
     drawText(data.mobileNumber, 0.65, 0.395);
     drawText(data.emailId, 0.12, 0.435);
     drawText(data.houseType, 0.60, 0.435);
     drawText(data.officeAddress, 0.22, 0.475);
+    
+    // Draw Family details just below the table header
+    ctx.font = `normal ${Math.floor(fontSize * 0.8)}px sans-serif`;
+    drawText(data.familyDetails, 0.10, 0.55);
 
     // Draw Photo
     if (photoUrl) {
-        const photoImg = await loadImage(photoUrl);
-        const photoX = cw * 0.80;
-        const photoY = ch * 0.125;
-        const photoW = cw * 0.16;
-        const photoH = ch * 0.165;
-        ctx.drawImage(photoImg, photoX, photoY, photoW, photoH);
+        try {
+            const photoImg = await loadImage(photoUrl);
+            const photoX = cw * 0.80;
+            const photoY = ch * 0.125;
+            const photoW = cw * 0.16;
+            const photoH = ch * 0.165;
+            ctx.drawImage(photoImg, photoX, photoY, photoW, photoH);
+        } catch(e) { console.error("Could not load photo", e); }
     }
 
     // Draw Signature
     if (signatureUrl) {
-        const sigImg = await loadImage(signatureUrl);
-        const sigX = cw * 0.75;
-        const sigY = ch * 0.88;
-        const sigW = cw * 0.15;
-        const sigH = ch * 0.05;
-        ctx.drawImage(sigImg, sigX, sigY, sigW, sigH);
+        try {
+            const sigImg = await loadImage(signatureUrl);
+            const sigX = cw * 0.75;
+            const sigY = ch * 0.88;
+            const sigW = cw * 0.15;
+            const sigH = ch * 0.05;
+            ctx.drawImage(sigImg, sigX, sigY, sigW, sigH);
+        } catch(e) { console.error("Could not load signature", e); }
     }
 
+    ctx.font = `bold ${fontSize}px sans-serif`;
     drawText(new Date().toLocaleDateString(), 0.1, 0.90);
 
     // Convert Canvas to PDF
@@ -233,5 +245,9 @@ async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl
     const imgData = canvas.toDataURL('image/jpeg', 0.8);
     doc.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
     
-    doc.save(`Filled_Form_${data.fullName.replace(/\s+/g, '_')}_${membershipNo}.pdf`);
+    if (returnType === 'save') {
+        doc.save(`Filled_Form_${(data.fullName || 'User').replace(/\s+/g, '_')}_${membershipNo}.pdf`);
+    } else if (returnType === 'datauristring') {
+        return doc.output('datauristring');
+    }
 }

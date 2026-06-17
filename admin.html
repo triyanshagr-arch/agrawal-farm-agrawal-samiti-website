@@ -54,11 +54,12 @@
         </div>
     </div>
 
-    <!-- Image View Modal -->
+    <!-- Image/PDF View Modal -->
     <div id="image-modal">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <h3 id="modal-title" style="color: white; margin-bottom: 20px;">Image</h3>
-        <img id="modal-img" src="" alt="View">
+        <h3 id="modal-title" style="color: white; margin-bottom: 20px;">Viewer</h3>
+        <img id="modal-img" src="" alt="View" style="display:none; max-width: 90%; max-height: 80%; border: 5px solid white; border-radius: 4px;">
+        <iframe id="modal-iframe" style="display:none; width: 90%; height: 80%; background: white; border: none; border-radius: 4px;"></iframe>
     </div>
 
     <div class="admin-container" id="admin-content" style="display: none;">
@@ -154,6 +155,9 @@
                     <td>
                         <button class="btn-sm btn-view" onclick="viewImage(${m.id}, 'applicantPhoto', 'Applicant Photo')">Photo</button>
                         <button class="btn-sm btn-view" onclick="viewImage(${m.id}, 'paymentScreenshot', 'Payment Screenshot')">Payment</button>
+                        <hr style="margin:5px 0; border:0; border-top:1px solid #ddd;">
+                        <button class="btn-sm btn-view" style="background-color:#6c757d;" onclick="viewReceipt(${m.id})">Receipt PDF</button>
+                        <button class="btn-sm btn-view" style="background-color:#6c757d;" onclick="viewFormPDF(${m.id})">Form PDF</button>
                     </td>
                     <td>
                         <span class="status-badge ${statusClass}">${m.status}</span>
@@ -186,14 +190,14 @@
                         const member = membersData.find(m => m.id === id);
                         if (member) {
                             try {
-                                alert('Generating PDFs... Please wait a moment.');
+                                alert('Generating PDFs for automatic download... Please wait a moment.');
                                 
                                 // Format path for Windows compatibility
                                 const photoPath = member.applicantPhoto && member.applicantPhoto !== 'null' ? '/' + member.applicantPhoto.replace(/\\/g, '/') : null;
                                 const sigPath = member.applicantSignature && member.applicantSignature !== 'null' ? '/' + member.applicantSignature.replace(/\\/g, '/') : null;
 
-                                generateReceiptPDF(member.membership_no, member);
-                                await generateFilledTemplate(member.membership_no, member, photoPath, sigPath);
+                                generateReceiptPDF(member.membership_no, member, 'save');
+                                await generateFilledTemplate(member.membership_no, member, photoPath, sigPath, 'save');
                             } catch (e) {
                                 console.error('PDF Error:', e);
                                 alert('Approved successfully, but failed to generate PDFs locally.');
@@ -218,13 +222,48 @@
             
             // Fix Windows backslashes
             const correctedPath = path.replace(/\\/g, '/');
+            
             document.getElementById('modal-img').src = '/' + correctedPath;
+            document.getElementById('modal-img').style.display = 'block';
+            document.getElementById('modal-iframe').style.display = 'none';
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('image-modal').style.display = 'flex';
+        }
+
+        async function viewReceipt(id) {
+            const member = membersData.find(m => m.id === id);
+            if(!member) return;
+            const dataUri = generateReceiptPDF(member.membership_no, member, 'datauristring');
+            showPdfIframe(dataUri, 'Receipt PDF');
+        }
+
+        async function viewFormPDF(id) {
+            const member = membersData.find(m => m.id === id);
+            if(!member) return;
+            
+            const photoPath = member.applicantPhoto && member.applicantPhoto !== 'null' ? '/' + member.applicantPhoto.replace(/\\/g, '/') : null;
+            const sigPath = member.applicantSignature && member.applicantSignature !== 'null' ? '/' + member.applicantSignature.replace(/\\/g, '/') : null;
+
+            document.getElementById('modal-title').innerText = "Generating Form PDF...";
+            document.getElementById('image-modal').style.display = 'flex';
+            document.getElementById('modal-iframe').style.display = 'none';
+            document.getElementById('modal-img').style.display = 'none';
+
+            const dataUri = await generateFilledTemplate(member.membership_no, member, photoPath, sigPath, 'datauristring');
+            showPdfIframe(dataUri, 'Filled Form PDF');
+        }
+
+        function showPdfIframe(dataUri, title) {
+            document.getElementById('modal-iframe').src = dataUri;
+            document.getElementById('modal-iframe').style.display = 'block';
+            document.getElementById('modal-img').style.display = 'none';
             document.getElementById('modal-title').innerText = title;
             document.getElementById('image-modal').style.display = 'flex';
         }
 
         function closeModal() {
             document.getElementById('image-modal').style.display = 'none';
+            document.getElementById('modal-iframe').src = '';
         }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
