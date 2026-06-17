@@ -182,6 +182,24 @@
                 
                 const data = await response.json();
                 if(data.success) {
+                    if (newStatus === 'Approved') {
+                        const member = membersData.find(m => m.id === id);
+                        if (member) {
+                            try {
+                                alert('Generating PDFs... Please wait a moment.');
+                                
+                                // Format path for Windows compatibility
+                                const photoPath = member.applicantPhoto && member.applicantPhoto !== 'null' ? '/' + member.applicantPhoto.replace(/\\/g, '/') : null;
+                                const sigPath = member.applicantSignature && member.applicantSignature !== 'null' ? '/' + member.applicantSignature.replace(/\\/g, '/') : null;
+
+                                generateReceiptPDF(member.membership_no, member);
+                                await generateFilledTemplate(member.membership_no, member, photoPath, sigPath);
+                            } catch (e) {
+                                console.error('PDF Error:', e);
+                                alert('Approved successfully, but failed to generate PDFs locally.');
+                            }
+                        }
+                    }
                     loadMembers(); // reload table
                 } else {
                     alert('Error: ' + data.error);
@@ -209,5 +227,7 @@
             document.getElementById('image-modal').style.display = 'none';
         }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="pdf_generator.js"></script>
 </body>
 </html>
