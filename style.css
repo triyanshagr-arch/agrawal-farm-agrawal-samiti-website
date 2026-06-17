@@ -2303,7 +2303,8 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
         right: -100% !important;
         left: auto !important;
         width: 300px !important;
-        height: 100vh !important;
+        height: 100% !important;
+        box-sizing: border-box !important;
         background: rgba(255, 253, 248, 0.98) !important; /* Ivory Drawer */
         backdrop-filter: blur(20px) !important;
         flex-direction: column !important;
