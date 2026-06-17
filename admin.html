@@ -87,6 +87,7 @@
 
     <script>
         let adminToken = "";
+        let membersData = []; // Store globally to avoid string escaping issues
 
         function login() {
             const pwd = document.getElementById('admin-password').value;
@@ -109,9 +110,10 @@
                 const data = await response.json();
                 
                 if (data.members) {
+                    membersData = data.members; // Save to global
                     document.getElementById('login-overlay').style.display = 'none';
                     document.getElementById('admin-content').style.display = 'block';
-                    renderTable(data.members);
+                    renderTable(membersData);
                 }
             } catch (err) {
                 console.error(err);
@@ -150,8 +152,8 @@
                         Acct: ${m.bankAccountName}
                     </td>
                     <td>
-                        <button class="btn-sm btn-view" onclick="viewImage('${m.applicantPhoto}', 'Applicant Photo')">Photo</button>
-                        <button class="btn-sm btn-view" onclick="viewImage('${m.paymentScreenshot}', 'Payment Screenshot')">Payment</button>
+                        <button class="btn-sm btn-view" onclick="viewImage(${m.id}, 'applicantPhoto', 'Applicant Photo')">Photo</button>
+                        <button class="btn-sm btn-view" onclick="viewImage(${m.id}, 'paymentScreenshot', 'Payment Screenshot')">Payment</button>
                     </td>
                     <td>
                         <span class="status-badge ${statusClass}">${m.status}</span>
@@ -190,10 +192,14 @@
             }
         }
 
-        function viewImage(path, title) {
+        function viewImage(id, field, title) {
+            const member = membersData.find(m => m.id === id);
+            let path = member ? member[field] : null;
+            
             if (!path || path === 'null') return alert('No image uploaded');
-            // path will be like 'uploads\\fieldname-123.jpg'
-            const correctedPath = path.replace(/\\\\/g, '/');
+            
+            // Fix Windows backslashes
+            const correctedPath = path.replace(/\\/g, '/');
             document.getElementById('modal-img').src = '/' + correctedPath;
             document.getElementById('modal-title').innerText = title;
             document.getElementById('image-modal').style.display = 'flex';
