@@ -115,7 +115,9 @@ function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     doc.setFontSize(12);
     let y = 50;
     
-    doc.text(`Receipt Date: ${new Date().toLocaleDateString()}`, 20, y);
+    const today = new Date();
+    const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+    doc.text(`Receipt Date: ${formattedToday}`, 20, y);
     doc.text(`Membership No: ${membershipNo}`, 120, y);
     y += 15;
 
@@ -261,7 +263,9 @@ async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl
     }
 
     ctx.font = `bold ${fontSize}px sans-serif`;
-    drawText(new Date().toLocaleDateString(), 0.1, 0.90);
+    const today = new Date();
+    const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+    drawText(formattedToday, 0.1, 0.90);
 
     // Convert Canvas to PDF
     const { jsPDF } = window.jspdf;
