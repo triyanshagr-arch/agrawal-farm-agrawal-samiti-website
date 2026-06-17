@@ -79,10 +79,10 @@
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
                                 <div style="display: flex; gap: 10px;">
-                                    <select required style="width: 100px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                        <option value="Mr.">Mr. (श्री)</option>
-                                        <option value="Mrs.">Mrs. (श्रीमती)</option>
-                                        <option value="Miss">Miss (कुमारी)</option>
+                                    <select id="title-dropdown" required style="width: 100px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                        <option value="Mr.">श्री</option>
+                                        <option value="Mrs.">श्रीमती</option>
+                                        <option value="Miss">कुमारी</option>
                                     </select>
                                     <input type="text" required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" placeholder="Enter Name">
                                 </div>
@@ -256,7 +256,27 @@ Child 2: [Name], Age: [Age]" style="width: 100%; padding: 12px; border: 1px soli
 
     <script src="react.js"></script>
     <script>
-        // Form specific scripts can go here if needed in the future.
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleDropdown = document.getElementById('title-dropdown');
+            const updateTitleDropdown = () => {
+                if (!titleDropdown) return;
+                const isEnglish = document.body.classList.contains('lang-english-mode');
+                titleDropdown.options[0].text = isEnglish ? "Mr." : "श्री";
+                titleDropdown.options[1].text = isEnglish ? "Mrs." : "श्रीमती";
+                titleDropdown.options[2].text = isEnglish ? "Miss" : "कुमारी";
+            };
+
+            updateTitleDropdown();
+
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'class') {
+                        updateTitleDropdown();
+                    }
+                });
+            });
+            observer.observe(document.body, { attributes: true });
+        });
     </script>
 </body>
 </html>
