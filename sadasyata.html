@@ -189,25 +189,29 @@
                         <div class="form-group" style="margin-bottom: 30px; overflow-x: auto;">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                 <label style="font-weight: bold; color: #333; margin: 0;"><span class="lang-hi">परिवार के सदस्यों का विवरण</span><span class="lang-en">Family Members Details</span></label>
-                                <button type="button" id="addFamilyBtn" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.9rem;" onclick="addFamilyRow()">+ Add Member</button>
+                                <button type="button" id="addFamilyBtn" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.9rem;" onclick="addFamilyRow()">
+                                    <span class="lang-hi">+ सदस्य जोड़ें</span><span class="lang-en">+ Add Member</span>
+                                </button>
                             </div>
                             <table id="familyTable" style="width: 100%; border-collapse: collapse; min-width: 700px; text-align: left;">
                                 <thead>
                                     <tr style="background: #f1f1f1; border-bottom: 2px solid #ddd;">
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Name</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Relationship</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">DOB</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Marital Status</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Education</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Business</th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;">Action</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">नाम</span><span class="lang-en">Name</span></th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">संबंध</span><span class="lang-en">Relationship</span></th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">जन्म तिथि</span><span class="lang-en">DOB</span></th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">वैवाहिक स्थिति</span><span class="lang-en">Marital Status</span></th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">शिक्षा</span><span class="lang-en">Education</span></th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">व्यवसाय</span><span class="lang-en">Business</span></th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">हटाएं</span><span class="lang-en">Action</span></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <!-- Rows added dynamically -->
                                 </tbody>
                             </table>
-                            <small id="familyCountWarning" style="color: red; display: none; margin-top: 5px;">Maximum 8 family members allowed.</small>
+                            <small id="familyCountWarning" style="color: red; display: none; margin-top: 5px;">
+                                <span class="lang-hi">अधिकतम 8 परिवार के सदस्यों की अनुमति है।</span><span class="lang-en">Maximum 8 family members allowed.</span>
+                            </small>
                             <script>
                                 function addFamilyRow() {
                                     const tbody = document.querySelector('#familyTable tbody');
@@ -224,9 +228,9 @@
                                         <td style="padding: 5px; border: 1px solid #ddd;"><input type="date" class="fam-dob" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
                                         <td style="padding: 5px; border: 1px solid #ddd;">
                                             <select class="fam-marital" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
-                                                <option value="">Select</option>
-                                                <option value="Unmarried">Unmarried</option>
-                                                <option value="Married">Married</option>
+                                                <option value="">Select / चुनें</option>
+                                                <option value="Unmarried">Unmarried / अविवाहित</option>
+                                                <option value="Married">Married / विवाहित</option>
                                             </select>
                                         </td>
                                         <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-edu" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
