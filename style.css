@@ -861,7 +861,7 @@ ul {
 
 .search-container input {
     width: 100%;
-    padding: 15px 20px 15px 65px; /* Increased left padding from 50px to 65px */
+    padding: 15px 20px 15px 75px !important; /* Increased left padding and forced it */
     border: 2px solid #eee;
     border-radius: 30px;
     font-size: 1rem;
@@ -877,7 +877,7 @@ ul {
 
 .search-icon {
     position: absolute;
-    left: 20px;
+    left: 30px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
