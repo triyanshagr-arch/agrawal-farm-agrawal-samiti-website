@@ -2311,6 +2311,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
         transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         box-shadow: -10px 0 30px rgba(211, 47, 47, 0.1) !important;
         z-index: 9999 !important;
+        overflow-y: auto !important;
     }
     .nav-menu.active {
         right: 0 !important;
