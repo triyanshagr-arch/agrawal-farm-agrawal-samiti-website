@@ -2532,14 +2532,14 @@ footer a:hover {
 
 .header-image-box {
     position: absolute;
-    top: 5px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     z-index: 20;
 }
 .header-image-box-right {
     position: absolute;
-    top: 5px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     z-index: 20;
 }
 .header-content-box {
