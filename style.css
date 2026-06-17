@@ -2559,6 +2559,7 @@ footer a:hover {
     max-width: 100%;
     object-fit: contain;
     margin-top: 0;
+    margin-left: 56px;
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
 }
 
@@ -2568,6 +2569,7 @@ footer a:hover {
     max-width: 100%;
     object-fit: contain;
     margin-top: 0;
+    margin-right: 56px;
     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
 }
 
