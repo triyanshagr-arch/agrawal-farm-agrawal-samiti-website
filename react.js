@@ -262,3 +262,145 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+// Dynamic AI Chatbox Integration
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Gotra Information Data
+    const gotraInfo = {
+        "गर्ग (Garg)": "<span class=\"lang-hi\">गर्ग गोत्र की उत्पत्ति महर्षि गर्ग (गार्ग्य) से हुई है। यह गोत्र विद्या और ज्ञान का प्रतीक माना जाता है। गर्ग ऋषि ज्योतिष और खगोल विज्ञान के महान ज्ञाता थे。</span><span class=\"lang-en\">The Garg Gotra originated from Maharishi Garg. This Gotra is considered a symbol of wisdom and knowledge. Sage Garg was a great scholar of astrology and astronomy.</span>",
+        "बंसल (Bansal)": "<span class=\"lang-hi\">बंसल गोत्र के आदि गुरु महर्षि वत्स्य (वत्स) हैं। इस गोत्र के लोग अपनी बुद्धिमत्ता, व्यापार कौशल और मधुर वाणी के लिए जाने जाते हैं。</span><span class=\"lang-en\">The founding Guru of the Bansal Gotra is Maharishi Vatsa. People of this Gotra are known for their intelligence, business acumen, and sweet speech.</span>",
+        "बिंदल (Bindal)": "<span class=\"lang-hi\">बिंदल गोत्र महर्षि वशिष्ठ से संबंधित है। महर्षि वशिष्ठ भगवान राम के गुरु थे। इस गोत्र के लोग धर्म, न्याय और नेतृत्व में निपुण माने जाते हैं。</span><span class=\"lang-en\">The Bindal Gotra is associated with Maharishi Vashishtha, the Guru of Lord Rama. People of this Gotra are considered adept in righteousness, justice, and leadership.</span>",
+        "भंदल (Bhandal)": "<span class=\"lang-hi\">भंदल गोत्र की उत्पत्ति महर्षि धौम्य से मानी जाती है। धौम्य ऋषि पांडवों के पुरोहित थे। इस गोत्र के लोग धर्म-कर्म और निष्ठा के लिए प्रसिद्ध हैं。</span><span class=\"lang-en\">The origin of the Bhandal Gotra is traced to Maharishi Dhaumya, the priest of the Pandavas. This Gotra is famous for its religious devotion and loyalty.</span>",
+        "धरण (Dharan)": "<span class=\"lang-hi\">धरण गोत्र के प्रणेता महर्षि धृणबु (कुछ स्रोतों में धौम्य या अन्य ऋषि) माने जाते हैं। यह गोत्र स्थिरता, धैर्य और संपत्ति के संरक्षण का प्रतीक है。</span><span class=\"lang-en\">The pioneer of the Dharan Gotra is believed to be Maharishi Dhrinbu. This Gotra is a symbol of stability, patience, and the preservation of wealth.</span>",
+        "ऐरण (Airan)": "<span class=\"lang-hi\">ऐरण गोत्र महर्षि और्व से संबंधित है। इस गोत्र के लोग साहसी, निडर और अपने लक्ष्यों के प्रति अत्यंत समर्पित होते हैं。</span><span class=\"lang-en\">The Airan Gotra is related to Maharishi Aurva. People of this Gotra are brave, fearless, and highly dedicated to their goals.</span>",
+        "गोयल (Goyal)": "<span class=\"lang-hi\">गोयल गोत्र के गोत्रकार महर्षि गौतम हैं। महर्षि गौतम न्याय दर्शन के रचयिता थे। गोयल गोत्र के लोग अपने तार्किक ज्ञान और परोपकारी स्वभाव के लिए विख्यात हैं。</span><span class=\"lang-en\">The founder of the Goyal Gotra is Maharishi Gautam, the creator of the Nyaya philosophy. People of this Gotra are renowned for their logical wisdom and philanthropic nature.</span>",
+        "जिंदल (Jindal)": "<span class=\"lang-hi\">जिंदल गोत्र की उत्पत्ति महर्षि जैमिनि से हुई है। महर्षि जैमिनि वेदव्यास के शिष्य और मीमांसा दर्शन के रचयिता थे। इस गोत्र के लोग बहुत ऊर्जावान माने जाते हैं。</span><span class=\"lang-en\">The Jindal Gotra originated from Maharishi Jaimini, a disciple of Ved Vyas and creator of the Mimamsa philosophy. People of this Gotra are considered highly energetic.</span>",
+        "कंसल (Kansal)": "<span class=\"lang-hi\">कंसल गोत्र महर्षि कश्यप से जुड़ा हुआ है। कश्यप ऋषि सप्तर्षियों में से एक हैं। इस गोत्र के लोग उदार और विशाल हृदय वाले होते हैं。</span><span class=\"lang-en\">The Kansal Gotra is linked to Maharishi Kashyap, one of the Saptarishis (Seven Sages). People of this Gotra are generous and large-hearted.</span>",
+        "कुच्छल (Kuchhal)": "<span class=\"lang-hi\">कुच्छल गोत्र के प्रणेता महर्षि विश्वामित्र (कौशिक) हैं। कुच्छल गोत्र के व्यक्ति दृढ़ निश्चयी और अपनी मेहनत से सफलता प्राप्त करने वाले होते हैं。</span><span class=\"lang-en\">The pioneer of the Kuchhal Gotra is Maharishi Vishwamitra (Kaushik). Individuals of this Gotra are determined and achieve success through their hard work.</span>",
+        "मधुकुल (Madhukul)": "<span class=\"lang-hi\">मधुकुल गोत्र महर्षि मुदगल से संबंधित है। इस गोत्र के लोग मधुर स्वभाव, आतिथ्य सत्कार और पारिवारिक एकता के लिए प्रसिद्ध हैं。</span><span class=\"lang-en\">The Madhukul Gotra is associated with Maharishi Mudgal. People of this Gotra are famous for their sweet nature, hospitality, and family unity.</span>",
+        "मंगल (Mangal)": "<span class=\"lang-hi\">मंगल गोत्र के आदि गुरु महर्षि मांडव्य हैं। इस गोत्र के लोग बहुत शुभचिंतक, शांतिप्रिय और समाज में मंगल (भलाई) करने वाले माने जाते हैं。</span><span class=\"lang-en\">The founding Guru of the Mangal Gotra is Maharishi Mandavya. People of this Gotra are considered very well-wishing, peace-loving, and bringers of good (Mangal) to society.</span>",
+        "मित्तल (Mittal)": "<span class=\"lang-hi\">मित्तल गोत्र महर्षि मैत्रेय से जुड़ा है। मित्तल गोत्र के व्यक्ति अपने मिलनसार स्वभाव, सच्ची मित्रता और वफादारी के लिए जाने जाते हैं。</span><span class=\"lang-en\">The Mittal Gotra is linked to Maharishi Maitreya. Individuals of this Gotra are known for their friendly nature, true friendship, and loyalty.</span>",
+        "नांगल (Nangal)": "<span class=\"lang-hi\">नांगल गोत्र की उत्पत्ति महर्षि नागेंद्र से मानी जाती है। इस गोत्र के लोग अत्यंत बुद्धिमान, दूरदर्शी और कला व साहित्य प्रेमी होते हैं。</span><span class=\"lang-en\">The origin of the Nangal Gotra is traced to Maharishi Nagendra. People of this Gotra are highly intelligent, visionary, and lovers of art and literature.</span>",
+        "सिंघल (Singhal)": "<span class=\"lang-hi\">सिंघल गोत्र महर्षि श्रृंगी से संबंधित है। श्रृंगी ऋषि महान तपस्वी थे। सिंघल गोत्र के लोग निडर, पराक्रमी और नेतृत्व क्षमता से धनी होते हैं。</span><span class=\"lang-en\">The Singhal Gotra is related to Maharishi Shringi, a great ascetic. People of this Gotra are fearless, valorous, and rich in leadership qualities.</span>",
+        "तायल (Tayal)": "<span class=\"lang-hi\">तायल गोत्र महर्षि तैत्तिरीय से जुड़ा है। तायल गोत्र के व्यक्ति बहुत परिश्रमी, आध्यात्मिक और विद्या प्रेमी होते हैं。</span><span class=\"lang-en\">The Tayal Gotra is linked to Maharishi Taittiriya. Individuals of this Gotra are very hardworking, spiritual, and lovers of knowledge.</span>",
+        "तिंगल (Tingal)": "<span class=\"lang-hi\">तिंगल गोत्र महर्षि तांड्य से संबंधित है। इस गोत्र के लोग कला, संगीत और रचनात्मक कार्यों में विशेष रुचि रखते हैं。</span><span class=\"lang-en\">The Tingal Gotra is associated with Maharishi Tandya. People of this Gotra have a special interest in art, music, and creative endeavors.</span>",
+        "गोयन (Goyan)": "<span class=\"lang-hi\">गोयन गोत्र के प्रणेता महर्षि गौतम (कुछ स्रोतों में गोभिल) माने जाते हैं। गोयन गोत्र के लोग धर्म-परायण और गहरे वैचारिक विचारों वाले होते हैं。</span><span class=\"lang-en\">The pioneer of the Goyan Gotra is considered to be Maharishi Gautam (or Gobhil). People of this Gotra are religiously devoted and have deep philosophical thoughts.</span>"
+    };
+
+    // Gotra Modal Logic
+    const gotraModal = document.getElementById('gotra-modal');
+    const modalGotraTitle = document.getElementById('modal-gotra-title');
+    const modalGotraInfo = document.getElementById('modal-gotra-info');
+    const closeGotraBtn = document.querySelector('#gotra-modal .close-button');
+    const gotraItems = document.querySelectorAll('.gotra-list li');
+
+    if (gotraModal && gotraItems.length > 0) {
+        gotraItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const gotraName = item.getAttribute('data-gotra');
+                const info = gotraInfo[gotraName];
+                
+                modalGotraTitle.textContent = gotraName;
+                modalGotraInfo.innerHTML = info ? info : "<span class=\"lang-hi\">इस गोत्र की विस्तृत जानकारी जल्द ही अपडेट की जाएगी।</span><span class=\"lang-en\">Detailed information for this Gotra will be updated soon.</span>";
+                
+                gotraModal.classList.add('show');
+            });
+        });
+
+        if (closeGotraBtn) {
+            closeGotraBtn.addEventListener('click', () => {
+                gotraModal.classList.remove('show');
+            });
+        }
+
+        // Close when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === gotraModal) {
+                gotraModal.classList.remove('show');
+            }
+        });
+    }
+
+});
+
+
+
+// Language Toggle Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const langToggleBtn = document.getElementById('lang-toggle');
+    const body = document.body;
+    
+    // Auto-detect language if not set
+    let currentLang = localStorage.getItem('preferredLang');
+    if (!currentLang) {
+        const browserLang = navigator.language || navigator.userLanguage;
+        currentLang = browserLang.toLowerCase().startsWith('hi') ? 'hi' : 'en';
+        localStorage.setItem('preferredLang', currentLang);
+    }
+    
+    if (currentLang === 'en') {
+        body.classList.add('lang-english-mode');
+        if(langToggleBtn) langToggleBtn.innerHTML = '<i class="fas fa-language"></i> हिंदी';
+    } else {
+        if(langToggleBtn) langToggleBtn.innerHTML = '<i class="fas fa-language"></i> English';
+    }
+
+    if(langToggleBtn) {
+        langToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('lang-english-mode');
+            const isEnglish = body.classList.contains('lang-english-mode');
+            
+            if (isEnglish) {
+                localStorage.setItem('preferredLang', 'en');
+                langToggleBtn.innerHTML = '<i class="fas fa-language"></i> हिंदी';
+            } else {
+                localStorage.setItem('preferredLang', 'hi');
+                langToggleBtn.innerHTML = '<i class="fas fa-language"></i> English';
+            }
+        });
+    }
+});
+
+// Scroll Animations & Back to Top
+document.addEventListener('DOMContentLoaded', () => {
+    // Scroll Animations
+    const fadeSections = document.querySelectorAll('.section, .card, .service-card');
+    fadeSections.forEach(section => section.classList.add('fade-in-section'));
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    fadeSections.forEach(section => observer.observe(section));
+    
+    // Back to Top Button
+    const backToTop = document.createElement('div');
+    backToTop.className = 'back-to-top';
+    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(backToTop);
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
