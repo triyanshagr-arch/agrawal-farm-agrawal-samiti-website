@@ -144,6 +144,14 @@
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">व्यवसाय / Occupation</span><span class="lang-en">Occupation / Profession</span></label>
                                 <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
+                            <div class="form-group">
+                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">शिक्षा</span><span class="lang-en">Education</span></label>
+                                <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                            </div>
+                            <div class="form-group">
+                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मूल निवास</span><span class="lang-en">Domicile</span></label>
+                                <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                            </div>
                         </div>
 
                         <!-- Contact Details -->
@@ -152,7 +160,19 @@
                             <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">स्थाई पता <span style="color:red">*</span></span><span class="lang-en">Permanent Address <span style="color:red">*</span></span></label>
                             <textarea required rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
                         </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">कार्यालय का पता</span><span class="lang-en">Office Address</span></label>
+                            <textarea rows="2" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
+                        </div>
                         <div class="form-grid">
+                            <div class="form-group">
+                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मकान</span><span class="lang-en">House Type</span></label>
+                                <select style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+                                    <option value="">Select / चुनें</option>
+                                    <option value="Private">Private / निजी</option>
+                                    <option value="Rented">Rented / किराए का</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
                                 <input type="tel" required pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
