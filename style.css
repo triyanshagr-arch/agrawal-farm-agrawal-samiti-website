@@ -2564,13 +2564,13 @@ footer a:hover {
 }
 
 .lakshmi-img {
-    width: 133px;
-    height: 227px;
+    width: 283px;
+    height: 187px;
     max-width: 100%;
     object-fit: contain;
     margin-top: 0;
-    margin-right: 56px;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    margin-right: 3px;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
 }
 
 @media (max-width: 992px) {
