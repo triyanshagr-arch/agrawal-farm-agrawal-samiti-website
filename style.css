@@ -2301,6 +2301,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
         position: fixed !important;
         top: 0 !important;
         right: -100% !important;
+        left: auto !important;
         width: 300px !important;
         height: 100vh !important;
         background: rgba(255, 253, 248, 0.98) !important; /* Ivory Drawer */
@@ -2313,6 +2314,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
     }
     .nav-menu.active {
         right: 0 !important;
+        left: auto !important;
         display: flex !important;
     }
     .nav-links {
