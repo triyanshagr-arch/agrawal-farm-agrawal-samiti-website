@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
     <link rel="stylesheet" href="style.css?v=3">
 </head>
@@ -94,7 +95,7 @@
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">जन्म तिथि</span><span class="lang-en">Date of Birth</span></label>
-                                <input type="date" id="dob" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="text" id="dob" placeholder="DD/MM/YYYY" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                             <div class="form-group" id="married-status-group" style="display: none;">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाहित?</span><span class="lang-en">Married?</span></label>
@@ -105,7 +106,7 @@
                             </div>
                             <div class="form-group" id="marriage-date-group" style="display: none;">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाह तिथि</span><span class="lang-en">Marriage Date</span></label>
-                                <input type="date" id="marriageDate" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <input type="text" id="marriageDate" placeholder="DD/MM/YYYY" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">रक्त समूह</span><span class="lang-en">Blood Group</span></label>
@@ -225,7 +226,7 @@
                                     tr.innerHTML = `
                                         <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-name" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
                                         <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-rel" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
-                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="date" class="fam-dob" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-dob" placeholder="DD/MM/YYYY" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; background: #fff;"></td>
                                         <td style="padding: 5px; border: 1px solid #ddd;">
                                             <select class="fam-marital" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
                                                 <option value="">Select / चुनें</option>
@@ -237,6 +238,9 @@
                                         <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-bus" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
                                         <td style="padding: 5px; border: 1px solid #ddd; text-align: center;"><button type="button" onclick="this.closest('tr').remove(); document.getElementById('familyCountWarning').style.display='none';" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">X</button></td>
                                     `;
+                                    const dateInput = tr.querySelector('.fam-dob');
+                                    flatpickr(dateInput, { dateFormat: "d/m/Y", allowInput: true });
+                                    
                                     tbody.appendChild(tr);
                                 }
                                 
@@ -439,8 +443,15 @@
     </script>
     <script src="submit_handler.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="pdf_generator.js"></script>
     <script>
+        // Initialize global date pickers
+        document.addEventListener('DOMContentLoaded', () => {
+            flatpickr("#dob", { dateFormat: "d/m/Y", allowInput: true });
+            flatpickr("#marriageDate", { dateFormat: "d/m/Y", allowInput: true });
+        });
+
         function previewImage(input, previewId) {
             const preview = document.getElementById(previewId);
             if (input.files && input.files[0]) {
