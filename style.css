@@ -2574,20 +2574,41 @@ footer a:hover {
 
 @media (max-width: 992px) {
     .header-container {
-        flex-direction: column;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            "left right"
+            "text text";
+        gap: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        justify-items: center;
         align-items: center;
-        padding-top: 90px; /* Reduced from 150px to make header more compact */
     }
     .header-image-box {
-        position: absolute;
-        top: 10px;
-        left: 10px;
+        position: relative !important;
+        grid-area: left;
+        top: auto !important;
+        left: auto !important;
     }
     .header-image-box-right {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        display: block; /* Ensure it stays visible */
+        position: relative !important;
+        grid-area: right;
+        top: auto !important;
+        right: auto !important;
+    }
+    .header-content-box {
+        grid-area: text;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .agrasen-img, .lakshmi-img {
+        width: auto !important;
+        height: 110px !important;
+        margin: 0 !important;
+    }
+    .header-text h1 {
+        font-size: 1.4rem !important;
     }
 }
 
@@ -2652,34 +2673,5 @@ footer a:hover {
         bottom: 80px;
         right: 20px;
         font-size: 25px;
-    }
-    
-    /* Header Image Mobile Fixes */
-    .header-container {
-        padding-top: 130px !important;
-        padding-bottom: 20px !important;
-    }
-    .header-image-box {
-        top: 10px !important;
-        left: 5px !important;
-    }
-    .header-image-box-right {
-        top: 10px !important;
-        right: 5px !important;
-    }
-    .agrasen-img {
-        width: auto !important;
-        height: 100px !important;
-        margin-left: 0 !important;
-        margin-top: 0 !important;
-    }
-    .lakshmi-img {
-        width: auto !important;
-        height: 100px !important;
-        margin-right: 0 !important;
-        margin-top: 0 !important;
-    }
-    .header-text h1 {
-        font-size: 1.3rem !important;
     }
 }
