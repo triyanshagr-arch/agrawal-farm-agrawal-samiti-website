@@ -55,6 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
+                // Handle Cash Payment Logic
+                const paymentMode = document.getElementById('paymentMode') ? document.getElementById('paymentMode').value : '';
+                dataObj.paymentMode = paymentMode;
+                if (paymentMode === 'Cash') {
+                    const receiver = document.getElementById('cashReceiverName') ? document.getElementById('cashReceiverName').value : '';
+                    dataObj.transactionId = receiver ? `CASH - Received by ${receiver}` : 'CASH';
+                    dataObj.bankAccountName = 'NA';
+                    dataObj.utrNo = 'NA';
+                }
+
                 // Format Main Dates
                 dataObj.dob = formatDateDDMMYYYY(dataObj.dob);
                 dataObj.marriageDate = formatDateDDMMYYYY(dataObj.marriageDate);

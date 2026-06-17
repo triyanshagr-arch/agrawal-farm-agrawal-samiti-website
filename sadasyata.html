@@ -269,7 +269,7 @@
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">भुगतान का माध्यम <span style="color:red">*</span></span><span class="lang-en">Payment Mode <span style="color:red">*</span></span></label>
-                                <select required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+                                <select id="paymentMode" onchange="togglePaymentFields()" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
                                     <option value="">Select / चुनें</option>
                                     <option value="Cash">नकद (Cash)</option>
                                     <option value="Bank">बैंक ट्रांसफर (Bank Transfer)</option>
@@ -304,26 +304,37 @@
                         <!-- Transaction Details Form Fields -->
                         <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 30px;">
                             <h4 style="margin-bottom: 15px; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 8px;"><span class="lang-hi">भुगतान पुष्टि विवरण</span><span class="lang-en">Payment Confirmation Details</span></h4>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">UPI / पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">UPI / Payment Screenshot <span style="color:red">*</span></span></label>
-                                    <input type="file" id="paymentScreenshot" required accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'paymentScreenshotPreview')">
-                                    <img id="paymentScreenshotPreview" src="" style="display:none; margin-top: 10px; max-height: 150px; border-radius: 8px; border: 1px solid #ddd;">
+                            
+                            <div id="onlinePaymentSection">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">UPI / पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">UPI / Payment Screenshot <span style="color:red">*</span></span></label>
+                                        <input type="file" id="paymentScreenshot" required accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'paymentScreenshotPreview')">
+                                        <img id="paymentScreenshotPreview" src="" style="display:none; margin-top: 10px; max-height: 150px; border-radius: 8px; border: 1px solid #ddd;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ट्रांजेक्शन आईडी / संदर्भ संख्या <span style="color:red">*</span></span><span class="lang-en">Transaction ID / Reference No. <span style="color:red">*</span></span></label>
+                                        <input type="text" id="transactionId" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आवेदक के बैंक खाते का नाम <span style="color:red">*</span></span><span class="lang-en">Applicant Bank Account Name <span style="color:red">*</span></span></label>
+                                        <input type="text" id="bankAccountName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">यूटीआर (UTR) नंबर</span><span class="lang-en">UTR No.</span></label>
+                                        <input type="text" id="utrNo" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div id="cashPaymentSection" style="display:none;">
                                 <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ट्रांजेक्शन आईडी / संदर्भ संख्या <span style="color:red">*</span></span><span class="lang-en">Transaction ID / Reference No. <span style="color:red">*</span></span></label>
-                                    <input type="text" id="transactionId" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                </div>
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आवेदक के बैंक खाते का नाम <span style="color:red">*</span></span><span class="lang-en">Applicant Bank Account Name <span style="color:red">*</span></span></label>
-                                    <input type="text" id="bankAccountName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                </div>
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">यूटीआर (UTR) नंबर</span><span class="lang-en">UTR No.</span></label>
-                                    <input type="text" id="utrNo" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">नकदी प्राप्तकर्ता का नाम (समिति सदस्य) <span style="color:red">*</span></span><span class="lang-en">Cash Receiver Name (Committee Member) <span style="color:red">*</span></span></label>
+                                    <input type="text" id="cashReceiverName" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                                 </div>
                             </div>
                         </div>
+
                         <div style="background: #fff8e1; border-left: 4px solid var(--primary-color); padding: 15px; margin-bottom: 25px; border-radius: 4px; font-size: 0.95rem; line-height: 1.6; color: #444;">
                             <strong style="color: var(--primary-color);"><span class="lang-hi">विशेष:</span><span class="lang-en">Note:</span></strong><br>
                             <span class="lang-hi">1. कृपया 21 वर्ष से अधिक के अविवाहित युवक, 18 वर्ष से अधिक की अविवाहित युवती का सम्पूर्ण विवरण संलग्न करें।</span>
@@ -446,6 +457,32 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="pdf_generator.js"></script>
     <script>
+        function togglePaymentFields() {
+            const mode = document.getElementById('paymentMode').value;
+            const onlineSection = document.getElementById('onlinePaymentSection');
+            const cashSection = document.getElementById('cashPaymentSection');
+            const screenshotInput = document.getElementById('paymentScreenshot');
+            const transactionIdInput = document.getElementById('transactionId');
+            const bankAccountInput = document.getElementById('bankAccountName');
+            const cashReceiverInput = document.getElementById('cashReceiverName');
+
+            if (mode === 'Cash') {
+                onlineSection.style.display = 'none';
+                cashSection.style.display = 'block';
+                screenshotInput.required = false;
+                transactionIdInput.required = false;
+                bankAccountInput.required = false;
+                cashReceiverInput.required = true;
+            } else {
+                onlineSection.style.display = 'block';
+                cashSection.style.display = 'none';
+                screenshotInput.required = true;
+                transactionIdInput.required = true;
+                bankAccountInput.required = true;
+                cashReceiverInput.required = false;
+            }
+        }
+
         // Initialize global date pickers
         document.addEventListener('DOMContentLoaded', () => {
             flatpickr("#dob", { dateFormat: "d/m/Y", allowInput: true });
