@@ -2596,9 +2596,9 @@ footer a:hover {
         grid-template-areas: 
             "left right"
             "text text";
-        gap: 15px;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        gap: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         justify-items: center;
         align-items: center;
     }
@@ -2621,11 +2621,11 @@ footer a:hover {
     }
     .agrasen-img, .lakshmi-img {
         width: auto !important;
-        height: 110px !important;
+        height: 80px !important;
         margin: 0 !important;
     }
     .header-text h1 {
-        font-size: 1.4rem !important;
+        font-size: 1.2rem !important;
     }
 }
 
