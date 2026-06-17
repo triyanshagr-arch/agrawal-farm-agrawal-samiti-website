@@ -2653,4 +2653,33 @@ footer a:hover {
         right: 20px;
         font-size: 25px;
     }
+    
+    /* Header Image Mobile Fixes */
+    .header-container {
+        padding-top: 130px !important;
+        padding-bottom: 20px !important;
+    }
+    .header-image-box {
+        top: 10px !important;
+        left: 5px !important;
+    }
+    .header-image-box-right {
+        top: 10px !important;
+        right: 5px !important;
+    }
+    .agrasen-img {
+        width: auto !important;
+        height: 100px !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+    }
+    .lakshmi-img {
+        width: auto !important;
+        height: 100px !important;
+        margin-right: 0 !important;
+        margin-top: 0 !important;
+    }
+    .header-text h1 {
+        font-size: 1.3rem !important;
+    }
 }
