@@ -2098,12 +2098,13 @@ ul {
 .red-navbar .nav-links {
     color: #fff;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    padding: 12px 12px;
+    padding: 12px 10px;
     display: block;
     transition: 0.3s;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 .red-navbar .nav-links .lang-hi {
     font-size: 1.05rem;
@@ -2547,7 +2548,7 @@ footer a:hover {
 }
 .header-content-box {
     flex: 1;
-    max-width: 900px;
+    max-width: 1100px;
     display: flex;
     flex-direction: column;
     align-items: center;
