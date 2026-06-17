@@ -286,3 +286,102 @@ async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl
         return doc.output('datauristring');
     }
 }
+
+// Generate Donation Receipt PDF
+function generateDonationReceiptPDF(receiptNo, data, returnType = 'save') {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Setup basic styling
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(22);
+    doc.setTextColor(220, 53, 69); // Primary Red
+    doc.text("AGRAWAL SAMAJ SAMITI", 105, 20, null, null, "center");
+
+    doc.setFontSize(14);
+    doc.setTextColor(50, 50, 50);
+    doc.text("Agrawal Farm, Mansarovar, Jaipur (Reg.)", 105, 28, null, null, "center");
+
+    doc.setLineWidth(0.5);
+    doc.line(20, 35, 190, 35);
+
+    // Title
+    doc.setFontSize(18);
+    doc.setTextColor(0, 0, 0);
+    doc.text("DONATION RECEIPT", 105, 45, null, null, "center");
+
+    // Meta details
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    let y = 60;
+    
+    const today = new Date();
+    const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+    doc.text(`Receipt Date: ${formattedToday}`, 20, y);
+    doc.text(`Receipt No: ${receiptNo}`, 120, y);
+    y += 15;
+
+    // Donor Details
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("Donor Details", 20, y);
+    y += 10;
+    
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`Name: ${data.donorName || 'NA'}`, 20, y);
+    y += 10;
+    doc.text(`Mobile: ${data.mobileNumber || 'NA'}`, 20, y);
+    doc.text(`Email: ${data.emailId || 'NA'}`, 120, y);
+    y += 10;
+    doc.text(`PAN: ${data.panNumber || 'NA'}`, 20, y);
+    y += 10;
+    
+    // Address handling (multiline)
+    doc.text(`Address:`, 20, y);
+    const addressLines = doc.splitTextToSize(data.address || 'NA', 140);
+    doc.text(addressLines, 45, y);
+    y += (addressLines.length * 6) + 10;
+
+    // Donation Details
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("Donation Details", 20, y);
+    y += 10;
+    
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`Amount: Rs. ${data.donationAmount || '0'} /-`, 20, y);
+    y += 10;
+    doc.text(`Purpose: ${data.donationPurpose || 'NA'}`, 20, y);
+    y += 10;
+    doc.text(`Transaction ID / UTR: ${data.transactionId || 'NA'}`, 20, y);
+    y += 20;
+
+    // Footer & Thank you
+    doc.setLineWidth(0.5);
+    doc.line(20, y, 190, y);
+    y += 15;
+
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(14);
+    doc.setTextColor(220, 53, 69);
+    doc.text("Thank you for your generous contribution!", 105, y, null, null, "center");
+    
+    y += 10;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    doc.text("May the blessings of Shri Maharaja Agrasen be with you always.", 105, y, null, null, "center");
+
+    // Bottom Notice
+    doc.setFontSize(10);
+    doc.text("This is a computer-generated receipt and does not require a physical signature.", 105, 280, null, null, "center");
+
+    // Output
+    if (returnType === 'save') {
+        doc.save(`Donation_Receipt_${(data.donorName || 'Donor').replace(/\s+/g, '_')}_${receiptNo}.pdf`);
+    } else if (returnType === 'datauristring') {
+        return doc.output('datauristring');
+    }
+}

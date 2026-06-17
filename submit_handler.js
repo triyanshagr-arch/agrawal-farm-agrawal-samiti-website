@@ -93,8 +93,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 form.reset();
 
             } catch (error) {
-                console.error("Error submitting form:", error);
-                alert("An error occurred while generating the PDFs. Please try again.");
+                console.error("Error generating forms:", error);
+                alert("An error occurred while generating the forms. Please try again.");
+                submitBtn.innerHTML = originalBtnHtml;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
+    // Donation Form Handler
+    const donationForm = document.getElementById('donationForm');
+    if (donationForm) {
+        donationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = donationForm.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Receipt...';
+            submitBtn.disabled = true;
+
+            try {
+                // Generate Receipt ID
+                const date = new Date();
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const randomString = Math.random().toString(36).substring(2, 6).toUpperCase();
+                const receiptNo = `DON-${year}${month}${day}-${randomString}`;
+
+                const dataObj = {}; 
+                const textFields = ['donorName', 'mobileNumber', 'emailId', 'address', 'panNumber', 'donationAmount', 'donationPurpose', 'transactionId'];
+                
+                textFields.forEach(id => {
+                    const el = document.getElementById(id);
+                    if(el) {
+                        dataObj[id] = el.value;
+                    }
+                });
+
+                // Generate Donation Receipt PDF
+                generateDonationReceiptPDF(receiptNo, dataObj, 'save');
+
+                // Alert User
+                alert(`Donation Receipt Generated Successfully!\nYour Receipt No. is: ${receiptNo}\n\nIMPORTANT: The receipt has been automatically downloaded to your computer/phone.\n\nYOU MUST MANUALLY EMAIL this downloaded PDF along with your Payment Screenshot to: atriyanshagr@gmail.com for Admin Verification!`);
+                
+                donationForm.reset();
+                document.getElementById('paymentScreenshotPreview').style.display = 'none';
+
+            } catch (error) {
+                console.error("Error generating receipt:", error);
+                alert("An error occurred while generating the receipt. Please try again.");
             } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
