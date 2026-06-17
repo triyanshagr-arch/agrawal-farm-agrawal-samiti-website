@@ -2679,3 +2679,10 @@ footer a:hover {
         font-size: 25px !important;
     }
 }
+
+@media (min-width: 993px) {
+    .agrasen-sticky-img {
+        position: sticky !important;
+        top: 100px !important;
+    }
+}
