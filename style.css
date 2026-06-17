@@ -2023,21 +2023,10 @@ ul {
     top: 0;
     z-index: 1000;
 }
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: stretch;
-    position: relative;
-}
 
 
-.agrasen-img {
-    width: auto;
-    height: 160px;
-    max-width: 100%;
-    object-fit: contain;
-}
+
+
 
 
 
@@ -2110,7 +2099,7 @@ ul {
 }
 
 @media (max-width: 992px) {
-    .header-container { flex-wrap: wrap; justify-content: center; padding-top: 15px; }
+    
     
     
     .header-main-title { font-size: 1.1rem; white-space: normal; margin-top: 10px; }
@@ -2224,26 +2213,12 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 
 
 
-.lakshmi-img {
-    width: auto;
-    height: 160px;
-    max-width: 100%;
-    object-fit: contain;
-}
+
 
 
 @media (max-width: 992px) {
     
-    .agrasen-img, .lakshmi-img {
-        position: relative !important;
-        bottom: 0 !important;
-        left: auto !important;
-        right: auto !important;
-        max-height: 120px !important;
-        max-width: 100% !important;
-        height: auto !important;
-        width: auto !important;
-    }
+    .agrasen-img, 
 }
 
 /* Modern Premium Language Toggle (Festive) */
@@ -2300,11 +2275,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 
 /* Deities Image Framing */
 .header-image-box, 
-.agrasen-img, .lakshmi-img {
-    filter: drop-shadow(0 10px 15px rgba(211, 47, 47, 0.15)) !important;
-    border-radius: var(--radius-md);
-    transition: var(--transition);
-}
+.agrasen-img, 
 .agrasen-img:hover, .lakshmi-img:hover {
     transform: scale(1.03) translateY(-5px);
     filter: drop-shadow(0 15px 25px rgba(211, 47, 47, 0.25)) !important;
@@ -2356,10 +2327,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
     }
     
     /* Responsive deities side-by-side */
-    .header-container {
-        flex-wrap: wrap;
-        justify-content: space-between !important;
-    }
+    
     .header-image-box, 
     
 }
@@ -2530,22 +2498,44 @@ footer a:hover {
 }
 
 
-.header-image-box {
-    flex: 0 0 15%;
+
+
+
+
+
+.header-container {
+    max-width: 100%; /* Go full width to touch corners */
+    padding: 10px 20px;
+    margin: 0 auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start; /* Stick to top */
+    justify-content: space-between; /* Push images to edges */
+    position: relative;
+}
+
+.header-image-box {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 .header-image-box-right {
-    flex: 0 0 15%;
+    flex: 0 0 auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-end;
 }
 .header-content-box {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     padding: 0 20px;
+}
+.agrasen-img, .lakshmi-img {
+    width: auto;
+    height: 140px; /* Adjusted slightly so they don't break the layout but sit nicely at top */
+    max-width: 100%;
+    object-fit: contain;
 }
