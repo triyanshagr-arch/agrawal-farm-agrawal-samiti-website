@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error("Error generating PDFs:", error);
-                alert("An error occurred while generating your forms. Please try again.");
+                alert("An error occurred while generating your forms:\n\n" + (error.message || error) + "\n\nPlease try again.");
             } finally {
                 // Restore button
                 submitBtn.innerHTML = originalBtnHtml;
