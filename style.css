@@ -2286,7 +2286,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 /* Deities Image Framing */
 .header-image-box, 
 .agrasen-img, 
-.agrasen-img:hover, .lakshmi-img:hover {
+.agrasen-img:hover {
     filter: drop-shadow(0 15px 25px rgba(211, 47, 47, 0.25)) !important;
 }
 
@@ -2569,7 +2569,7 @@ footer a:hover {
     object-fit: contain;
     margin-top: 0;
     margin-right: 3px;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 15px 25px rgba(211, 47, 47, 0.25));
 }
 
 @media (max-width: 992px) {
