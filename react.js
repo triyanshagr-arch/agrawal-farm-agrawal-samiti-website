@@ -496,17 +496,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
 // Language Toggle Logic
 document.addEventListener('DOMContentLoaded', () => {
     const langToggleBtn = document.getElementById('lang-toggle');
     const body = document.body;
     
-    // Check local storage for preference
-    const currentLang = localStorage.getItem('preferredLang') || 'hi';
+    // Auto-detect language if not set
+    let currentLang = localStorage.getItem('preferredLang');
+    if (!currentLang) {
+        const browserLang = navigator.language || navigator.userLanguage;
+        currentLang = browserLang.toLowerCase().startsWith('hi') ? 'hi' : 'en';
+        localStorage.setItem('preferredLang', currentLang);
+    }
     
     if (currentLang === 'en') {
         body.classList.add('lang-english-mode');
         if(langToggleBtn) langToggleBtn.innerHTML = '<i class="fas fa-language"></i> हिंदी';
+    } else {
+        if(langToggleBtn) langToggleBtn.innerHTML = '<i class="fas fa-language"></i> English';
     }
 
     if(langToggleBtn) {
@@ -523,4 +531,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+}
 });
