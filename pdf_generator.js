@@ -142,7 +142,23 @@ function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     y += 10;
     doc.text(`Bank Account Name: ${data.bankAccountName || 'NA'}`, 20, y);
 
-    y += 20;
+    y += 15;
+    doc.setLineWidth(0.5);
+    doc.line(20, y, 190, y);
+    y += 10;
+
+    // Family Details (Briefly)
+    if (data.familyMembers && data.familyMembers.length > 0) {
+        doc.setFontSize(14);
+        doc.text(`Family Members (${data.familyMembers.length})`, 20, y);
+        y += 8;
+        doc.setFontSize(10);
+        data.familyMembers.forEach((m, idx) => {
+            doc.text(`${idx + 1}. ${m.name} (${m.relationship}) - DOB: ${m.dob} - Edu: ${m.education}`, 20, y);
+            y += 6;
+        });
+    }
+
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     doc.text("This is a computer-generated receipt and does not require a physical signature.", 105, 280, null, null, "center");
@@ -201,9 +217,24 @@ async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl
     drawText(data.houseType, 0.60, 0.435);
     drawText(data.officeAddress, 0.22, 0.475);
     
-    // Draw Family details just below the table header
+    // Draw Family details Table
     ctx.font = `normal ${Math.floor(fontSize * 0.8)}px sans-serif`;
-    drawText(data.familyDetails, 0.10, 0.55);
+    let familyStartY = 0.58; // Start Y percentage for the first row of family table
+    const rowHeight = 0.032; // Increment Y percentage per row
+    
+    if (data.familyMembers && Array.isArray(data.familyMembers)) {
+        data.familyMembers.forEach((member, index) => {
+            if (index >= 8) return; // Max 8
+            const y = familyStartY + (index * rowHeight);
+            drawText(String(index + 1), 0.07, y);          // S.No
+            drawText(member.name, 0.13, y);                // Name
+            drawText(member.dob, 0.38, y);                 // DOB
+            drawText(member.education, 0.50, y);           // Education
+            drawText(member.maritalStatus, 0.63, y);       // Marital
+            drawText(member.relationship, 0.75, y);        // Rel
+            drawText(member.business, 0.86, y);            // Business
+        });
+    }
 
     // Draw Photo
     if (photoUrl) {

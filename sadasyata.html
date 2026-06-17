@@ -186,12 +186,61 @@
 
                         <!-- Family Details -->
                         <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">परिवार और बच्चों का विवरण</span><span class="lang-en">Family & Children Details</span></h3>
-                        <div class="form-group" style="margin-bottom: 30px;">
-                            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पति/पत्नी और बच्चों के नाम एवं उम्र (यदि लागू हो)</span><span class="lang-en">Names & Ages of Spouse and Children (if applicable)</span></label>
-                            <textarea id="familyDetails" rows="4" placeholder="Example: 
-Spouse: [Name], Age: [Age]
-Child 1: [Name], Age: [Age]
-Child 2: [Name], Age: [Age]" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
+                        <div class="form-group" style="margin-bottom: 30px; overflow-x: auto;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label style="font-weight: bold; color: #333; margin: 0;"><span class="lang-hi">परिवार के सदस्यों का विवरण</span><span class="lang-en">Family Members Details</span></label>
+                                <button type="button" id="addFamilyBtn" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.9rem;" onclick="addFamilyRow()">+ Add Member</button>
+                            </div>
+                            <table id="familyTable" style="width: 100%; border-collapse: collapse; min-width: 700px; text-align: left;">
+                                <thead>
+                                    <tr style="background: #f1f1f1; border-bottom: 2px solid #ddd;">
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Name</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Relationship</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">DOB</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Marital Status</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Education</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Business</th>
+                                        <th style="padding: 10px; border: 1px solid #ddd;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Rows added dynamically -->
+                                </tbody>
+                            </table>
+                            <small id="familyCountWarning" style="color: red; display: none; margin-top: 5px;">Maximum 8 family members allowed.</small>
+                            <script>
+                                function addFamilyRow() {
+                                    const tbody = document.querySelector('#familyTable tbody');
+                                    if (tbody.children.length >= 8) {
+                                        document.getElementById('familyCountWarning').style.display = 'block';
+                                        return;
+                                    }
+                                    document.getElementById('familyCountWarning').style.display = 'none';
+                                    
+                                    const tr = document.createElement('tr');
+                                    tr.innerHTML = `
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-name" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-rel" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="date" class="fam-dob" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;">
+                                            <select class="fam-marital" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+                                                <option value="">Select</option>
+                                                <option value="Unmarried">Unmarried</option>
+                                                <option value="Married">Married</option>
+                                            </select>
+                                        </td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-edu" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-bus" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd; text-align: center;"><button type="button" onclick="this.closest('tr').remove(); document.getElementById('familyCountWarning').style.display='none';" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">X</button></td>
+                                    `;
+                                    tbody.appendChild(tr);
+                                }
+                                
+                                // Add one empty row by default
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    addFamilyRow();
+                                });
+                            </script>
                         </div>
 
                         <!-- Membership Type & Payment -->

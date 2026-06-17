@@ -8,6 +8,16 @@ function readFileAsDataURL(file) {
     });
 }
 
+// Helper to format date as DD/MM/YYYY
+function formatDateDDMMYYYY(dateString) {
+    if (!dateString) return '';
+    const parts = dateString.split('-');
+    if (parts.length === 3) {
+        return `${parts[2]}/${parts[1]}/${parts[0]}`; // YYYY-MM-DD -> DD/MM/YYYY
+    }
+    return dateString;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('membershipForm');
     
@@ -21,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             try {
-                // Generate Randomized ID (Since there is no database)
+                // Generate Randomized ID
                 const date = new Date();
                 const year = date.getFullYear();
                 const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -31,10 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const dataObj = {}; 
                 
-                // Text fields
-                const textFields = ['title-dropdown', 'fullName', 'guardianName', 'dob', 'bloodGroup', 'gotra', 
+                // Text fields (removed familyDetails, added marriageDate)
+                const textFields = ['title-dropdown', 'fullName', 'guardianName', 'dob', 'marriageDate', 'bloodGroup', 'gotra', 
                                     'occupation', 'education', 'domicile', 'permanentAddress', 'officeAddress', 
-                                    'houseType', 'mobileNumber', 'emailId', 'familyDetails', 'transactionId', 
+                                    'houseType', 'mobileNumber', 'emailId', 'transactionId', 
                                     'utrNo', 'bankAccountName'];
                 
                 textFields.forEach(id => {
@@ -42,6 +52,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(el) {
                         const name = id === 'title-dropdown' ? 'title' : id;
                         dataObj[name] = el.value;
+                    }
+                });
+
+                // Format Main Dates
+                dataObj.dob = formatDateDDMMYYYY(dataObj.dob);
+                dataObj.marriageDate = formatDateDDMMYYYY(dataObj.marriageDate);
+
+                // Extract Family Details Table
+                dataObj.familyMembers = [];
+                const familyRows = document.querySelectorAll('#familyTable tbody tr');
+                familyRows.forEach(row => {
+                    const name = row.querySelector('.fam-name').value;
+                    if(name.trim() !== '') { // Only add if name is not empty
+                        dataObj.familyMembers.push({
+                            name: name,
+                            relationship: row.querySelector('.fam-rel').value,
+                            dob: formatDateDDMMYYYY(row.querySelector('.fam-dob').value),
+                            maritalStatus: row.querySelector('.fam-marital').value,
+                            education: row.querySelector('.fam-edu').value,
+                            business: row.querySelector('.fam-bus').value
+                        });
                     }
                 });
 
