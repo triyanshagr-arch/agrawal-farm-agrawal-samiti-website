@@ -544,3 +544,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 }
 });
+
+// Scroll Animations & Back to Top
+document.addEventListener('DOMContentLoaded', () => {
+    // Scroll Animations
+    const fadeSections = document.querySelectorAll('.section, .card, .service-card');
+    fadeSections.forEach(section => section.classList.add('fade-in-section'));
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    fadeSections.forEach(section => observer.observe(section));
+    
+    // Back to Top Button
+    const backToTop = document.createElement('div');
+    backToTop.className = 'back-to-top';
+    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(backToTop);
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
