@@ -2030,21 +2030,28 @@ ul {
 
 
 
+
 .header-title-row {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px 20px 10px 0;
+    justify-content: center;
+    padding: 10px 0;
+    gap: 10px;
+    text-align: center;
 }
+
+
 .header-main-title {
     color: #E31837;
     font-size: 1.6rem;
     font-weight: 800;
     margin: 0;
     font-family: 'Outfit', sans-serif;
-    white-space: nowrap;
+    text-align: center;
     letter-spacing: 0.5px;
 }
+
 .header-socials {
     display: flex;
     gap: 15px;
@@ -2063,17 +2070,20 @@ ul {
     color: #E31837;
 }
 
+
 .red-navbar {
     background-color: #FF6B00;
-    margin-left: -30px;
-    margin-right: 229px;
-    padding-left: 30px;
-    padding-right: 30px;
-    clip-path: polygon(20px 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+    margin: 10px auto 0 auto;
+    width: 100%;
+    padding: 0 30px;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
+    justify-content: center;
     min-height: 45px;
+    box-shadow: var(--shadow-sm);
 }
+
 .red-navbar .nav-menu {
     display: flex;
     list-style: none;
