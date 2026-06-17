@@ -2553,7 +2553,16 @@ footer a:hover {
     z-index: 10;
 }
 
-.agrasen-img, .lakshmi-img {
+.agrasen-img {
+    width: auto;
+    height: 180px;
+    max-width: 100%;
+    object-fit: contain;
+    margin-top: 0;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+.lakshmi-img {
     width: auto;
     height: 180px;
     max-width: 100%;
@@ -2566,7 +2575,7 @@ footer a:hover {
     .header-container {
         flex-direction: column;
         align-items: center;
-        padding-top: 150px; /* Make room for the images at the top */
+        padding-top: 90px; /* Reduced from 150px to make header more compact */
     }
     .header-image-box {
         position: absolute;
@@ -2579,7 +2588,10 @@ footer a:hover {
         right: 10px;
         display: block; /* Ensure it stays visible */
     }
-    .agrasen-img, .lakshmi-img {
-        height: 120px; /* slightly smaller on mobile */
+    .agrasen-img {
+        height: 80px; /* slightly smaller on mobile */
+    }
+    .lakshmi-img {
+        height: 80px; /* slightly smaller on mobile */
     }
 }
