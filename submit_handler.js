@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZEGok5bJpmM2qCyJCuf-MHl1fVCulOdHsNS5p2vTsGwxT5oRzTTIsAA9CzbsOubps/exec";
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ membershipNo: membershipNo, ...dataObj })
+                    body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, ...dataObj } })
                 }).catch(err => console.error("Sheets Error:", err));
 
                 // Generate Local PDFs and Download

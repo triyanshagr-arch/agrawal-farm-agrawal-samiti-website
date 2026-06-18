@@ -77,17 +77,8 @@
                 <!-- Upcoming Notices -->
                 <div class="notice-card highlight" style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 4px solid var(--primary-color);">
                     <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-light); padding-bottom: 10px;"><i class="fas fa-bell"></i> आगामी सूचनाएँ (Upcoming Notices)</h3>
-                    <ul style="list-style: none; padding-top: 15px;">
-                        <li style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
-                            <strong>वार्षिक आम सभा (Annual General Meeting)</strong><br>
-                            <span style="font-size: 0.9em; color: var(--secondary-color);"><i class="far fa-clock"></i> तिथि शीघ्र घोषित होगी (Date to be announced)</span>
-                            <p style="margin-top: 5px; color: var(--text-dark);">समिति के सभी सदस्यों से अनुरोध है कि वे आगामी वार्षिक आम सभा में अपनी उपस्थिति सुनिश्चित करें।</p>
-                        </li>
-                        <li style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
-                            <strong>सदस्यता अभियान (Membership Drive)</strong><br>
-                            <span style="font-size: 0.9em; color: var(--secondary-color);"><i class="far fa-clock"></i> चालू (Ongoing)</span>
-                            <p style="margin-top: 5px; color: var(--text-dark);">नए सदस्यों को जोड़ने के लिए सदस्यता अभियान चलाया जा रहा है।</p>
-                        </li>
+                    <ul id="dynamic-notices" style="list-style: none; padding-top: 15px;">
+                        <li class="text-center" style="color: #666;"><i class="fas fa-spinner fa-spin"></i> Loading notices...</li>
                     </ul>
                 </div>
 
@@ -179,6 +170,10 @@
         </div>
     </footer>
 
-    <script src="react.js"></script>
+    <script src="script.js?v=2"></script>
+    <script>
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZEGok5bJpmM2qCyJCuf-MHl1fVCulOdHsNS5p2vTsGwxT5oRzTTIsAA9CzbsOubps/exec";
+    </script>
+    <script src="notices.js"></script>
 </body>
 </html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Agrawal Samiti</title>
+    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <img src="images/maharaj_agrasen.png" alt="Logo" class="login-logo">
+            <h2>Admin Login</h2>
+            <form id="loginForm">
+                <input type="password" id="adminPassword" placeholder="Enter Admin Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+                <div id="loginError" class="error-text"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard (Hidden by default) -->
+    <div id="dashboardScreen" class="dashboard-container" style="display: none;">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/maharaj_agrasen.png" alt="Logo">
+                <h3>Admin Panel</h3>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active" onclick="switchTab('memberships', this)"><i class="fas fa-users"></i> Pending Members</a></li>
+                <li><a href="#" onclick="switchTab('notices', this)"><i class="fas fa-bullhorn"></i> Manage Notices</a></li>
+                <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <!-- Memberships Tab -->
+            <section id="tab-memberships" class="tab-content active-tab">
+                <div class="header-bar">
+                    <h2>Pending Membership Approvals</h2>
+                    <button onclick="loadMembers()" class="btn-secondary"><i class="fas fa-sync"></i> Refresh</button>
+                </div>
+                
+                <div class="table-container">
+                    <table id="membersTable">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Payment Mode</th>
+                                <th>Transaction ID</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersTableBody">
+                            <tr><td colspan="6" class="text-center">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Notices Tab -->
+            <section id="tab-notices" class="tab-content" style="display: none;">
+                <div class="header-bar">
+                    <h2>Publish New Notice</h2>
+                </div>
+                
+                <div class="form-container">
+                    <form id="addNoticeForm">
+                        <div class="form-group">
+                            <label>Notice Title *</label>
+                            <input type="text" id="noticeTitle" required placeholder="e.g. Annual General Meeting">
+                        </div>
+                        <div class="form-group">
+                            <label>Date *</label>
+                            <input type="date" id="noticeDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description *</label>
+                            <textarea id="noticeDesc" rows="4" required placeholder="Enter the full notice details here..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Related Link / Document URL (Optional)</label>
+                            <input type="url" id="noticeLink" placeholder="https://...">
+                        </div>
+                        <button type="submit" class="btn-primary" id="noticeSubmitBtn"><i class="fas fa-paper-plane"></i> Publish Notice</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Shared Configuration -->
+    <script>
+        // Use the exact same Web App URL that you deployed for the Membership Form
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZEGok5bJpmM2qCyJCuf-MHl1fVCulOdHsNS5p2vTsGwxT5oRzTTIsAA9CzbsOubps/exec";
+    </script>
+    <script src="admin.js"></script>
+</body>
+</html>
