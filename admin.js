@@ -626,15 +626,17 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     .meta-info p { margin: 2px 0; font-size: 12px; }
                     .photo-box { width: 90px; height: 110px; border: 2px solid #D32F2F; padding: 2px; background: #fff; text-align: center; font-size: 10px; color: #999; }
                     .photo-box img { width: 100%; height: 100%; object-fit: cover; }
-                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; position: relative; z-index: 2; }
+                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; position: relative; z-index: 2; background-color: transparent !important; }
                     .info-table th, .info-table td { padding: 4px 8px; border: 1px solid #e0e0e0; text-align: left; }
-                    .info-table th { background: rgba(255, 248, 248, 0.7); width: 18%; font-size: 12px; color: #D32F2F; font-weight: 600; }
-                    .info-table td { font-size: 12px; color: #333; width: 32%; background: transparent; }
+                    .info-table th { background: rgba(255, 248, 248, 0.7) !important; width: 18%; font-size: 12px; color: #D32F2F; font-weight: 600; }
+                    .info-table tr { background-color: transparent !important; }
+                    .info-table td { font-size: 12px; color: #333; width: 32%; background-color: transparent !important; }
                     .section-title { color: #D32F2F; font-size: 15px; font-weight: 700; border-bottom: 2px solid #D32F2F; padding-bottom: 2px; margin: 10px 0 5px 0; display: inline-block; }
-                    .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; position: relative; z-index: 2; }
+                    .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; position: relative; z-index: 2; background-color: transparent !important; }
+                    .family-table tr { background-color: transparent !important; }
                     .family-table th, .family-table td { padding: 4px; border: 1px solid #e0e0e0; text-align: left; font-size: 11px; }
-                    .family-table th { background: #D32F2F; color: white; }
-                    .family-table td { background: transparent; }
+                    .family-table th { background: #D32F2F !important; color: white; }
+                    .family-table td { background-color: transparent !important; }
                     .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #777; border-top: 1px dashed #ccc; padding-top: 10px; }
                 </style>
             </head>
