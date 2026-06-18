@@ -541,18 +541,18 @@ function printApplicationForm(rowNum, lang = 'hi') {
     
     const t = {
         en: {
-            title: "Membership Application Form", samiti: "AGRAWAL SAMAJ SAMITI", address: "Agrawal Farm, Mansarovar, Jaipur",
+            title: "Membership Application", samiti: "Agrawal Samaj Samiti Agrawal Farm", address: "Agra Mandir Bhawan, Sunder Nagar 1, ISKCON Road, Jaipur, Rajasthan- 302020",
             family: "Family Members", name: "Name", relation: "Relation", age: "Age", edu: "Education", occ: "Occupation", bg: "Blood Group",
-            memNo: "Membership Number:", status: "Status:", date: "Date:", noPhoto: "No Photo Attached",
+            memNo: "Mem No:", status: "Status:", date: "Date:", noPhoto: "No Photo Provided",
             personal: "Personal Details", fullName: "Full Name", fatherName: "Father's / Husband's Name", dob: "Date of Birth",
             gotra: "Gotra", mobile: "Mobile Number", email: "Email ID", mDate: "Marriage Date", domicile: "Domicile",
             addressDetails: "Address Details", houseType: "House Type", permAddr: "Permanent Address", offAddr: "Office Address",
             footer: "This is a system-generated document from the Agrawal Samaj Samiti Admin Dashboard."
         },
         hi: {
-            title: "सदस्यता आवेदन पत्र", samiti: "अग्रवाल समाज समिति", address: "अग्रवाल फार्म, मानसरोवर, जयपुर",
+            title: "सदस्यता आवेदन पत्र", samiti: "अग्रवाल समाज समिति अग्रवाल फार्म", address: "अग्र मंदिर भवन, सुंदर नगर 1, इस्कॉन रोड, जयपुर, राजस्थान- 302020",
             family: "परिवार के सदस्य", name: "नाम", relation: "संबंध", age: "उम्र", edu: "शिक्षा", occ: "व्यवसाय", bg: "रक्त समूह",
-            memNo: "सदस्यता संख्या:", status: "स्थिति:", date: "दिनांक:", noPhoto: "कोई फोटो नहीं",
+            memNo: "सदस्यता क्र:", status: "स्थिति:", date: "दिनांक:", noPhoto: "फोटो उपलब्ध नहीं",
             personal: "व्यक्तिगत विवरण", fullName: "पूरा नाम", fatherName: "पिता / पति का नाम", dob: "जन्म तिथि",
             gotra: "गोत्र", mobile: "मोबाइल नंबर", email: "ईमेल आईडी", mDate: "विवाह तिथि", domicile: "मूल निवास",
             addressDetails: "पता विवरण", houseType: "मकान का प्रकार (स्वयं/किराए)", permAddr: "स्थाई पता", offAddr: "कार्यालय का पता",
@@ -643,7 +643,6 @@ function printApplicationForm(rowNum, lang = 'hi') {
                         <div class="header-center">
                             <h1>${t.samiti}</h1>
                             <h3>${t.address}</h3>
-                            <h2>${t.title}</h2>
                         </div>
                         <img src="${lakshmiImg}" class="deity-img" alt="Goddess Lakshmi">
                     </div>
