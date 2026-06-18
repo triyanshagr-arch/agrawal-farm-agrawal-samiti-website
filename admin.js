@@ -12,7 +12,7 @@ document.getElementById('loginForm').addEventListener('submit', (e) => {
     err.innerText = "";
 
     // Test the password by trying to fetch members
-    fetch(`${GOOGLE_SCRIPT_URL}?action=get_members&password=${encodeURIComponent(pw)}`)
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_members&password=${encodeURIComponent(pw)}&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             if (data.success) {
@@ -58,7 +58,7 @@ function loadMembers() {
     tbodyPending.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
     if(tbodyApproved) tbodyApproved.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
     
-    fetch(`${GOOGLE_SCRIPT_URL}?action=get_members&password=${encodeURIComponent(sessionPassword)}`)
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_members&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             if (data.success) {
@@ -145,7 +145,7 @@ function createMemberRow(m, isPending) {
 function actionMember(rowNum, actionType, email = '', membershipNo = '') {
     if (!confirm(`Are you sure you want to ${actionType.toUpperCase()} this application?`)) return;
     
-    fetch(`${GOOGLE_SCRIPT_URL}?action=${actionType}&row=${rowNum}&email=${encodeURIComponent(email)}&membershipNo=${encodeURIComponent(membershipNo)}&password=${encodeURIComponent(sessionPassword)}`)
+    fetch(`${GOOGLE_SCRIPT_URL}?action=${actionType}&row=${rowNum}&email=${encodeURIComponent(email)}&membershipNo=${encodeURIComponent(membershipNo)}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             if (data.success) {

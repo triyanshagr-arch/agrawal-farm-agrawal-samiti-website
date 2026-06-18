@@ -6,7 +6,7 @@ function loadNotices() {
     const container = document.getElementById('dynamic-notices');
     if (!container) return;
 
-    fetch(`${GOOGLE_SCRIPT_URL}?action=get_notices`)
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_notices&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             if (data.success && data.notices) {
