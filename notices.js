@@ -20,11 +20,11 @@ function loadNotices() {
                     renderAchievements(achievementNotices, achievementsContainer);
                 }
             } else {
-                container.innerHTML = '<li style="color:red;">Failed to load notices.</li>';
+                container.innerHTML = '<li style="color:red;"><span class="lang-hi">सूचनाएँ लोड करने में विफल।</span><span class="lang-en">Failed to load notices.</span></li>';
             }
         })
         .catch(err => {
-            container.innerHTML = '<li style="color:red;">Error loading notices. Please check your connection.</li>';
+            container.innerHTML = '<li style="color:red;"><span class="lang-hi">सूचनाएँ लोड करने में त्रुटि। कृपया अपना कनेक्शन जांचें।</span><span class="lang-en">Error loading notices. Please check your connection.</span></li>';
         });
 }
 
@@ -32,7 +32,7 @@ function renderNotices(notices, container) {
     container.innerHTML = '';
     
     if (notices.length === 0) {
-        container.innerHTML = '<li><p style="color: #666;">No new notices at this time.</p></li>';
+        container.innerHTML = '<li><p style="color: #666;"><span class="lang-hi">इस समय कोई नई सूचना नहीं है।</span><span class="lang-en">No new notices at this time.</span></p></li>';
         return;
     }
     
@@ -44,7 +44,7 @@ function renderNotices(notices, container) {
         
         let linkHtml = '';
         if (n.link && n.link.trim() !== '') {
-            linkHtml = `<br><a href="${n.link}" target="_blank" style="color: var(--primary-color); font-size: 0.9em; text-decoration: underline;"><i class="fas fa-link"></i> View Document / Link</a>`;
+            linkHtml = `<br><a href="${n.link}" target="_blank" style="color: var(--primary-color); font-size: 0.9em; text-decoration: underline;"><i class="fas fa-link"></i> <span class="lang-hi">दस्तावेज़ / लिंक देखें</span><span class="lang-en">View Document / Link</span></a>`;
         }
         
         const partsTitle = n.title.split('|||');
@@ -114,7 +114,20 @@ function renderAchievements(achievements, container) {
 
         li.innerHTML = `
             <i class="fas ${styleInfo.icon}" style="color: ${styleInfo.color}; font-size: 2rem; margin-bottom: 10px;"></i><br>
-            <strong style="color: var(--primary-color);">${cat}</strong><br>
+            let catDisplay = cat;
+        if (cat === 'Class 10th & 12th Board') {
+            catDisplay = '<span class="lang-hi">कक्षा 10वीं और 12वीं बोर्ड</span><span class="lang-en">Class 10th & 12th Board</span>';
+        } else if (cat === 'JEE & NEET') {
+            catDisplay = '<span class="lang-hi">जेईई और नीट</span><span class="lang-en">JEE & NEET</span>';
+        } else if (cat === 'UPSC / State PCS') {
+            catDisplay = '<span class="lang-hi">यूपीएससी / स्टेट पीसीएस</span><span class="lang-en">UPSC / State PCS</span>';
+        } else {
+            catDisplay = `<span class="lang-hi">${cat}</span><span class="lang-en">${cat}</span>`;
+        }
+
+        li.innerHTML = `
+            <i class="fas ${styleInfo.icon}" style="color: ${styleInfo.color}; font-size: 2rem; margin-bottom: 10px;"></i><br>
+            <strong style="color: var(--primary-color);">${catDisplay}</strong><br>
             <div style="font-size: 0.9em; color: var(--text-dark); margin-top: 10px; text-align: left; display: inline-block;">
                 ${studentsHtml}
             </div>
