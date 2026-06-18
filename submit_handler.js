@@ -212,4 +212,56 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Booking Form Handler
+    const bookingForm = document.getElementById('bookingForm');
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = bookingForm.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+
+            try {
+                const dataObj = {}; 
+                const textFields = ['bookingName', 'bookingMobile', 'bookingEmail', 'eventType', 'facilityRequired', 'startDate', 'endDate', 'expectedGuests', 'remarks'];
+                
+                textFields.forEach(id => {
+                    const el = document.getElementById(id);
+                    if(el) {
+                        // Map specific fields for backend compatibility
+                        let key = id;
+                        if (id === 'bookingName') key = 'fullName';
+                        if (id === 'bookingMobile') key = 'mobileNumber';
+                        if (id === 'bookingEmail') key = 'emailId';
+                        
+                        dataObj[key] = el.value;
+                    }
+                });
+
+                // Format Dates for backend mapping if needed (optional, keeping YYYY-MM-DD is often fine for backend, but we can leave as is)
+
+                // Send data to Google Sheets in the background
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIlSSNBiBm5k2SB5Ja0z--oJd-ZG8jcmawT0Wh-LsZYGF27WMnaE6a6xDsOOsiru7R/exec";
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'add_booking', data: dataObj })
+                }).catch(err => console.error("Sheets Error:", err));
+
+                // Alert User
+                alert(`Booking Request Submitted Successfully!\n\nThank you for choosing Agrawal Farm. We have received your request and will contact you shortly to confirm availability and discuss further details.`);
+                
+                bookingForm.reset();
+
+            } catch (error) {
+                console.error("Error submitting booking:", error);
+                alert("An error occurred while submitting the booking request. Please try again.");
+            } finally {
+                submitBtn.innerHTML = originalBtnHtml;
+                submitBtn.disabled = false;
+            }
+        });
+    }
 });

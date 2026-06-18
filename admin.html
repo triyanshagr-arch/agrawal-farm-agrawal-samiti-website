@@ -37,6 +37,7 @@
                 <li><a href="#" onclick="switchTab('approved', this)"><i class="fas fa-users"></i> Approved Members</a></li>
                 <li><a href="#" onclick="switchTab('notices', this)"><i class="fas fa-bullhorn"></i> Manage Notices</a></li>
                 <li><a href="#" onclick="switchTab('donations', this)"><i class="fas fa-hand-holding-heart"></i> Manage Donations</a></li>
+                <li><a href="#" onclick="switchTab('bookings', this)"><i class="fas fa-calendar-check"></i> Manage Bookings</a></li>
                 <li><a href="#" id="btnDownloadExcel" style="display:none; color: #4CAF50;" onclick="downloadExcel()"><i class="fas fa-file-excel"></i> Download Excel</a></li>
                 <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
@@ -217,6 +218,37 @@
                     </table>
                 </div>
             </section>
+
+            <!-- Bookings Tab -->
+            <section id="tab-bookings" class="tab-content" style="display: none;">
+                <div class="header-bar">
+                    <h2>Manage Facility Bookings</h2>
+                    <button onclick="loadBookings()" class="btn-secondary"><i class="fas fa-sync"></i> Refresh</button>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchBookings" placeholder="Search by Name, Mobile, or Facility..." onkeyup="filterTable('bookingsTableBody', 'searchBookings')">
+                </div>
+                
+                <div class="table-container">
+                    <table id="bookingsTable">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Facility</th>
+                                <th>Event Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTableBody">
+                            <tr><td colspan="7" class="text-center">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -231,6 +263,20 @@
             </div>
             <div class="modal-actions" style="margin-top: 20px;">
                 <button onclick="closeModal('viewProfileModal')" class="btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Booking Modal -->
+    <div id="viewBookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('viewBookingModal')">&times;</span>
+            <h2>Booking Details</h2>
+            <div id="bookingContent" class="profile-details">
+                <!-- Content injected via JS -->
+            </div>
+            <div class="modal-actions" style="margin-top: 20px;">
+                <button onclick="closeModal('viewBookingModal')" class="btn-secondary">Close</button>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 let sessionPassword = "";
 window.memberData = []; // Store fetched members for quick access
 window.donationData = []; // Store fetched donations
+window.bookingData = []; // Store fetched bookings
 
 // Login Form Submit
 document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -45,6 +46,9 @@ function switchTab(tabId, el) {
     
     if (tabId === 'donations' && window.donationData.length === 0) {
         loadDonations();
+    }
+    if (tabId === 'bookings' && window.bookingData.length === 0) {
+        loadBookings();
     }
 }
 
@@ -718,3 +722,118 @@ document.getElementById('addNoticeForm').addEventListener('submit', (e) => {
         btn.disabled = false;
     });
 });
+
+// ==========================================
+// BOOKINGS MANAGEMENT LOGIC
+// ==========================================
+
+function loadBookings() {
+    const tbody = document.getElementById('bookingsTableBody');
+    if(!tbody) return;
+    tbody.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
+    
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_bookings&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                window.bookingData = data.bookings || [];
+                renderBookings();
+            } else {
+                alert("Failed to load bookings: " + data.error);
+            }
+        });
+}
+
+function renderBookings() {
+    const tbody = document.getElementById('bookingsTableBody');
+    if(!tbody) return;
+    tbody.innerHTML = '';
+    
+    const bookings = window.bookingData || [];
+    
+    if (bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="text-center">No bookings found.</td></tr>';
+        return;
+    }
+    
+    bookings.forEach(b => {
+        const tr = document.createElement('tr');
+        
+        let actionHtml = '';
+        let statusBadge = '';
+        if (b.status === "Pending") {
+            statusBadge = `<span style="color: #ff9800; font-weight: bold;"><i class="fas fa-clock"></i> Pending</span>`;
+            actionHtml = `
+                <button class="btn-approve" style="padding: 4px 8px; font-size: 12px; margin-bottom: 4px;" onclick="actionBooking(${b.row}, 'Approved', '${b.emailId}', '${b.fullName}')"><i class="fas fa-check"></i> Approve</button>
+                <button class="btn-reject" style="padding: 4px 8px; font-size: 12px; margin-bottom: 4px;" onclick="actionBooking(${b.row}, 'Rejected', '${b.emailId}', '${b.fullName}')"><i class="fas fa-times"></i> Reject</button>
+            `;
+        } else if (b.status === "Approved") {
+            statusBadge = `<span style="color: #4caf50; font-weight: bold;"><i class="fas fa-check-circle"></i> Approved</span>`;
+            actionHtml = b.emailId ? `<button class="btn-email" style="padding: 4px 8px; font-size: 12px;" onclick="emailBookingApplicant(this, '${b.emailId}', '${b.fullName}', 'Approved')"><i class="fas fa-envelope"></i> Email Info</button>` : `<span style="font-size: 10px; color: #999;">No Email</span>`;
+        } else {
+            statusBadge = `<span style="color: #f44336; font-weight: bold;"><i class="fas fa-times-circle"></i> Rejected</span>`;
+            actionHtml = b.emailId ? `<button class="btn-email" style="padding: 4px 8px; font-size: 12px;" onclick="emailBookingApplicant(this, '${b.emailId}', '${b.fullName}', 'Rejected')"><i class="fas fa-envelope"></i> Email Info</button>` : `<span style="font-size: 10px; color: #999;">No Email</span>`;
+        }
+        
+        actionHtml += `<br><button class="btn-secondary" style="padding: 4px 8px; font-size: 12px; margin-top: 4px;" onclick="viewBooking(${b.row})"><i class="fas fa-eye"></i> View</button>`;
+        
+        tr.innerHTML = `
+            <td><small>${new Date(b.timestamp).toLocaleDateString()}</small></td>
+            <td><strong>${b.fullName}</strong></td>
+            <td>${b.mobileNumber}</td>
+            <td><strong>${b.facilityRequired}</strong><br><small>${b.eventType}</small></td>
+            <td>${b.startDate} to ${b.endDate}<br><small>Guests: ${b.expectedGuests}</small></td>
+            <td>${statusBadge}</td>
+            <td>${actionHtml}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function actionBooking(rowNum, newStatus, email, fullName) {
+    if (!confirm(`Are you sure you want to mark this booking as ${newStatus.toUpperCase()}?`)) return;
+    
+    fetch(`${GOOGLE_SCRIPT_URL}?action=update_booking_status&row=${rowNum}&status=${newStatus}&email=${encodeURIComponent(email)}&bookingName=${encodeURIComponent(fullName)}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert(`Booking marked as ${newStatus} successfully!`);
+                loadBookings();
+            } else {
+                alert("Action failed: " + data.error);
+            }
+        });
+}
+
+function viewBooking(rowNum) {
+    const b = window.bookingData.find(x => x.row == rowNum);
+    if (!b) return;
+    const content = document.getElementById('bookingContent');
+    content.innerHTML = `
+        <table class="profile-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <tr><th>Name</th><td>${b.fullName}</td></tr>
+            <tr><th>Mobile</th><td>${b.mobileNumber}</td></tr>
+            <tr><th>Email</th><td>${b.emailId || 'N/A'}</td></tr>
+            <tr><th>Facility Requested</th><td><strong>${b.facilityRequired}</strong></td></tr>
+            <tr><th>Event Type</th><td>${b.eventType}</td></tr>
+            <tr><th>Dates</th><td>${b.startDate} to ${b.endDate}</td></tr>
+            <tr><th>Expected Guests</th><td>${b.expectedGuests || 'N/A'}</td></tr>
+            <tr><th>Remarks</th><td>${b.remarks || 'None'}</td></tr>
+            <tr><th>Status</th><td><strong>${b.status}</strong></td></tr>
+        </table>
+    `;
+    document.getElementById('viewBookingModal').style.display = 'flex';
+}
+
+function emailBookingApplicant(btnElement, emailId, fullName, status) {
+    const emailSubject = encodeURIComponent(`Booking Request ${status} - Agrawal Samiti`);
+    let emailBody = "";
+    if (status === "Approved") {
+        emailBody = encodeURIComponent(`Dear ${fullName},\n\nJai Shri Agrasen!\n\nWe are pleased to inform you that your facility booking request at Agrawal Farm has been APPROVED.\n\nPlease visit the Samiti office to finalize the booking details and complete the advance payment.\n\nBest Regards,\nAdmin Team\nAgrawal Samaj Samiti`);
+    } else {
+        emailBody = encodeURIComponent(`Dear ${fullName},\n\nJai Shri Agrasen!\n\nWe regret to inform you that your facility booking request at Agrawal Farm has been REJECTED, likely due to unavailability on your requested dates.\n\nPlease contact the Samiti office for alternate dates or more information.\n\nBest Regards,\nAdmin Team\nAgrawal Samaj Samiti`);
+    }
+    
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailId}&su=${emailSubject}&body=${emailBody}`;
+    window.open(gmailLink, '_blank');
+}
