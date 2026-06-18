@@ -703,10 +703,10 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
                         <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px; height: 40px;">Authorized Signatory</div>
                         <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px; position: relative; height: 40px;">
-                            ${(m.signatureBase64 === 'DIGITAL_VERIFIED' || m.signature === 'DIGITAL_VERIFIED' || m.applicantSignature === 'DIGITAL_VERIFIED') 
-                                ? `<div style="position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); color: #28a745; font-weight: bold; font-size: 14px; white-space: nowrap;"><i class="fas fa-check-circle"></i> E-Verified</div>` 
-                                : (m.signatureBase64 || m.signature || m.Signature || m.applicantSignature) ? `<img src="${m.signatureBase64 || m.signature || m.Signature || m.applicantSignature}" style="max-height: 40px; position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);">` : ''}
-                            Applicant Signature
+                            ${(m.signatureBase64 && m.signatureBase64.startsWith('data:image')) 
+                                ? `<img src="${m.signatureBase64}" style="max-height: 40px; position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);">` 
+                                : `<div style="position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); color: #28a745; font-weight: bold; font-size: 14px; white-space: nowrap;"><i class="fas fa-check-circle"></i> E-Verified</div>`}
+                            Digital Signature
                         </div>
                     </div>
 
