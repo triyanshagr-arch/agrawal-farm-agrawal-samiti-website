@@ -47,10 +47,18 @@ function renderNotices(notices, container) {
             linkHtml = `<br><a href="${n.link}" target="_blank" style="color: var(--primary-color); font-size: 0.9em; text-decoration: underline;"><i class="fas fa-link"></i> View Document / Link</a>`;
         }
         
+        const partsTitle = n.title.split('|||');
+        const titleHi = partsTitle[0];
+        const titleEn = partsTitle[1] || partsTitle[0];
+
+        const partsDesc = n.description.split('|||');
+        const descHi = partsDesc[0].replace(/\n/g, '<br>');
+        const descEn = partsDesc[1] ? partsDesc[1].replace(/\n/g, '<br>') : descHi;
+
         li.innerHTML = `
-            <strong>${n.title}</strong><br>
+            <strong><span class="lang-hi">${titleHi}</span><span class="lang-en">${titleEn}</span></strong><br>
             <span style="font-size: 0.9em; color: var(--secondary-color);"><i class="far fa-clock"></i> ${n.date}</span>
-            <p style="margin-top: 5px; color: var(--text-dark);">${n.description.replace(/\n/g, '<br>')}</p>
+            <p style="margin-top: 5px; color: var(--text-dark);"><span class="lang-hi">${descHi}</span><span class="lang-en">${descEn}</span></p>
             ${linkHtml}
         `;
         container.appendChild(li);
@@ -86,10 +94,22 @@ function renderAchievements(achievements, container) {
         const styleInfo = icons[cat] || icons["Other"];
 
         let studentsHtml = students.map(desc => {
-            const parts = desc.split('|');
-            const name = parts[0];
-            const score = parts.length > 1 ? ` (${parts[1]})` : '';
-            return `• ${name}${score}`;
+            const parts = desc.split('|||');
+            
+            const hiParts = parts[0].split('|');
+            const nameHi = hiParts[0];
+            const scoreHi = hiParts.length > 1 ? ` (${hiParts[1]})` : '';
+            
+            let nameEn = nameHi;
+            let scoreEn = scoreHi;
+            
+            if (parts.length > 1) {
+                const enParts = parts[1].split('|');
+                nameEn = enParts[0];
+                scoreEn = enParts.length > 1 ? ` (${enParts[1]})` : '';
+            }
+
+            return `• <span class="lang-hi">${nameHi}${scoreHi}</span><span class="lang-en">${nameEn}${scoreEn}</span>`;
         }).join('<br>');
 
         li.innerHTML = `

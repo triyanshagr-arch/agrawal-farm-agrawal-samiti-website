@@ -738,17 +738,25 @@ function toggleNoticeFields() {
     if (type === 'Achievement') {
         genFields.forEach(el => el.style.display = 'none');
         achFields.forEach(el => el.style.display = 'block');
-        document.getElementById('noticeTitle').removeAttribute('required');
-        document.getElementById('noticeDesc').removeAttribute('required');
-        document.getElementById('achName').setAttribute('required', 'true');
-        document.getElementById('achScore').setAttribute('required', 'true');
+        document.getElementById('noticeTitleHi').removeAttribute('required');
+        document.getElementById('noticeTitleEn').removeAttribute('required');
+        document.getElementById('noticeDescHi').removeAttribute('required');
+        document.getElementById('noticeDescEn').removeAttribute('required');
+        document.getElementById('achNameHi').setAttribute('required', 'true');
+        document.getElementById('achNameEn').setAttribute('required', 'true');
+        document.getElementById('achScoreHi').setAttribute('required', 'true');
+        document.getElementById('achScoreEn').setAttribute('required', 'true');
     } else {
-        genFields.forEach(el => el.style.display = 'block');
+        genFields.forEach(el => el.style.display = 'grid');
         achFields.forEach(el => el.style.display = 'none');
-        document.getElementById('noticeTitle').setAttribute('required', 'true');
-        document.getElementById('noticeDesc').setAttribute('required', 'true');
-        document.getElementById('achName').removeAttribute('required');
-        document.getElementById('achScore').removeAttribute('required');
+        document.getElementById('noticeTitleHi').setAttribute('required', 'true');
+        document.getElementById('noticeTitleEn').setAttribute('required', 'true');
+        document.getElementById('noticeDescHi').setAttribute('required', 'true');
+        document.getElementById('noticeDescEn').setAttribute('required', 'true');
+        document.getElementById('achNameHi').removeAttribute('required');
+        document.getElementById('achNameEn').removeAttribute('required');
+        document.getElementById('achScoreHi').removeAttribute('required');
+        document.getElementById('achScoreEn').removeAttribute('required');
     }
 }
 
@@ -764,13 +772,19 @@ document.getElementById('addNoticeForm').addEventListener('submit', (e) => {
     const type = document.getElementById('noticeType').value;
     if (type === 'Achievement') {
         const cat = document.getElementById('achCategory').value;
-        const name = document.getElementById('achName').value;
-        const score = document.getElementById('achScore').value;
+        const nameHi = document.getElementById('achNameHi').value;
+        const nameEn = document.getElementById('achNameEn').value;
+        const scoreHi = document.getElementById('achScoreHi').value;
+        const scoreEn = document.getElementById('achScoreEn').value;
         titleText = '[ACHIEVEMENT] ' + cat;
-        descText = name + '|' + score;
+        descText = nameHi + '|' + scoreHi + '|||' + nameEn + '|' + scoreEn;
     } else {
-        titleText = document.getElementById('noticeTitle').value;
-        descText = document.getElementById('noticeDesc').value;
+        const titleHi = document.getElementById('noticeTitleHi').value;
+        const titleEn = document.getElementById('noticeTitleEn').value;
+        const descHi = document.getElementById('noticeDescHi').value;
+        const descEn = document.getElementById('noticeDescEn').value;
+        titleText = titleHi + '|||' + titleEn;
+        descText = descHi + '|||' + descEn;
         linkText = document.getElementById('noticeLink').value;
     }
 
