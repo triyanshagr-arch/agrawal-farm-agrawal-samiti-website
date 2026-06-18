@@ -614,26 +614,27 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     @media print { @page { margin: 0.5cm; } body { padding: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } .page-border { height: 97vh; overflow: hidden; page-break-after: avoid; } .watermark { opacity: 0.15 !important; } }
                     body { font-family: 'Outfit', Arial, sans-serif; padding: 10px; color: #222; line-height: 1.3; background: #fff; margin: 0; }
                     .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; min-height: 95vh; display: flex; flex-direction: column; }
-                    .watermark { position: absolute; top: 30%; left: 15%; width: 70%; opacity: 0.08; z-index: -1; pointer-events: none; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-                    .header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; }
+                    .watermark { position: absolute; top: 25%; left: 15%; width: 70%; opacity: 0.12; z-index: 0; pointer-events: none; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+                    .header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; position: relative; z-index: 2; }
                     .header-center { text-align: center; }
                     .header h1 { color: #D32F2F; margin: 0; font-size: 24px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
                     .header h3 { margin: 2px 0 0 0; color: #444; font-size: 13px; }
                     .header h2 { margin: 5px auto 0 auto; font-size: 16px; background: #D32F2F; color: #fff; display: inline-block; padding: 3px 15px; border-radius: 15px; }
                     .deity-img { height: 80px; width: 70px; object-fit: contain; margin: 0 auto; display: block; }
-                    .top-section { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: flex-start; }
-                    .meta-info { background: #fff8f8; border: 1px solid #f0d0d0; padding: 10px; border-radius: 8px; width: 60%; }
+                    .top-section { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: flex-start; position: relative; z-index: 2; }
+                    .meta-info { background: rgba(255, 248, 248, 0.6); border: 1px solid #f0d0d0; padding: 10px; border-radius: 8px; width: 60%; }
                     .meta-info p { margin: 2px 0; font-size: 12px; }
                     .photo-box { width: 90px; height: 110px; border: 2px solid #D32F2F; padding: 2px; background: #fff; text-align: center; font-size: 10px; color: #999; }
                     .photo-box img { width: 100%; height: 100%; object-fit: cover; }
-                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; position: relative; z-index: 2; }
                     .info-table th, .info-table td { padding: 4px 8px; border: 1px solid #e0e0e0; text-align: left; }
-                    .info-table th { background: #fff8f8; width: 18%; font-size: 12px; color: #D32F2F; font-weight: 600; }
-                    .info-table td { font-size: 12px; color: #333; width: 32%; }
+                    .info-table th { background: rgba(255, 248, 248, 0.7); width: 18%; font-size: 12px; color: #D32F2F; font-weight: 600; }
+                    .info-table td { font-size: 12px; color: #333; width: 32%; background: transparent; }
                     .section-title { color: #D32F2F; font-size: 15px; font-weight: 700; border-bottom: 2px solid #D32F2F; padding-bottom: 2px; margin: 10px 0 5px 0; display: inline-block; }
-                    .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+                    .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; position: relative; z-index: 2; }
                     .family-table th, .family-table td { padding: 4px; border: 1px solid #e0e0e0; text-align: left; font-size: 11px; }
                     .family-table th { background: #D32F2F; color: white; }
+                    .family-table td { background: transparent; }
                     .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #777; border-top: 1px dashed #ccc; padding-top: 10px; }
                 </style>
             </head>
