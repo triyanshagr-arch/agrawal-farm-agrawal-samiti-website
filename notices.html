@@ -164,6 +164,172 @@
                 </div>
             </div>
             <div class="footer-bottom">
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अग्रवाल समाज समिति अग्रवाल फार्म</title>
+    <!-- Favicon -->
+    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919829220486" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="#" class="facebook-float" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <header class="custom-header">
+        <div class="header-container">
+            <div class="header-image-box">
+                <img src="images/maharaj_agrasen.png" alt="Maharaj Agrasen" class="agrasen-img">
+            </div>
+            <div class="header-content-box">
+                <div class="header-title-row">
+                    <h1 class="header-main-title" style="line-height: 1.2;">
+                        अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)<br>
+                        <span style="font-size: 0.55em; letter-spacing: 1px; color: #555;">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span>
+                    </h1>
+                    
+                </div>
+                
+                <nav class="red-navbar" id="navbar">
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar" style="background:#fff"></span>
+                        <span class="bar" style="background:#fff"></span>
+                        <span class="bar" style="background:#fff"></span>
+                    </div>
+                    <ul class="nav-menu">
+                    <div class="mobile-drawer-close" id="drawer-close-btn">&times;</div>
+                        <li><a href="index.html" class="nav-links "><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
+                        <li><a href="about.html" class="nav-links "><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
+                        <li><a href="notices.html" class="nav-links active"><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
+                        <li><a href="activities.html" class="nav-links "><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
+                        <li><a href="members.html" class="nav-links "><span class="lang-en">MEMBERS</span><span class="lang-hi">सदस्य</span></a></li>
+                        <li><a href="sadasyata.html" class="nav-links "><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+                        <li><a href="donation.html" class="nav-links " style="color: #FFD700; font-weight: bold;"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+                        <li><a href="contact.html" class="nav-links "><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
+                                    <li class="nav-item-toggle">
+                        <button id="lang-toggle" class="language-toggle"><i class="fas fa-language"></i> English</button>
+                    </li>
+</ul>
+                </nav>
+            </div>
+            <div class="header-image-box-right">
+                <img src="images/lakshmi.png" alt="Lakshmi Ji" class="lakshmi-img">
+            </div>
+</div>
+    </header>
+
+    <main>
+    <section class="section notices-section" id="notices">
+        <div class="container">
+            <h2 class="section-title"><span class="lang-hi">सूचना एवं उपलब्धियां</span><span class="lang-en">Notices & Achievements</span></h2>
+            <div class="divider">❋ ༺ ॐ ༻ ❋</div>
+            
+            <div class="notices-layout" style="display: grid; grid-template-columns: 1fr; gap: 30px;">
+                
+                <!-- Upcoming Notices -->
+                <div class="notice-card highlight" style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 4px solid var(--primary-color);">
+                    <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-light); padding-bottom: 10px;"><i class="fas fa-bell"></i> आगामी सूचनाएँ (Upcoming Notices)</h3>
+                    <ul id="dynamic-notices" style="list-style: none; padding-top: 15px;">
+                        <li class="text-center" style="color: #666;"><i class="fas fa-spinner fa-spin"></i> Loading notices...</li>
+                    </ul>
+                </div>
+
+                <!-- Achievements -->
+                <div class="notice-card" style="background: var(--primary-light); padding: 25px; border-radius: 10px; border: 2px solid var(--primary-color);">
+                    <h3 style="color: var(--primary-dark); border-bottom: 2px solid var(--white); padding-bottom: 10px;"><i class="fas fa-trophy"></i> समाज की प्रतिभाएं (Academic Achievements)</h3>
+                    <p style="padding-top: 15px; margin-bottom: 15px; color: var(--text-dark);">हम समाज के उन मेधावी छात्र-छात्राओं का सम्मान करते हैं जिन्होंने हाल की परीक्षाओं में उत्कृष्ट प्रदर्शन किया है:</p>
+                    <ul style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <li style="background: var(--white); padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                            <i class="fas fa-medal" style="color: gold; font-size: 2rem; margin-bottom: 10px;"></i><br>
+                            <strong style="color: var(--primary-color);">Class 10th & 12th Board</strong><br>
+                            <div style="font-size: 0.9em; color: var(--text-dark); margin-top: 10px; text-align: left; display: inline-block;">
+                                • सुश्री अंजलि अग्रवाल (98.2%, 12th)<br>
+                                • चि. राहुल गर्ग (96.5%, 10th)
+                            </div>
+                        </li>
+                        <li style="background: var(--white); padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                            <i class="fas fa-user-graduate" style="color: var(--secondary-color); font-size: 2rem; margin-bottom: 10px;"></i><br>
+                            <strong style="color: var(--primary-color);">JEE & NEET</strong><br>
+                            <div style="font-size: 0.9em; color: var(--text-dark); margin-top: 10px; text-align: left; display: inline-block;">
+                                • चि. हर्षित बंसल (IIT Bombay)<br>
+                                • सुश्री नेहा मित्तल (SMS Medical)
+                            </div>
+                        </li>
+                        <li style="background: var(--white); padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                            <i class="fas fa-landmark" style="color: #4CAF50; font-size: 2rem; margin-bottom: 10px;"></i><br>
+                            <strong style="color: var(--primary-color);">UPSC / State PCS</strong><br>
+                            <div style="font-size: 0.9em; color: var(--text-dark); margin-top: 10px; text-align: left; display: inline-block;">
+                                • श्री विकास अग्रवाल (IAS)<br>
+                                • सुश्री रिया गोयल (RAS)
+                            </div>
+                        </li>
+                    </ul>
+                    <p style="margin-top: 15px; font-size: 0.9em; text-align: center; color: var(--text-dark);"><em>(यदि आपके परिवार में किसी ने उत्कृष्ट प्रदर्शन किया है, तो कृपया समिति को सूचित करें)</em></p>
+                </div>
+
+                <!-- Past Notices -->
+                <div class="notice-card" style="background: #f9f9f9; padding: 25px; border-radius: 10px; border-left: 4px solid #9e9e9e;">
+                    <h3 style="color: #555; border-bottom: 2px solid #ddd; padding-bottom: 10px;"><i class="fas fa-history"></i> पिछली सूचनाएँ (Past Notices)</h3>
+                    <ul style="list-style: none; padding-top: 15px;">
+                        <li style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #ddd;">
+                            <strong style="color: #555;">दीपावली मिलन समारोह (Diwali Milan)</strong><br>
+                            <span style="font-size: 0.9em; color: #888;"><i class="far fa-check-circle"></i> सफलतापूर्वक संपन्न (Successfully Completed)</span>
+                        </li>
+                        <li style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #ddd;">
+                            <strong style="color: #555;"><span class="lang-hi">चिकित्सा शिविर</span><span class="lang-en">Medical Camp</span> (Medical Camp)</strong><br>
+                            <span style="font-size: 0.9em; color: #888;"><i class="far fa-check-circle"></i> सफलतापूर्वक संपन्न (Successfully Completed)</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-placeholder small">ॐ</div>
+                    <h3>अग्रवाल समाज समिति<br>अग्रवाल फार्म</h3>
+                </div>
+                <div class="footer-links">
+                    <h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
+                        <li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
+                        <li><a href="committee.html"><span class="lang-hi">कार्यकारिणी</span><span class="lang-en">Committee</span></a></li>
+                        <li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Members</span></a></li>
+                        <li><a href="sadasyata.html" class="nav-links "><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+                        <li><a href="donation.html" class="nav-links " style="color: #FFD700; font-weight: bold;"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+                        <li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
+                        <li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
+                        <li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
+                        <li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
+                    <p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
                 <p>&copy; 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
                 <p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
             </div>
@@ -172,7 +338,7 @@
 
     <script src="script.js?v=2"></script>
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIlSSNBiBm5k2SB5Ja0z--oJd-ZG8jcmawT0Wh-LsZYGF27WMnaE6a6xDsOOsiru7R/exec";
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwX_fpplez9K2xCMCmneY7uT0j-HPb1zoX0yU_TisVioKx4Lb63qXK1qjYRx87FrNHe/exec";
     </script>
     <script src="notices.js"></script>
 </body>
