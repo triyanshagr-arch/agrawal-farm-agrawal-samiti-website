@@ -2715,3 +2715,22 @@ footer a:hover {
         grid-template-columns: 1fr !important;
     }
 }
+
+/* Fix Flatpickr UI broken by global !important rules */
+.flatpickr-calendar select.flatpickr-monthDropdown-months,
+.flatpickr-calendar input.cur-year {
+    padding: 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: inherit !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    font-weight: inherit !important;
+}
+.flatpickr-calendar input.cur-year:focus,
+.flatpickr-calendar select.flatpickr-monthDropdown-months:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
