@@ -609,9 +609,9 @@ function printApplicationForm(rowNum, lang = 'hi') {
                 <title>${t.title} - ${m.fullName}</title>
                 <style>
                     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
-                    @media print { @page { margin: 0.5cm; } body { padding: 0 !important; } }
+                    @media print { @page { margin: 0.5cm; } body { padding: 0 !important; } .page-border { height: 97vh; overflow: hidden; page-break-after: avoid; } }
                     body { font-family: 'Outfit', Arial, sans-serif; padding: 10px; color: #222; line-height: 1.3; background: #fff; margin: 0; }
-                    .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; min-height: 98vh; display: flex; flex-direction: column; }
+                    .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; min-height: 95vh; display: flex; flex-direction: column; }
                     .watermark { position: absolute; top: 30%; left: 15%; width: 70%; opacity: 0.05; z-index: -1; pointer-events: none; }
                     .header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; }
                     .header-center { text-align: center; }
