@@ -414,7 +414,7 @@ function viewProfile(rowNum) {
     content.innerHTML = `
         <div style="text-align:center; margin-bottom: 20px;">
             ${m.photoBase64 ? `<img src="${m.photoBase64}" style="width:100px; height:100px; border-radius:50%; object-fit:cover; margin:0 10px;">` : ''}
-            ${sig ? `<img src="${sig}" style="width:100px; height:50px; object-fit:contain; border:1px solid #ccc; background:#fff; margin:0 10px;">` : ''}
+            ${sig === 'DIGITAL_VERIFIED' ? `<div style="display:inline-block; vertical-align:top; border:1px solid #28a745; color:#28a745; padding:5px 15px; border-radius:4px; font-weight:bold; margin:0 10px; height: 40px; line-height: 40px;"><i class="fas fa-check-circle"></i> E-Verified</div>` : sig ? `<img src="${sig}" style="width:100px; height:50px; object-fit:contain; border:1px solid #ccc; background:#fff; margin:0 10px;">` : ''}
             <h3>${m.fullName} (${m.membershipNo})</h3>
             <p><strong>Status:</strong> ${m.status}</p>
         </div>
@@ -703,7 +703,9 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
                         <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px; height: 40px;">Authorized Signatory</div>
                         <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px; position: relative; height: 40px;">
-                            ${(m.signatureBase64 || m.signature || m.Signature || m.applicantSignature) ? `<img src="${m.signatureBase64 || m.signature || m.Signature || m.applicantSignature}" style="max-height: 40px; position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);">` : ''}
+                            ${(m.signatureBase64 === 'DIGITAL_VERIFIED' || m.signature === 'DIGITAL_VERIFIED' || m.applicantSignature === 'DIGITAL_VERIFIED') 
+                                ? `<div style="position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); color: #28a745; font-weight: bold; font-size: 14px; white-space: nowrap;"><i class="fas fa-check-circle"></i> E-Verified</div>` 
+                                : (m.signatureBase64 || m.signature || m.Signature || m.applicantSignature) ? `<img src="${m.signatureBase64 || m.signature || m.Signature || m.applicantSignature}" style="max-height: 40px; position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);">` : ''}
                             Applicant Signature
                         </div>
                     </div>

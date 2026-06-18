@@ -179,7 +179,14 @@ async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl
     }
 
     // Draw Signature
-    if (signatureUrl) {
+    if (signatureUrl === 'DIGITAL_VERIFIED') {
+        ctx.fillStyle = '#28a745';
+        ctx.font = `bold ${fontSize * 1.5}px sans-serif`;
+        const sigX = cw * 0.75;
+        const sigY = ch * 0.90;
+        ctx.fillText("✓ E-Verified", sigX, sigY);
+        ctx.fillStyle = '#000000'; // reset
+    } else if (signatureUrl) {
         try {
             const sigImg = await loadImage(signatureUrl);
             const sigX = cw * 0.75;

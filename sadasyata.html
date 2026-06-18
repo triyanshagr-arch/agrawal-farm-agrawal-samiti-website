@@ -338,13 +338,15 @@
                             <span class="lang-en">3. Young men and women above 18 years of age can take membership separately.</span>
                         </div>
 
-                        <div class="form-group" style="margin-bottom: 30px; text-align: center;">
-                            <label style="display: block; font-weight: bold; margin-bottom: 12px; color: #333; font-size: 1.1rem;"><span class="lang-hi">आवेदक के हस्ताक्षर <span style="color:red">*</span></span><span class="lang-en">Signature of Applicant <span style="color:red">*</span></span></label>
-                            <div style="max-width: 400px; margin: 0 auto;">
-                                <input type="file" id="applicantSignature" required accept="image/*" style="width: 100%; padding: 10px; border: 2px dashed #ccc; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fafafa; cursor: pointer;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ccc'" onchange="previewImage(this, 'applicantSignaturePreview')">
-                                <img id="applicantSignaturePreview" src="" style="display:none; margin-top: 10px; max-height: 100px; border-radius: 8px; border: 1px solid #ddd; display: block; margin-left: auto; margin-right: auto;">
-                                <small style="display: block; margin-top: 8px; color: #666;"><span class="lang-hi">कृपया अपने हस्ताक्षर की फोटो अपलोड करें</span><span class="lang-en">Please upload a photo of your signature</span></small>
-                            </div>
+                        <div class="form-group" style="margin-bottom: 30px; background: #fff8f8; padding: 20px; border-radius: 8px; border: 1px solid #f0d0d0; text-align: left;">
+                            <label style="display: flex; align-items: flex-start; gap: 15px; cursor: pointer;">
+                                <input type="checkbox" id="applicantSignatureDeclaration" required style="width: 25px; height: 25px; margin-top: 2px; accent-color: var(--primary-color);">
+                                <div style="color: #333; font-size: 1.05rem; line-height: 1.5;">
+                                    <strong style="color: var(--primary-color); display: block; margin-bottom: 5px; font-size: 1.1rem;"><span class="lang-hi">डिजिटल घोषणा (Digital Declaration)</span><span class="lang-en">Digital Declaration</span> <span style="color:red">*</span></strong>
+                                    <span class="lang-hi">मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई उपरोक्त सभी जानकारी पूर्णतया सत्य है। मैं अग्रवाल समाज समिति के विधान एवं नियमों से सहमत हूँ और उनके पालन के लिए वचनबद्ध हूँ। यह मेरी डिजिटल सहमति है।</span>
+                                    <span class="lang-en">I declare that all information provided by me is true and correct. I agree to abide by the rules of Agrawal Samaj Samiti. This acts as my digital signature.</span>
+                                </div>
+                            </label>
                         </div>
 
                         <div style="text-align: center;">
@@ -494,7 +496,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     preview.src = e.target.result;
-                    preview.style.display = previewId === 'applicantSignaturePreview' ? 'block' : 'inline-block';
+                    preview.style.display = 'inline-block';
                 }
                 reader.readAsDataURL(input.files[0]);
             } else {

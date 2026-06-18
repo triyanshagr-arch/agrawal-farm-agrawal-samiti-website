@@ -117,12 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Read Images (Photos)
                 const applicantPhotoInput = document.getElementById('applicantPhoto');
-                const applicantSignatureInput = document.getElementById('applicantSignature');
+                const applicantSignatureInput = document.getElementById('applicantSignatureDeclaration');
                 
                 const photoUrl = applicantPhotoInput.files.length > 0 ? await readFileAsDataURL(applicantPhotoInput.files[0]) : null;
                 const compressedPhotoBase64 = applicantPhotoInput.files.length > 0 ? await compressImageAsBase64(applicantPhotoInput.files[0]) : null;
-                const signatureUrl = applicantSignatureInput.files.length > 0 ? await readFileAsDataURL(applicantSignatureInput.files[0]) : null;
-                const compressedSignatureBase64 = applicantSignatureInput.files.length > 0 ? await compressImageAsBase64(applicantSignatureInput.files[0]) : null;
+                const isDigitallySigned = applicantSignatureInput ? applicantSignatureInput.checked : false;
+                const signatureUrl = isDigitallySigned ? 'DIGITAL_VERIFIED' : null;
+                const compressedSignatureBase64 = isDigitallySigned ? "DIGITAL_VERIFIED" : null;
 
                 // Send data to Google Sheets in the background
                 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwX_fpplez9K2xCMCmneY7uT0j-HPb1zoX0yU_TisVioKx4Lb63qXK1qjYRx87FrNHe/exec";
