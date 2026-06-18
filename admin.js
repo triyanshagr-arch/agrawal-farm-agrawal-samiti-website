@@ -164,7 +164,7 @@ function createMemberRow(m, isPending, arrayIndex) {
         actionHtml = `
             <span style="color: #4caf50; font-weight: bold;"><i class="fas fa-check-circle"></i> Approved</span><br><br>
             ${emailBtnHtml}<br>
-            <button class="btn-secondary" style="margin-top: 5px; padding:4px 8px; font-size:12px;" onclick="printIdCard(${m.row})"><i class="fas fa-print"></i> Print ID Card</button>
+            <button class="btn-secondary" style="margin-top: 5px; padding:4px 8px; font-size:12px;" onclick="printApplicationForm(${m.row})"><i class="fas fa-print"></i> Print Application</button>
             <hr style="margin: 5px 0; border:none; border-top:1px solid #ddd;">
             ${viewEditHtml}
         `;
@@ -387,44 +387,128 @@ document.getElementById('editMemberForm').addEventListener('submit', (e) => {
     });
 });
 
-// Print ID Card
-function printIdCard(rowNum) {
+// Print Application Form
+function printApplicationForm(rowNum) {
     const m = window.memberData.find(x => x.row == rowNum);
     if (!m) return;
     
-    const printWindow = window.open('', '_blank', 'width=600,height=400');
+    let familyHtml = '';
+    if (m.familyMembers && m.familyMembers !== "[]") {
+        try {
+            const family = JSON.parse(m.familyMembers);
+            if (family.length > 0) {
+                familyHtml = `
+                    <h3>Family Members</h3>
+                    <table class="family-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Relation</th>
+                                <th>Age / DOB</th>
+                                <th>Education</th>
+                                <th>Occupation</th>
+                                <th>Blood Group</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${family.map(f => `
+                                <tr>
+                                    <td>${f.name || ''}</td>
+                                    <td>${f.relation || ''}</td>
+                                    <td>${f.age || ''}</td>
+                                    <td>${f.education || ''}</td>
+                                    <td>${f.business || ''}</td>
+                                    <td>${f.bloodGroup || ''}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+        } catch(e) {
+            console.error("Error parsing family members", e);
+        }
+    }
+    
+    const printWindow = window.open('', '_blank', 'width=800,height=900');
     printWindow.document.write(`
         <html>
             <head>
-                <title>ID Card - ${m.fullName}</title>
+                <title>Application Form - ${m.fullName}</title>
                 <style>
-                    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fff; padding: 20px; display: flex; justify-content: center; }
-                    .id-card { width: 350px; border: 2px solid #D32F2F; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-                    .header { background: #D32F2F; color: white; text-align: center; padding: 10px; font-weight: bold; font-size: 14px; }
-                    .content { padding: 15px; display: flex; gap: 15px; align-items: center; }
-                    .photo { width: 80px; height: 100px; border: 1px solid #ccc; object-fit: cover; border-radius: 4px; }
-                    .details h3 { margin: 0 0 5px 0; color: #333; font-size: 18px; }
-                    .details p { margin: 2px 0; font-size: 12px; color: #555; }
-                    .footer { background: #f9f9f9; text-align: center; padding: 8px; font-size: 10px; color: #777; border-top: 1px solid #eee; }
+                    body { font-family: Arial, sans-serif; padding: 30px; color: #333; line-height: 1.5; }
+                    .header { text-align: center; border-bottom: 2px solid #D32F2F; padding-bottom: 20px; margin-bottom: 20px; }
+                    .header h1 { color: #D32F2F; margin: 0 0 5px 0; }
+                    .header h3 { margin: 0; color: #555; }
+                    .top-section { display: flex; justify-content: space-between; margin-bottom: 30px; }
+                    .photo-box { width: 120px; height: 150px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; background: #eee; text-align: center; font-size: 12px; color: #999; }
+                    .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                    .info-table th, .info-table td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+                    .info-table th { background: #f9f9f9; width: 30%; }
+                    h3 { color: #D32F2F; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 30px; }
+                    .family-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                    .family-table th, .family-table td { padding: 8px; border: 1px solid #ddd; text-align: left; font-size: 14px; }
+                    .family-table th { background: #f4f4f4; }
+                    .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #777; }
                 </style>
             </head>
             <body>
-                <div class="id-card">
-                    <div class="header">AGRAWAL SAMAJ SAMITI<br>Agrawal Farm, Jaipur</div>
-                    <div class="content">
-                        ${m.photoBase64 ? `<img src="${m.photoBase64}" class="photo">` : '<div class="photo" style="display:flex; align-items:center; justify-content:center; background:#eee; font-size:10px;">No Photo</div>'}
-                        <div class="details">
-                            <h3>${m.fullName}</h3>
-                            <p><strong>Membership No:</strong> ${m.membershipNo}</p>
-                            <p><strong>Blood Group:</strong> ${m.bloodGroup}</p>
-                            <p><strong>Gotra:</strong> ${m.gotra}</p>
-                            <p><strong>Phone:</strong> ${m.mobileNumber}</p>
-                        </div>
-                    </div>
-                    <div class="footer">Official Membership Identity Card</div>
+                <div class="header">
+                    <h1>AGRAWAL SAMAJ SAMITI</h1>
+                    <h3>Agrawal Farm, Mansarovar, Jaipur</h3>
+                    <h2>Membership Application Form</h2>
                 </div>
+                
+                <div class="top-section">
+                    <div>
+                        <p><strong>Membership Number:</strong> ${m.membershipNo || 'Pending'}</p>
+                        <p><strong>Status:</strong> ${m.status}</p>
+                        <p><strong>Date of Application:</strong> ${new Date(m.timestamp).toLocaleDateString()}</p>
+                    </div>
+                    <div class="photo-box">
+                        ${m.photoBase64 ? `<img src="${m.photoBase64}">` : 'No Photo Attached'}
+                    </div>
+                </div>
+
+                <h3>Personal Details</h3>
+                <table class="info-table">
+                    <tr><th>Full Name</th><td>${m.fullName}</td></tr>
+                    <tr><th>Father's / Husband's Name</th><td>${m.guardianName || ''}</td></tr>
+                    <tr><th>Date of Birth</th><td>${m.dob || ''}</td></tr>
+                    <tr><th>Gotra</th><td>${m.gotra || ''}</td></tr>
+                    <tr><th>Blood Group</th><td>${m.bloodGroup || ''}</td></tr>
+                    <tr><th>Mobile Number</th><td>${m.mobileNumber || ''}</td></tr>
+                    <tr><th>Email ID</th><td>${m.emailId || ''}</td></tr>
+                    <tr><th>Education</th><td>${m.education || ''}</td></tr>
+                    <tr><th>Occupation / Profession</th><td>${m.occupation || ''}</td></tr>
+                    <tr><th>Marriage Date</th><td>${m.marriageDate || ''}</td></tr>
+                    <tr><th>Domicile (Mool Niwas)</th><td>${m.domicile || ''}</td></tr>
+                </table>
+
+                <h3>Address Details</h3>
+                <table class="info-table">
+                    <tr><th>House Type</th><td>${m.houseType || ''}</td></tr>
+                    <tr><th>Permanent Address</th><td>${m.permanentAddress || ''}</td></tr>
+                    <tr><th>Office/Business Address</th><td>${m.officeAddress || ''}</td></tr>
+                </table>
+
+                <h3>Payment Details</h3>
+                <table class="info-table">
+                    <tr><th>Payment Mode</th><td>${m.paymentMode || ''}</td></tr>
+                    <tr><th>Transaction ID</th><td>${m.transactionId || ''}</td></tr>
+                    <tr><th>UTR No</th><td>${m.utrNo || ''}</td></tr>
+                    <tr><th>Bank Account Name</th><td>${m.bankAccountName || ''}</td></tr>
+                </table>
+
+                ${familyHtml}
+                
+                <div class="footer">
+                    <p>This is a system-generated document from the Agrawal Samaj Samiti Admin Dashboard.</p>
+                </div>
+                
                 <script>
-                    window.onload = function() { window.print(); }
+                    window.onload = function() { setTimeout(function() { window.print(); }, 500); }
                 </script>
             </body>
         </html>
