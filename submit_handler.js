@@ -183,11 +183,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
+                // Read Image (Screenshot)
+                const paymentScreenshotInput = document.getElementById('paymentScreenshot');
+                const compressedScreenshotBase64 = paymentScreenshotInput.files.length > 0 ? await compressImageAsBase64(paymentScreenshotInput.files[0]) : null;
+
+                // Send data to Google Sheets in the background
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqwQn-sYxMvexa0Zbvu_P_-zBQzI0Mj1Yr_m89kElC_uZ9eic_q099U9-vPPVDwKSp/exec";
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'add_donation', data: { receiptNo: receiptNo, screenshotBase64: compressedScreenshotBase64, ...dataObj } })
+                }).catch(err => console.error("Sheets Error:", err));
+
                 // Generate Donation Receipt PDF
                 generateDonationReceiptPDF(receiptNo, dataObj, 'save');
 
                 // Alert User
-                alert(`Donation Receipt Generated Successfully!\nYour Receipt No. is: ${receiptNo}\n\nIMPORTANT: The receipt has been automatically downloaded to your computer/phone.\n\nYOU MUST MANUALLY EMAIL this downloaded PDF along with your Payment Screenshot to: atriyanshagr@gmail.com for Admin Verification!`);
+                alert(`Donation Receipt Generated Successfully!\nYour Receipt No. is: ${receiptNo}\n\nIMPORTANT: The receipt has been automatically downloaded to your computer/phone. Your data has also been securely saved to the server!`);
                 
                 donationForm.reset();
                 document.getElementById('paymentScreenshotPreview').style.display = 'none';

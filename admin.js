@@ -1,5 +1,6 @@
 let sessionPassword = "";
 window.memberData = []; // Store fetched members for quick access
+window.donationData = []; // Store fetched donations
 
 // Login Form Submit
 document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -41,6 +42,10 @@ function switchTab(tabId, el) {
     document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
     document.getElementById('tab-' + tabId).style.display = 'block';
     el.classList.add('active');
+    
+    if (tabId === 'donations' && window.donationData.length === 0) {
+        loadDonations();
+    }
 }
 
 function logout() {
@@ -70,6 +75,49 @@ function loadMembers() {
                 alert("Failed to load members: " + data.error);
             }
         });
+}
+
+function loadDonations() {
+    const tbody = document.getElementById('donationsTableBody');
+    if(!tbody) return;
+    tbody.innerHTML = '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
+    
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_donations&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                window.donationData = data.donations || [];
+                renderDonations();
+            } else {
+                alert("Failed to load donations: " + data.error);
+            }
+        });
+}
+
+function renderDonations() {
+    const tbody = document.getElementById('donationsTableBody');
+    if(!tbody) return;
+    tbody.innerHTML = '';
+    
+    if (window.donationData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center">No donations found.</td></tr>';
+        return;
+    }
+    
+    window.donationData.forEach(d => {
+        const tr = document.createElement('tr');
+        const screenshotHtml = d.screenshotBase64 ? `<a href="${d.screenshotBase64}" target="_blank"><img src="${d.screenshotBase64}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></a>` : 'No Image';
+        
+        tr.innerHTML = `
+            <td><strong>${d.receiptNo}</strong><br><small>${new Date(d.timestamp).toLocaleDateString()}</small></td>
+            <td><strong>${d.donorName}</strong></td>
+            <td>${d.mobileNumber}</td>
+            <td style="color: green; font-weight: bold;">₹${d.donationAmount}</td>
+            <td>${d.donationPurpose}</td>
+            <td>${screenshotHtml}</td>
+        `;
+        tbody.appendChild(tr);
+    });
 }
 
 function renderMembers() {

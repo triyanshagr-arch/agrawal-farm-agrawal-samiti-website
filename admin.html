@@ -36,6 +36,7 @@
                 <li><a href="#" class="active" onclick="switchTab('memberships', this)"><i class="fas fa-clock"></i> Pending Members</a></li>
                 <li><a href="#" onclick="switchTab('approved', this)"><i class="fas fa-users"></i> Approved Members</a></li>
                 <li><a href="#" onclick="switchTab('notices', this)"><i class="fas fa-bullhorn"></i> Manage Notices</a></li>
+                <li><a href="#" onclick="switchTab('donations', this)"><i class="fas fa-hand-holding-heart"></i> Manage Donations</a></li>
                 <li><a href="#" id="btnDownloadExcel" style="display:none; color: #4CAF50;" onclick="downloadExcel()"><i class="fas fa-file-excel"></i> Download Excel</a></li>
                 <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
@@ -159,6 +160,36 @@
                         </div>
                         <button type="submit" class="btn-primary" id="noticeSubmitBtn"><i class="fas fa-paper-plane"></i> Publish Notice</button>
                     </form>
+                </div>
+            </section>
+
+            <!-- Donations Tab -->
+            <section id="tab-donations" class="tab-content" style="display: none;">
+                <div class="header-bar">
+                    <h2>Manage Donations</h2>
+                    <button onclick="loadDonations()" class="btn-secondary"><i class="fas fa-sync"></i> Refresh</button>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchDonations" placeholder="Search by Donor, Mobile, or Receipt No..." onkeyup="filterTable('donationsTableBody', 'searchDonations')">
+                </div>
+                
+                <div class="table-container">
+                    <table id="donationsTable">
+                        <thead>
+                            <tr>
+                                <th>Receipt No.</th>
+                                <th>Donor Name</th>
+                                <th>Mobile</th>
+                                <th>Amount (₹)</th>
+                                <th>Purpose</th>
+                                <th>Screenshot</th>
+                            </tr>
+                        </thead>
+                        <tbody id="donationsTableBody">
+                            <tr><td colspan="6" class="text-center">Loading...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </main>
