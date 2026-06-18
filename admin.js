@@ -493,14 +493,6 @@ function printApplicationForm(rowNum) {
                     <tr><th>Office/Business Address</th><td>${m.officeAddress || ''}</td></tr>
                 </table>
 
-                <h3>Payment Details</h3>
-                <table class="info-table">
-                    <tr><th>Payment Mode</th><td>${m.paymentMode || ''}</td></tr>
-                    <tr><th>Transaction ID</th><td>${m.transactionId || ''}</td></tr>
-                    <tr><th>UTR No</th><td>${m.utrNo || ''}</td></tr>
-                    <tr><th>Bank Account Name</th><td>${m.bankAccountName || ''}</td></tr>
-                </table>
-
                 ${familyHtml}
                 
                 <div class="footer">
