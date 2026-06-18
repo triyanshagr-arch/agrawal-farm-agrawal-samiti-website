@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const signatureUrl = applicantSignatureInput.files.length > 0 ? await readFileAsDataURL(applicantSignatureInput.files[0]) : null;
 
                 // Send data to Google Sheets in the background
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnLq1dQYyorqhZuvEU7hTUBuDaHnvlIrBvDb1qfv6AV6fIh8RXo0755q_hmGbRKnSk/exec";
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxqwQn-sYxMvexa0Zbvu_P_-zBQzI0Mj1Yr_m89kElC_uZ9eic_q099U9-vPPVDwKSp/exec";
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, ...dataObj } })
