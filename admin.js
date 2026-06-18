@@ -561,8 +561,8 @@ function printApplicationForm(rowNum, lang = 'hi') {
     }[lang];
     
     const basePath = window.location.href.split('admin.html')[0];
-    const agrasenImg = basePath + 'assets/agrasen.png';
-    const lakshmiImg = basePath + 'assets/lakshmi.png';
+    const agrasenImg = basePath + 'images/agrasen_full.png'; // Updated to full image
+    const lakshmiImg = basePath + 'images/lakshmi.png';
 
     let familyHtml = '';
     if (m.familyMembers && m.familyMembers !== "[]") {
@@ -570,7 +570,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
             const family = JSON.parse(m.familyMembers);
             if (family.length > 0) {
                 familyHtml = `
-                    <h3>${t.family}</h3>
+                    <div class="section-title">${t.family}</div>
                     <table class="family-table">
                         <thead>
                             <tr>
@@ -608,75 +608,90 @@ function printApplicationForm(rowNum, lang = 'hi') {
             <head>
                 <title>${t.title} - ${m.fullName}</title>
                 <style>
-                    body { font-family: Arial, sans-serif; padding: 30px; color: #333; line-height: 1.5; }
-                    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #D32F2F; padding-bottom: 20px; margin-bottom: 20px; }
+                    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+                    body { font-family: 'Outfit', Arial, sans-serif; padding: 20px; color: #222; line-height: 1.5; background: #fff; }
+                    .page-border { border: 2px solid #D32F2F; padding: 30px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 4px #FFD700; }
+                    .watermark { position: absolute; top: 30%; left: 15%; width: 70%; opacity: 0.05; z-index: -1; pointer-events: none; }
+                    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px double #D32F2F; padding-bottom: 20px; margin-bottom: 20px; }
                     .header-center { text-align: center; flex: 1; padding: 0 15px; }
-                    .header h1 { color: #D32F2F; margin: 0 0 5px 0; font-size: 24px; }
-                    .header h3 { margin: 0; color: #555; font-size: 16px; }
-                    .header h2 { margin: 10px 0 0 0; font-size: 20px; }
-                    .deity-img { height: 100px; width: 80px; object-fit: cover; }
-                    .top-section { display: flex; justify-content: space-between; margin-bottom: 30px; }
-                    .photo-box { width: 120px; height: 150px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; background: #eee; text-align: center; font-size: 12px; color: #999; }
+                    .header h1 { color: #D32F2F; margin: 0 0 5px 0; font-size: 28px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
+                    .header h3 { margin: 0; color: #444; font-size: 14px; }
+                    .header h2 { margin: 15px 0 0 0; font-size: 22px; background: #D32F2F; color: #fff; display: inline-block; padding: 5px 20px; border-radius: 20px; }
+                    .deity-img { height: 110px; object-fit: contain; }
+                    .top-section { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: flex-start; }
+                    .meta-info { background: #fff8f8; border: 1px solid #f0d0d0; padding: 15px; border-radius: 8px; width: 60%; }
+                    .meta-info p { margin: 5px 0; font-size: 14px; }
+                    .photo-box { width: 120px; height: 150px; border: 2px solid #D32F2F; padding: 3px; background: #fff; text-align: center; font-size: 12px; color: #999; }
                     .photo-box img { width: 100%; height: 100%; object-fit: cover; }
-                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-                    .info-table th, .info-table td { padding: 8px; border: 1px solid #ddd; text-align: left; }
-                    .info-table th { background: #f9f9f9; width: 40%; font-size: 14px; }
-                    .info-table td { font-size: 15px; }
-                    h3 { color: #D32F2F; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 30px; }
+                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
+                    .info-table th, .info-table td { padding: 10px; border: 1px solid #e0e0e0; text-align: left; }
+                    .info-table th { background: #fff8f8; width: 35%; font-size: 14px; color: #D32F2F; font-weight: 600; }
+                    .info-table td { font-size: 14px; color: #333; }
+                    .section-title { color: #D32F2F; font-size: 18px; font-weight: 700; border-bottom: 2px solid #D32F2F; padding-bottom: 5px; margin: 30px 0 15px 0; display: inline-block; }
                     .family-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-                    .family-table th, .family-table td { padding: 8px; border: 1px solid #ddd; text-align: left; font-size: 13px; }
-                    .family-table th { background: #f4f4f4; }
-                    .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #777; }
+                    .family-table th, .family-table td { padding: 8px; border: 1px solid #e0e0e0; text-align: left; font-size: 13px; }
+                    .family-table th { background: #D32F2F; color: white; }
+                    .footer { text-align: center; margin-top: 50px; font-size: 12px; color: #777; border-top: 1px dashed #ccc; padding-top: 20px; }
                 </style>
             </head>
             <body>
-                <div class="header">
-                    <img src="${agrasenImg}" class="deity-img" alt="Maharaj Agrasen">
-                    <div class="header-center">
-                        <h1>${t.samiti}</h1>
-                        <h3>${t.address}</h3>
-                        <h2>${t.title}</h2>
+                <div class="page-border">
+                    <img src="${agrasenImg}" class="watermark" alt="Watermark">
+                    <div class="header">
+                        <img src="${agrasenImg}" class="deity-img" alt="Maharaj Agrasen">
+                        <div class="header-center">
+                            <h1>${t.samiti}</h1>
+                            <h3>${t.address}</h3>
+                            <h2>${t.title}</h2>
+                        </div>
+                        <img src="${lakshmiImg}" class="deity-img" alt="Goddess Lakshmi">
                     </div>
-                    <img src="${lakshmiImg}" class="deity-img" alt="Goddess Lakshmi">
-                </div>
-                
-                <div class="top-section">
-                    <div>
-                        <p><strong>${t.memNo}</strong> ${m.membershipNo || 'Pending'}</p>
-                        <p><strong>${t.status}</strong> ${m.status}</p>
-                        <p><strong>${t.date}</strong> ${new Date(m.timestamp).toLocaleDateString()}</p>
+                    
+                    <div class="top-section">
+                        <div class="meta-info">
+                            <p><strong>${t.memNo}</strong> <span style="color:#D32F2F; font-size: 18px; font-weight:bold;">${m.membershipNo || 'Pending'}</span></p>
+                            <p><strong>${t.status}</strong> <span style="background: #4caf50; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">${m.status}</span></p>
+                            <p><strong>${t.date}</strong> ${new Date(m.timestamp).toLocaleDateString()}</p>
+                            <p><strong>Payment Mode:</strong> ${m.paymentMode || 'N/A'}</p>
+                            <p><strong>Transaction ID:</strong> ${m.transactionId || 'N/A'}</p>
+                        </div>
+                        <div class="photo-box">
+                            ${m.photoBase64 ? `<img src="${m.photoBase64}">` : t.noPhoto}
+                        </div>
                     </div>
-                    <div class="photo-box">
-                        ${m.photoBase64 ? `<img src="${m.photoBase64}">` : t.noPhoto}
+
+                    <div class="section-title">${t.personal}</div>
+                    <table class="info-table">
+                        <tr><th>${t.fullName}</th><td><strong>${m.fullName}</strong></td></tr>
+                        <tr><th>${t.fatherName}</th><td>${m.guardianName || ''}</td></tr>
+                        <tr><th>${t.dob}</th><td>${m.dob || ''}</td></tr>
+                        <tr><th>${t.gotra}</th><td>${m.gotra || ''}</td></tr>
+                        <tr><th>${t.bg}</th><td>${m.bloodGroup || ''}</td></tr>
+                        <tr><th>${t.mobile}</th><td>${m.mobileNumber || ''}</td></tr>
+                        <tr><th>${t.email}</th><td>${m.emailId || ''}</td></tr>
+                        <tr><th>${t.edu}</th><td>${m.education || ''}</td></tr>
+                        <tr><th>${t.occ}</th><td>${m.occupation || ''}</td></tr>
+                        <tr><th>${t.mDate}</th><td>${m.marriageDate || ''}</td></tr>
+                        <tr><th>${t.domicile}</th><td>${m.domicile || ''}</td></tr>
+                    </table>
+
+                    <div class="section-title">${t.addressDetails}</div>
+                    <table class="info-table">
+                        <tr><th>${t.houseType}</th><td>${m.houseType || ''}</td></tr>
+                        <tr><th>${t.permAddr}</th><td>${m.permanentAddress || ''}</td></tr>
+                        <tr><th>${t.offAddr}</th><td>${m.officeAddress || ''}</td></tr>
+                    </table>
+
+                    ${familyHtml}
+                    
+                    <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end;">
+                        <div style="text-align: center; border-top: 1px solid #333; width: 200px; padding-top: 5px; font-size: 14px;">Authorized Signatory</div>
+                        <div style="text-align: center; border-top: 1px solid #333; width: 200px; padding-top: 5px; font-size: 14px;">Applicant Signature</div>
                     </div>
-                </div>
 
-                <h3>${t.personal}</h3>
-                <table class="info-table">
-                    <tr><th>${t.fullName}</th><td><strong>${m.fullName}</strong></td></tr>
-                    <tr><th>${t.fatherName}</th><td>${m.guardianName || ''}</td></tr>
-                    <tr><th>${t.dob}</th><td>${m.dob || ''}</td></tr>
-                    <tr><th>${t.gotra}</th><td>${m.gotra || ''}</td></tr>
-                    <tr><th>${t.bg}</th><td>${m.bloodGroup || ''}</td></tr>
-                    <tr><th>${t.mobile}</th><td>${m.mobileNumber || ''}</td></tr>
-                    <tr><th>${t.email}</th><td>${m.emailId || ''}</td></tr>
-                    <tr><th>${t.edu}</th><td>${m.education || ''}</td></tr>
-                    <tr><th>${t.occ}</th><td>${m.occupation || ''}</td></tr>
-                    <tr><th>${t.mDate}</th><td>${m.marriageDate || ''}</td></tr>
-                    <tr><th>${t.domicile}</th><td>${m.domicile || ''}</td></tr>
-                </table>
-
-                <h3>${t.addressDetails}</h3>
-                <table class="info-table">
-                    <tr><th>${t.houseType}</th><td>${m.houseType || ''}</td></tr>
-                    <tr><th>${t.permAddr}</th><td>${m.permanentAddress || ''}</td></tr>
-                    <tr><th>${t.offAddr}</th><td>${m.officeAddress || ''}</td></tr>
-                </table>
-
-                ${familyHtml}
-                
-                <div class="footer">
-                    <p>${t.footer}</p>
+                    <div class="footer">
+                        <p>${t.footer}</p>
+                    </div>
                 </div>
                 
                 <script>
