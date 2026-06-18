@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error("Error generating forms:", error);
-                alert("An error occurred while generating the forms. Please try again.");
+                alert("An error occurred while generating the forms:\n" + (error.stack || error.message || error));
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
             }
