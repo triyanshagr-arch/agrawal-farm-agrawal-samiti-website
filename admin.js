@@ -699,8 +699,11 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     ${familyHtml}
                     
                     <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
-                        <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px;">Authorized Signatory</div>
-                        <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px;">Applicant Signature</div>
+                        <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px; height: 40px;">Authorized Signatory</div>
+                        <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px; position: relative; height: 40px;">
+                            ${m.signatureBase64 ? `<img src="${m.signatureBase64}" style="max-height: 40px; position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);">` : ''}
+                            Applicant Signature
+                        </div>
                     </div>
 
                     <div class="footer">
