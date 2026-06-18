@@ -634,7 +634,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
                     .family-table th, .family-table td { padding: 4px; border: 1px solid #e0e0e0; text-align: left; font-size: 11px; }
                     .family-table th { background: #D32F2F; color: white; }
-                    .footer { text-align: center; margin-top: auto; font-size: 11px; color: #777; border-top: 1px dashed #ccc; padding-top: 10px; }
+                    .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #777; border-top: 1px dashed #ccc; padding-top: 10px; }
                 </style>
             </head>
             <body>
@@ -700,7 +700,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
 
                     ${familyHtml}
                     
-                    <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end;">
                         <div style="text-align: center; width: 150px;">
                             <div style="height: 40px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 5px;"></div>
                             <div style="border-top: 1px solid #333; padding-top: 5px; font-size: 12px;">Authorized Signatory</div>
