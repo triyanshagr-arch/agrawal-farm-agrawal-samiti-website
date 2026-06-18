@@ -617,7 +617,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     .header h1 { color: #D32F2F; margin: 0 0 5px 0; font-size: 28px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
                     .header h3 { margin: 0; color: #444; font-size: 14px; }
                     .header h2 { margin: 15px 0 0 0; font-size: 22px; background: #D32F2F; color: #fff; display: inline-block; padding: 5px 20px; border-radius: 20px; }
-                    .deity-img { height: 110px; object-fit: contain; }
+                    .deity-img { height: 110px; width: 100px; object-fit: contain; }
                     .top-section { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: flex-start; }
                     .meta-info { background: #fff8f8; border: 1px solid #f0d0d0; padding: 15px; border-radius: 8px; width: 60%; }
                     .meta-info p { margin: 5px 0; font-size: 14px; }
@@ -652,8 +652,6 @@ function printApplicationForm(rowNum, lang = 'hi') {
                             <p><strong>${t.memNo}</strong> <span style="color:#D32F2F; font-size: 18px; font-weight:bold;">${m.membershipNo || 'Pending'}</span></p>
                             <p><strong>${t.status}</strong> <span style="background: #4caf50; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">${m.status}</span></p>
                             <p><strong>${t.date}</strong> ${new Date(m.timestamp).toLocaleDateString()}</p>
-                            <p><strong>Payment Mode:</strong> ${m.paymentMode || 'N/A'}</p>
-                            <p><strong>Transaction ID:</strong> ${m.transactionId || 'N/A'}</p>
                         </div>
                         <div class="photo-box">
                             ${m.photoBase64 ? `<img src="${m.photoBase64}">` : t.noPhoto}
