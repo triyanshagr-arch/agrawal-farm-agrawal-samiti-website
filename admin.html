@@ -144,8 +144,19 @@
                 <div class="form-container">
                     <form id="addNoticeForm">
                         <div class="form-group">
-                            <label>Notice Title *</label>
-                            <input type="text" id="noticeTitle" required placeholder="e.g. Annual General Meeting">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label>Notice Type *</label>
+                                    <select id="noticeType" required>
+                                        <option value="General">General Notice</option>
+                                        <option value="Achievement">Academic Achievement</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Notice Title *</label>
+                                    <input type="text" id="noticeTitle" required placeholder="e.g. Annual General Meeting">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Date *</label>

@@ -734,8 +734,13 @@ document.getElementById('addNoticeForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = document.getElementById('noticeSubmitBtn');
     
+    let titleText = document.getElementById('noticeTitle').value;
+    const type = document.getElementById('noticeType').value;
+    if (type === 'Achievement') {
+        titleText = '[ACHIEVEMENT] ' + titleText;
+    }
     const noticeObj = {
-        title: document.getElementById('noticeTitle').value,
+        title: titleText,
         date: document.getElementById('noticeDate').value,
         description: document.getElementById('noticeDesc').value,
         link: document.getElementById('noticeLink').value
