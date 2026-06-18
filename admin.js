@@ -54,9 +54,8 @@ function switchTab(tabId, el) {
 
 function logout() {
     sessionPassword = "";
-    document.getElementById('adminPassword').value = "";
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('dashboardScreen').style.display = 'none';
+    // Reload the page to cleanly clear all data and reset the view
+    window.location.reload();
 }
 
 function loadMembers() {
