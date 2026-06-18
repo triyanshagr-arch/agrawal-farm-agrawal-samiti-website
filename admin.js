@@ -164,7 +164,10 @@ function createMemberRow(m, isPending, arrayIndex) {
         actionHtml = `
             <span style="color: #4caf50; font-weight: bold;"><i class="fas fa-check-circle"></i> Approved</span><br><br>
             ${emailBtnHtml}<br>
-            <button class="btn-secondary" style="margin-top: 5px; padding:4px 8px; font-size:12px;" onclick="printApplicationForm(${m.row})"><i class="fas fa-print"></i> Print Application</button>
+            <div style="display: flex; gap: 5px; margin-top: 5px;">
+                <button class="btn-secondary" style="padding:4px 8px; font-size:12px; flex:1;" onclick="printApplicationForm(${m.row}, 'en')"><i class="fas fa-print"></i> Form (EN)</button>
+                <button class="btn-secondary" style="padding:4px 8px; font-size:12px; flex:1;" onclick="printApplicationForm(${m.row}, 'hi')"><i class="fas fa-print"></i> Form (HI)</button>
+            </div>
             <hr style="margin: 5px 0; border:none; border-top:1px solid #ddd;">
             ${viewEditHtml}
         `;
@@ -388,26 +391,51 @@ document.getElementById('editMemberForm').addEventListener('submit', (e) => {
 });
 
 // Print Application Form
-function printApplicationForm(rowNum) {
+function printApplicationForm(rowNum, lang = 'en') {
     const m = window.memberData.find(x => x.row == rowNum);
     if (!m) return;
     
+    const t = {
+        en: {
+            title: "Membership Application Form", samiti: "AGRAWAL SAMAJ SAMITI", address: "Agrawal Farm, Mansarovar, Jaipur",
+            family: "Family Members", name: "Name", relation: "Relation", age: "Age", edu: "Education", occ: "Occupation", bg: "Blood Group",
+            memNo: "Membership Number:", status: "Status:", date: "Date:", noPhoto: "No Photo Attached",
+            personal: "Personal Details", fullName: "Full Name", fatherName: "Father's / Husband's Name", dob: "Date of Birth",
+            gotra: "Gotra", mobile: "Mobile Number", email: "Email ID", mDate: "Marriage Date", domicile: "Domicile",
+            addressDetails: "Address Details", houseType: "House Type", permAddr: "Permanent Address", offAddr: "Office Address",
+            footer: "This is a system-generated document from the Agrawal Samaj Samiti Admin Dashboard."
+        },
+        hi: {
+            title: "सदस्यता आवेदन पत्र", samiti: "अग्रवाल समाज समिति", address: "अग्रवाल फार्म, मानसरोवर, जयपुर",
+            family: "परिवार के सदस्य", name: "नाम", relation: "संबंध", age: "उम्र", edu: "शिक्षा", occ: "व्यवसाय", bg: "रक्त समूह",
+            memNo: "सदस्यता संख्या:", status: "स्थिति:", date: "दिनांक:", noPhoto: "कोई फोटो नहीं",
+            personal: "व्यक्तिगत विवरण", fullName: "पूरा नाम", fatherName: "पिता / पति का नाम", dob: "जन्म तिथि",
+            gotra: "गोत्र", mobile: "मोबाइल नंबर", email: "ईमेल आईडी", mDate: "विवाह तिथि", domicile: "मूल निवास",
+            addressDetails: "पता विवरण", houseType: "मकान का प्रकार (स्वयं/किराए)", permAddr: "स्थाई पता", offAddr: "कार्यालय का पता",
+            footer: "यह अग्रवाल समाज समिति एडमिन डैशबोर्ड से सिस्टम-जनित दस्तावेज़ है।"
+        }
+    }[lang];
+    
+    const basePath = window.location.href.split('admin.html')[0];
+    const agrasenImg = basePath + 'assets/agrasen.png';
+    const lakshmiImg = basePath + 'assets/lakshmi.png';
+
     let familyHtml = '';
     if (m.familyMembers && m.familyMembers !== "[]") {
         try {
             const family = JSON.parse(m.familyMembers);
             if (family.length > 0) {
                 familyHtml = `
-                    <h3>Family Members / परिवार के सदस्य</h3>
+                    <h3>${t.family}</h3>
                     <table class="family-table">
                         <thead>
                             <tr>
-                                <th>Name / नाम</th>
-                                <th>Relation / संबंध</th>
-                                <th>Age / उम्र</th>
-                                <th>Education / शिक्षा</th>
-                                <th>Occupation / व्यवसाय</th>
-                                <th>Blood Group / रक्त समूह</th>
+                                <th>${t.name}</th>
+                                <th>${t.relation}</th>
+                                <th>${t.age}</th>
+                                <th>${t.edu}</th>
+                                <th>${t.occ}</th>
+                                <th>${t.bg}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -434,7 +462,7 @@ function printApplicationForm(rowNum) {
     printWindow.document.write(`
         <html>
             <head>
-                <title>Application Form - ${m.fullName}</title>
+                <title>${t.title} - ${m.fullName}</title>
                 <style>
                     body { font-family: Arial, sans-serif; padding: 30px; color: #333; line-height: 1.5; }
                     .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #D32F2F; padding-bottom: 20px; margin-bottom: 20px; }
@@ -442,7 +470,7 @@ function printApplicationForm(rowNum) {
                     .header h1 { color: #D32F2F; margin: 0 0 5px 0; font-size: 24px; }
                     .header h3 { margin: 0; color: #555; font-size: 16px; }
                     .header h2 { margin: 10px 0 0 0; font-size: 20px; }
-                    .deity-img { height: 100px; width: 80px; object-fit: cover; border-radius: 8px; border: 2px solid #D32F2F; }
+                    .deity-img { height: 100px; width: 80px; object-fit: cover; }
                     .top-section { display: flex; justify-content: space-between; margin-bottom: 30px; }
                     .photo-box { width: 120px; height: 150px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; background: #eee; text-align: center; font-size: 12px; color: #999; }
                     .photo-box img { width: 100%; height: 100%; object-fit: cover; }
@@ -459,52 +487,52 @@ function printApplicationForm(rowNum) {
             </head>
             <body>
                 <div class="header">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Shri_Agrasen_Maharaj.jpg" class="deity-img" alt="Maharaj Agrasen">
+                    <img src="${agrasenImg}" class="deity-img" alt="Maharaj Agrasen">
                     <div class="header-center">
-                        <h1>AGRAWAL SAMAJ SAMITI<br>अग्रवाल समाज समिति</h1>
-                        <h3>Agrawal Farm, Mansarovar, Jaipur<br>अग्रवाल फार्म, मानसरोवर, जयपुर</h3>
-                        <h2>Membership Application Form<br>सदस्यता आवेदन पत्र</h2>
+                        <h1>${t.samiti}</h1>
+                        <h3>${t.address}</h3>
+                        <h2>${t.title}</h2>
                     </div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Goddess_Lakshmi_by_Raja_Ravi_Varma.jpg" class="deity-img" alt="Goddess Lakshmi">
+                    <img src="${lakshmiImg}" class="deity-img" alt="Goddess Lakshmi">
                 </div>
                 
                 <div class="top-section">
                     <div>
-                        <p><strong>Membership Number / सदस्यता संख्या:</strong> ${m.membershipNo || 'Pending'}</p>
-                        <p><strong>Status / स्थिति:</strong> ${m.status}</p>
-                        <p><strong>Date / दिनांक:</strong> ${new Date(m.timestamp).toLocaleDateString()}</p>
+                        <p><strong>${t.memNo}</strong> ${m.membershipNo || 'Pending'}</p>
+                        <p><strong>${t.status}</strong> ${m.status}</p>
+                        <p><strong>${t.date}</strong> ${new Date(m.timestamp).toLocaleDateString()}</p>
                     </div>
                     <div class="photo-box">
-                        ${m.photoBase64 ? `<img src="${m.photoBase64}">` : 'No Photo / कोई फोटो नहीं'}
+                        ${m.photoBase64 ? `<img src="${m.photoBase64}">` : t.noPhoto}
                     </div>
                 </div>
 
-                <h3>Personal Details / व्यक्तिगत विवरण</h3>
+                <h3>${t.personal}</h3>
                 <table class="info-table">
-                    <tr><th>Full Name / पूरा नाम</th><td><strong>${m.fullName}</strong></td></tr>
-                    <tr><th>Father's / Husband's Name <br> पिता / पति का नाम</th><td>${m.guardianName || ''}</td></tr>
-                    <tr><th>Date of Birth / जन्म तिथि</th><td>${m.dob || ''}</td></tr>
-                    <tr><th>Gotra / गोत्र</th><td>${m.gotra || ''}</td></tr>
-                    <tr><th>Blood Group / रक्त समूह</th><td>${m.bloodGroup || ''}</td></tr>
-                    <tr><th>Mobile Number / मोबाइल नंबर</th><td>${m.mobileNumber || ''}</td></tr>
-                    <tr><th>Email ID / ईमेल आईडी</th><td>${m.emailId || ''}</td></tr>
-                    <tr><th>Education / शिक्षा</th><td>${m.education || ''}</td></tr>
-                    <tr><th>Occupation / Profession / व्यवसाय</th><td>${m.occupation || ''}</td></tr>
-                    <tr><th>Marriage Date / विवाह तिथि</th><td>${m.marriageDate || ''}</td></tr>
-                    <tr><th>Domicile / मूल निवास</th><td>${m.domicile || ''}</td></tr>
+                    <tr><th>${t.fullName}</th><td><strong>${m.fullName}</strong></td></tr>
+                    <tr><th>${t.fatherName}</th><td>${m.guardianName || ''}</td></tr>
+                    <tr><th>${t.dob}</th><td>${m.dob || ''}</td></tr>
+                    <tr><th>${t.gotra}</th><td>${m.gotra || ''}</td></tr>
+                    <tr><th>${t.bg}</th><td>${m.bloodGroup || ''}</td></tr>
+                    <tr><th>${t.mobile}</th><td>${m.mobileNumber || ''}</td></tr>
+                    <tr><th>${t.email}</th><td>${m.emailId || ''}</td></tr>
+                    <tr><th>${t.edu}</th><td>${m.education || ''}</td></tr>
+                    <tr><th>${t.occ}</th><td>${m.occupation || ''}</td></tr>
+                    <tr><th>${t.mDate}</th><td>${m.marriageDate || ''}</td></tr>
+                    <tr><th>${t.domicile}</th><td>${m.domicile || ''}</td></tr>
                 </table>
 
-                <h3>Address Details / पता विवरण</h3>
+                <h3>${t.addressDetails}</h3>
                 <table class="info-table">
-                    <tr><th>House Type / मकान का प्रकार (स्वयं/किराए)</th><td>${m.houseType || ''}</td></tr>
-                    <tr><th>Permanent Address / स्थाई पता</th><td>${m.permanentAddress || ''}</td></tr>
-                    <tr><th>Office Address / कार्यालय / व्यवसाय का पता</th><td>${m.officeAddress || ''}</td></tr>
+                    <tr><th>${t.houseType}</th><td>${m.houseType || ''}</td></tr>
+                    <tr><th>${t.permAddr}</th><td>${m.permanentAddress || ''}</td></tr>
+                    <tr><th>${t.offAddr}</th><td>${m.officeAddress || ''}</td></tr>
                 </table>
 
                 ${familyHtml}
                 
                 <div class="footer">
-                    <p>This is a system-generated document from the Agrawal Samaj Samiti Admin Dashboard.</p>
+                    <p>${t.footer}</p>
                 </div>
                 
                 <script>
