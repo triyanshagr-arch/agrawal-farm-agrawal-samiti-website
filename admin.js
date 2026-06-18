@@ -588,7 +588,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                             ${family.map(f => `
                                 <tr>
                                     <td>${f.name || ''}</td>
-                                    <td>${f.relation || ''}</td>
+                                    <td>${f.relationship || f.relation || ''}</td>
                                     <td>${f.age || ''}</td>
                                     <td>${f.education || ''}</td>
                                     <td>${f.business || ''}</td>
