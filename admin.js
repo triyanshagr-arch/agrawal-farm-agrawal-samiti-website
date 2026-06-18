@@ -52,8 +52,11 @@ function logout() {
 
 // Load Members
 function loadMembers() {
-    const tbody = document.getElementById('membersTableBody');
-    tbody.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
+    const tbodyPending = document.getElementById('membersTableBody');
+    const tbodyApproved = document.getElementById('approvedMembersTableBody');
+    
+    tbodyPending.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
+    if(tbodyApproved) tbodyApproved.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
     
     fetch(`${GOOGLE_SCRIPT_URL}?action=get_members&password=${encodeURIComponent(sessionPassword)}`)
         .then(res => res.json())
@@ -66,43 +69,76 @@ function loadMembers() {
         });
 }
 
-// Render Members Table
+// Render Members Tables
 function renderMembers(members) {
-    const tbody = document.getElementById('membersTableBody');
-    tbody.innerHTML = '';
+    const tbodyPending = document.getElementById('membersTableBody');
+    const tbodyApproved = document.getElementById('approvedMembersTableBody');
     
-    if (!members || members.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" class="text-center">No pending memberships.</td></tr>';
-        return;
+    tbodyPending.innerHTML = '';
+    if(tbodyApproved) tbodyApproved.innerHTML = '';
+    
+    const pendingMembers = members.filter(m => m.status === "Pending");
+    const approvedMembers = members.filter(m => m.status === "Approved");
+    
+    // Render Pending
+    if (pendingMembers.length === 0) {
+        tbodyPending.innerHTML = '<tr><td colspan="7" class="text-center">No pending memberships.</td></tr>';
+    } else {
+        pendingMembers.forEach(m => tbodyPending.appendChild(createMemberRow(m, true)));
     }
     
-    members.forEach(m => {
-        const tr = document.createElement('tr');
-        
-        // Prepare Email Button Data
-        const emailSubject = encodeURIComponent("Membership Approved - Agrawal Samiti");
-        const emailBody = encodeURIComponent(`Dear ${m.fullName},\n\nCongratulations! Your membership application for Agrawal Samaj Samiti Agrawal Farm, Jaipur has been successfully approved by the administration.\n\nYour Official Membership Number is: ${m.membershipNo}\n\nWe warmly welcome you to our community. If you have any questions, please feel free to reply to this email.\n\nBest Regards,\nAdmin Team`);
-        const mailtoLink = m.emailId ? `mailto:${m.emailId}?subject=${emailSubject}&body=${emailBody}` : '#';
-        const emailBtnHtml = m.emailId ? `<a href="${mailtoLink}" target="_blank" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</a>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
+    // Render Approved
+    if (tbodyApproved) {
+        if (approvedMembers.length === 0) {
+            tbodyApproved.innerHTML = '<tr><td colspan="7" class="text-center">No approved memberships yet.</td></tr>';
+        } else {
+            approvedMembers.forEach(m => tbodyApproved.appendChild(createMemberRow(m, false)));
+        }
+    }
+}
 
-        const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" alt="Photo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">` : `<div style="width: 50px; height: 50px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #999;">No Photo</div>`;
+// Global function to handle email sending (opens mailto and disables button)
+window.sendEmail = function(btnElement, emailId, membershipNo, fullName) {
+    const emailSubject = encodeURIComponent("Membership Approved - Agrawal Samiti");
+    const emailBody = encodeURIComponent(`Dear ${fullName},\n\nCongratulations! Your membership application for Agrawal Samaj Samiti Agrawal Farm, Jaipur has been successfully approved by the administration.\n\nYour Official Membership Number is: ${membershipNo}\n\nWe warmly welcome you to our community. If you have any questions, please feel free to reply to this email.\n\nBest Regards,\nAdmin Team`);
+    
+    // Open email client
+    window.location.href = `mailto:${emailId}?subject=${emailSubject}&body=${emailBody}`;
+    
+    // Disable button to prevent multiple clicks
+    btnElement.innerHTML = '<i class="fas fa-check"></i> Email Sent';
+    btnElement.style.background = '#9e9e9e';
+    btnElement.style.cursor = 'default';
+    btnElement.onclick = function(e) { e.preventDefault(); };
+};
 
-        tr.innerHTML = `
-            <td>${m.membershipNo}</td>
-            <td>${photoHtml}</td>
-            <td><strong>${m.fullName}</strong></td>
-            <td>${m.mobileNumber}<br><small>${m.emailId}</small></td>
-            <td>${m.paymentMode}</td>
-            <td>${m.transactionId}</td>
-            <td>
-                <button class="btn-approve" onclick="actionMember(${m.row}, 'approve', '${m.emailId}', '${m.membershipNo}')"><i class="fas fa-check"></i> Approve</button>
-                <button class="btn-reject" onclick="actionMember(${m.row}, 'reject')"><i class="fas fa-times"></i> Reject</button>
-                <br><br>
-                ${emailBtnHtml}
-            </td>
+function createMemberRow(m, isPending) {
+    const tr = document.createElement('tr');
+    
+    const emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${m.fullName.replace(/'/g, "\\'")}')" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</button>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
+
+    const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" alt="Photo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">` : `<div style="width: 50px; height: 50px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #999;">No Photo</div>`;
+
+    let actionHtml = '';
+    if (isPending) {
+        actionHtml = `
+            <button class="btn-approve" onclick="actionMember(${m.row}, 'approve', '${m.emailId}', '${m.membershipNo}')"><i class="fas fa-check"></i> Approve</button>
+            <button class="btn-reject" onclick="actionMember(${m.row}, 'reject')"><i class="fas fa-times"></i> Reject</button>
         `;
-        tbody.appendChild(tr);
-    });
+    } else {
+        actionHtml = `<span style="color: #4caf50; font-weight: bold;"><i class="fas fa-check-circle"></i> Approved</span><br><br>${emailBtnHtml}`;
+    }
+
+    tr.innerHTML = `
+        <td>${m.membershipNo}</td>
+        <td>${photoHtml}</td>
+        <td><strong>${m.fullName}</strong></td>
+        <td>${m.mobileNumber}<br><small>${m.emailId}</small></td>
+        <td>${m.paymentMode}</td>
+        <td>${m.transactionId}</td>
+        <td>${actionHtml}</td>
+    `;
+    return tr;
 }
 
 // Action Member (Approve/Reject)
