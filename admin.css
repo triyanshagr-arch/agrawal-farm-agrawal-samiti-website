@@ -255,3 +255,19 @@ th {
 .form-group input:focus, .form-group textarea:focus {
     border-color: var(--secondary-color);
 }
+
+.btn-email {
+    background: #2196F3;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9em;
+}
+
+.btn-email:hover {
+    background: #0b7dda;
+}

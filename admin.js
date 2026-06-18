@@ -53,7 +53,7 @@ function logout() {
 // Load Members
 function loadMembers() {
     const tbody = document.getElementById('membersTableBody');
-    tbody.innerHTML = '<tr><td colspan="6" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Refreshing...</td></tr>';
     
     fetch(`${GOOGLE_SCRIPT_URL}?action=get_members&password=${encodeURIComponent(sessionPassword)}`)
         .then(res => res.json())
@@ -72,14 +72,24 @@ function renderMembers(members) {
     tbody.innerHTML = '';
     
     if (!members || members.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="text-center">No pending memberships.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" class="text-center">No pending memberships.</td></tr>';
         return;
     }
     
     members.forEach(m => {
         const tr = document.createElement('tr');
+        
+        // Prepare Email Button Data
+        const emailSubject = encodeURIComponent("Membership Approved - Agrawal Samiti");
+        const emailBody = encodeURIComponent(`Dear ${m.fullName},\n\nCongratulations! Your membership application for Agrawal Samaj Samiti Agrawal Farm, Jaipur has been successfully approved by the administration.\n\nYour Official Membership Number is: ${m.membershipNo}\n\nWe warmly welcome you to our community. If you have any questions, please feel free to reply to this email.\n\nBest Regards,\nAdmin Team`);
+        const mailtoLink = m.emailId ? `mailto:${m.emailId}?subject=${emailSubject}&body=${emailBody}` : '#';
+        const emailBtnHtml = m.emailId ? `<a href="${mailtoLink}" target="_blank" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</a>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
+
+        const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" alt="Photo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">` : `<div style="width: 50px; height: 50px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #999;">No Photo</div>`;
+
         tr.innerHTML = `
             <td>${m.membershipNo}</td>
+            <td>${photoHtml}</td>
             <td><strong>${m.fullName}</strong></td>
             <td>${m.mobileNumber}<br><small>${m.emailId}</small></td>
             <td>${m.paymentMode}</td>
@@ -87,6 +97,8 @@ function renderMembers(members) {
             <td>
                 <button class="btn-approve" onclick="actionMember(${m.row}, 'approve', '${m.emailId}', '${m.membershipNo}')"><i class="fas fa-check"></i> Approve</button>
                 <button class="btn-reject" onclick="actionMember(${m.row}, 'reject')"><i class="fas fa-times"></i> Reject</button>
+                <br><br>
+                ${emailBtnHtml}
             </td>
         `;
         tbody.appendChild(tr);

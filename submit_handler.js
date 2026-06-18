@@ -8,6 +8,36 @@ function readFileAsDataURL(file) {
     });
 }
 
+// Helper to compress image
+function compressImageAsBase64(file, maxWidth = 150) {
+    return new Promise((resolve) => {
+        if (!file) { resolve(null); return; }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                // Compress highly (0.4 quality jpeg) to fit in Google Sheets cell limit (50k chars)
+                resolve(canvas.toDataURL('image/jpeg', 0.4));
+            };
+            img.onerror = () => resolve(null);
+            img.src = e.target.result;
+        };
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+    });
+}
+
 // Helper to format date as DD/MM/YYYY
 function formatDateDDMMYYYY(dateString) {
     if (!dateString) return '';
@@ -90,13 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const applicantSignatureInput = document.getElementById('applicantSignature');
                 
                 const photoUrl = applicantPhotoInput.files.length > 0 ? await readFileAsDataURL(applicantPhotoInput.files[0]) : null;
+                const compressedPhotoBase64 = applicantPhotoInput.files.length > 0 ? await compressImageAsBase64(applicantPhotoInput.files[0]) : null;
                 const signatureUrl = applicantSignatureInput.files.length > 0 ? await readFileAsDataURL(applicantSignatureInput.files[0]) : null;
 
                 // Send data to Google Sheets in the background
                 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyh0cg-EDWn68Mti7YnTzDI-qVYqXBXYXL0SpQYz0M0bEkJqxo6xJYys8G1Cy9sNYB3/exec";
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, ...dataObj } })
+                    body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, ...dataObj } })
                 }).catch(err => console.error("Sheets Error:", err));
 
                 // Generate Local PDFs and Download
