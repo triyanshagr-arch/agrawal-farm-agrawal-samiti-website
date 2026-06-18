@@ -40,19 +40,52 @@
                 <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </aside>
-
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Memberships Tab -->
-            <section id="tab-memberships" class="tab-content active-tab">
+            
+            <!-- Statistics Widgets -->
+            <div class="stats-container" id="statsContainer" style="display: none;">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e3f2fd; color: #2196F3;"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <h3 id="statTotalApproved">0</h3>
+                        <p>Total Approved</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fff3e0; color: #ff9800;"><i class="fas fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h3 id="statTotalPending">0</h3>
+                        <p>Pending Approvals</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e8f5e9; color: #4caf50;"><i class="fas fa-calendar-day"></i></div>
+                    <div class="stat-info">
+                        <h3 id="statNewToday">0</h3>
+                        <p>New Today</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Pending Members Tab -->
+            <section id="tab-memberships" class="tab-content">
                 <div class="header-bar">
-                    <h2>Pending Membership Approvals</h2>
-                    <button onclick="loadMembers()" class="btn-secondary"><i class="fas fa-sync"></i> Refresh</button>
+                    <h2>Pending Memberships</h2>
+                    <div>
+                        <button onclick="bulkApprove()" class="btn-approve" id="btnBulkApprove" style="display:none; margin-right: 10px;"><i class="fas fa-check-double"></i> Approve Selected</button>
+                        <button onclick="loadMembers()" class="btn-secondary"><i class="fas fa-sync"></i> Refresh</button>
+                    </div>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchPending" placeholder="Search by Name, Phone, or No..." onkeyup="filterTable('membersTableBody', 'searchPending')">
                 </div>
                 
                 <div class="table-container">
                     <table id="membersTable">
                         <thead>
                             <tr>
+                                <th><input type="checkbox" id="selectAllPending" onclick="toggleSelectAll(this, 'membersTableBody')"></th>
                                 <th>No.</th>
                                 <th>Photo</th>
                                 <th>Name</th>
@@ -63,7 +96,7 @@
                             </tr>
                         </thead>
                         <tbody id="membersTableBody">
-                            <tr><td colspan="7" class="text-center">Loading...</td></tr>
+                            <tr><td colspan="8" class="text-center">Loading...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -74,6 +107,10 @@
                 <div class="header-bar">
                     <h2>Approved Members</h2>
                     <button onclick="loadMembers()" class="btn-secondary"><i class="fas fa-sync"></i> Refresh</button>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchApproved" placeholder="Search by Name, Phone, or No..." onkeyup="filterTable('approvedMembersTableBody', 'searchApproved')">
                 </div>
                 
                 <div class="table-container">
@@ -125,6 +162,38 @@
                 </div>
             </section>
         </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- View Profile Modal -->
+    <div id="viewProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('viewProfileModal')">&times;</span>
+            <h2>Member Profile</h2>
+            <div id="profileContent" class="profile-details">
+                <!-- Content injected via JS -->
+            </div>
+            <div class="modal-actions" style="margin-top: 20px;">
+                <button onclick="closeModal('viewProfileModal')" class="btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('editProfileModal')">&times;</span>
+            <h2>Edit Member Details</h2>
+            <form id="editMemberForm">
+                <!-- We will auto-generate the fields here via JS for simplicity, or hardcode them -->
+                <div id="editFieldsContainer" class="form-grid"></div>
+                <input type="hidden" id="editRowNumber">
+                <div class="modal-actions" style="margin-top: 20px;">
+                    <button type="submit" class="btn-primary" id="btnSaveEdit">Save Changes</button>
+                    <button type="button" onclick="closeModal('editProfileModal')" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Shared Configuration -->
