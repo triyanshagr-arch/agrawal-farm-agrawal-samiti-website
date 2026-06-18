@@ -175,7 +175,7 @@ function createMemberRow(m, isPending, arrayIndex) {
             <td><input type="checkbox" class="row-checkbox" value="${m.row}" data-email="${m.emailId}" data-membership="${m.membershipNo}"></td>
             <td>${m.membershipNo}</td>
             <td>${photoHtml}</td>
-            <td><strong>${m.fullName}</strong></td>
+            <td><strong>${m.fullName}</strong><br><small style="color:#666;">Gotra: ${m.gotra}</small></td>
             <td>${m.mobileNumber}<br><small>${m.emailId}</small></td>
             <td>${m.paymentMode}</td>
             <td>${m.transactionId}</td>
@@ -185,7 +185,7 @@ function createMemberRow(m, isPending, arrayIndex) {
         tr.innerHTML = `
             <td>${m.membershipNo}</td>
             <td>${photoHtml}</td>
-            <td><strong>${m.fullName}</strong></td>
+            <td><strong>${m.fullName}</strong><br><small style="color:#666;">Gotra: ${m.gotra}</small></td>
             <td>${m.mobileNumber}<br><small>${m.emailId}</small></td>
             <td>${m.paymentMode}</td>
             <td>${m.transactionId}</td>
