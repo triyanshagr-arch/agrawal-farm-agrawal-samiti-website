@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const signatureUrl = applicantSignatureInput.files.length > 0 ? await readFileAsDataURL(applicantSignatureInput.files[0]) : null;
 
                 // Send data to Google Sheets in the background
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx872QLoWgU9vAjOgqPQVQdFn8uRtxwvbu9MXBFJ5B8w4omYE8C4S9Zh1N8oxF9F9j8/exec";
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIlSSNBiBm5k2SB5Ja0z--oJd-ZG8jcmawT0Wh-LsZYGF27WMnaE6a6xDsOOsiru7R/exec";
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, ...dataObj } })
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const compressedScreenshotBase64 = paymentScreenshotInput.files.length > 0 ? await compressImageAsBase64(paymentScreenshotInput.files[0]) : null;
 
                 // Send data to Google Sheets in the background
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx872QLoWgU9vAjOgqPQVQdFn8uRtxwvbu9MXBFJ5B8w4omYE8C4S9Zh1N8oxF9F9j8/exec";
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIlSSNBiBm5k2SB5Ja0z--oJd-ZG8jcmawT0Wh-LsZYGF27WMnaE6a6xDsOOsiru7R/exec";
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_donation', data: { receiptNo: receiptNo, screenshotBase64: compressedScreenshotBase64, ...dataObj } })
