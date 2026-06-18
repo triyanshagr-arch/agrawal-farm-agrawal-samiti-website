@@ -612,12 +612,12 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     body { font-family: 'Outfit', Arial, sans-serif; padding: 20px; color: #222; line-height: 1.5; background: #fff; }
                     .page-border { border: 2px solid #D32F2F; padding: 30px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 4px #FFD700; }
                     .watermark { position: absolute; top: 30%; left: 15%; width: 70%; opacity: 0.05; z-index: -1; pointer-events: none; }
-                    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px double #D32F2F; padding-bottom: 20px; margin-bottom: 20px; }
-                    .header-center { text-align: center; flex: 1; padding: 0 15px; }
+                    .header { display: grid; grid-template-columns: 110px 1fr 110px; align-items: center; border-bottom: 3px double #D32F2F; padding-bottom: 20px; margin-bottom: 20px; }
+                    .header-center { text-align: center; }
                     .header h1 { color: #D32F2F; margin: 0 0 5px 0; font-size: 28px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
-                    .header h3 { margin: 0; color: #444; font-size: 14px; }
-                    .header h2 { margin: 15px 0 0 0; font-size: 22px; background: #D32F2F; color: #fff; display: inline-block; padding: 5px 20px; border-radius: 20px; }
-                    .deity-img { height: 110px; width: 100px; object-fit: contain; }
+                    .header h3 { margin: 0; color: #444; font-size: 16px; }
+                    .header h2 { margin: 15px auto 0 auto; font-size: 22px; background: #D32F2F; color: #fff; display: inline-block; padding: 5px 20px; border-radius: 20px; }
+                    .deity-img { height: 110px; width: 100px; object-fit: contain; margin: 0 auto; display: block; }
                     .top-section { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: flex-start; }
                     .meta-info { background: #fff8f8; border: 1px solid #f0d0d0; padding: 15px; border-radius: 8px; width: 60%; }
                     .meta-info p { margin: 5px 0; font-size: 14px; }
