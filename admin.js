@@ -97,13 +97,14 @@ function renderMembers(members) {
     }
 }
 
-// Global function to handle email sending (opens mailto and disables button)
+// Global function to handle email sending (opens Gmail and disables button)
 window.sendEmail = function(btnElement, emailId, membershipNo, fullName) {
     const emailSubject = encodeURIComponent("Membership Approved - Agrawal Samiti");
     const emailBody = encodeURIComponent(`Dear ${fullName},\n\nCongratulations! Your membership application for Agrawal Samaj Samiti Agrawal Farm, Jaipur has been successfully approved by the administration.\n\nYour Official Membership Number is: ${membershipNo}\n\nWe warmly welcome you to our community. If you have any questions, please feel free to reply to this email.\n\nBest Regards,\nAdmin Team`);
     
-    // Open email client
-    window.location.href = `mailto:${emailId}?subject=${emailSubject}&body=${emailBody}`;
+    // Open Gmail web interface in a new tab
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailId}&su=${emailSubject}&body=${emailBody}`;
+    window.open(gmailLink, '_blank');
     
     // Disable button to prevent multiple clicks
     btnElement.innerHTML = '<i class="fas fa-check"></i> Email Sent';
