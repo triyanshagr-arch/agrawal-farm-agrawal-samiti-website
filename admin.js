@@ -605,91 +605,175 @@ function printApplicationForm(rowNum, lang = 'hi') {
     const printWindow = window.open('', '_blank', 'width=800,height=900');
     printWindow.document.write(`
         <html>
-            <head>
-                <title>${t.title} - ${m.fullName}</title>
-                <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+                    <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&display=swap');
                     @media print { @page { margin: 0.5cm; } body { padding: 0 !important; } }
-                    body { font-family: 'Outfit', Arial, sans-serif; padding: 10px; color: #222; line-height: 1.3; background: #fff; }
-                    .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; }
-                    .watermark { position: absolute; top: 30%; left: 15%; width: 70%; opacity: 0.05; z-index: -1; pointer-events: none; }
-                    .header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; }
-                    .header-center { text-align: center; }
-                    .header h1 { color: #D32F2F; margin: 0; font-size: 24px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
-                    .header h3 { margin: 2px 0 0 0; color: #444; font-size: 13px; }
-                    .header h2 { margin: 5px auto 0 auto; font-size: 16px; background: #D32F2F; color: #fff; display: inline-block; padding: 3px 15px; border-radius: 15px; }
-                    .deity-img { height: 80px; width: 70px; object-fit: contain; margin: 0 auto; display: block; }
-                    .top-section { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: flex-start; }
-                    .meta-info { background: #fff8f8; border: 1px solid #f0d0d0; padding: 10px; border-radius: 8px; width: 60%; }
-                    .meta-info p { margin: 2px 0; font-size: 12px; }
-                    .photo-box { width: 90px; height: 110px; border: 2px solid #D32F2F; padding: 2px; background: #fff; text-align: center; font-size: 10px; color: #999; }
+                    body { font-family: 'Tiro Devanagari Hindi', Arial, sans-serif; padding: 15px; color: #000; line-height: 1.6; background: #fff; max-width: 800px; margin: 0 auto; }
+                    .page-border { border: 2px solid #000; padding: 20px; position: relative; }
+                    
+                    /* Header */
+                    .top-bar { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 5px; }
+                    .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+                    .header-logo { width: 100px; }
+                    .header-logo img { width: 80px; height: auto; }
+                    .header-center { text-align: center; flex: 1; }
+                    .header h1 { margin: 0; font-size: 32px; font-weight: bold; letter-spacing: 1px; }
+                    .header h3 { margin: 0; font-size: 14px; font-weight: normal; }
+                    .header-badge { border: 2px solid #000; border-radius: 20px; display: inline-block; padding: 4px 20px; font-size: 18px; font-weight: bold; margin-top: 5px; box-shadow: 2px 2px 0 #000; }
+                    
+                    /* Form Fields */
+                    .form-body { position: relative; margin-top: 10px; }
+                    .photo-box { position: absolute; top: 0; right: 0; width: 110px; height: 140px; border: 1px solid #000; text-align: center; font-size: 10px; color: #666; display: flex; align-items: center; justify-content: center; }
                     .photo-box img { width: 100%; height: 100%; object-fit: cover; }
-                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-                    .info-table th, .info-table td { padding: 4px 8px; border: 1px solid #e0e0e0; text-align: left; }
-                    .info-table th { background: #fff8f8; width: 35%; font-size: 12px; color: #D32F2F; font-weight: 600; }
-                    .info-table td { font-size: 12px; color: #333; }
-                    .section-title { color: #D32F2F; font-size: 15px; font-weight: 700; border-bottom: 2px solid #D32F2F; padding-bottom: 2px; margin: 10px 0 5px 0; display: inline-block; }
-                    .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-                    .family-table th, .family-table td { padding: 4px; border: 1px solid #e0e0e0; text-align: left; font-size: 11px; }
-                    .family-table th { background: #D32F2F; color: white; }
-                    .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #777; border-top: 1px dashed #ccc; padding-top: 10px; }
+                    
+                    .field-row { display: flex; margin-bottom: 12px; align-items: baseline; font-size: 15px; font-weight: bold; }
+                    .field-label { white-space: nowrap; margin-right: 5px; }
+                    .field-value { flex: 1; border-bottom: 2px dotted #000; padding-left: 10px; font-weight: normal; font-family: Arial, sans-serif; min-height: 20px; }
+                    
+                    /* Family Table */
+                    .family-section { margin-top: 20px; }
+                    .family-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+                    .family-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 12px; border: 2px solid #000; }
+                    .family-table th, .family-table td { border: 1px solid #000; padding: 5px; }
+                    .family-table th { font-weight: bold; }
+                    .family-table td { font-family: Arial, sans-serif; height: 20px; }
+                    
+                    /* Footer */
+                    .declaration { font-size: 13px; font-weight: bold; text-align: justify; margin: 15px 0; }
+                    .signatures { display: flex; justify-content: space-between; margin-top: 40px; font-size: 14px; font-weight: bold; }
+                    .signatures div { text-align: center; }
+                    
+                    .notes { margin-top: 20px; font-size: 10px; font-weight: bold; line-height: 1.4; border-top: 1px solid #000; padding-top: 5px; }
                 </style>
             </head>
             <body>
                 <div class="page-border">
-                    <img src="${agrasenImg}" class="watermark" alt="Watermark">
+                    
+                    <div class="top-bar">
+                        <div style="flex:1; text-align:center;">।। श्री अग्रसेन जयते: ।।</div>
+                        <div>पंजीयन संख्या : 169/93-94</div>
+                    </div>
+                    
                     <div class="header">
-                        <img src="${agrasenImg}" class="deity-img" alt="Maharaj Agrasen">
+                        <div class="header-logo"><img src="${agrasenImg}" alt="Logo"></div>
                         <div class="header-center">
-                            <h1>${t.samiti}</h1>
-                            <h3>${t.address}</h3>
-                            <h2>${t.title}</h2>
+                            <h1>अग्रवाल समाज समिति अग्रवाल फार्म</h1>
+                            <h3>120/221, इन्द पथ, अग्रवाल फार्म, मानसरोवर, जयपुर - 302020</h3>
+                            <div class="header-badge">आजीवन सदस्यता प्रपत्र</div>
                         </div>
-                        <img src="${lakshmiImg}" class="deity-img" alt="Goddess Lakshmi">
                     </div>
                     
-                    <div class="top-section">
-                        <div class="meta-info">
-                            <p><strong>${t.memNo}</strong> <span style="color:#D32F2F; font-size: 18px; font-weight:bold;">${m.membershipNo || 'Pending'}</span></p>
-                            <p><strong>${t.status}</strong> <span style="background: #4caf50; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">${m.status}</span></p>
-                            <p><strong>${t.date}</strong> ${new Date(m.timestamp).toLocaleDateString()}</p>
-                        </div>
+                    <div style="font-size:12px; margin-bottom:10px;">
+                        <strong>Membership No:</strong> ${m.membershipNo || 'Pending'} &nbsp; | &nbsp; <strong>Date:</strong> ${new Date(m.timestamp).toLocaleDateString()}
+                    </div>
+
+                    <div class="form-body">
                         <div class="photo-box">
-                            ${m.photoBase64 ? `<img src="${m.photoBase64}">` : t.noPhoto}
+                            ${m.photoBase64 ? `<img src="${m.photoBase64}">` : "मुखिया का फोटो<br>यहाँ चिपकाएँ"}
+                        </div>
+                        
+                        <div style="width: 75%;">
+                            <div class="field-row">
+                                <div class="field-label">नाम : श्री/श्रीमती/सुश्री</div>
+                                <div class="field-value">${m.fullName || ''}</div>
+                            </div>
+                            <div class="field-row">
+                                <div class="field-label">पिता/पति का नाम</div>
+                                <div class="field-value">${m.guardianName || ''}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="field-row" style="margin-top: 20px;">
+                            <div class="field-label">शिक्षा</div><div class="field-value" style="flex: 1;">${m.education || ''}</div>
+                            <div class="field-label">व्यवसाय</div><div class="field-value" style="flex: 1;">${m.occupation || ''}</div>
+                            <div class="field-label">गौत्र</div><div class="field-value" style="flex: 1;">${m.gotra || ''}</div>
+                        </div>
+                        
+                        <div class="field-row">
+                            <div class="field-label">मूल निवासी</div><div class="field-value" style="flex: 1.5;">${m.domicile || ''}</div>
+                            <div class="field-label">जन्म तिथि</div><div class="field-value" style="flex: 1;">${m.dob || ''}</div>
+                            <div class="field-label">विवाह तिथि</div><div class="field-value" style="flex: 1;">${m.marriageDate || ''}</div>
+                        </div>
+                        
+                        <div class="field-row">
+                            <div class="field-label">पूरा पता (निवास)</div>
+                            <div class="field-value">${m.permanentAddress || ''}</div>
+                        </div>
+                        
+                        <div class="field-row">
+                            <div class="field-label">दूरभाष</div><div class="field-value" style="flex: 1;"></div>
+                            <div class="field-label">मो.</div><div class="field-value" style="flex: 1;">${m.mobileNumber || ''}</div>
+                        </div>
+                        
+                        <div class="field-row">
+                            <div class="field-label">ई-मेल</div><div class="field-value" style="flex: 1.5;">${m.emailId || ''}</div>
+                            <div class="field-label">मकान (निजी/किराये)</div><div class="field-value" style="flex: 1;">${m.houseType || ''}</div>
+                        </div>
+                        
+                        <div class="field-row">
+                            <div class="field-label">व्यवसाय/कार्यालय पता</div>
+                            <div class="field-value">${m.officeAddress || ''}</div>
                         </div>
                     </div>
 
-                    <div class="section-title">${t.personal}</div>
-                    <table class="info-table">
-                        <tr><th>${t.fullName}</th><td><strong>${m.fullName}</strong></td></tr>
-                        <tr><th>${t.fatherName}</th><td>${m.guardianName || ''}</td></tr>
-                        <tr><th>${t.dob}</th><td>${m.dob || ''}</td></tr>
-                        <tr><th>${t.gotra}</th><td>${m.gotra || ''}</td></tr>
-                        <tr><th>${t.bg}</th><td>${m.bloodGroup || ''}</td></tr>
-                        <tr><th>${t.mobile}</th><td>${m.mobileNumber || ''}</td></tr>
-                        ${m.emailId ? `<tr><th>${t.email}</th><td>${m.emailId}</td></tr>` : ''}
-                        <tr><th>${t.edu}</th><td>${m.education || ''}</td></tr>
-                        <tr><th>${t.occ}</th><td>${m.occupation || ''}</td></tr>
-                        ${m.marriageDate ? `<tr><th>${t.mDate}</th><td>${m.marriageDate}</td></tr>` : ''}
-                        <tr><th>${t.domicile}</th><td>${m.domicile || ''}</td></tr>
-                    </table>
-
-                    <div class="section-title">${t.addressDetails}</div>
-                    <table class="info-table">
-                        <tr><th>${t.houseType}</th><td>${m.houseType || ''}</td></tr>
-                        <tr><th>${t.permAddr}</th><td>${m.permanentAddress || ''}</td></tr>
-                        ${m.officeAddress ? `<tr><th>${t.offAddr}</th><td>${m.officeAddress}</td></tr>` : ''}
-                    </table>
-
-                    ${familyHtml}
-                    
-                    <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
-                        <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px;">Authorized Signatory</div>
-                        <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px;">Applicant Signature</div>
+                    <div class="family-section">
+                        <div class="family-title">परिवार का विवरण :-</div>
+                        <table class="family-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%;">क्र.<br>सं.</th>
+                                    <th style="width:25%;">परिवार के सदस्यों के नाम</th>
+                                    <th style="width:12%;">सदस्य<br>से संबंध</th>
+                                    <th style="width:12%;">जन्म<br>दिनांक</th>
+                                    <th style="width:15%;">विवाहित/<br>अविवाहित</th>
+                                    <th style="width:15%;">शैक्षणिक<br>योग्यता</th>
+                                    <th style="width:16%;">व्यवसाय</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${[...Array(8)].map((_, i) => {
+                                    let f = { name: '', relation: '', dob: '', marital: '', edu: '', occ: '' };
+                                    if (m.familyMembers && m.familyMembers !== "[]") {
+                                        try {
+                                            const family = JSON.parse(m.familyMembers);
+                                            if (family[i]) {
+                                                f.name = family[i].name || '';
+                                                f.relation = family[i].relation || '';
+                                                f.dob = family[i].age || ''; // using age/dob field
+                                                f.marital = family[i].maritalStatus || ''; // fallback if not present
+                                                f.edu = family[i].education || '';
+                                                f.occ = family[i].business || '';
+                                            }
+                                        } catch(e) {}
+                                    }
+                                    return `
+                                    <tr>
+                                        <td>${i + 1}.</td>
+                                        <td style="text-align:left; padding-left:5px;">${f.name}</td>
+                                        <td>${f.relation}</td>
+                                        <td>${f.dob}</td>
+                                        <td>${f.marital}</td>
+                                        <td>${f.edu}</td>
+                                        <td>${f.occ}</td>
+                                    </tr>`;
+                                }).join('')}
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="footer">
-                        <p>${t.footer}</p>
+                    <div class="declaration">
+                        मैं अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर का आजीवन सदस्य बनना चाहता/चाहती हूँ। मैंने समिति के विधान एवं नियम समझ लिए हैं एवं इनके पालन के लिए वचनबद्ध हूँ।
+                    </div>
+                    
+                    <div class="signatures">
+                        <div>दिनांक ........................</div>
+                        <div>(हस्ताक्षर एवं नाम प्रमाणितकर्ता)</div>
+                        <div>(हस्ताक्षर सदस्य)</div>
+                    </div>
+
+                    <div class="notes">
+                        विशेष:- 1. कृपया 21 वर्ष से अधिक के अविवाहित युवक, 18 वर्ष से अधिक की अविवाहित युवती का सम्पूर्ण विवरण दो पासपोर्ट साइज रंगीन फोटो के साथ संलग्न करें।<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. आजीवन सदस्यता शुल्क 501-रु. है। 3. 18 वर्ष से अधिक के युवक/युवती अलग से सदस्यता ग्रहण कर सकते हैं।
                     </div>
                 </div>
                 
