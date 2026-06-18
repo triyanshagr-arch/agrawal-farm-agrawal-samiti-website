@@ -112,9 +112,7 @@ function renderAchievements(achievements, container) {
             return `• <span class="lang-hi">${nameHi}${scoreHi}</span><span class="lang-en">${nameEn}${scoreEn}</span>`;
         }).join('<br>');
 
-        li.innerHTML = `
-            <i class="fas ${styleInfo.icon}" style="color: ${styleInfo.color}; font-size: 2rem; margin-bottom: 10px;"></i><br>
-            let catDisplay = cat;
+        let catDisplay = cat;
         if (cat === 'Class 10th & 12th Board') {
             catDisplay = '<span class="lang-hi">कक्षा 10वीं और 12वीं बोर्ड</span><span class="lang-en">Class 10th & 12th Board</span>';
         } else if (cat === 'JEE & NEET') {
