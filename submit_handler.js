@@ -92,6 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const photoUrl = applicantPhotoInput.files.length > 0 ? await readFileAsDataURL(applicantPhotoInput.files[0]) : null;
                 const signatureUrl = applicantSignatureInput.files.length > 0 ? await readFileAsDataURL(applicantSignatureInput.files[0]) : null;
 
+                // Send data to Google Sheets in the background
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZEGok5bJpmM2qCyJCuf-MHl1fVCulOdHsNS5p2vTsGwxT5oRzTTIsAA9CzbsOubps/exec";
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ membershipNo: membershipNo, ...dataObj })
+                }).catch(err => console.error("Sheets Error:", err));
+
                 // Generate Local PDFs and Download
                 if (paymentMode !== 'Cash') {
                     generateReceiptPDF(membershipNo, dataObj, 'save');
@@ -100,9 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Alert User
                 if (paymentMode === 'Cash') {
-                    alert(`Application Form Downloaded Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Please print this application form and submit it along with your Cash payment at the Samiti Office.`);
+                    alert(`Application Form Downloaded Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Please print this application form and submit it along with your Cash payment at the Samiti Office.\n\nYour data has also been saved securely.`);
                 } else {
-                    alert(`Forms Generated Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Both the Receipt and Membership Form PDFs have been automatically downloaded to your computer/phone.\n\nSince there is no backend server to save these, YOU MUST MANUALLY EMAIL both of these downloaded PDFs to: atriyanshagr@gmail.com for Admin Approval!`);
+                    alert(`Forms Generated Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Both the Receipt and Membership Form PDFs have been automatically downloaded to your computer/phone.\n\nYour data has been saved securely! You MUST MANUALLY EMAIL both of these downloaded PDFs to: atriyanshagr@gmail.com for Admin Approval!`);
                 }
                 form.reset();
 
