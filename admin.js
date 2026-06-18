@@ -609,29 +609,30 @@ function printApplicationForm(rowNum, lang = 'hi') {
                 <title>${t.title} - ${m.fullName}</title>
                 <style>
                     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
-                    body { font-family: 'Outfit', Arial, sans-serif; padding: 20px; color: #222; line-height: 1.5; background: #fff; }
-                    .page-border { border: 2px solid #D32F2F; padding: 30px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 4px #FFD700; }
+                    @media print { @page { margin: 0.5cm; } body { padding: 0 !important; } }
+                    body { font-family: 'Outfit', Arial, sans-serif; padding: 10px; color: #222; line-height: 1.3; background: #fff; }
+                    .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; }
                     .watermark { position: absolute; top: 30%; left: 15%; width: 70%; opacity: 0.05; z-index: -1; pointer-events: none; }
-                    .header { display: grid; grid-template-columns: 110px 1fr 110px; align-items: center; border-bottom: 3px double #D32F2F; padding-bottom: 20px; margin-bottom: 20px; }
+                    .header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; }
                     .header-center { text-align: center; }
-                    .header h1 { color: #D32F2F; margin: 0 0 5px 0; font-size: 28px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
-                    .header h3 { margin: 0; color: #444; font-size: 16px; }
-                    .header h2 { margin: 15px auto 0 auto; font-size: 22px; background: #D32F2F; color: #fff; display: inline-block; padding: 5px 20px; border-radius: 20px; }
-                    .deity-img { height: 110px; width: 100px; object-fit: contain; margin: 0 auto; display: block; }
-                    .top-section { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: flex-start; }
-                    .meta-info { background: #fff8f8; border: 1px solid #f0d0d0; padding: 15px; border-radius: 8px; width: 60%; }
-                    .meta-info p { margin: 5px 0; font-size: 14px; }
-                    .photo-box { width: 120px; height: 150px; border: 2px solid #D32F2F; padding: 3px; background: #fff; text-align: center; font-size: 12px; color: #999; }
+                    .header h1 { color: #D32F2F; margin: 0; font-size: 24px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
+                    .header h3 { margin: 2px 0 0 0; color: #444; font-size: 13px; }
+                    .header h2 { margin: 5px auto 0 auto; font-size: 16px; background: #D32F2F; color: #fff; display: inline-block; padding: 3px 15px; border-radius: 15px; }
+                    .deity-img { height: 80px; width: 70px; object-fit: contain; margin: 0 auto; display: block; }
+                    .top-section { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: flex-start; }
+                    .meta-info { background: #fff8f8; border: 1px solid #f0d0d0; padding: 10px; border-radius: 8px; width: 60%; }
+                    .meta-info p { margin: 2px 0; font-size: 12px; }
+                    .photo-box { width: 90px; height: 110px; border: 2px solid #D32F2F; padding: 2px; background: #fff; text-align: center; font-size: 10px; color: #999; }
                     .photo-box img { width: 100%; height: 100%; object-fit: cover; }
-                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
-                    .info-table th, .info-table td { padding: 10px; border: 1px solid #e0e0e0; text-align: left; }
-                    .info-table th { background: #fff8f8; width: 35%; font-size: 14px; color: #D32F2F; font-weight: 600; }
-                    .info-table td { font-size: 14px; color: #333; }
-                    .section-title { color: #D32F2F; font-size: 18px; font-weight: 700; border-bottom: 2px solid #D32F2F; padding-bottom: 5px; margin: 30px 0 15px 0; display: inline-block; }
-                    .family-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-                    .family-table th, .family-table td { padding: 8px; border: 1px solid #e0e0e0; text-align: left; font-size: 13px; }
+                    .info-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+                    .info-table th, .info-table td { padding: 4px 8px; border: 1px solid #e0e0e0; text-align: left; }
+                    .info-table th { background: #fff8f8; width: 35%; font-size: 12px; color: #D32F2F; font-weight: 600; }
+                    .info-table td { font-size: 12px; color: #333; }
+                    .section-title { color: #D32F2F; font-size: 15px; font-weight: 700; border-bottom: 2px solid #D32F2F; padding-bottom: 2px; margin: 10px 0 5px 0; display: inline-block; }
+                    .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+                    .family-table th, .family-table td { padding: 4px; border: 1px solid #e0e0e0; text-align: left; font-size: 11px; }
                     .family-table th { background: #D32F2F; color: white; }
-                    .footer { text-align: center; margin-top: 50px; font-size: 12px; color: #777; border-top: 1px dashed #ccc; padding-top: 20px; }
+                    .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #777; border-top: 1px dashed #ccc; padding-top: 10px; }
                 </style>
             </head>
             <body>
@@ -682,9 +683,9 @@ function printApplicationForm(rowNum, lang = 'hi') {
 
                     ${familyHtml}
                     
-                    <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end;">
-                        <div style="text-align: center; border-top: 1px solid #333; width: 200px; padding-top: 5px; font-size: 14px;">Authorized Signatory</div>
-                        <div style="text-align: center; border-top: 1px solid #333; width: 200px; padding-top: 5px; font-size: 14px;">Applicant Signature</div>
+                    <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
+                        <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px;">Authorized Signatory</div>
+                        <div style="text-align: center; border-top: 1px solid #333; width: 150px; padding-top: 5px; font-size: 12px;">Applicant Signature</div>
                     </div>
 
                     <div class="footer">
