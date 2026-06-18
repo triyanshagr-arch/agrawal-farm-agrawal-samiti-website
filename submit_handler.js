@@ -59,8 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const paymentMode = document.getElementById('paymentMode') ? document.getElementById('paymentMode').value : '';
                 dataObj.paymentMode = paymentMode;
                 if (paymentMode === 'Cash') {
-                    const receiver = document.getElementById('cashReceiverName') ? document.getElementById('cashReceiverName').value : '';
-                    dataObj.transactionId = receiver ? `CASH - Received by ${receiver}` : 'CASH';
+                    dataObj.transactionId = 'CASH / PENDING';
                     dataObj.bankAccountName = 'NA';
                     dataObj.utrNo = 'NA';
                 }
@@ -94,12 +93,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const signatureUrl = applicantSignatureInput.files.length > 0 ? await readFileAsDataURL(applicantSignatureInput.files[0]) : null;
 
                 // Generate Local PDFs and Download
-                generateReceiptPDF(membershipNo, dataObj, 'save');
+                if (paymentMode !== 'Cash') {
+                    generateReceiptPDF(membershipNo, dataObj, 'save');
+                }
                 await generateFilledTemplate(membershipNo, dataObj, photoUrl, signatureUrl, 'save');
 
                 // Alert User
-                alert(`Forms Generated Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Both the Receipt and Membership Form PDFs have been automatically downloaded to your computer/phone.\n\nSince there is no backend server to save these, YOU MUST MANUALLY EMAIL both of these downloaded PDFs to: atriyanshagr@gmail.com for Admin Approval!`);
-                
+                if (paymentMode === 'Cash') {
+                    alert(`Application Form Downloaded Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Please print this application form and submit it along with your Cash payment at the Samiti Office.`);
+                } else {
+                    alert(`Forms Generated Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Both the Receipt and Membership Form PDFs have been automatically downloaded to your computer/phone.\n\nSince there is no backend server to save these, YOU MUST MANUALLY EMAIL both of these downloaded PDFs to: atriyanshagr@gmail.com for Admin Approval!`);
+                }
                 form.reset();
 
             } catch (error) {

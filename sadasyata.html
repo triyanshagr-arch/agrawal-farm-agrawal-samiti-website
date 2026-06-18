@@ -302,7 +302,7 @@
                         </div>
 
                         <!-- Transaction Details Form Fields -->
-                        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 30px;">
+                        <div id="paymentConfirmationContainer" style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 30px;">
                             <h4 style="margin-bottom: 15px; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 8px;"><span class="lang-hi">भुगतान पुष्टि विवरण</span><span class="lang-en">Payment Confirmation Details</span></h4>
                             
                             <div id="onlinePaymentSection">
@@ -324,13 +324,6 @@
                                         <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">यूटीआर (UTR) नंबर</span><span class="lang-en">UTR No.</span></label>
                                         <input type="text" id="utrNo" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                                     </div>
-                                </div>
-                            </div>
-
-                            <div id="cashPaymentSection" style="display:none;">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">नकदी प्राप्तकर्ता का नाम (समिति सदस्य) <span style="color:red">*</span></span><span class="lang-en">Cash Receiver Name (Committee Member) <span style="color:red">*</span></span></label>
-                                    <input type="text" id="cashReceiverName" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                                 </div>
                             </div>
                         </div>
@@ -355,7 +348,7 @@
                         </div>
 
                         <div style="text-align: center;">
-                            <button type="submit" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(220,53,69,0.3);"><i class="fas fa-paper-plane"></i> <span class="lang-hi">फॉर्म जमा करें</span><span class="lang-en">Submit Form</span></button>
+                            <button type="submit" id="submitButton" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(220,53,69,0.3);"><i class="fas fa-paper-plane"></i> <span class="lang-hi">फॉर्म जमा करें</span><span class="lang-en">Submit Form</span></button>
                         </div>
 
                     </form>
@@ -459,27 +452,33 @@
     <script>
         function togglePaymentFields() {
             const mode = document.getElementById('paymentMode').value;
-            const onlineSection = document.getElementById('onlinePaymentSection');
-            const cashSection = document.getElementById('cashPaymentSection');
+            const container = document.getElementById('paymentConfirmationContainer');
             const screenshotInput = document.getElementById('paymentScreenshot');
             const transactionIdInput = document.getElementById('transactionId');
             const bankAccountInput = document.getElementById('bankAccountName');
-            const cashReceiverInput = document.getElementById('cashReceiverName');
+            const submitBtn = document.getElementById('submitButton');
+
+            // We check if English class is active anywhere to set text, else Hindi fallback
+            const isEnglish = document.body.classList.contains('en');
 
             if (mode === 'Cash') {
-                onlineSection.style.display = 'none';
-                cashSection.style.display = 'block';
+                container.style.display = 'none';
                 screenshotInput.required = false;
                 transactionIdInput.required = false;
                 bankAccountInput.required = false;
-                cashReceiverInput.required = true;
+                
+                submitBtn.innerHTML = isEnglish ? 
+                    '<i class="fas fa-download"></i> Download Application Form' : 
+                    '<i class="fas fa-download"></i> आवेदन पत्र डाउनलोड करें';
             } else {
-                onlineSection.style.display = 'block';
-                cashSection.style.display = 'none';
+                container.style.display = 'block';
                 screenshotInput.required = true;
                 transactionIdInput.required = true;
                 bankAccountInput.required = true;
-                cashReceiverInput.required = false;
+
+                submitBtn.innerHTML = isEnglish ? 
+                    '<i class="fas fa-paper-plane"></i> Submit Form' : 
+                    '<i class="fas fa-paper-plane"></i> फॉर्म जमा करें';
             }
         }
 
