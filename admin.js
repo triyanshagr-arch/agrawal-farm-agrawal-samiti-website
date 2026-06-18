@@ -110,6 +110,13 @@ window.sendEmail = function(btnElement, emailId, membershipNo, fullName) {
     const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailId}&su=${emailSubject}&body=${emailBody}`;
     window.open(gmailLink, '_blank');
     
+    // Save to localStorage so it remembers after refresh
+    const emailedList = JSON.parse(localStorage.getItem('emailedMembers') || '[]');
+    if (!emailedList.includes(membershipNo)) {
+        emailedList.push(membershipNo);
+        localStorage.setItem('emailedMembers', JSON.stringify(emailedList));
+    }
+    
     // Disable button to prevent multiple clicks
     btnElement.innerHTML = '<i class="fas fa-check"></i> Email Sent';
     btnElement.style.background = '#9e9e9e';
@@ -120,7 +127,15 @@ window.sendEmail = function(btnElement, emailId, membershipNo, fullName) {
 function createMemberRow(m, isPending) {
     const tr = document.createElement('tr');
     
-    const emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${m.fullName.replace(/'/g, "\\'")}')" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</button>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
+    const emailedList = JSON.parse(localStorage.getItem('emailedMembers') || '[]');
+    const hasEmailed = emailedList.includes(m.membershipNo);
+    
+    let emailBtnHtml;
+    if (hasEmailed) {
+        emailBtnHtml = `<button class="btn-email" style="background: #9e9e9e; cursor: default;" onclick="event.preventDefault()"><i class="fas fa-check"></i> Email Sent</button>`;
+    } else {
+        emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${m.fullName.replace(/'/g, "\\'")}')" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</button>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
+    }
 
     const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" alt="Photo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">` : `<div style="width: 50px; height: 50px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #999;">No Photo</div>`;
 
