@@ -610,8 +610,8 @@ function printApplicationForm(rowNum, lang = 'hi') {
                 <style>
                     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
                     @media print { @page { margin: 0.5cm; } body { padding: 0 !important; } }
-                    body { font-family: 'Outfit', Arial, sans-serif; padding: 10px; color: #222; line-height: 1.3; background: #fff; }
-                    .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; }
+                    body { font-family: 'Outfit', Arial, sans-serif; padding: 10px; color: #222; line-height: 1.3; background: #fff; margin: 0; }
+                    .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; min-height: 98vh; display: flex; flex-direction: column; }
                     .watermark { position: absolute; top: 30%; left: 15%; width: 70%; opacity: 0.05; z-index: -1; pointer-events: none; }
                     .header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; }
                     .header-center { text-align: center; }
@@ -632,7 +632,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
                     .family-table th, .family-table td { padding: 4px; border: 1px solid #e0e0e0; text-align: left; font-size: 11px; }
                     .family-table th { background: #D32F2F; color: white; }
-                    .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #777; border-top: 1px dashed #ccc; padding-top: 10px; }
+                    .footer { text-align: center; margin-top: auto; font-size: 11px; color: #777; border-top: 1px dashed #ccc; padding-top: 10px; }
                 </style>
             </head>
             <body>
