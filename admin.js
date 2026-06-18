@@ -99,25 +99,121 @@ function renderDonations() {
     if(!tbody) return;
     tbody.innerHTML = '';
     
-    if (window.donationData.length === 0) {
+    const donations = window.donationData || [];
+    
+    // Calculate Stats (Only count Verified donations)
+    let total = 0;
+    let mandir = 0;
+    let general = 0;
+    
+    donations.forEach(d => {
+        if (d.status === "Verified") {
+            const amt = parseFloat(d.donationAmount) || 0;
+            total += amt;
+            if (d.donationPurpose && d.donationPurpose.toLowerCase().includes('mandir')) {
+                mandir += amt;
+            } else {
+                general += amt;
+            }
+        }
+    });
+    
+    document.getElementById('statTotalDonations').innerText = '₹' + total.toLocaleString('en-IN');
+    document.getElementById('statMandirFund').innerText = '₹' + mandir.toLocaleString('en-IN');
+    document.getElementById('statGeneralFund').innerText = '₹' + general.toLocaleString('en-IN');
+    
+    if (donations.length === 0) {
         tbody.innerHTML = '<tr><td colspan="6" class="text-center">No donations found.</td></tr>';
         return;
     }
     
-    window.donationData.forEach(d => {
+    donations.forEach(d => {
         const tr = document.createElement('tr');
         const screenshotHtml = d.screenshotBase64 ? `<a href="${d.screenshotBase64}" target="_blank"><img src="${d.screenshotBase64}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></a>` : 'No Image';
         
+        let actionHtml = '';
+        let statusBadge = '';
+        if (d.status === "Pending") {
+            statusBadge = `<span style="color: #ff9800; font-size: 12px; font-weight: bold;"><i class="fas fa-clock"></i> Pending</span>`;
+            actionHtml = `<button class="btn-approve" style="padding: 4px 8px; font-size: 12px;" onclick="verifyDonation(${d.row})"><i class="fas fa-check"></i> Verify</button>`;
+        } else {
+            statusBadge = `<span style="color: #4caf50; font-size: 12px; font-weight: bold;"><i class="fas fa-check-circle"></i> Verified</span>`;
+            
+            const emailedList = JSON.parse(localStorage.getItem('emailedDonations') || '[]');
+            const hasEmailed = emailedList.includes(d.receiptNo);
+            
+            let emailBtn = '';
+            if (hasEmailed) {
+                emailBtn = `<button class="btn-secondary" style="background: #9e9e9e; color: white; padding: 4px 8px; font-size: 12px; margin-top: 5px; cursor: default;" onclick="event.preventDefault()"><i class="fas fa-check"></i> Emailed</button>`;
+            } else {
+                emailBtn = d.emailId ? `<button class="btn-email" style="padding: 4px 8px; font-size: 12px; margin-top: 5px;" onclick="emailDonationReceipt(this, '${d.receiptNo}')"><i class="fas fa-envelope"></i> Email Receipt</button>` : `<span style="font-size: 10px; color: #999; display:block; margin-top: 5px;">No Email</span>`;
+            }
+            
+            actionHtml = `
+                <button class="btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="printDonationReceipt('${d.receiptNo}')"><i class="fas fa-print"></i> Print</button>
+                <br>${emailBtn}
+            `;
+        }
+        
         tr.innerHTML = `
-            <td><strong>${d.receiptNo}</strong><br><small>${new Date(d.timestamp).toLocaleDateString()}</small></td>
-            <td><strong>${d.donorName}</strong></td>
-            <td>${d.mobileNumber}</td>
+            <td><strong>${d.receiptNo}</strong><br><small>${new Date(d.timestamp).toLocaleDateString()}</small><br>${statusBadge}</td>
+            <td><strong>${d.donorName}</strong><br><small>${d.mobileNumber}</small></td>
             <td style="color: green; font-weight: bold;">₹${d.donationAmount}</td>
-            <td>${d.donationPurpose}</td>
+            <td>${d.donationPurpose}<br><small>Ref: ${d.transactionId}</small></td>
             <td>${screenshotHtml}</td>
+            <td>${actionHtml}</td>
         `;
         tbody.appendChild(tr);
     });
+}
+
+function verifyDonation(rowNum) {
+    if (!confirm("Are you sure you want to VERIFY this donation? This will add the amount to the total collections.")) return;
+    
+    fetch(`${GOOGLE_SCRIPT_URL}?action=verify_donation&row=${rowNum}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert("Donation verified successfully!");
+                loadDonations();
+            } else {
+                alert("Verification failed: " + data.error);
+            }
+        });
+}
+
+function printDonationReceipt(receiptNo) {
+    const d = window.donationData.find(x => x.receiptNo === receiptNo);
+    if (!d) return;
+    // Assume pdf_generator.js is loaded
+    if (typeof generateDonationReceiptPDF === 'function') {
+        generateDonationReceiptPDF(receiptNo, d, 'save');
+    } else {
+        alert("PDF generator script not found.");
+    }
+}
+
+function emailDonationReceipt(btnElement, receiptNo) {
+    const d = window.donationData.find(x => x.receiptNo === receiptNo);
+    if (!d) return;
+    
+    const emailSubject = encodeURIComponent("Donation Receipt - Agrawal Samaj Samiti");
+    const emailBody = encodeURIComponent(`Dear ${d.donorName},\n\nJai Shri Agrasen!\n\nThank you for your generous donation of Rs. ${d.donationAmount}/- to Agrawal Samaj Samiti, Jaipur.\n\nYour payment has been successfully verified. Please find your official Donation Receipt (No: ${receiptNo}) attached to this email.\n\nMay the blessings of Maharaj Agrasen be with you always.\n\nBest Regards,\nAdmin Team\nAgrawal Samaj Samiti`);
+    
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${d.emailId}&su=${emailSubject}&body=${emailBody}`;
+    window.open(gmailLink, '_blank');
+    
+    const emailedList = JSON.parse(localStorage.getItem('emailedDonations') || '[]');
+    if (!emailedList.includes(receiptNo)) {
+        emailedList.push(receiptNo);
+        localStorage.setItem('emailedDonations', JSON.stringify(emailedList));
+    }
+    
+    btnElement.innerHTML = '<i class="fas fa-check"></i> Emailed';
+    btnElement.style.background = '#9e9e9e';
+    btnElement.style.color = 'white';
+    btnElement.style.cursor = 'default';
+    btnElement.onclick = function(e) { e.preventDefault(); };
 }
 
 function renderMembers() {

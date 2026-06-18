@@ -170,6 +170,31 @@
                     <button onclick="loadDonations()" class="btn-secondary"><i class="fas fa-sync"></i> Refresh</button>
                 </div>
                 
+                <!-- Donation Statistics Widgets -->
+                <div class="stats-container" id="statsDonationsContainer" style="display: flex; gap: 20px; margin-bottom: 20px;">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #e8f5e9; color: #4caf50;"><i class="fas fa-rupee-sign"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statTotalDonations">₹0</h3>
+                            <p>Total Collections</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #fff3e0; color: #ff9800;"><i class="fas fa-om"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statMandirFund">₹0</h3>
+                            <p>Mandir Fund</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #e3f2fd; color: #2196F3;"><i class="fas fa-hand-holding-heart"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statGeneralFund">₹0</h3>
+                            <p>General Fund</p>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="search-bar">
                     <input type="text" id="searchDonations" placeholder="Search by Donor, Mobile, or Receipt No..." onkeyup="filterTable('donationsTableBody', 'searchDonations')">
                 </div>
@@ -180,10 +205,10 @@
                             <tr>
                                 <th>Receipt No.</th>
                                 <th>Donor Name</th>
-                                <th>Mobile</th>
                                 <th>Amount (₹)</th>
                                 <th>Purpose</th>
                                 <th>Screenshot</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="donationsTableBody">
