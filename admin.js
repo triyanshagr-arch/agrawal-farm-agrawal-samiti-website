@@ -738,30 +738,27 @@ function toggleNoticeFields() {
     if (type === 'Achievement') {
         genFields.forEach(el => el.style.display = 'none');
         achFields.forEach(el => el.style.display = 'block');
-        document.getElementById('noticeTitleHi').removeAttribute('required');
-        document.getElementById('noticeTitleEn').removeAttribute('required');
-        document.getElementById('noticeDescHi').removeAttribute('required');
-        document.getElementById('noticeDescEn').removeAttribute('required');
-        document.getElementById('achNameHi').setAttribute('required', 'true');
-        document.getElementById('achNameEn').setAttribute('required', 'true');
-        document.getElementById('achScoreHi').setAttribute('required', 'true');
-        document.getElementById('achScoreEn').setAttribute('required', 'true');
     } else {
-        genFields.forEach(el => el.style.display = 'grid');
+        genFields.forEach(el => el.style.display = 'block');
         achFields.forEach(el => el.style.display = 'none');
-        document.getElementById('noticeTitleHi').setAttribute('required', 'true');
-        document.getElementById('noticeTitleEn').setAttribute('required', 'true');
-        document.getElementById('noticeDescHi').setAttribute('required', 'true');
-        document.getElementById('noticeDescEn').setAttribute('required', 'true');
-        document.getElementById('achNameHi').removeAttribute('required');
-        document.getElementById('achNameEn').removeAttribute('required');
-        document.getElementById('achScoreHi').removeAttribute('required');
-        document.getElementById('achScoreEn').removeAttribute('required');
+    }
+}
+
+async function translateText(text, targetLang) {
+    if (!text || text.trim() === '') return '';
+    try {
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        return data[0].map(part => part[0]).join('');
+    } catch (e) {
+        console.error("Translation error", e);
+        return text;
     }
 }
 
 // Notice Form Submission
-document.getElementById('addNoticeForm').addEventListener('submit', (e) => {
+document.getElementById('addNoticeForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('noticeSubmitBtn');
     
@@ -769,52 +766,66 @@ document.getElementById('addNoticeForm').addEventListener('submit', (e) => {
     let descText = '';
     let linkText = '';
     
-    const type = document.getElementById('noticeType').value;
-    if (type === 'Achievement') {
-        const cat = document.getElementById('achCategory').value;
-        const nameHi = document.getElementById('achNameHi').value;
-        const nameEn = document.getElementById('achNameEn').value;
-        const scoreHi = document.getElementById('achScoreHi').value;
-        const scoreEn = document.getElementById('achScoreEn').value;
-        titleText = '[ACHIEVEMENT] ' + cat;
-        descText = nameHi + '|' + scoreHi + '|||' + nameEn + '|' + scoreEn;
-    } else {
-        const titleHi = document.getElementById('noticeTitleHi').value;
-        const titleEn = document.getElementById('noticeTitleEn').value;
-        const descHi = document.getElementById('noticeDescHi').value;
-        const descEn = document.getElementById('noticeDescEn').value;
-        titleText = titleHi + '|||' + titleEn;
-        descText = descHi + '|||' + descEn;
-        linkText = document.getElementById('noticeLink').value;
-    }
-
-    const noticeObj = {
-        title: titleText,
-        date: document.getElementById('noticeDate').value,
-        description: descText,
-        link: linkText
-    };
-    
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Translating & Publishing...';
     btn.disabled = true;
 
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'add_notice', password: sessionPassword, notice: noticeObj })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) { alert("Notice Published Successfully!"); e.target.reset(); } 
-        else { alert("Error: " + data.error); }
-    })
-    .catch(err => {
-        alert("Notice published! (Note: background redirect may cause a harmless network error)");
-        e.target.reset();
-    })
-    .finally(() => {
-        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish Notice';
+    try {
+        const type = document.getElementById('noticeType').value;
+        if (type === 'Achievement') {
+            const cat = document.getElementById('achCategory').value;
+            const name = document.getElementById('achName').value;
+            const score = document.getElementById('achScore').value;
+            
+            const nameHi = await translateText(name, 'hi');
+            const nameEn = await translateText(name, 'en');
+            const scoreHi = await translateText(score, 'hi');
+            const scoreEn = await translateText(score, 'en');
+            
+            titleText = '[ACHIEVEMENT] ' + cat;
+            descText = nameHi + '|' + scoreHi + '|||' + nameEn + '|' + scoreEn;
+        } else {
+            const title = document.getElementById('noticeTitle').value;
+            const desc = document.getElementById('noticeDesc').value;
+            
+            const titleHi = await translateText(title, 'hi');
+            const titleEn = await translateText(title, 'en');
+            const descHi = await translateText(desc, 'hi');
+            const descEn = await translateText(desc, 'en');
+            
+            titleText = titleHi + '|||' + titleEn;
+            descText = descHi + '|||' + descEn;
+            linkText = document.getElementById('noticeLink').value;
+        }
+
+        const noticeObj = {
+            title: titleText,
+            date: document.getElementById('noticeDate').value,
+            description: descText,
+            link: linkText
+        };
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'add_notice', password: sessionPassword, notice: noticeObj })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) { alert("Notice Published Successfully!"); e.target.reset(); } 
+            else { alert("Error: " + data.error); }
+        })
+        .catch(err => {
+            alert("Notice published! (Note: background redirect may cause a harmless network error)");
+            e.target.reset();
+        })
+        .finally(() => {
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish';
+            btn.disabled = false;
+        });
+    } catch (e) {
+        alert("Translation or processing failed. Please try again.");
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish';
         btn.disabled = false;
-    });
+    }
 });
 
 // ==========================================
