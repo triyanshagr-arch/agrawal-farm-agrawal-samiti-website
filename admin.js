@@ -666,10 +666,10 @@ function printApplicationForm(rowNum, lang = 'hi') {
                         <tr><th>${t.gotra}</th><td>${m.gotra || ''}</td></tr>
                         <tr><th>${t.bg}</th><td>${m.bloodGroup || ''}</td></tr>
                         <tr><th>${t.mobile}</th><td>${m.mobileNumber || ''}</td></tr>
-                        <tr><th>${t.email}</th><td>${m.emailId || ''}</td></tr>
+                        ${m.emailId ? `<tr><th>${t.email}</th><td>${m.emailId}</td></tr>` : ''}
                         <tr><th>${t.edu}</th><td>${m.education || ''}</td></tr>
                         <tr><th>${t.occ}</th><td>${m.occupation || ''}</td></tr>
-                        <tr><th>${t.mDate}</th><td>${m.marriageDate || ''}</td></tr>
+                        ${m.marriageDate ? `<tr><th>${t.mDate}</th><td>${m.marriageDate}</td></tr>` : ''}
                         <tr><th>${t.domicile}</th><td>${m.domicile || ''}</td></tr>
                     </table>
 
@@ -677,7 +677,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     <table class="info-table">
                         <tr><th>${t.houseType}</th><td>${m.houseType || ''}</td></tr>
                         <tr><th>${t.permAddr}</th><td>${m.permanentAddress || ''}</td></tr>
-                        <tr><th>${t.offAddr}</th><td>${m.officeAddress || ''}</td></tr>
+                        ${m.officeAddress ? `<tr><th>${t.offAddr}</th><td>${m.officeAddress}</td></tr>` : ''}
                     </table>
 
                     ${familyHtml}
