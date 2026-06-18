@@ -147,14 +147,35 @@
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
                                     <label>Notice Type *</label>
-                                    <select id="noticeType" required>
+                                    <select id="noticeType" required onchange="toggleNoticeFields()">
                                         <option value="General">General Notice</option>
                                         <option value="Achievement">Academic Achievement</option>
                                     </select>
                                 </div>
-                                <div>
+                                <div class="general-field">
                                     <label>Notice Title *</label>
                                     <input type="text" id="noticeTitle" required placeholder="e.g. Annual General Meeting">
+                                </div>
+                                <div class="achievement-field" style="display: none;">
+                                    <label>Exam Category *</label>
+                                    <select id="achCategory">
+                                        <option value="Class 10th & 12th Board">Class 10th & 12th Board</option>
+                                        <option value="JEE & NEET">JEE & NEET</option>
+                                        <option value="UPSC / State PCS">UPSC / State PCS</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group achievement-field" style="display: none;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label>Student Name (with title) *</label>
+                                    <input type="text" id="achName" placeholder="e.g. सुश्री अंजलि अग्रवाल">
+                                </div>
+                                <div>
+                                    <label>Score / Rank / College *</label>
+                                    <input type="text" id="achScore" placeholder="e.g. 98.2%, 12th OR IIT Bombay">
                                 </div>
                             </div>
                         </div>
@@ -162,15 +183,15 @@
                             <label>Date *</label>
                             <input type="date" id="noticeDate" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group general-field">
                             <label>Description *</label>
                             <textarea id="noticeDesc" rows="4" required placeholder="Enter the full notice details here..."></textarea>
                         </div>
-                        <div class="form-group">
-                            <label>Related Link / Document URL (Optional)</label>
+                        <div class="form-group general-field">
+                            <label>Document / Link URL (Optional)</label>
                             <input type="url" id="noticeLink" placeholder="https://...">
                         </div>
-                        <button type="submit" class="btn-primary" id="noticeSubmitBtn"><i class="fas fa-paper-plane"></i> Publish Notice</button>
+                        <button type="submit" class="btn-primary" id="noticeSubmitBtn"><i class="fas fa-paper-plane"></i> Publish</button>
                     </form>
                 </div>
             </section>

@@ -58,7 +58,24 @@ function renderNotices(notices, container) {
 }
 
 function renderAchievements(achievements, container) {
+    container.innerHTML = '';
+    
+    // Group achievements by category
+    const grouped = {};
     achievements.forEach(n => {
+        const cat = n.title.replace('[ACHIEVEMENT] ', '');
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(n.description);
+    });
+
+    const icons = {
+        "Class 10th & 12th Board": { icon: "fa-medal", color: "gold" },
+        "JEE & NEET": { icon: "fa-user-graduate", color: "var(--secondary-color)" },
+        "UPSC / State PCS": { icon: "fa-landmark", color: "#4CAF50" },
+        "Other": { icon: "fa-star", color: "var(--primary-color)" }
+    };
+
+    for (const [cat, students] of Object.entries(grouped)) {
         const li = document.createElement('li');
         li.style.background = "var(--white)";
         li.style.padding = "15px";
@@ -66,20 +83,22 @@ function renderAchievements(achievements, container) {
         li.style.textAlign = "center";
         li.style.boxShadow = "0 2px 5px rgba(0,0,0,0.05)";
         
-        let cleanTitle = n.title.replace('[ACHIEVEMENT] ', '');
-        let linkHtml = '';
-        if (n.link && n.link.trim() !== '') {
-            linkHtml = `<br><br><a href="${n.link}" target="_blank" style="color: var(--primary-color); font-size: 0.9em; text-decoration: underline;"><i class="fas fa-link"></i> View Details</a>`;
-        }
+        const styleInfo = icons[cat] || icons["Other"];
+
+        let studentsHtml = students.map(desc => {
+            const parts = desc.split('|');
+            const name = parts[0];
+            const score = parts.length > 1 ? ` (${parts[1]})` : '';
+            return `• ${name}${score}`;
+        }).join('<br>');
 
         li.innerHTML = `
-            <i class="fas fa-star" style="color: gold; font-size: 2rem; margin-bottom: 10px;"></i><br>
-            <strong style="color: var(--primary-color);">${cleanTitle}</strong><br>
+            <i class="fas ${styleInfo.icon}" style="color: ${styleInfo.color}; font-size: 2rem; margin-bottom: 10px;"></i><br>
+            <strong style="color: var(--primary-color);">${cat}</strong><br>
             <div style="font-size: 0.9em; color: var(--text-dark); margin-top: 10px; text-align: left; display: inline-block;">
-                ${n.description.replace(/\n/g, '<br>')}
+                ${studentsHtml}
             </div>
-            ${linkHtml}
         `;
         container.appendChild(li);
-    });
+    }
 }

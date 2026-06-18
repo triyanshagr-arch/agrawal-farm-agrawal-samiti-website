@@ -729,21 +729,56 @@ function printApplicationForm(rowNum, lang = 'hi') {
     printWindow.document.close();
 }
 
-// Notice Form (unchanged)
+// Notice Form Toggle Logic
+function toggleNoticeFields() {
+    const type = document.getElementById('noticeType').value;
+    const genFields = document.querySelectorAll('.general-field');
+    const achFields = document.querySelectorAll('.achievement-field');
+    
+    if (type === 'Achievement') {
+        genFields.forEach(el => el.style.display = 'none');
+        achFields.forEach(el => el.style.display = 'block');
+        document.getElementById('noticeTitle').removeAttribute('required');
+        document.getElementById('noticeDesc').removeAttribute('required');
+        document.getElementById('achName').setAttribute('required', 'true');
+        document.getElementById('achScore').setAttribute('required', 'true');
+    } else {
+        genFields.forEach(el => el.style.display = 'block');
+        achFields.forEach(el => el.style.display = 'none');
+        document.getElementById('noticeTitle').setAttribute('required', 'true');
+        document.getElementById('noticeDesc').setAttribute('required', 'true');
+        document.getElementById('achName').removeAttribute('required');
+        document.getElementById('achScore').removeAttribute('required');
+    }
+}
+
+// Notice Form Submission
 document.getElementById('addNoticeForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = document.getElementById('noticeSubmitBtn');
     
-    let titleText = document.getElementById('noticeTitle').value;
+    let titleText = '';
+    let descText = '';
+    let linkText = '';
+    
     const type = document.getElementById('noticeType').value;
     if (type === 'Achievement') {
-        titleText = '[ACHIEVEMENT] ' + titleText;
+        const cat = document.getElementById('achCategory').value;
+        const name = document.getElementById('achName').value;
+        const score = document.getElementById('achScore').value;
+        titleText = '[ACHIEVEMENT] ' + cat;
+        descText = name + '|' + score;
+    } else {
+        titleText = document.getElementById('noticeTitle').value;
+        descText = document.getElementById('noticeDesc').value;
+        linkText = document.getElementById('noticeLink').value;
     }
+
     const noticeObj = {
         title: titleText,
         date: document.getElementById('noticeDate').value,
-        description: document.getElementById('noticeDesc').value,
-        link: document.getElementById('noticeLink').value
+        description: descText,
+        link: linkText
     };
     
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
