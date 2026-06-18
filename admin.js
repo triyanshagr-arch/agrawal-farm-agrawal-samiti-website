@@ -164,10 +164,7 @@ function createMemberRow(m, isPending, arrayIndex) {
         actionHtml = `
             <span style="color: #4caf50; font-weight: bold;"><i class="fas fa-check-circle"></i> Approved</span><br><br>
             ${emailBtnHtml}<br>
-            <div style="display: flex; gap: 5px; margin-top: 5px;">
-                <button class="btn-secondary" style="padding:4px 8px; font-size:12px; flex:1;" onclick="printApplicationForm(${m.row}, 'en')"><i class="fas fa-print"></i> Form (EN)</button>
-                <button class="btn-secondary" style="padding:4px 8px; font-size:12px; flex:1;" onclick="printApplicationForm(${m.row}, 'hi')"><i class="fas fa-print"></i> Form (HI)</button>
-            </div>
+            <button class="btn-secondary" style="margin-top: 5px; padding:4px 8px; font-size:12px;" onclick="printApplicationForm(${m.row}, 'hi')"><i class="fas fa-print"></i> Print Form</button>
             <hr style="margin: 5px 0; border:none; border-top:1px solid #ddd;">
             ${viewEditHtml}
         `;
@@ -391,7 +388,7 @@ document.getElementById('editMemberForm').addEventListener('submit', (e) => {
 });
 
 // Print Application Form
-function printApplicationForm(rowNum, lang = 'en') {
+function printApplicationForm(rowNum, lang = 'hi') {
     const m = window.memberData.find(x => x.row == rowNum);
     if (!m) return;
     
