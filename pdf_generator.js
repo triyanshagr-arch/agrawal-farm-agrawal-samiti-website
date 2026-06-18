@@ -244,7 +244,7 @@ async function generateDonationReceiptPDF(receiptNo, data, returnType = 'save') 
         
         // Watermark
         if(doc.GState) {
-            doc.setGState(new doc.GState({opacity: 0.08}));
+            doc.setGState(new doc.GState({opacity: 0.15}));
             doc.addImage(agrasenImg, 'PNG', 55, 80, 100, 130);
             doc.setGState(new doc.GState({opacity: 1.0}));
         }
