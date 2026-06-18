@@ -83,11 +83,11 @@
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
                                 <div style="display: flex; gap: 10px;">
                                     <select id="title-dropdown" required style="width: 100px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                        <option value="Mr.">श्री</option>
-                                        <option value="Mrs.">श्रीमती</option>
-                                        <option value="Miss">कुमारी</option>
+                                        <option value="Mr." data-en="Mr." data-hi="श्री">श्री</option>
+                                        <option value="Mrs." data-en="Mrs." data-hi="श्रीमती">श्रीमती</option>
+                                        <option value="Miss" data-en="Miss" data-hi="कुमारी">कुमारी</option>
                                     </select>
-                                    <input type="text" id="fullName" required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" placeholder="Enter Name">
+                                    <input type="text" id="fullName" required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" placeholder="Enter Name" data-placeholder-en="Enter Name" data-placeholder-hi="नाम दर्ज करें">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">रक्त समूह</span><span class="lang-en">Blood Group</span></label>
                                 <select id="bloodGroup" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="">Select / चुनें</option>
+                                    <option value="" data-en="Select" data-hi="चुनें">Select / चुनें</option>
                                     <option value="A+">A+</option><option value="A-">A-</option>
                                     <option value="B+">B+</option><option value="B-">B-</option>
                                     <option value="O+">O+</option><option value="O-">O-</option>
@@ -122,25 +122,25 @@
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">गोत्र <span style="color:red">*</span></span><span class="lang-en">Gotra <span style="color:red">*</span></span></label>
                                 <select id="gotra" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="">Select Gotra / गोत्र चुनें</option>
-                                    <option value="Airan">Airan (ऐरन)</option>
-                                    <option value="Bansal">Bansal (बंसल)</option>
-                                    <option value="Bindal">Bindal (बिंदल)</option>
-                                    <option value="Bhandal">Bhandal (भंदल)</option>
-                                    <option value="Dharan">Dharan (धारण)</option>
-                                    <option value="Garg">Garg (गर्ग)</option>
-                                    <option value="Goyal">Goyal (गोयल)</option>
-                                    <option value="Goyan">Goyan (गोयन)</option>
-                                    <option value="Jindal">Jindal (जिंदल)</option>
-                                    <option value="Kansal">Kansal (कंसल)</option>
-                                    <option value="Kuchhal">Kuchhal (कुच्छल)</option>
-                                    <option value="Madhukul">Madhukul (मधुकुल)</option>
-                                    <option value="Mangal">Mangal (मंगल)</option>
-                                    <option value="Mittal">Mittal (मित्तल)</option>
-                                    <option value="Nangal">Nangal (नांगल)</option>
-                                    <option value="Singhal">Singhal (सिंघल)</option>
-                                    <option value="Tayal">Tayal (तायल)</option>
-                                    <option value="Tingal">Tingal (तिंगल)</option>
+                                    <option value="" data-en="Select Gotra" data-hi="गोत्र चुनें">Select Gotra / गोत्र चुनें</option>
+                                    <option value="Airan" data-en="Airan" data-hi="ऐरन">Airan (ऐरन)</option>
+                                    <option value="Bansal" data-en="Bansal" data-hi="बंसल">Bansal (बंसल)</option>
+                                    <option value="Bindal" data-en="Bindal" data-hi="बिंदल">Bindal (बिंदल)</option>
+                                    <option value="Bhandal" data-en="Bhandal" data-hi="भंदल">Bhandal (भंदल)</option>
+                                    <option value="Dharan" data-en="Dharan" data-hi="धारण">Dharan (धारण)</option>
+                                    <option value="Garg" data-en="Garg" data-hi="गर्ग">Garg (गर्ग)</option>
+                                    <option value="Goyal" data-en="Goyal" data-hi="गोयल">Goyal (गोयल)</option>
+                                    <option value="Goyan" data-en="Goyan" data-hi="गोयन">Goyan (गोयन)</option>
+                                    <option value="Jindal" data-en="Jindal" data-hi="जिंदल">Jindal (जिंदल)</option>
+                                    <option value="Kansal" data-en="Kansal" data-hi="कंसल">Kansal (कंसल)</option>
+                                    <option value="Kuchhal" data-en="Kuchhal" data-hi="कुच्छल">Kuchhal (कुच्छल)</option>
+                                    <option value="Madhukul" data-en="Madhukul" data-hi="मधुकुल">Madhukul (मधुकुल)</option>
+                                    <option value="Mangal" data-en="Mangal" data-hi="मंगल">Mangal (मंगल)</option>
+                                    <option value="Mittal" data-en="Mittal" data-hi="मित्तल">Mittal (मित्तल)</option>
+                                    <option value="Nangal" data-en="Nangal" data-hi="नांगल">Nangal (नांगल)</option>
+                                    <option value="Singhal" data-en="Singhal" data-hi="सिंघल">Singhal (सिंघल)</option>
+                                    <option value="Tayal" data-en="Tayal" data-hi="तायल">Tayal (तायल)</option>
+                                    <option value="Tingal" data-en="Tingal" data-hi="तिंगल">Tingal (तिंगल)</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -171,9 +171,9 @@
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मकान</span><span class="lang-en">House Type</span></label>
                                 <select id="houseType" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="">Select / चुनें</option>
-                                    <option value="Private">Private / निजी</option>
-                                    <option value="Rented">Rented / किराए का</option>
+                                    <option value="" data-en="Select" data-hi="चुनें">Select / चुनें</option>
+                                    <option value="Private" data-en="Private" data-hi="निजी">Private / निजी</option>
+                                    <option value="Rented" data-en="Rented" data-hi="किराए का">Rented / किराए का</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -225,24 +225,27 @@
                                     
                                     const tr = document.createElement('tr');
                                     tr.innerHTML = `
-                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-name" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
-                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-rel" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-name" data-placeholder-en="Name" data-placeholder-hi="नाम" placeholder="Name" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-rel" data-placeholder-en="Relationship" data-placeholder-hi="संबंध" placeholder="Relationship" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
                                         <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-dob" placeholder="DD/MM/YYYY" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; background: #fff;"></td>
                                         <td style="padding: 5px; border: 1px solid #ddd;">
                                             <select class="fam-marital" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
-                                                <option value="">Select / चुनें</option>
-                                                <option value="Unmarried">Unmarried / अविवाहित</option>
-                                                <option value="Married">Married / विवाहित</option>
+                                                <option value="" data-en="Select" data-hi="चुनें">Select / चुनें</option>
+                                                <option value="Unmarried" data-en="Unmarried" data-hi="अविवाहित">Unmarried / अविवाहित</option>
+                                                <option value="Married" data-en="Married" data-hi="विवाहित">Married / विवाहित</option>
                                             </select>
                                         </td>
-                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-edu" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
-                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-bus" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-edu" data-placeholder-en="Education" data-placeholder-hi="शिक्षा" placeholder="Education" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
+                                        <td style="padding: 5px; border: 1px solid #ddd;"><input type="text" class="fam-bus" data-placeholder-en="Business" data-placeholder-hi="व्यवसाय" placeholder="Business"" style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"></td>
                                         <td style="padding: 5px; border: 1px solid #ddd; text-align: center;"><button type="button" onclick="this.closest('tr').remove(); document.getElementById('familyCountWarning').style.display='none';" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">X</button></td>
                                     `;
                                     const dateInput = tr.querySelector('.fam-dob');
                                     flatpickr(dateInput, { dateFormat: "d/m/Y", allowInput: true });
                                     
                                     tbody.appendChild(tr);
+                                    if (typeof updateBilingualOptions === 'function') {
+                                        updateBilingualOptions(document.body.classList.contains('lang-english-mode'));
+                                    }
                                 }
                                 
                                 // Add one empty row by default
@@ -265,15 +268,15 @@
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">सदस्यता प्रकार चुनें <span style="color:red">*</span></span><span class="lang-en">Select Membership Type <span style="color:red">*</span></span></label>
                                 <select required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #f9f9f9; pointer-events: none;">
-                                    <option value="Life" selected>आजीवन सदस्य (Life Member)</option>
+                                    <option value="Life" selected data-en="Life Member" data-hi="आजीवन सदस्य">आजीवन सदस्य (Life Member)</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">भुगतान का माध्यम <span style="color:red">*</span></span><span class="lang-en">Payment Mode <span style="color:red">*</span></span></label>
                                 <select id="paymentMode" onchange="togglePaymentFields()" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="">Select / चुनें</option>
-                                    <option value="Bank">बैंक ट्रांसफर (Bank Transfer)</option>
-                                    <option value="UPI">यूपीआई (UPI)</option>
+                                    <option value="" data-en="Select" data-hi="चुनें">Select / चुनें</option>
+                                    <option value="Bank" data-en="Bank Transfer" data-hi="बैंक ट्रांसफर">बैंक ट्रांसफर (Bank Transfer)</option>
+                                    <option value="UPI" data-en="UPI" data-hi="यूपीआई">यूपीआई (UPI)</option>
                                 </select>
                             </div>
                         </div>
@@ -386,7 +389,7 @@
         </div>
     </footer>
 
-    <script src="react.js?v=2"></script>
+    <script src="react.js?v=3"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const titleDropdown = document.getElementById('title-dropdown');
