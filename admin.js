@@ -62,6 +62,10 @@ function loadMembers() {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
+                if (data.exportUrl) {
+                    window.downloadExcelUrl = data.exportUrl;
+                    document.getElementById('btnDownloadExcel').style.display = 'block';
+                }
                 renderMembers(data.members);
             } else {
                 alert("Failed to load members: " + data.error);
@@ -140,6 +144,15 @@ function createMemberRow(m, isPending) {
         <td>${actionHtml}</td>
     `;
     return tr;
+}
+
+// Download Excel
+function downloadExcel() {
+    if (window.downloadExcelUrl) {
+        window.open(window.downloadExcelUrl, '_blank');
+    } else {
+        alert("Export URL not available. Please refresh the page.");
+    }
 }
 
 // Action Member (Approve/Reject)
