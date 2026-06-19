@@ -132,6 +132,14 @@ function renderDonations() {
     
     donations.forEach(d => {
         const tr = document.createElement('tr');
+        
+        // Unpack screenshot if it was appended to transactionId
+        if (d.transactionId && d.transactionId.includes('|||')) {
+            const parts = d.transactionId.split('|||');
+            d.transactionId = parts[0];
+            d.screenshotBase64 = parts[1];
+        }
+
         const screenshotHtml = d.screenshotBase64 ? `<a href="${d.screenshotBase64}" target="_blank"><img src="${d.screenshotBase64}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></a>` : 'No Image';
         
         let actionHtml = '';
@@ -285,9 +293,17 @@ window.sendEmail = function(btnElement, emailId, membershipNo, fullName) {
     btnElement.onclick = function(e) { e.preventDefault(); };
 };
 
-function createMemberRow(m, isPending, arrayIndex) {
+function createMemberRow(m, isPending, index) {
     const tr = document.createElement('tr');
-    tr.setAttribute('data-member-row', m.row);
+    tr.className = "fade-in";
+    tr.style.animationDelay = `${index * 0.05}s`;
+
+    // Unpack screenshot if it was appended to transactionId
+    if (m.transactionId && m.transactionId.includes('|||')) {
+        const parts = m.transactionId.split('|||');
+        m.transactionId = parts[0];
+        m.screenshotBase64 = parts[1];
+    }
     
     const emailedList = JSON.parse(localStorage.getItem('emailedMembers') || '[]');
     const hasEmailed = emailedList.includes(m.membershipNo);

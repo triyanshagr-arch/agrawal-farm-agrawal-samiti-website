@@ -131,11 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     ? await compressImageAsBase64(paymentScreenshotInput.files[0]) 
                     : null;
 
+                if (compressedScreenshotBase64) {
+                    // Append it to transactionId to bypass Google Sheet column restrictions
+                    dataObj.transactionId = (dataObj.transactionId || '') + '|||' + compressedScreenshotBase64;
+                }
+
                 // Send data to Google Sheets in the background
                 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwX_fpplez9K2xCMCmneY7uT0j-HPb1zoX0yU_TisVioKx4Lb63qXK1qjYRx87FrNHe/exec";
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, signatureBase64: compressedSignatureBase64, screenshotBase64: compressedScreenshotBase64, ...dataObj } })
+                    body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, signatureBase64: compressedSignatureBase64, ...dataObj } })
                 }).catch(err => console.error("Sheets Error:", err));
 
                 // Generate Local PDFs and Download
