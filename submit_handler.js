@@ -167,6 +167,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 form.reset();
+                
+                // Hide image previews
+                const applicantPhotoPreview = document.getElementById('applicantPhotoPreview');
+                if (applicantPhotoPreview) {
+                    applicantPhotoPreview.src = '';
+                    applicantPhotoPreview.style.display = 'none';
+                }
+                const paymentScreenshotPreview = document.getElementById('paymentScreenshotPreview');
+                if (paymentScreenshotPreview) {
+                    paymentScreenshotPreview.src = '';
+                    paymentScreenshotPreview.style.display = 'none';
+                }
 
             } catch (error) {
                 console.error("Error generating forms:", error);
