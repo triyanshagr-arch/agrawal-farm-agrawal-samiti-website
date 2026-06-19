@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isHi = localStorage.getItem('preferredLang') === 'hi';
                 const errorMsg = isHi ? 'फ़ॉर्म जनरेट करते समय एक त्रुटि हुई:' : 'An error occurred while submitting:';
                 alert(`${errorMsg}\n` + (error.stack || error.message || error));
+            } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
             }
