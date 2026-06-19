@@ -543,7 +543,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
     
     const t = {
         en: {
-            title: "Membership Application", samiti: "Agrawal Samaj Samiti Agrawal Farm", address: "Agra Mandir Bhawan, Sunder Nagar 1, ISKCON Road, Jaipur, Rajasthan- 302020",
+            title: "Lifetime Membership Application", samiti: "Agrawal Samaj Samiti Agrawal Farm", address: "Agra Mandir Bhawan, Sunder Nagar 1, ISKCON Road, Jaipur, Rajasthan- 302020",
             family: "Family Members", name: "Name", relation: "Relation", age: "Age", edu: "Education", occ: "Occupation", bg: "Blood Group",
             memNo: "Mem No:", status: "Status:", date: "Date:", noPhoto: "No Photo Provided",
             personal: "Personal Details", fullName: "Full Name", fatherName: "Father's / Husband's Name", dob: "Date of Birth",
@@ -552,7 +552,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
             footer: "This is a system-generated document from the Agrawal Samaj Samiti Admin Dashboard."
         },
         hi: {
-            title: "सदस्यता आवेदन पत्र", samiti: "अग्रवाल समाज समिति अग्रवाल फार्म", address: "अग्र मंदिर भवन, सुंदर नगर 1, इस्कॉन रोड, जयपुर, राजस्थान- 302020",
+            title: "आजीवन सदस्यता पत्र", samiti: "अग्रवाल समाज समिति अग्रवाल फार्म", address: "अग्र मंदिर भवन, सुंदर नगर 1, इस्कॉन रोड, जयपुर, राजस्थान- 302020",
             family: "परिवार के सदस्य", name: "नाम", relation: "संबंध", age: "उम्र", edu: "शिक्षा", occ: "व्यवसाय", bg: "रक्त समूह",
             memNo: "सदस्यता क्र:", status: "स्थिति:", date: "दिनांक:", noPhoto: "फोटो उपलब्ध नहीं",
             personal: "व्यक्तिगत विवरण", fullName: "पूरा नाम", fatherName: "पिता / पति का नाम", dob: "जन्म तिथि",
@@ -655,6 +655,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                         <div class="header-center">
                             <h1>${t.samiti}</h1>
                             <h3>${t.address}</h3>
+                            <h2>${t.title}</h2>
                         </div>
                         <img src="${lakshmiImg}" class="deity-img" alt="Goddess Lakshmi">
                     </div>
