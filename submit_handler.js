@@ -57,7 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Forms...';
+            const currentLang = localStorage.getItem('preferredLang');
+            const btnText = currentLang === 'hi' ? 'फ़ॉर्म सबमिट हो गया' : 'Form Submitted';
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${btnText}`;
             submitBtn.disabled = true;
 
             try {
@@ -143,23 +145,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, signatureBase64: compressedSignatureBase64, ...dataObj } })
                 }).catch(err => console.error("Sheets Error:", err));
 
-                // Generate Local PDFs and Download
+                // Generate Local PDFs and Download (Only Receipt)
                 if (paymentMode !== 'Cash') {
                     await generateReceiptPDF(membershipNo, dataObj, 'save');
                 }
-                await generateFilledTemplate(membershipNo, dataObj, photoUrl, signatureUrl, 'save');
 
                 // Alert User
-                if (paymentMode === 'Cash') {
-                    alert(`Application Form Downloaded Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Please print this application form and submit it along with your Cash payment at the Samiti Office.\n\nYour data has also been saved securely.`);
+                const isHi = localStorage.getItem('preferredLang') === 'hi';
+                const successTitle = isHi ? 'सफलतापूर्वक सबमिट किया गया' : 'Submitted Successfully';
+                const successText = isHi ? 'फ़ॉर्म सफलतापूर्वक सबमिट हो गया है। कृपया व्यवस्थापक की स्वीकृति और ईमेल की प्रतीक्षा करें।' : 'Form submitted successfully. Please wait for admin approval and email.';
+                
+                if (typeof Swal !== 'undefined') {
+                    await Swal.fire({
+                        icon: 'success',
+                        title: successTitle,
+                        text: successText,
+                        confirmButtonColor: '#d32f2f'
+                    });
                 } else {
-                    alert(`Forms Generated Successfully!\nYour Membership No. is: ${membershipNo}\n\nIMPORTANT: Both the Receipt and Membership Form PDFs have been automatically downloaded to your computer/phone.\n\nYour data has been saved securely! You MUST MANUALLY EMAIL both of these downloaded PDFs to: atriyanshagr@gmail.com for Admin Approval!`);
+                    alert(successText);
                 }
+
                 form.reset();
 
             } catch (error) {
                 console.error("Error generating forms:", error);
-                alert("An error occurred while generating the forms:\n" + (error.stack || error.message || error));
+                const isHi = localStorage.getItem('preferredLang') === 'hi';
+                const errorMsg = isHi ? 'फ़ॉर्म जनरेट करते समय एक त्रुटि हुई:' : 'An error occurred while submitting:';
+                alert(`${errorMsg}\n` + (error.stack || error.message || error));
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
             }
@@ -174,7 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const submitBtn = donationForm.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Receipt...';
+            const currentLang = localStorage.getItem('preferredLang');
+            const btnText = currentLang === 'hi' ? 'फ़ॉर्म सबमिट हो गया' : 'Form Submitted';
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${btnText}`;
             submitBtn.disabled = true;
 
             try {
@@ -211,14 +226,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 generateDonationReceiptPDF(receiptNo, dataObj, 'save');
 
                 // Alert User
-                alert(`Donation Receipt Generated Successfully!\nYour Receipt No. is: ${receiptNo}\n\nIMPORTANT: The receipt has been automatically downloaded to your computer/phone. Your data has also been securely saved to the server!`);
+                const isHi = localStorage.getItem('preferredLang') === 'hi';
+                const successTitle = isHi ? 'सफलतापूर्वक सबमिट किया गया' : 'Submitted Successfully';
+                const successText = isHi ? 'फ़ॉर्म सफलतापूर्वक सबमिट हो गया है। कृपया व्यवस्थापक की स्वीकृति और ईमेल की प्रतीक्षा करें।' : 'Form submitted successfully. Please wait for admin approval and email.';
+                
+                if (typeof Swal !== 'undefined') {
+                    await Swal.fire({
+                        icon: 'success',
+                        title: successTitle,
+                        text: successText,
+                        confirmButtonColor: '#d32f2f'
+                    });
+                } else {
+                    alert(successText);
+                }
                 
                 donationForm.reset();
                 document.getElementById('paymentScreenshotPreview').style.display = 'none';
 
             } catch (error) {
                 console.error("Error generating receipt:", error);
-                alert("An error occurred while generating the receipt. Please try again.");
+                const isHi = localStorage.getItem('preferredLang') === 'hi';
+                const errorMsg = isHi ? 'रसीद जनरेट करते समय एक त्रुटि हुई।' : 'An error occurred while submitting. Please try again.';
+                alert(errorMsg);
             } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
