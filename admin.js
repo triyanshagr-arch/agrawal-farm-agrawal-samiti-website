@@ -319,7 +319,7 @@ function createMemberRow(m, isPending, arrayIndex) {
 
     if (isPending) {
         tr.innerHTML = `
-            <td><input type="checkbox" class="row-checkbox" value="${m.row}" data-email="${m.emailId}" data-membership="${m.membershipNo}"></td>
+            <td><input type="checkbox" class="row-checkbox" value="${m.row}" data-email="${m.emailId}" data-membership="${m.membershipNo}" data-name="${m.fullName}"></td>
             <td>${m.membershipNo}</td>
             <td>${photoHtml}</td>
             <td><strong>${m.fullName}</strong><br><small style="color:#666;">Gotra: ${m.gotra}</small></td>
@@ -383,15 +383,43 @@ async function bulkApprove() {
     if (checkboxes.length === 0) return alert('Please select at least one application to approve.');
     if (!confirm(`Approve ${checkboxes.length} selected applications?`)) return;
     
+    const approvals = [];
+    
+    // First, prompt for missing membership numbers before starting any fetch requests
+    for (let cb of checkboxes) {
+        let membershipNo = cb.getAttribute('data-membership');
+        const name = cb.getAttribute('data-name') || 'Applicant';
+        
+        if (!membershipNo || membershipNo === 'undefined' || membershipNo === 'null' || !membershipNo.trim()) {
+            membershipNo = prompt(`Enter Official Membership Number for ${name}:`);
+            if (membershipNo === null) {
+                alert('Bulk approval cancelled.');
+                return; // User cancelled
+            }
+            if (!membershipNo.trim()) {
+                alert(`Membership Number is required. Skipping ${name}.`);
+                continue;
+            }
+        }
+        
+        approvals.push({
+            row: cb.value,
+            email: cb.getAttribute('data-email'),
+            membershipNo: membershipNo.trim()
+        });
+    }
+
+    if (approvals.length === 0) {
+        alert('No applications selected or all were skipped.');
+        return;
+    }
+
     const btn = document.getElementById('btnBulkApprove');
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Approving...';
     btn.disabled = true;
 
-    for (let cb of checkboxes) {
-        const row = cb.value;
-        const email = cb.getAttribute('data-email');
-        const membershipNo = cb.getAttribute('data-membership');
-        await fetch(`${GOOGLE_SCRIPT_URL}?action=approve&row=${row}&email=${encodeURIComponent(email)}&membershipNo=${encodeURIComponent(membershipNo)}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`);
+    for (let app of approvals) {
+        await fetch(`${GOOGLE_SCRIPT_URL}?action=approve&row=${app.row}&email=${encodeURIComponent(app.email)}&membershipNo=${encodeURIComponent(app.membershipNo)}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`);
     }
     
     alert('Bulk approval complete!');
