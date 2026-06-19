@@ -9,44 +9,57 @@ function readFileAsDataURL(file) {
 }
 
 // Helper to compress image
-function compressImageAsBase64(file, maxWidth = 150, quality = 0.5) {
+function compressImageAsBase64(file, maxWidth = 150, quality = 0.6) {
     return new Promise((resolve) => {
         if (!file) { resolve(null); return; }
         const reader = new FileReader();
         reader.onload = (e) => {
             const img = new Image();
             img.onload = () => {
-                const canvas = document.createElement('canvas');
                 let width = img.width;
                 let height = img.height;
+                
+                // Add a maxHeight constraint to prevent super tall screenshots from bloating size
+                const maxHeight = Math.round(maxWidth * 1.5);
+                
                 if (width > maxWidth) {
                     height = Math.round((height * maxWidth) / width);
                     width = maxWidth;
                 }
+                if (height > maxHeight) {
+                    width = Math.round((width * maxHeight) / height);
+                    height = maxHeight;
+                }
+
+                let canvas = document.createElement('canvas');
                 canvas.width = width;
                 canvas.height = height;
-                const ctx = canvas.getContext('2d');
+                let ctx = canvas.getContext('2d');
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, width, height);
                 ctx.drawImage(img, 0, 0, width, height);
                 
                 // Smart compression to fit in Google Sheets cell limit (50k chars)
-                let currentQuality = quality;
-                let dataUrl = canvas.toDataURL('image/jpeg', currentQuality);
+                let dataUrl = canvas.toDataURL('image/jpeg', quality);
                 
-                // Max safe length for google sheet is around 45000 for a cell
-                while(dataUrl.length > 45000 && currentQuality > 0.1) {
-                    currentQuality -= 0.1;
-                    dataUrl = canvas.toDataURL('image/jpeg', currentQuality);
+                // If it's too big, shrink DIMENSIONS by 10% iteratively rather than destroying quality
+                // This keeps text sharp and readable while reducing file size.
+                while(dataUrl.length > 45000 && width > 100) {
+                    width = Math.round(width * 0.9);
+                    height = Math.round(height * 0.9);
+                    
+                    canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx = canvas.getContext('2d');
+                    ctx.fillStyle = "white";
+                    ctx.fillRect(0, 0, width, height);
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // We maintain a minimum quality of 0.5 to keep text legible
+                    dataUrl = canvas.toDataURL('image/jpeg', Math.max(0.5, quality - 0.1));
                 }
                 
-                // If it's STILL too big, scale down further and try again
-                if (dataUrl.length > 45000) {
-                     const smallCanvas = document.createElement('canvas');
-                     const smallCtx = smallCanvas.getContext('2d');
-                     smallCanvas.width = width * 0.7;
-                     smallCanvas.height = height * 0.7;
-                     smallCtx.drawImage(canvas, 0, 0, smallCanvas.width, smallCanvas.height);
-                     dataUrl = smallCanvas.toDataURL('image/jpeg', 0.4);
-                }
                 resolve(dataUrl);
             };
             img.onerror = () => resolve(null);
