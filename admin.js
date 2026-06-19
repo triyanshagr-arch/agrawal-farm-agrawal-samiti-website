@@ -625,7 +625,10 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     .header-center { text-align: center; }
                     .header h1 { color: #D32F2F; margin: 0; font-size: 24px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
                     .header h3 { margin: 2px 0 0 0; color: #444; font-size: 13px; }
-                    .header h2 { margin: 5px auto 0 auto; font-size: 16px; background: #D32F2F; color: #fff; display: inline-block; padding: 3px 15px; border-radius: 15px; }
+                    .header h2 { margin: 5px auto 0 auto; font-size: 16px; border: 2px solid #D32F2F; background: #D32F2F !important; color: #fff !important; display: inline-block; padding: 3px 15px; border-radius: 15px; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+                    @media print {
+                        .header h2 { color: #D32F2F !important; background: transparent !important; }
+                    }
                     .deity-img { height: 119px; width: 140px; object-fit: contain; margin: 0 auto; display: block; }
                     .top-section { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: flex-start; position: relative; z-index: 2; }
                     .meta-info { background: rgba(255, 248, 248, 0.6); border: 1px solid #f0d0d0; padding: 10px; border-radius: 8px; width: 60%; }
