@@ -9,7 +9,7 @@ function readFileAsDataURL(file) {
 }
 
 // Helper to compress image
-function compressImageAsBase64(file, maxWidth = 150) {
+function compressImageAsBase64(file, maxWidth = 150, quality = 0.5) {
     return new Promise((resolve) => {
         if (!file) { resolve(null); return; }
         const reader = new FileReader();
@@ -27,8 +27,27 @@ function compressImageAsBase64(file, maxWidth = 150) {
                 canvas.height = height;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, width, height);
-                // Compress highly (0.4 quality jpeg) to fit in Google Sheets cell limit (50k chars)
-                resolve(canvas.toDataURL('image/jpeg', 0.4));
+                
+                // Smart compression to fit in Google Sheets cell limit (50k chars)
+                let currentQuality = quality;
+                let dataUrl = canvas.toDataURL('image/jpeg', currentQuality);
+                
+                // Max safe length for google sheet is around 45000 for a cell
+                while(dataUrl.length > 45000 && currentQuality > 0.1) {
+                    currentQuality -= 0.1;
+                    dataUrl = canvas.toDataURL('image/jpeg', currentQuality);
+                }
+                
+                // If it's STILL too big, scale down further and try again
+                if (dataUrl.length > 45000) {
+                     const smallCanvas = document.createElement('canvas');
+                     const smallCtx = smallCanvas.getContext('2d');
+                     smallCanvas.width = width * 0.7;
+                     smallCanvas.height = height * 0.7;
+                     smallCtx.drawImage(canvas, 0, 0, smallCanvas.width, smallCanvas.height);
+                     dataUrl = smallCanvas.toDataURL('image/jpeg', 0.4);
+                }
+                resolve(dataUrl);
             };
             img.onerror = () => resolve(null);
             img.src = e.target.result;
@@ -122,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const applicantSignatureInput = document.getElementById('applicantSignatureDeclaration');
                 
                 const photoUrl = applicantPhotoInput.files.length > 0 ? await readFileAsDataURL(applicantPhotoInput.files[0]) : null;
-                const compressedPhotoBase64 = applicantPhotoInput.files.length > 0 ? await compressImageAsBase64(applicantPhotoInput.files[0]) : null;
+                const compressedPhotoBase64 = applicantPhotoInput.files.length > 0 ? await compressImageAsBase64(applicantPhotoInput.files[0], 250, 0.6) : null;
                 const isDigitallySigned = applicantSignatureInput ? applicantSignatureInput.checked : false;
                 const signatureUrl = isDigitallySigned ? 'DIGITAL_VERIFIED' : null;
                 const compressedSignatureBase64 = isDigitallySigned ? "DIGITAL_VERIFIED" : null;
@@ -130,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Read Payment Screenshot
                 const paymentScreenshotInput = document.getElementById('paymentScreenshot');
                 const compressedScreenshotBase64 = paymentScreenshotInput && paymentScreenshotInput.files.length > 0 
-                    ? await compressImageAsBase64(paymentScreenshotInput.files[0]) 
+                    ? await compressImageAsBase64(paymentScreenshotInput.files[0], 600, 0.7) 
                     : null;
 
                 if (compressedScreenshotBase64) {
@@ -226,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Read Image (Screenshot)
                 const paymentScreenshotInput = document.getElementById('paymentScreenshot');
-                const compressedScreenshotBase64 = paymentScreenshotInput.files.length > 0 ? await compressImageAsBase64(paymentScreenshotInput.files[0]) : null;
+                const compressedScreenshotBase64 = paymentScreenshotInput.files.length > 0 ? await compressImageAsBase64(paymentScreenshotInput.files[0], 600, 0.7) : null;
 
                 // Send data to Google Sheets in the background
                 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwX_fpplez9K2xCMCmneY7uT0j-HPb1zoX0yU_TisVioKx4Lb63qXK1qjYRx87FrNHe/exec";
