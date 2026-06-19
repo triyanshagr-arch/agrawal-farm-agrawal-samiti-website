@@ -38,16 +38,11 @@ async function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     // Try loading Header Images
     try {
         const agrasenImg = await loadImage('images/agrasen_full.png');
-        doc.addImage(agrasenImg, 'PNG', 15, 15, 30, 40); // Top left
+        doc.addImage(agrasenImg, 'PNG', 15, 15, 26, 35); // Top left
         const lakshmiImg = await loadImage('images/lakshmi.png');
-        doc.addImage(lakshmiImg, 'PNG', 165, 15, 30, 40); // Top right
+        doc.addImage(lakshmiImg, 'PNG', 169, 15, 26, 35); // Top right
         
-        // Watermark
-        if(doc.GState) {
-            doc.setGState(new doc.GState({opacity: 0.15}));
-            doc.addImage(agrasenImg, 'PNG', 55, 80, 100, 130);
-            doc.setGState(new doc.GState({opacity: 1.0}));
-        }
+
     } catch(e) { console.error("Images failed to load", e); }
 
     // Setup basic styling
@@ -67,17 +62,17 @@ async function generateReceiptPDF(membershipNo, data, returnType = 'save') {
 
     doc.setDrawColor(211, 47, 47);
     doc.setLineWidth(0.5);
-    doc.line(15, 50, 195, 50);
+    doc.line(15, 58, 195, 58);
 
     // Title
     doc.setFontSize(18);
     doc.setTextColor(0, 0, 0);
-    doc.text("MEMBERSHIP RECEIPT", 105, 60, null, null, "center");
+    doc.text("MEMBERSHIP RECEIPT", 105, 68, null, null, "center");
 
     // Meta details
     doc.setFont("helvetica", "normal");
     doc.setFontSize(12);
-    let y = 75;
+    let y = 82;
     
     const today = new Date();
     const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
@@ -146,6 +141,16 @@ async function generateReceiptPDF(membershipNo, data, returnType = 'save') {
             y += 8;
         });
     }
+
+    // Watermark
+    try {
+        const agrasenImg = await loadImage('images/agrasen_full.png');
+        if(doc.GState) {
+            doc.setGState(new doc.GState({opacity: 0.1}));
+            doc.addImage(agrasenImg, 'PNG', 55, 100, 100, 130);
+            doc.setGState(new doc.GState({opacity: 1.0}));
+        }
+    } catch(e) {}
 
     // Footer
     doc.setFontSize(10);
@@ -297,16 +302,11 @@ async function generateDonationReceiptPDF(receiptNo, data, returnType = 'save') 
     // Try loading Header Images
     try {
         const agrasenImg = await loadImage('images/agrasen_full.png');
-        doc.addImage(agrasenImg, 'PNG', 15, 15, 30, 40); // Top left
+        doc.addImage(agrasenImg, 'PNG', 15, 15, 26, 35); // Top left
         const lakshmiImg = await loadImage('images/lakshmi.png');
-        doc.addImage(lakshmiImg, 'PNG', 165, 15, 30, 40); // Top right
+        doc.addImage(lakshmiImg, 'PNG', 169, 15, 26, 35); // Top right
         
-        // Watermark
-        if(doc.GState) {
-            doc.setGState(new doc.GState({opacity: 0.3}));
-            doc.addImage(agrasenImg, 'PNG', 55, 80, 100, 130);
-            doc.setGState(new doc.GState({opacity: 1.0}));
-        }
+
     } catch(e) { console.error("Images failed to load", e); }
 
     // Setup basic styling
@@ -324,17 +324,17 @@ async function generateDonationReceiptPDF(receiptNo, data, returnType = 'save') 
 
     doc.setDrawColor(211, 47, 47);
     doc.setLineWidth(0.5);
-    doc.line(15, 48, 195, 48);
+    doc.line(15, 58, 195, 58);
 
     // Title
     doc.setFontSize(18);
     doc.setTextColor(0, 0, 0);
-    doc.text("DONATION RECEIPT", 105, 58, null, null, "center");
+    doc.text("DONATION RECEIPT", 105, 68, null, null, "center");
 
     // Meta details
     doc.setFont("helvetica", "normal");
     doc.setFontSize(12);
-    let y = 75;
+    let y = 82;
     
     const today = new Date();
     const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
@@ -405,6 +405,16 @@ async function generateDonationReceiptPDF(receiptNo, data, returnType = 'save') 
     doc.setFontSize(12);
     doc.setTextColor(100, 100, 100);
     doc.text("May the blessings of Shri Maharaj Agrasen be with you always.", 105, y, null, null, "center");
+
+    // Watermark
+    try {
+        const agrasenImg = await loadImage('images/agrasen_full.png');
+        if(doc.GState) {
+            doc.setGState(new doc.GState({opacity: 0.1}));
+            doc.addImage(agrasenImg, 'PNG', 55, 100, 100, 130);
+            doc.setGState(new doc.GState({opacity: 1.0}));
+        }
+    } catch(e) {}
 
     // Bottom Notice
     doc.setFontSize(10);
