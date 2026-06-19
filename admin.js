@@ -1140,11 +1140,32 @@ window.promptMonthlyReport = async function() {
     });
 
     if (monthStr) {
-        generateMonthlyReportPDF(monthStr);
+        Swal.fire({
+            title: 'Generating Report...',
+            text: 'Please wait while we prepare the PDF.',
+            allowOutsideClick: false,
+            didOpen: () => { Swal.showLoading(); }
+        });
+        await generateMonthlyReportPDF(monthStr);
     }
 }
 
-function generateMonthlyReportPDF(monthStr) {
+async function getBase64ImageFromUrl(imageUrl) {
+    try {
+        const res = await fetch(imageUrl);
+        const blob = await res.blob();
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+        });
+    } catch (e) {
+        return null;
+    }
+}
+
+async function generateMonthlyReportPDF(monthStr) {
     if (!window.memberData || !window.donationData) {
         Swal.fire("Error", "Data is not fully loaded yet. Please wait.", "error");
         return;
@@ -1185,39 +1206,50 @@ function generateMonthlyReportPDF(monthStr) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     
-    // Header
+    // Header Images
+    const agrasenBase64 = await getBase64ImageFromUrl('images/agrasen_full.png');
+    if (agrasenBase64) {
+        doc.addImage(agrasenBase64, 'PNG', 14, 8, 20, 26);
+    }
+    
+    const lakshmiBase64 = await getBase64ImageFromUrl('images/lakshmi.png');
+    if (lakshmiBase64) {
+        doc.addImage(lakshmiBase64, 'PNG', 176, 8, 20, 26);
+    }
+    
+    // Header Text
     doc.setFontSize(20);
     doc.setTextColor(211, 47, 47); // Red
-    doc.text("Agrawal Samaj Samiti, Jaipur", 105, 20, { align: "center" });
+    doc.text("Agrawal Samaj Samiti, Jaipur", 105, 18, { align: "center" });
     
     doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
-    doc.text(`Monthly Admin Report: ${monthName}`, 105, 30, { align: "center" });
+    doc.text(`Monthly Admin Report: ${monthName}`, 105, 26, { align: "center" });
     
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text(`Generated on: ${new Date().toLocaleDateString('en-IN')}`, 105, 36, { align: "center" });
+    doc.text(`Generated on: ${new Date().toLocaleDateString('en-IN')}`, 105, 32, { align: "center" });
     
     doc.setLineWidth(0.5);
     doc.setDrawColor(200, 200, 200);
-    doc.line(14, 40, 196, 40);
+    doc.line(14, 38, 196, 38);
 
     // Summary Section
     doc.setFontSize(14);
     doc.setTextColor(211, 47, 47);
-    doc.text("1. Executive Summary", 14, 50);
+    doc.text("1. Executive Summary", 14, 48);
     
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.text(`New Members Approved: ${membersThisMonth.length}`, 20, 60);
-    doc.text(`Total Donations Collected: Rs. ${totalDonations.toLocaleString('en-IN')}`, 20, 68);
-    doc.text(`- Mandir Fund: Rs. ${mandirFund.toLocaleString('en-IN')}`, 25, 76);
-    doc.text(`- General Fund: Rs. ${generalFund.toLocaleString('en-IN')}`, 25, 84);
+    doc.text(`New Members Approved: ${membersThisMonth.length}`, 20, 58);
+    doc.text(`Total Donations Collected: Rs. ${totalDonations.toLocaleString('en-IN')}`, 20, 66);
+    doc.text(`- Mandir Fund: Rs. ${mandirFund.toLocaleString('en-IN')}`, 25, 74);
+    doc.text(`- General Fund: Rs. ${generalFund.toLocaleString('en-IN')}`, 25, 82);
 
     // Members Table
     doc.setFontSize(14);
     doc.setTextColor(211, 47, 47);
-    doc.text("2. New Members Joined", 14, 100);
+    doc.text("2. New Members Joined", 14, 95);
     
     const memberRows = membersThisMonth.map((m, i) => [
         i + 1,
@@ -1228,7 +1260,7 @@ function generateMonthlyReportPDF(monthStr) {
     ]);
 
     doc.autoTable({
-        startY: 105,
+        startY: 100,
         head: [['S.No', 'Membership No.', 'Name', 'Mobile', 'Join Date']],
         body: memberRows.length ? memberRows : [['-', '-', 'No new members joined this month', '-', '-']],
         theme: 'grid',
