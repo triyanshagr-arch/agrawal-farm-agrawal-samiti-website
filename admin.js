@@ -1124,3 +1124,157 @@ function emailBookingApplicant(btnElement, emailId, fullName, status) {
     const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailId}&su=${emailSubject}&body=${emailBody}`;
     window.open(gmailLink, '_blank');
 }
+
+// --- Monthly Report Generator ---
+window.promptMonthlyReport = async function() {
+    const { value: monthStr } = await Swal.fire({
+        title: 'Generate Monthly Report',
+        html: '<input id="swal-input-month" type="month" class="swal2-input" value="' + new Date().toISOString().slice(0,7) + '">',
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Generate PDF',
+        confirmButtonColor: '#d32f2f',
+        preConfirm: () => {
+            return document.getElementById('swal-input-month').value;
+        }
+    });
+
+    if (monthStr) {
+        generateMonthlyReportPDF(monthStr);
+    }
+}
+
+function generateMonthlyReportPDF(monthStr) {
+    if (!window.memberData || !window.donationData) {
+        Swal.fire("Error", "Data is not fully loaded yet. Please wait.", "error");
+        return;
+    }
+
+    const [year, month] = monthStr.split('-');
+    const dateObj = new Date(year, parseInt(month) - 1, 1);
+    const monthName = dateObj.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
+
+    // Filter Members
+    const membersThisMonth = window.memberData.filter(m => {
+        if(m.status !== "Approved") return false;
+        const d = new Date(m.timestamp);
+        return d.getFullYear() === parseInt(year) && (d.getMonth() + 1) === parseInt(month);
+    });
+
+    // Filter Donations
+    const donationsThisMonth = window.donationData.filter(d => {
+        if(d.status !== "Verified") return false;
+        const dt = new Date(d.timestamp);
+        return dt.getFullYear() === parseInt(year) && (dt.getMonth() + 1) === parseInt(month);
+    });
+
+    let totalDonations = 0;
+    let mandirFund = 0;
+    let generalFund = 0;
+
+    donationsThisMonth.forEach(d => {
+        const amt = parseFloat(d.donationAmount) || 0;
+        totalDonations += amt;
+        if (d.donationPurpose && d.donationPurpose.toLowerCase().includes('mandir')) {
+            mandirFund += amt;
+        } else {
+            generalFund += amt;
+        }
+    });
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Header
+    doc.setFontSize(20);
+    doc.setTextColor(211, 47, 47); // Red
+    doc.text("Agrawal Samaj Samiti, Jaipur", 105, 20, { align: "center" });
+    
+    doc.setFontSize(14);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`Monthly Admin Report: ${monthName}`, 105, 30, { align: "center" });
+    
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`Generated on: ${new Date().toLocaleDateString('en-IN')}`, 105, 36, { align: "center" });
+    
+    doc.setLineWidth(0.5);
+    doc.setDrawColor(200, 200, 200);
+    doc.line(14, 40, 196, 40);
+
+    // Summary Section
+    doc.setFontSize(14);
+    doc.setTextColor(211, 47, 47);
+    doc.text("1. Executive Summary", 14, 50);
+    
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`New Members Approved: ${membersThisMonth.length}`, 20, 60);
+    doc.text(`Total Donations Collected: Rs. ${totalDonations.toLocaleString('en-IN')}`, 20, 68);
+    doc.text(`- Mandir Fund: Rs. ${mandirFund.toLocaleString('en-IN')}`, 25, 76);
+    doc.text(`- General Fund: Rs. ${generalFund.toLocaleString('en-IN')}`, 25, 84);
+
+    // Members Table
+    doc.setFontSize(14);
+    doc.setTextColor(211, 47, 47);
+    doc.text("2. New Members Joined", 14, 100);
+    
+    const memberRows = membersThisMonth.map((m, i) => [
+        i + 1,
+        m.membershipNo || '-',
+        m.fullName || '-',
+        m.mobileNumber || '-',
+        new Date(m.timestamp).toLocaleDateString('en-IN')
+    ]);
+
+    doc.autoTable({
+        startY: 105,
+        head: [['S.No', 'Membership No.', 'Name', 'Mobile', 'Join Date']],
+        body: memberRows.length ? memberRows : [['-', '-', 'No new members joined this month', '-', '-']],
+        theme: 'grid',
+        headStyles: { fillColor: [211, 47, 47] },
+        styles: { fontSize: 10 }
+    });
+
+    // Donations Table
+    let finalY = doc.lastAutoTable.finalY || 105;
+    
+    if (finalY > 250) {
+        doc.addPage();
+        finalY = 20;
+    } else {
+        finalY += 15;
+    }
+    
+    doc.setFontSize(14);
+    doc.setTextColor(211, 47, 47);
+    doc.text("3. Donations Received", 14, finalY);
+    
+    const donationRows = donationsThisMonth.map((d, i) => [
+        i + 1,
+        d.receiptNo || '-',
+        d.donorName || '-',
+        d.donationPurpose || '-',
+        `Rs. ${parseFloat(d.donationAmount || 0).toLocaleString('en-IN')}`
+    ]);
+
+    doc.autoTable({
+        startY: finalY + 5,
+        head: [['S.No', 'Receipt No.', 'Donor Name', 'Purpose', 'Amount']],
+        body: donationRows.length ? donationRows : [['-', '-', 'No donations received this month', '-', '-']],
+        theme: 'grid',
+        headStyles: { fillColor: [211, 47, 47] },
+        styles: { fontSize: 10 }
+    });
+
+    // Save PDF
+    doc.save(`Monthly_Report_${monthName.replace(' ', '_')}.pdf`);
+    
+    Swal.fire({
+        icon: 'success',
+        title: 'Report Generated',
+        text: 'The monthly report PDF has been downloaded successfully.',
+        timer: 3000,
+        showConfirmButton: false
+    });
+}

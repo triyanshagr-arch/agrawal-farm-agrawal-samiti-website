@@ -39,6 +39,7 @@
                 <li><a href="#" onclick="switchTab('notices', this)"><i class="fas fa-bullhorn"></i> Manage Notices</a></li>
                 <li><a href="#" onclick="switchTab('donations', this)"><i class="fas fa-hand-holding-heart"></i> Manage Donations</a></li>
                 <li><a href="#" onclick="switchTab('bookings', this)"><i class="fas fa-calendar-check"></i> Manage Bookings</a></li>
+                <li><a href="#" style="color: #1976d2;" onclick="promptMonthlyReport()"><i class="fas fa-chart-line"></i> Monthly Report</a></li>
                 <li><a href="#" id="btnDownloadExcel" style="display:none; color: #4CAF50;" onclick="downloadExcel()"><i class="fas fa-file-excel"></i> Download Excel</a></li>
                 <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
@@ -340,6 +341,7 @@
     <!-- PDF Generation Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script src="pdf_generator.js?v=3"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="admin.js?v=20"></script>
