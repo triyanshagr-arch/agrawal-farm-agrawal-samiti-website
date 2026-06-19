@@ -125,11 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const signatureUrl = isDigitallySigned ? 'DIGITAL_VERIFIED' : null;
                 const compressedSignatureBase64 = isDigitallySigned ? "DIGITAL_VERIFIED" : null;
 
+                // Read Payment Screenshot
+                const paymentScreenshotInput = document.getElementById('paymentScreenshot');
+                const compressedScreenshotBase64 = paymentScreenshotInput && paymentScreenshotInput.files.length > 0 
+                    ? await compressImageAsBase64(paymentScreenshotInput.files[0]) 
+                    : null;
+
                 // Send data to Google Sheets in the background
                 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwX_fpplez9K2xCMCmneY7uT0j-HPb1zoX0yU_TisVioKx4Lb63qXK1qjYRx87FrNHe/exec";
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, signatureBase64: compressedSignatureBase64, ...dataObj } })
+                    body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, signatureBase64: compressedSignatureBase64, screenshotBase64: compressedScreenshotBase64, ...dataObj } })
                 }).catch(err => console.error("Sheets Error:", err));
 
                 // Generate Local PDFs and Download

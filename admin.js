@@ -299,7 +299,9 @@ function createMemberRow(m, isPending, arrayIndex) {
         emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${m.fullName.replace(/'/g, "\\'")}')" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</button>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
     }
 
-    const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" alt="Photo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">` : `<div style="width: 50px; height: 50px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #999;">No Photo</div>`;
+    const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" style="width:40px;height:40px;object-fit:cover;border-radius:50%;cursor:pointer;" onclick="viewProfile(${m.row})">` : '<i class="fas fa-user-circle" style="font-size:40px;color:#ccc;cursor:pointer;" onclick="viewProfile('+m.row+')"></i>';
+
+    const screenshotHtml = m.screenshotBase64 ? `<br><a href="${m.screenshotBase64}" target="_blank" style="font-size: 11px; color: #1976d2; display: inline-block; margin-top: 4px;"><i class="fas fa-receipt"></i> View Receipt</a>` : '';
 
     const viewEditHtml = `
         <button class="btn-secondary" style="padding:4px 8px; font-size:12px; margin-bottom: 4px;" onclick="viewProfile(${m.row})"><i class="fas fa-eye"></i> View</button>
@@ -332,7 +334,7 @@ function createMemberRow(m, isPending, arrayIndex) {
             <td><strong>${m.fullName}</strong><br><small style="color:#666;">Gotra: ${m.gotra}</small></td>
             <td>${m.mobileNumber}<br><small>${m.emailId}</small></td>
             <td>${m.paymentMode}</td>
-            <td>${m.transactionId}</td>
+            <td>${m.transactionId}${screenshotHtml}</td>
             <td>${actionHtml}</td>
         `;
     } else {
@@ -342,7 +344,7 @@ function createMemberRow(m, isPending, arrayIndex) {
             <td><strong>${m.fullName}</strong><br><small style="color:#666;">Gotra: ${m.gotra}</small></td>
             <td>${m.mobileNumber}<br><small>${m.emailId}</small></td>
             <td>${m.paymentMode}</td>
-            <td>${m.transactionId}</td>
+            <td>${m.transactionId}${screenshotHtml}</td>
             <td>${actionHtml}</td>
         `;
     }
