@@ -116,7 +116,7 @@ async function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     let printTxId = data.transactionId || 'NA';
-    if (printTxId.includes('|||')) printTxId = printTxId.split('|||')[0];
+    if (String(printTxId).includes('|||')) printTxId = String(printTxId).split('|||')[0];
     doc.text(`Transaction ID / Ref: ${printTxId}`, 20, y);
     y += 10;
     doc.text(`UTR No: ${data.utrNo || "NA"}`, 20, y);
@@ -389,7 +389,7 @@ async function generateDonationReceiptPDF(receiptNo, data, returnType = 'save') 
     doc.text(`Purpose: ${data.donationPurpose || 'NA'}`, 20, y);
     y += 10;
     let printTxId = data.transactionId || 'NA';
-    if (printTxId.includes('|||')) printTxId = printTxId.split('|||')[0];
+    if (String(printTxId).includes('|||')) printTxId = String(printTxId).split('|||')[0];
     doc.text(`Transaction ID / UTR: ${printTxId}`, 20, y);
     y += 25;
 

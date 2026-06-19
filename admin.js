@@ -134,8 +134,8 @@ function renderDonations() {
         const tr = document.createElement('tr');
         
         // Unpack screenshot if it was appended to transactionId
-        if (d.transactionId && d.transactionId.includes('|||')) {
-            const parts = d.transactionId.split('|||');
+        if (d.transactionId && String(d.transactionId).includes('|||')) {
+            const parts = String(d.transactionId).split('|||');
             d.transactionId = parts[0];
             d.screenshotBase64 = parts[1];
         }
@@ -299,8 +299,8 @@ function createMemberRow(m, isPending, index) {
     tr.style.animationDelay = `${index * 0.05}s`;
 
     // Unpack screenshot if it was appended to transactionId
-    if (m.transactionId && m.transactionId.includes('|||')) {
-        const parts = m.transactionId.split('|||');
+    if (m.transactionId && String(m.transactionId).includes('|||')) {
+        const parts = String(m.transactionId).split('|||');
         m.transactionId = parts[0];
         m.screenshotBase64 = parts[1];
     }
