@@ -397,12 +397,24 @@ window.viewPaymentScreenshot = function(type, rowNum) {
     
     if (imgData) {
         if(typeof Swal !== 'undefined') {
+            let fileName = 'Payment_Screenshot.png';
+            if (type === 'donation') fileName = 'Donation_Screenshot.png';
+            if (type === 'membership') fileName = 'Membership_Screenshot.png';
+
             Swal.fire({
-                imageUrl: imgData,
-                imageAlt: 'Payment Screenshot',
-                width: 'auto',
+                title: 'Payment Screenshot',
+                html: `
+                    <div style="max-height: 65vh; overflow-y: auto; text-align: center; margin-bottom: 10px; border: 1px solid #ddd; padding: 5px; border-radius: 8px; background: #f9f9f9;">
+                        <img src="${imgData}" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                    </div>
+                    <div>
+                        <a href="${imgData}" download="${fileName}" style="display: inline-block; padding: 10px 20px; background-color: #4caf50; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-family: inherit;"><i class="fas fa-download"></i> Download Image</a>
+                    </div>
+                `,
+                width: '600px',
                 showConfirmButton: true,
-                confirmButtonText: 'Close'
+                confirmButtonText: 'Close',
+                confirmButtonColor: '#d32f2f'
             });
         } else {
             const win = window.open();
