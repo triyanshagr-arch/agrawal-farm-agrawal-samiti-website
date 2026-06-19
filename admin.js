@@ -621,12 +621,12 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     body { font-family: 'Outfit', Arial, sans-serif; padding: 10px; color: #222; line-height: 1.3; background: #fff; margin: 0; }
                     .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; min-height: 95vh; display: flex; flex-direction: column; }
                     .watermark { position: absolute; top: 25%; left: 15%; width: 70%; opacity: 0.15; z-index: 9999; pointer-events: none; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; mix-blend-mode: multiply; }
-                    .header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; position: relative; z-index: 2; }
+                    .header { display: grid; grid-template-columns: 110px 1fr 110px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; position: relative; z-index: 2; }
                     .header-center { text-align: center; }
                     .header h1 { color: #D32F2F; margin: 0; font-size: 24px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
                     .header h3 { margin: 2px 0 0 0; color: #444; font-size: 13px; }
                     .header h2 { margin: 5px auto 0 auto; font-size: 16px; background: #D32F2F; color: #fff; display: inline-block; padding: 3px 15px; border-radius: 15px; }
-                    .deity-img { height: 80px; width: 70px; object-fit: contain; margin: 0 auto; display: block; }
+                    .deity-img { height: 100px; width: 100px; object-fit: contain; margin: 0 auto; display: block; }
                     .top-section { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: flex-start; position: relative; z-index: 2; }
                     .meta-info { background: rgba(255, 248, 248, 0.6); border: 1px solid #f0d0d0; padding: 10px; border-radius: 8px; width: 60%; }
                     .meta-info p { margin: 2px 0; font-size: 12px; }
