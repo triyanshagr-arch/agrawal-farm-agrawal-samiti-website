@@ -150,7 +150,10 @@ function renderDonations() {
         } else {
             statusBadge = `<span style="color: #4caf50; font-size: 12px; font-weight: bold;"><i class="fas fa-check-circle"></i> Verified</span>`;
             
-            const emailedList = JSON.parse(localStorage.getItem('emailedDonations') || '[]');
+            let emailedList = [];
+            try { emailedList = JSON.parse(localStorage.getItem('emailedDonations') || '[]'); } catch(e) {}
+            if (!Array.isArray(emailedList)) emailedList = [];
+            
             const hasEmailed = emailedList.includes(d.receiptNo);
             
             let emailBtn = '';
@@ -221,7 +224,10 @@ function emailDonationReceipt(btnElement, receiptNo) {
     const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${d.emailId}&su=${emailSubject}&body=${emailBody}`;
     window.open(gmailLink, '_blank');
     
-    const emailedList = JSON.parse(localStorage.getItem('emailedDonations') || '[]');
+    let emailedList = [];
+    try { emailedList = JSON.parse(localStorage.getItem('emailedDonations') || '[]'); } catch(e) {}
+    if (!Array.isArray(emailedList)) emailedList = [];
+    
     if (!emailedList.includes(receiptNo)) {
         emailedList.push(receiptNo);
         localStorage.setItem('emailedDonations', JSON.stringify(emailedList));
@@ -281,7 +287,10 @@ window.sendEmail = function(btnElement, emailId, membershipNo, fullName) {
     const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailId}&su=${emailSubject}&body=${emailBody}`;
     window.open(gmailLink, '_blank');
     
-    const emailedList = JSON.parse(localStorage.getItem('emailedMembers') || '[]');
+    let emailedList = [];
+    try { emailedList = JSON.parse(localStorage.getItem('emailedMembers') || '[]'); } catch(e) {}
+    if (!Array.isArray(emailedList)) emailedList = [];
+    
     if (!emailedList.includes(membershipNo)) {
         emailedList.push(membershipNo);
         localStorage.setItem('emailedMembers', JSON.stringify(emailedList));
@@ -305,14 +314,17 @@ function createMemberRow(m, isPending, index) {
         m.screenshotBase64 = parts[1];
     }
     
-    const emailedList = JSON.parse(localStorage.getItem('emailedMembers') || '[]');
+    let emailedList = [];
+    try { emailedList = JSON.parse(localStorage.getItem('emailedMembers') || '[]'); } catch(e) {}
+    if (!Array.isArray(emailedList)) emailedList = [];
+    
     const hasEmailed = emailedList.includes(m.membershipNo);
     
     let emailBtnHtml;
     if (hasEmailed) {
         emailBtnHtml = `<button class="btn-email" style="background: #9e9e9e; cursor: default;" onclick="event.preventDefault()"><i class="fas fa-check"></i> Email Sent</button>`;
     } else {
-        emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${m.fullName.replace(/'/g, "\\'")}')" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</button>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
+        emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${(m.fullName || '').replace(/'/g, "\\'")}')" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</button>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
     }
 
     const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" style="width:40px;height:40px;object-fit:cover;border-radius:50%;cursor:pointer;" onclick="viewProfile(${m.row})">` : '<i class="fas fa-user-circle" style="font-size:40px;color:#ccc;cursor:pointer;" onclick="viewProfile('+m.row+')"></i>';
