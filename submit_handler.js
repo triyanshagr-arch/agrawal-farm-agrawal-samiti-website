@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Generate Local PDFs and Download
                 if (paymentMode !== 'Cash') {
-                    generateReceiptPDF(membershipNo, dataObj, 'save');
+                    await generateReceiptPDF(membershipNo, dataObj, 'save');
                 }
                 await generateFilledTemplate(membershipNo, dataObj, photoUrl, signatureUrl, 'save');
 

@@ -23,25 +23,61 @@ function loadImage(src) {
 }
 
 // Generate Receipt PDF
-function generateReceiptPDF(membershipNo, data, returnType = 'save') {
+async function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    // Add Logo or Header
-    doc.setFontSize(22);
-    doc.setTextColor(220, 53, 69); // Primary color
-    doc.text("Agrawal Samaj Samiti", 105, 20, null, null, "center");
-    
-    doc.setFontSize(14);
-    doc.setTextColor(50, 50, 50);
-    doc.text("Membership Payment Receipt", 105, 30, null, null, "center");
-
+    // Draw beautiful double border
+    doc.setDrawColor(211, 47, 47); // Red
+    doc.setLineWidth(1.5);
+    doc.rect(10, 10, 190, 277);
+    doc.setDrawColor(255, 215, 0); // Gold
     doc.setLineWidth(0.5);
-    doc.line(20, 35, 190, 35);
+    doc.rect(12, 12, 186, 273);
 
-    // Details
+    // Try loading Header Images
+    try {
+        const agrasenImg = await loadImage('images/agrasen_full.png');
+        doc.addImage(agrasenImg, 'PNG', 15, 15, 30, 40); // Top left
+        const lakshmiImg = await loadImage('images/lakshmi.png');
+        doc.addImage(lakshmiImg, 'PNG', 165, 15, 30, 40); // Top right
+        
+        // Watermark
+        if(doc.GState) {
+            doc.setGState(new doc.GState({opacity: 0.15}));
+            doc.addImage(agrasenImg, 'PNG', 55, 80, 100, 130);
+            doc.setGState(new doc.GState({opacity: 1.0}));
+        }
+    } catch(e) { console.error("Images failed to load", e); }
+
+    // Setup basic styling
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(24);
+    doc.setTextColor(211, 47, 47); // Primary Red
+    doc.text("AGRAWAL SAMAJ SAMITI", 105, 25, null, null, "center");
+
     doc.setFontSize(12);
-    let y = 50;
+    doc.setTextColor(80, 80, 80);
+    doc.text("Agrawal Farm, Mansarovar, Jaipur (Reg.)", 105, 33, null, null, "center");
+    
+    doc.setFontSize(10);
+    doc.text("Email: assagarwalfarmjpr@gmail.com | Phone: +91 9829220486", 105, 40, null, null, "center");
+    doc.setTextColor(211, 47, 47);
+    doc.text("Registration No: 169/93-94", 105, 46, null, null, "center");
+
+    doc.setDrawColor(211, 47, 47);
+    doc.setLineWidth(0.5);
+    doc.line(15, 50, 195, 50);
+
+    // Title
+    doc.setFontSize(18);
+    doc.setTextColor(0, 0, 0);
+    doc.text("MEMBERSHIP RECEIPT", 105, 60, null, null, "center");
+
+    // Meta details
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    let y = 75;
     
     const today = new Date();
     const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
@@ -49,22 +85,40 @@ function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     doc.text(`Membership No: ${membershipNo}`, 120, y);
     y += 15;
 
+    // Member Details
+    doc.setFillColor(255, 243, 243);
+    doc.rect(15, y-5, 180, 8, 'F');
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.setTextColor(211, 47, 47);
+    doc.text("Member Details", 20, y);
+    y += 12;
+    
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
     doc.text(`Name: ${data.title || ''} ${data.fullName || 'NA'}`, 20, y);
     y += 10;
-    doc.text(`Mobile Number: ${data.mobileNumber || 'NA'}`, 20, y);
+    doc.text(`Mobile: ${data.mobileNumber || 'NA'}`, 20, y);
     doc.text(`Email: ${data.emailId || 'NA'}`, 120, y);
     y += 10;
+    doc.setFont("helvetica", "bold");
     doc.text(`Membership Type: Lifetime Membership (Rs. 501/-)`, 20, y);
+    doc.setFont("helvetica", "normal");
     
-    y += 15;
-    doc.setLineWidth(0.5);
-    doc.line(20, y, 190, y);
     y += 15;
 
     // Transaction Details
+    doc.setFillColor(255, 243, 243);
+    doc.rect(15, y-5, 180, 8, 'F');
+    doc.setFont("helvetica", "bold");
     doc.setFontSize(14);
+    doc.setTextColor(211, 47, 47);
     doc.text("Transaction Details", 20, y);
-    y += 10;
+    y += 12;
+
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
     doc.text(`Transaction ID / Ref: ${data.transactionId || 'NA'}`, 20, y);
     y += 10;
@@ -73,24 +127,29 @@ function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     doc.text(`Bank Account Name: ${data.bankAccountName || 'NA'}`, 20, y);
 
     y += 15;
-    doc.setLineWidth(0.5);
-    doc.line(20, y, 190, y);
-    y += 10;
 
-    // Family Details (Briefly)
+    // Family Details
     if (data.familyMembers && data.familyMembers.length > 0) {
+        doc.setFillColor(255, 243, 243);
+        doc.rect(15, y-5, 180, 8, 'F');
+        doc.setFont("helvetica", "bold");
         doc.setFontSize(14);
+        doc.setTextColor(211, 47, 47);
         doc.text(`Family Members (${data.familyMembers.length})`, 20, y);
-        y += 8;
-        doc.setFontSize(10);
+        y += 12;
+        
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(11);
         data.familyMembers.forEach((m, idx) => {
             doc.text(`${idx + 1}. ${m.name} (${m.relationship}) - DOB: ${m.dob} - Edu: ${m.education}`, 20, y);
-            y += 6;
+            y += 8;
         });
     }
 
+    // Footer
     doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
+    doc.setTextColor(150, 150, 150);
     doc.text("This is a computer-generated receipt and does not require a physical signature.", 105, 280, null, null, "center");
 
     if (returnType === 'save') {
