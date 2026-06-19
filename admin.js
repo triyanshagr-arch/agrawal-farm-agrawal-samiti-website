@@ -75,7 +75,7 @@ function loadMembers() {
                 window.memberData = data.members || [];
                 renderMembers();
             } else {
-                alert("Failed to load members: " + data.error);
+                Swal.fire("Failed to load members: " + data.error);
             }
         });
 }
@@ -92,7 +92,7 @@ function loadDonations() {
                 window.donationData = data.donations || [];
                 renderDonations();
             } else {
-                alert("Failed to load donations: " + data.error);
+                Swal.fire("Failed to load donations: " + data.error);
             }
         });
 }
@@ -170,17 +170,24 @@ function renderDonations() {
     });
 }
 
-function verifyDonation(rowNum) {
-    if (!confirm("Are you sure you want to VERIFY this donation? This will add the amount to the total collections.")) return;
+async function verifyDonation(rowNum) {
+    const conf = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'Are you sure you want to VERIFY this donation? This will add the amount to the total collections.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Verify!'
+    });
+    if (!conf.isConfirmed) return;
     
     fetch(`${GOOGLE_SCRIPT_URL}?action=verify_donation&row=${rowNum}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                alert("Donation verified successfully!");
+                Swal.fire("Donation verified successfully!");
                 loadDonations();
             } else {
-                alert("Verification failed: " + data.error);
+                Swal.fire("Verification failed: " + data.error);
             }
         });
 }
@@ -192,7 +199,7 @@ function printDonationReceipt(receiptNo) {
     if (typeof generateDonationReceiptPDF === 'function') {
         generateDonationReceiptPDF(receiptNo, d, 'save');
     } else {
-        alert("PDF generator script not found.");
+        Swal.fire("PDF generator script not found.");
     }
 }
 
@@ -345,19 +352,46 @@ function createMemberRow(m, isPending, arrayIndex) {
 // Download Excel
 function downloadExcel() {
     if (window.downloadExcelUrl) window.open(window.downloadExcelUrl, '_blank');
-    else alert("Export URL not available. Please refresh the page.");
+    else Swal.fire("Export URL not available. Please refresh the page.");
 }
 
 // Single Action
-function actionMember(rowNum, actionType, email = '', membershipNo = '') {
-    if (!confirm(`Are you sure you want to ${actionType.toUpperCase()} this application?`)) return;
-    fetch(`${GOOGLE_SCRIPT_URL}?action=${actionType}&row=${rowNum}&email=${encodeURIComponent(email)}&membershipNo=${encodeURIComponent(membershipNo)}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+async function actionMember(rowNum, actionType, email = '', existingMembershipNo = '') {
+    let finalMembershipNo = existingMembershipNo;
+    
+    if (actionType === 'approve') {
+        const { value: result } = await Swal.fire({
+            title: 'Enter Official Membership Number',
+            text: `Please enter the Official Membership Number for this approved member:`,
+            input: 'text',
+            inputValue: existingMembershipNo || "",
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value.trim()) {
+                    return 'Membership Number is required to approve an application!'
+                }
+            }
+        });
+        if (!result) return;
+        finalMembershipNo = result;
+    }
+
+    const conf = await Swal.fire({
+        title: 'Are you sure?',
+        text: `Are you sure you want to ${actionType.toUpperCase()} this application?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: `Yes, ${actionType} it!`
+    });
+    if (!conf.isConfirmed) return;
+
+    fetch(`${GOOGLE_SCRIPT_URL}?action=${actionType}&row=${rowNum}&email=${encodeURIComponent(email)}&membershipNo=${encodeURIComponent(finalMembershipNo)}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                alert(`Application ${actionType}d successfully!`);
+                Swal.fire(`Application ${actionType}d successfully!`);
                 loadMembers(); 
-            } else alert("Action failed: " + data.error);
+            } else Swal.fire("Action failed: " + data.error);
         });
 }
 
@@ -380,8 +414,16 @@ function toggleSelectAll(source, tbodyId) {
 // Bulk Approve
 async function bulkApprove() {
     const checkboxes = document.querySelectorAll('#membersTableBody .row-checkbox:checked');
-    if (checkboxes.length === 0) return alert('Please select at least one application to approve.');
-    if (!confirm(`Approve ${checkboxes.length} selected applications?`)) return;
+    if (checkboxes.length === 0) { Swal.fire('Please select at least one application to approve.'); return; }
+    
+    const conf = await Swal.fire({
+        title: 'Are you sure?',
+        text: `Approve ${checkboxes.length} selected applications?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, approve all!'
+    });
+    if (!conf.isConfirmed) return;
     
     const approvals = [];
     
@@ -391,15 +433,22 @@ async function bulkApprove() {
         const name = cb.getAttribute('data-name') || 'Applicant';
         
         if (!membershipNo || membershipNo === 'undefined' || membershipNo === 'null' || !membershipNo.trim()) {
-            membershipNo = prompt(`Enter Official Membership Number for ${name}:`);
-            if (membershipNo === null) {
-                alert('Bulk approval cancelled.');
+            const { value: result } = await Swal.fire({
+                title: 'Official Membership Number',
+                text: `Enter Official Membership Number for ${name}:`,
+                input: 'text',
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value.trim()) {
+                        return 'Membership Number is required!'
+                    }
+                }
+            });
+            if (!result) {
+                Swal.fire('Bulk approval cancelled.');
                 return; // User cancelled
             }
-            if (!membershipNo.trim()) {
-                alert(`Membership Number is required. Skipping ${name}.`);
-                continue;
-            }
+            membershipNo = result;
         }
         
         approvals.push({
@@ -410,7 +459,7 @@ async function bulkApprove() {
     }
 
     if (approvals.length === 0) {
-        alert('No applications selected or all were skipped.');
+        Swal.fire('No applications selected or all were skipped.');
         return;
     }
 
@@ -422,7 +471,7 @@ async function bulkApprove() {
         await fetch(`${GOOGLE_SCRIPT_URL}?action=approve&row=${app.row}&email=${encodeURIComponent(app.email)}&membershipNo=${encodeURIComponent(app.membershipNo)}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`);
     }
     
-    alert('Bulk approval complete!');
+    Swal.fire('Bulk approval complete!');
     btn.innerHTML = '<i class="fas fa-check-double"></i> Approve Selected';
     btn.disabled = false;
     document.getElementById('selectAllPending').checked = false;
@@ -545,16 +594,16 @@ document.getElementById('editMemberForm').addEventListener('submit', (e) => {
     .then(res => res.json())
     .then(data => {
         if (data.success) {
-            alert('Member updated successfully!');
+            Swal.fire('Member updated successfully!');
             closeModal('editProfileModal');
             loadMembers();
         } else {
-            alert('Error: ' + data.error);
+            Swal.fire('Error: ' + data.error);
         }
     })
     .catch(err => {
         // Handle CORS redirect false positive
-        alert('Member updated! (Background refresh may occur)');
+        Swal.fire('Member updated! (Background refresh may occur)');
         closeModal('editProfileModal');
         loadMembers();
     })
@@ -864,11 +913,11 @@ document.getElementById('addNoticeForm').addEventListener('submit', async (e) =>
         })
         .then(res => res.json())
         .then(data => {
-            if (data.success) { alert("Notice Published Successfully!"); e.target.reset(); } 
-            else { alert("Error: " + data.error); }
+            if (data.success) { Swal.fire("Notice Published Successfully!"); e.target.reset(); } 
+            else { Swal.fire("Error: " + data.error); }
         })
         .catch(err => {
-            alert("Notice published! (Note: background redirect may cause a harmless network error)");
+            Swal.fire("Notice published! (Note: background redirect may cause a harmless network error)");
             e.target.reset();
         })
         .finally(() => {
@@ -876,7 +925,7 @@ document.getElementById('addNoticeForm').addEventListener('submit', async (e) =>
             btn.disabled = false;
         });
     } catch (e) {
-        alert("Translation or processing failed. Please try again.");
+        Swal.fire("Translation or processing failed. Please try again.");
         btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish';
         btn.disabled = false;
     }
@@ -898,7 +947,7 @@ function loadBookings() {
                 window.bookingData = data.bookings || [];
                 renderBookings();
             } else {
-                alert("Failed to load bookings: " + data.error);
+                Swal.fire("Failed to load bookings: " + data.error);
             }
         });
 }
@@ -949,17 +998,24 @@ function renderBookings() {
     });
 }
 
-function actionBooking(rowNum, newStatus, email, fullName) {
-    if (!confirm(`Are you sure you want to mark this booking as ${newStatus.toUpperCase()}?`)) return;
+async function actionBooking(rowNum, newStatus, email, fullName) {
+    const conf = await Swal.fire({
+        title: 'Are you sure?',
+        text: `Are you sure you want to mark this booking as ${newStatus.toUpperCase()}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: `Yes, mark as ${newStatus}!`
+    });
+    if (!conf.isConfirmed) return;
     
     fetch(`${GOOGLE_SCRIPT_URL}?action=update_booking_status&row=${rowNum}&status=${newStatus}&email=${encodeURIComponent(email)}&bookingName=${encodeURIComponent(fullName)}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             if (data.success) {
-                alert(`Booking marked as ${newStatus} successfully!`);
+                Swal.fire(`Booking marked as ${newStatus} successfully!`);
                 loadBookings();
             } else {
-                alert("Action failed: " + data.error);
+                Swal.fire("Action failed: " + data.error);
             }
         });
 }
