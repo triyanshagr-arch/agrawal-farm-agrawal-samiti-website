@@ -25,122 +25,120 @@ function loadImage(src) {
 // Generate Receipt PDF
 async function generateReceiptPDF(membershipNo, data, returnType = 'save') {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({ format: 'a5', orientation: 'portrait' });
 
     // Draw beautiful double border
     doc.setDrawColor(211, 47, 47); // Red
-    doc.setLineWidth(1.5);
-    doc.rect(10, 10, 190, 277);
+    doc.setLineWidth(1);
+    doc.rect(5, 5, 138, 200);
     doc.setDrawColor(255, 215, 0); // Gold
     doc.setLineWidth(0.5);
-    doc.rect(12, 12, 186, 273);
+    doc.rect(7, 7, 134, 196);
 
     // Try loading Header Images
     try {
         const agrasenImg = await loadImage('images/agrasen_full.png');
-        doc.addImage(agrasenImg, 'PNG', 15, 15, 26, 35); // Top left
+        doc.addImage(agrasenImg, 'PNG', 10, 10, 18, 24); // Top left
         const lakshmiImg = await loadImage('images/lakshmi.png');
-        doc.addImage(lakshmiImg, 'PNG', 169, 15, 26, 35); // Top right
-        
-
+        doc.addImage(lakshmiImg, 'PNG', 120, 10, 18, 24); // Top right
     } catch(e) { console.error("Images failed to load", e); }
 
     // Setup basic styling
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(24);
+    doc.setFontSize(16);
     doc.setTextColor(211, 47, 47); // Primary Red
-    doc.text("AGRAWAL SAMAJ SAMITI", 105, 25, null, null, "center");
+    doc.text("AGRAWAL SAMAJ SAMITI", 74, 18, null, null, "center");
 
-    doc.setFontSize(12);
+    doc.setFontSize(9);
     doc.setTextColor(80, 80, 80);
-    doc.text("Agrawal Farm, Mansarovar, Jaipur (Reg.)", 105, 33, null, null, "center");
+    doc.text("Agrawal Farm, Mansarovar, Jaipur (Reg.)", 74, 24, null, null, "center");
     
-    doc.setFontSize(10);
-    doc.text("Email: assagarwalfarmjpr@gmail.com | Phone: +91 9829220486", 105, 40, null, null, "center");
+    doc.setFontSize(7);
+    doc.text("Email: assagarwalfarmjpr@gmail.com | Phone: +91 9829220486", 74, 29, null, null, "center");
     doc.setTextColor(211, 47, 47);
-    doc.text("Registration No: 169/93-94", 105, 46, null, null, "center");
+    doc.text("Registration No: 169/93-94", 74, 34, null, null, "center");
 
     doc.setDrawColor(211, 47, 47);
     doc.setLineWidth(0.5);
-    doc.line(15, 58, 195, 58);
+    doc.line(10, 40, 138, 40);
 
     // Title
-    doc.setFontSize(18);
+    doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
-    doc.text("MEMBERSHIP RECEIPT", 105, 68, null, null, "center");
+    doc.text("MEMBERSHIP RECEIPT", 74, 48, null, null, "center");
 
     // Meta details
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
-    let y = 82;
+    doc.setFontSize(9);
+    let y = 58;
     
     const today = new Date();
     const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
-    doc.text(`Receipt Date: ${formattedToday}`, 20, y);
-    doc.text(`Membership No: ${membershipNo}`, 120, y);
-    y += 15;
+    doc.text(`Receipt Date: ${formattedToday}`, 12, y);
+    doc.text(`Membership No: ${membershipNo}`, 85, y);
+    y += 10;
 
     // Member Details
     doc.setFillColor(255, 243, 243);
-    doc.rect(15, y-5, 180, 8, 'F');
+    doc.rect(10, y-4, 128, 6, 'F');
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(14);
+    doc.setFontSize(11);
     doc.setTextColor(211, 47, 47);
-    doc.text("Member Details", 20, y);
-    y += 12;
+    doc.text("Member Details", 12, y);
+    y += 8;
     
     doc.setFont("helvetica", "normal");
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.text(`Name: ${data.title || ''} ${data.fullName || 'NA'}`, 20, y);
-    y += 10;
-    doc.text(`Mobile: ${data.mobileNumber || 'NA'}`, 20, y);
-    doc.text(`Email: ${data.emailId || 'NA'}`, 120, y);
-    y += 10;
+    doc.setFontSize(9);
+    doc.text(`Name: ${data.title || ''} ${data.fullName || 'NA'}`, 12, y);
+    y += 6;
+    doc.text(`Mobile: ${data.mobileNumber || 'NA'}`, 12, y);
+    doc.text(`Email: ${data.emailId || 'NA'}`, 75, y);
+    y += 6;
     doc.setFont("helvetica", "bold");
-    doc.text(`Membership Type: Lifetime Membership (Rs. 501/-)`, 20, y);
+    doc.text(`Membership Type: Lifetime Membership (Rs. 501/-)`, 12, y);
     doc.setFont("helvetica", "normal");
     
-    y += 15;
+    y += 10;
 
     // Transaction Details
     doc.setFillColor(255, 243, 243);
-    doc.rect(15, y-5, 180, 8, 'F');
+    doc.rect(10, y-4, 128, 6, 'F');
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(14);
+    doc.setFontSize(11);
     doc.setTextColor(211, 47, 47);
-    doc.text("Transaction Details", 20, y);
-    y += 12;
+    doc.text("Transaction Details", 12, y);
+    y += 8;
 
     doc.setFont("helvetica", "normal");
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
+    doc.setFontSize(9);
     let printTxId = data.transactionId || 'NA';
     if (String(printTxId).includes('|||')) printTxId = String(printTxId).split('|||')[0];
-    doc.text(`Transaction ID / Ref: ${printTxId}`, 20, y);
-    y += 10;
-    doc.text(`UTR No: ${data.utrNo || "NA"}`, 20, y);
-    y += 10;
-    doc.text(`Bank Account Name: ${data.bankAccountName || 'NA'}`, 20, y);
+    doc.text(`Transaction ID / Ref: ${printTxId}`, 12, y);
+    y += 6;
+    doc.text(`UTR No: ${data.utrNo || "NA"}`, 12, y);
+    y += 6;
+    doc.text(`Bank Account Name: ${data.bankAccountName || 'NA'}`, 12, y);
 
-    y += 15;
+    y += 10;
 
     // Family Details
     if (data.familyMembers && data.familyMembers.length > 0) {
         doc.setFillColor(255, 243, 243);
-        doc.rect(15, y-5, 180, 8, 'F');
+        doc.rect(10, y-4, 128, 6, 'F');
         doc.setFont("helvetica", "bold");
-        doc.setFontSize(14);
+        doc.setFontSize(11);
         doc.setTextColor(211, 47, 47);
-        doc.text(`Family Members (${data.familyMembers.length})`, 20, y);
-        y += 12;
+        doc.text(`Family Members (${data.familyMembers.length})`, 12, y);
+        y += 8;
         
         doc.setFont("helvetica", "normal");
         doc.setTextColor(0, 0, 0);
-        doc.setFontSize(11);
+        doc.setFontSize(8);
         data.familyMembers.forEach((m, idx) => {
-            doc.text(`${idx + 1}. ${m.name} (${m.relationship}) - DOB: ${m.dob} - Edu: ${m.education}`, 20, y);
-            y += 8;
+            doc.text(`${idx + 1}. ${m.name} (${m.relationship}) - DOB: ${m.dob} - Edu: ${m.education}`, 12, y);
+            y += 6;
         });
     }
 
@@ -149,15 +147,15 @@ async function generateReceiptPDF(membershipNo, data, returnType = 'save') {
         const agrasenImg = await loadImage('images/agrasen_full.png');
         if(doc.GState) {
             doc.setGState(new doc.GState({opacity: 0.1}));
-            doc.addImage(agrasenImg, 'PNG', 55, 100, 100, 130);
+            doc.addImage(agrasenImg, 'PNG', 44, 70, 60, 78);
             doc.setGState(new doc.GState({opacity: 1.0}));
         }
     } catch(e) {}
 
     // Footer
-    doc.setFontSize(10);
+    doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text("This is a computer-generated receipt and does not require a physical signature.", 105, 280, null, null, "center");
+    doc.text("This is a computer-generated receipt and does not require a physical signature.", 74, 202, null, null, "center");
 
     if (returnType === 'save') {
         doc.save(`Receipt_${(data.fullName || 'User').replace(/\s+/g, '_')}_${membershipNo}.pdf`);
@@ -291,138 +289,136 @@ async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl
 // Generate Donation Receipt PDF
 async function generateDonationReceiptPDF(receiptNo, data, returnType = 'save') {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({ format: 'a5', orientation: 'portrait' });
 
     // Draw beautiful double border
     doc.setDrawColor(211, 47, 47); // Red
-    doc.setLineWidth(1.5);
-    doc.rect(10, 10, 190, 277);
+    doc.setLineWidth(1);
+    doc.rect(5, 5, 138, 200);
     doc.setDrawColor(255, 215, 0); // Gold
     doc.setLineWidth(0.5);
-    doc.rect(12, 12, 186, 273);
+    doc.rect(7, 7, 134, 196);
 
     // Try loading Header Images
     try {
         const agrasenImg = await loadImage('images/agrasen_full.png');
-        doc.addImage(agrasenImg, 'PNG', 15, 15, 26, 35); // Top left
+        doc.addImage(agrasenImg, 'PNG', 10, 10, 18, 24); // Top left
         const lakshmiImg = await loadImage('images/lakshmi.png');
-        doc.addImage(lakshmiImg, 'PNG', 169, 15, 26, 35); // Top right
-        
-
+        doc.addImage(lakshmiImg, 'PNG', 120, 10, 18, 24); // Top right
     } catch(e) { console.error("Images failed to load", e); }
 
     // Setup basic styling
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(24);
+    doc.setFontSize(16);
     doc.setTextColor(211, 47, 47); // Primary Red
-    doc.text("AGRAWAL SAMAJ SAMITI", 105, 25, null, null, "center");
+    doc.text("AGRAWAL SAMAJ SAMITI", 74, 18, null, null, "center");
 
-    doc.setFontSize(12);
+    doc.setFontSize(9);
     doc.setTextColor(80, 80, 80);
-    doc.text("Agrawal Farm, Mansarovar, Jaipur (Reg.)", 105, 33, null, null, "center");
+    doc.text("Agrawal Farm, Mansarovar, Jaipur (Reg.)", 74, 24, null, null, "center");
     
-    doc.setFontSize(10);
-    doc.text("Email: assagarwalfarmjpr@gmail.com | Phone: +91 9829220486", 105, 40, null, null, "center");
+    doc.setFontSize(7);
+    doc.text("Email: assagarwalfarmjpr@gmail.com | Phone: +91 9829220486", 74, 29, null, null, "center");
 
     doc.setDrawColor(211, 47, 47);
     doc.setLineWidth(0.5);
-    doc.line(15, 58, 195, 58);
+    doc.line(10, 35, 138, 35);
 
     // Title
-    doc.setFontSize(18);
+    doc.setFontSize(14);
     doc.setTextColor(0, 0, 0);
-    doc.text("DONATION RECEIPT", 105, 68, null, null, "center");
+    doc.text("DONATION RECEIPT", 74, 43, null, null, "center");
 
     // Meta details
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
-    let y = 82;
+    doc.setFontSize(9);
+    let y = 52;
     
     const today = new Date();
     const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
-    doc.text(`Receipt Date: ${formattedToday}`, 20, y);
-    doc.text(`Receipt No: ${receiptNo}`, 120, y);
-    y += 15;
+    doc.text(`Receipt Date: ${formattedToday}`, 12, y);
+    doc.text(`Receipt No: ${receiptNo}`, 85, y);
+    y += 8;
 
     // Donor Details
     doc.setFillColor(255, 243, 243);
-    doc.rect(15, y-5, 180, 8, 'F');
+    doc.rect(10, y-4, 128, 6, 'F');
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(14);
+    doc.setFontSize(11);
     doc.setTextColor(211, 47, 47);
-    doc.text("Donor Details", 20, y);
-    y += 12;
+    doc.text("Donor Details", 12, y);
+    y += 8;
     
     doc.setFont("helvetica", "normal");
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.text(`Name: ${data.donorName || 'NA'}`, 20, y);
-    y += 10;
-    doc.text(`Mobile: ${data.mobileNumber || 'NA'}`, 20, y);
-    doc.text(`Email: ${data.emailId || 'NA'}`, 120, y);
-    y += 10;
-    doc.text(`PAN: ${data.panNumber || 'NA'}`, 20, y);
-    y += 10;
+    doc.setFontSize(9);
+    doc.text(`Name: ${data.donorName || 'NA'}`, 12, y);
+    y += 6;
+    doc.text(`Mobile: ${data.mobileNumber || 'NA'}`, 12, y);
+    doc.text(`Email: ${data.emailId || 'NA'}`, 75, y);
+    y += 6;
+    doc.text(`PAN: ${data.panNumber || 'NA'}`, 12, y);
+    y += 6;
     
     // Address handling (multiline)
-    doc.text(`Address:`, 20, y);
-    const addressLines = doc.splitTextToSize(data.address || 'NA', 140);
-    doc.text(addressLines, 45, y);
-    y += (addressLines.length * 6) + 15;
+    doc.text(`Address:`, 12, y);
+    const addressLines = doc.splitTextToSize(data.address || 'NA', 95);
+    doc.text(addressLines, 28, y);
+    y += (addressLines.length * 4) + 8;
 
     // Donation Details
     doc.setFillColor(255, 243, 243);
-    doc.rect(15, y-5, 180, 8, 'F');
+    doc.rect(10, y-4, 128, 6, 'F');
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(14);
+    doc.setFontSize(11);
     doc.setTextColor(211, 47, 47);
-    doc.text("Donation Details", 20, y);
-    y += 12;
+    doc.text("Donation Details", 12, y);
+    y += 8;
     
     doc.setFont("helvetica", "normal");
     doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.text(`Amount: Rs. ${data.donationAmount || '0'} /-`, 20, y);
-    y += 10;
-    doc.text(`Amount in words: Rupees ${convertNumberToWords(data.donationAmount || 0)} Only`, 20, y);
-    y += 10;
-    doc.text(`Purpose: ${data.donationPurpose || 'NA'}`, 20, y);
-    y += 10;
+    doc.setFontSize(9);
+    doc.text(`Amount: Rs. ${data.donationAmount || '0'} /-`, 12, y);
+    y += 6;
+    doc.text(`Amount in words: Rupees ${convertNumberToWords(data.donationAmount || 0)} Only`, 12, y);
+    y += 6;
+    doc.text(`Purpose: ${data.donationPurpose || 'NA'}`, 12, y);
+    y += 6;
     let printTxId = data.transactionId || 'NA';
     if (String(printTxId).includes('|||')) printTxId = String(printTxId).split('|||')[0];
-    doc.text(`Transaction ID / UTR: ${printTxId}`, 20, y);
-    y += 25;
+    doc.text(`Transaction ID / UTR: ${printTxId}`, 12, y);
+    y += 15;
 
     // Footer & Thank you
     doc.setDrawColor(211, 47, 47);
     doc.setLineWidth(0.5);
-    doc.line(15, y, 195, y);
-    y += 15;
+    doc.line(10, y, 138, y);
+    y += 8;
 
     doc.setFont("helvetica", "italic");
-    doc.setFontSize(16);
+    doc.setFontSize(11);
     doc.setTextColor(211, 47, 47);
-    doc.text("Thank you for your generous contribution!", 105, y, null, null, "center");
+    doc.text("Thank you for your generous contribution!", 74, y, null, null, "center");
     
-    y += 10;
+    y += 6;
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
+    doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
-    doc.text("May the blessings of Shri Maharaj Agrasen be with you always.", 105, y, null, null, "center");
+    doc.text("May the blessings of Shri Maharaj Agrasen be with you always.", 74, y, null, null, "center");
 
     // Watermark
     try {
         const agrasenImg = await loadImage('images/agrasen_full.png');
         if(doc.GState) {
             doc.setGState(new doc.GState({opacity: 0.1}));
-            doc.addImage(agrasenImg, 'PNG', 55, 100, 100, 130);
+            doc.addImage(agrasenImg, 'PNG', 44, 70, 60, 78);
             doc.setGState(new doc.GState({opacity: 1.0}));
         }
     } catch(e) {}
 
     // Bottom Notice
-    doc.setFontSize(10);
-    doc.text("This is a computer-generated receipt and does not require a physical signature.", 105, 275, null, null, "center");
+    doc.setFontSize(7);
+    doc.text("This is a computer-generated receipt and does not require a physical signature.", 74, 202, null, null, "center");
 
     // Output
     if (returnType === 'save') {
