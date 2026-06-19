@@ -648,6 +648,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
             </head>
             <body>
                 <div class="page-border">
+                    <div style="text-align: right; font-size: 11px; font-weight: bold; color: #D32F2F; margin-bottom: 5px;">पंजीयन संख्या: 169/93-94</div>
                     <img src="${agrasenImg}" class="watermark" alt="Watermark">
                     <div class="header">
                         <img src="${agrasenImg}" class="deity-img" alt="Maharaj Agrasen">
