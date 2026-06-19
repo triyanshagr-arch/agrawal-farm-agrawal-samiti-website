@@ -615,12 +615,12 @@ function printApplicationForm(rowNum, lang = 'hi') {
                         @page { margin: 0.5cm; } 
                         body { padding: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; } 
                         .page-border { height: 97vh; overflow: hidden; page-break-after: avoid; } 
-                        .watermark { opacity: 0.3 !important; } 
+                        .watermark { opacity: 0.2 !important; } 
                         .info-table, .info-table tr, .info-table th, .info-table td, .meta-info, .family-table, .family-table tr, .family-table td { background: transparent !important; background-color: transparent !important; }
                     }
                     body { font-family: 'Outfit', Arial, sans-serif; padding: 10px; color: #222; line-height: 1.3; background: #fff; margin: 0; }
                     .page-border { border: 2px solid #D32F2F; padding: 15px; position: relative; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFD700; box-sizing: border-box; min-height: 95vh; display: flex; flex-direction: column; }
-                    .watermark { position: absolute; top: 25%; left: 15%; width: 70%; opacity: 0.3; z-index: 0; pointer-events: none; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+                    .watermark { position: absolute; top: 25%; left: 15%; width: 70%; opacity: 0.15; z-index: 9999; pointer-events: none; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; mix-blend-mode: multiply; }
                     .header { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; border-bottom: 2px double #D32F2F; padding-bottom: 10px; margin-bottom: 10px; position: relative; z-index: 2; }
                     .header-center { text-align: center; }
                     .header h1 { color: #D32F2F; margin: 0; font-size: 24px; font-weight: 700; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); }
