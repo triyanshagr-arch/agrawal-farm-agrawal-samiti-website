@@ -604,6 +604,18 @@ function printApplicationForm(rowNum, lang = 'hi') {
         }
     }
     
+    const formatDate = (dateStr) => {
+        if (!dateStr) return '';
+        try {
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return dateStr;
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const year = d.getFullYear();
+            return `${day}/${month}/${year}`;
+        } catch(e) { return dateStr; }
+    };
+    
     const printWindow = window.open('', '_blank', 'width=800,height=900');
     printWindow.document.write(`
         <html>
@@ -667,7 +679,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                         <div class="meta-info">
                             <p><strong>${t.memNo}</strong> <span style="color:#D32F2F; font-size: 18px; font-weight:bold;">${m.membershipNo || 'Pending'}</span></p>
                             <p><strong>${t.status}</strong> <span style="background: #4caf50; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px;">${m.status}</span></p>
-                            <p><strong>${t.date}</strong> ${new Date(m.timestamp).toLocaleDateString()}</p>
+                            <p><strong>${t.date}</strong> ${formatDate(m.timestamp)}</p>
                         </div>
                         <div class="photo-box">
                             ${m.photoBase64 ? `<img src="${m.photoBase64}">` : t.noPhoto}
@@ -691,8 +703,8 @@ function printApplicationForm(rowNum, lang = 'hi') {
                             <th>${t.domicile}</th><td>${m.domicile || ''}</td>
                         </tr>
                         <tr>
-                            <th>${t.dob}</th><td>${m.dob || ''}</td>
-                            <th>${t.mDate}</th><td>${m.marriageDate || ''}</td>
+                            <th>${t.dob}</th><td>${formatDate(m.dob)}</td>
+                            <th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>
                         </tr>
                         <tr>
                             <th>${t.bg}</th><td>${m.bloodGroup || ''}</td>
