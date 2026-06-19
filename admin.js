@@ -1184,7 +1184,6 @@ async function generateMonthlyReportPDF(monthStr) {
 
     // Filter Donations
     const donationsThisMonth = window.donationData.filter(d => {
-        if(d.status !== "Verified") return false;
         const dt = new Date(d.timestamp);
         return dt.getFullYear() === parseInt(year) && (dt.getMonth() + 1) === parseInt(month);
     });
@@ -1194,12 +1193,15 @@ async function generateMonthlyReportPDF(monthStr) {
     let generalFund = 0;
 
     donationsThisMonth.forEach(d => {
-        const amt = parseFloat(d.donationAmount) || 0;
-        totalDonations += amt;
-        if (d.donationPurpose && d.donationPurpose.toLowerCase().includes('mandir')) {
-            mandirFund += amt;
-        } else {
-            generalFund += amt;
+        // Only sum Verified donations for the totals
+        if (d.status === "Verified") {
+            const amt = parseFloat(d.donationAmount) || 0;
+            totalDonations += amt;
+            if (d.donationPurpose && d.donationPurpose.toLowerCase().includes('mandir')) {
+                mandirFund += amt;
+            } else {
+                generalFund += amt;
+            }
         }
     });
 
@@ -1280,20 +1282,20 @@ async function generateMonthlyReportPDF(monthStr) {
     
     doc.setFontSize(14);
     doc.setTextColor(211, 47, 47);
-    doc.text("3. Donations Received", 14, finalY);
+    doc.text("3. Donations Received (Including Pending)", 14, finalY);
     
     const donationRows = donationsThisMonth.map((d, i) => [
         i + 1,
-        d.receiptNo || '-',
         d.donorName || '-',
         d.donationPurpose || '-',
-        `Rs. ${parseFloat(d.donationAmount || 0).toLocaleString('en-IN')}`
+        `Rs. ${parseFloat(d.donationAmount || 0).toLocaleString('en-IN')}`,
+        d.status || 'Pending'
     ]);
 
     doc.autoTable({
         startY: finalY + 5,
-        head: [['S.No', 'Receipt No.', 'Donor Name', 'Purpose', 'Amount']],
-        body: donationRows.length ? donationRows : [['-', '-', 'No donations received this month', '-', '-']],
+        head: [['S.No', 'Donor Name', 'Purpose', 'Amount', 'Status']],
+        body: donationRows.length ? donationRows : [['-', 'No donations received this month', '-', '-', '-']],
         theme: 'grid',
         headStyles: { fillColor: [211, 47, 47] },
         styles: { fontSize: 10 }
