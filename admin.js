@@ -140,7 +140,7 @@ function renderDonations() {
             d.screenshotBase64 = parts[1];
         }
 
-        const screenshotHtml = d.screenshotBase64 ? `<a href="${d.screenshotBase64}" target="_blank"><img src="${d.screenshotBase64}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></a>` : 'No Image';
+        const screenshotHtml = d.screenshotBase64 ? `<a href="#" onclick="viewPaymentScreenshot('donation', ${d.row}); return false;"><img src="${d.screenshotBase64}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"></a>` : 'No Image';
         
         let actionHtml = '';
         let statusBadge = '';
@@ -329,7 +329,7 @@ function createMemberRow(m, isPending, index) {
 
     const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" style="width:40px;height:40px;object-fit:cover;border-radius:50%;cursor:pointer;" onclick="viewProfile(${m.row})">` : '<i class="fas fa-user-circle" style="font-size:40px;color:#ccc;cursor:pointer;" onclick="viewProfile('+m.row+')"></i>';
 
-    const screenshotHtml = m.screenshotBase64 ? `<br><a href="${m.screenshotBase64}" target="_blank" style="font-size: 11px; color: #1976d2; display: inline-block; margin-top: 4px;"><i class="fas fa-receipt"></i> View Receipt</a>` : '';
+    const screenshotHtml = m.screenshotBase64 ? `<br><a href="#" onclick="viewPaymentScreenshot('membership', ${m.row}); return false;" style="font-size: 11px; color: #1976d2; display: inline-block; margin-top: 4px;"><i class="fas fa-receipt"></i> View Receipt</a>` : '';
 
     const viewEditHtml = `
         <button class="btn-secondary" style="padding:4px 8px; font-size:12px; margin-bottom: 4px;" onclick="viewProfile(${m.row})"><i class="fas fa-eye"></i> View</button>
@@ -384,6 +384,36 @@ function downloadExcel() {
     if (window.downloadExcelUrl) window.open(window.downloadExcelUrl, '_blank');
     else Swal.fire("Export URL not available. Please refresh the page.");
 }
+
+window.viewPaymentScreenshot = function(type, rowNum) {
+    let imgData = null;
+    if (type === 'donation') {
+        const d = window.donationData.find(x => x.row === rowNum);
+        if (d) imgData = d.screenshotBase64;
+    } else if (type === 'membership') {
+        const m = window.memberData.find(x => x.row === rowNum);
+        if (m) imgData = m.screenshotBase64;
+    }
+    
+    if (imgData) {
+        if(typeof Swal !== 'undefined') {
+            Swal.fire({
+                imageUrl: imgData,
+                imageAlt: 'Payment Screenshot',
+                width: 'auto',
+                showConfirmButton: true,
+                confirmButtonText: 'Close'
+            });
+        } else {
+            const win = window.open();
+            if(win) {
+                win.document.write(`<img src="${imgData}" style="max-width:100%;">`);
+            } else {
+                alert("Popup blocked. Please allow popups to view the receipt.");
+            }
+        }
+    }
+};
 
 // Single Action
 async function actionMember(rowNum, actionType, email = '', existingMembershipNo = '') {
