@@ -352,6 +352,10 @@ function createMemberRow(m, isPending, index) {
         emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${(m.fullName || '').replace(/'/g, "\\'")}')" style="${gridBtnStyle}" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-envelope" style="color:#3b82f6; font-size: 14px;"></i>Email</button>` : `<div style="${gridBtnStyle} background:#e5e7eb; color:#9ca3af; cursor:default;"><i class="fas fa-envelope-slash" style="font-size: 14px;"></i>No Email</div>`;
     }
 
+    const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" style="width:40px;height:40px;object-fit:cover;border-radius:50%;cursor:pointer;" onclick="viewProfile(${m.row})">` : '<i class="fas fa-user-circle" style="font-size:40px;color:#ccc;cursor:pointer;" onclick="viewProfile('+m.row+')"></i>';
+
+    const screenshotHtml = m.screenshotBase64 ? `<br><a href="#" onclick="viewPaymentScreenshot('membership', ${m.row}); return false;" style="font-size: 11px; color: #1976d2; display: inline-block; margin-top: 4px;"><i class="fas fa-receipt"></i> View Receipt</a>` : '';
+
     const printHtml = `<button style="${gridBtnStyle}" onclick="printApplicationForm(${m.row}, 'hi')" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-print" style="color:#ef4444; font-size: 14px;"></i>Print</button>`;
     const viewHtml = `<button style="${gridBtnStyle}" onclick="viewProfile(${m.row})" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-eye" style="color:#10b981; font-size: 14px;"></i>View</button>`;
     const editHtml = `<button style="${gridBtnStyle}" onclick="editProfile(${m.row})" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-edit" style="color:#f59e0b; font-size: 14px;"></i>Edit</button>`;
