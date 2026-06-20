@@ -165,6 +165,7 @@ function renderDonations() {
             
             actionHtml = `
                 <button class="btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="printDonationReceipt('${d.receiptNo}')"><i class="fas fa-print"></i> Print</button>
+                <button class="btn-primary" style="padding: 4px 8px; font-size: 12px; margin-top: 5px; background-color: #ff9800; border-color: #f57c00;" onclick="downloadDonationCertificate('${d.receiptNo}')"><i class="fas fa-certificate"></i> Certificate</button>
                 <br>${emailBtn}
             `;
         }
@@ -209,6 +210,17 @@ function printDonationReceipt(receiptNo) {
     // Assume pdf_generator.js is loaded
     if (typeof generateDonationReceiptPDF === 'function') {
         generateDonationReceiptPDF(receiptNo, d, 'save');
+    } else {
+        Swal.fire("PDF generator script not found.");
+    }
+}
+
+function downloadDonationCertificate(receiptNo) {
+    const d = window.donationData.find(x => x.receiptNo === receiptNo);
+    if (!d) return;
+    // Assume pdf_generator.js is loaded
+    if (typeof generateHindiDonationCertificate === 'function') {
+        generateHindiDonationCertificate(receiptNo, d);
     } else {
         Swal.fire("PDF generator script not found.");
     }

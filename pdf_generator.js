@@ -510,3 +510,67 @@ function convertNumberToWords(amount) {
     }
     return words_string;
 }
+
+// Generate Beautiful Hindi Donation Certificate
+async function generateHindiDonationCertificate(receiptNo, data) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // Fill the template data
+            document.getElementById('certDonorName').innerText = 'श्री/श्रीमती ' + (data.donorName || 'NA');
+            document.getElementById('certPurpose').innerText = data.donationPurpose || 'धर्मार्थ कार्य';
+            document.getElementById('certAmount').innerText = parseFloat(data.donationAmount || 0).toLocaleString('en-IN');
+            
+            const today = new Date();
+            const formattedToday = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+            document.getElementById('certDate').innerText = formattedToday;
+            document.getElementById('certReceiptNo').innerText = receiptNo || 'NA';
+            
+            // Wait for fonts to load
+            await document.fonts.ready;
+            
+            const certDiv = document.getElementById('certTemplate');
+            
+            // Wait slightly for images to ensure they are rendered
+            await new Promise(r => setTimeout(r, 500));
+            
+            Swal.fire({
+                title: 'Generating Certificate...',
+                html: 'Please wait while we render the beautiful Hindi certificate.',
+                allowOutsideClick: false,
+                didOpen: () => { Swal.showLoading(); }
+            });
+            
+            html2canvas(certDiv, {
+                scale: 2, // High resolution
+                useCORS: true,
+                backgroundColor: '#fffdf0',
+                logging: false
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                
+                // A4 Landscape: 297 x 210 mm
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                pdf.addImage(imgData, 'JPEG', 0, 0, 297, 210);
+                pdf.save(`Donation_Certificate_${(data.donorName || 'Donor').replace(/\s+/g, '_')}_${receiptNo}.pdf`);
+                
+                Swal.close();
+                resolve(true);
+            }).catch(err => {
+                console.error("html2canvas error:", err);
+                Swal.fire('Error', 'Failed to generate certificate', 'error');
+                reject(err);
+            });
+            
+        } catch (err) {
+            console.error("Certificate generation error:", err);
+            Swal.fire('Error', 'Failed to prepare certificate', 'error');
+            reject(err);
+        }
+    });
+}
