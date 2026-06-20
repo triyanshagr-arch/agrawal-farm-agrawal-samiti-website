@@ -344,9 +344,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <script src="pdf_generator.js?v=6"></script>
+    <script src="pdf_generator.js?v=7"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="admin.js?v=24"></script><!-- Hidden Certificate Template -->
+    <script src="admin.js?v=25"></script><!-- Hidden Certificate Template -->
 <div id="certificateContainer" style="position: absolute; top: -9999px; left: -9999px;">
     <div id="certTemplate" style="width: 1122px; height: 793px; background-color: #fffdf0; position: relative; padding: 40px; box-sizing: border-box; font-family: 'Tiro Devanagari Hindi', serif; color: #333; overflow: hidden; text-align: center;">
         
@@ -358,28 +358,28 @@
         <img src="images/agrasen_full.png" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 600px; opacity: 0.08; z-index: 0;" crossorigin="anonymous">
         
         <!-- Header Content -->
-        <div style="position: relative; z-index: 1;">
-            <img src="images/agrasen_full.png" style="position: absolute; top: 15px; left: 20px; height: 130px; width: 130px; object-fit: contain;" crossorigin="anonymous">
-            <img src="images/lakshmi.png" style="position: absolute; top: 15px; right: 20px; height: 130px; width: 130px; object-fit: contain;" crossorigin="anonymous">
+        <div style="position: relative; z-index: 1; height: 100%;">
+            <img src="images/agrasen_full.png" style="position: absolute; top: 10px; left: 20px; height: 140px; width: auto; max-width: 150px; object-fit: contain;" crossorigin="anonymous">
+            <img src="images/lakshmi.png" style="position: absolute; top: 10px; right: 20px; height: 140px; width: auto; max-width: 150px; object-fit: contain;" crossorigin="anonymous">
             
-            <h1 style="color: #8B0000; font-family: 'Yatra One', display; font-size: 56px; margin: 20px 0 5px 0;">अग्रवाल समाज समिति, जयपुर</h1>
+            <h1 style="color: #8B0000; font-family: 'Yatra One', display; font-size: 56px; margin: 30px 0 5px 0;">अग्रवाल समाज समिति, जयपुर</h1>
             <p style="font-size: 18px; color: #555; margin: 0;">(पंजीकृत: 169/93-94) अग्रवाल फार्म, मानसरोवर, जयपुर</p>
             
-            <div style="margin: 30px auto; display: inline-block; padding: 10px 40px; border-top: 2px solid #D4AF37; border-bottom: 2px solid #D4AF37;">
+            <div style="margin: 30px auto; display: inline-block; padding: 10px 60px; border-top: 2px solid #D4AF37; border-bottom: 2px solid #D4AF37;">
                 <h2 style="font-family: 'Yatra One', display; font-size: 48px; color: #D4AF37; margin: 0;">दान प्रमाण-पत्र</h2>
             </div>
             
             <!-- Body Content -->
             <div style="margin-top: 20px; line-height: 2.2; font-size: 26px; padding: 0 80px;">
-                प्रमाणित किया जाता है कि <span style="color: #8B0000; font-weight: bold; border-bottom: 1px dashed #8B0000;" id="certDonorName">श्री/श्रीमती XXXXXXX</span> ने 
-                <span style="color: #8B0000; font-weight: bold; border-bottom: 1px dashed #8B0000;" id="certPurpose">XXXXXXX</span> के पावन कार्य हेतु 
-                <span style="color: #D4AF37; font-weight: bold; font-size: 30px;">₹<span id="certAmount">0</span>/-</span> का अमूल्य दान दिया है।
+                प्रमाणित किया जाता है कि <span style="color: #8B0000; font-weight: bold;" id="certDonorName">श्री/श्रीमती XXXXXXX</span> ने 
+                <span style="color: #8B0000; font-weight: bold;" id="certPurpose">XXXXXXX</span> के पावन कार्य हेतु 
+                <span style="color: #D4AF37; font-weight: bold; font-size: 32px;">₹<span id="certAmount">0</span>/-</span> का अमूल्य दान दिया है।
                 <br><br>
                 समिति आपके इस पुनीत कार्य और सहयोग के लिए हार्दिक आभार व्यक्त करती है।<br>भगवान श्री अग्रसेन और माता लक्ष्मी की कृपा आप और आपके परिवार पर सदैव बनी रहे।
             </div>
             
             <!-- Footer -->
-            <div style="margin-top: 60px; padding: 0 40px; display: flex; justify-content: space-between; font-size: 20px; box-sizing: border-box; font-weight: bold;">
+            <div style="position: absolute; bottom: 40px; width: 100%; left: 0; padding: 0 60px; display: flex; justify-content: space-between; font-size: 20px; box-sizing: border-box; font-weight: bold;">
                 <div style="text-align: left;">
                     <p style="margin: 5px 0;">दिनांक: <strong id="certDate">00/00/0000</strong></p>
                     <p style="margin: 5px 0;">रसीद क्र.: <strong id="certReceiptNo">0000</strong></p>
