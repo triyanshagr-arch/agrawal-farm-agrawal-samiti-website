@@ -156,17 +156,26 @@ function renderDonations() {
             
             const hasEmailed = emailedList.includes(d.receiptNo);
             
+            const gridBtnStyle = "padding: 6px 2px; font-size: 11px; border: 1px solid #d1d5db; background: #f3f4f6; border-radius: 6px; color: #374151; cursor: pointer; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: background 0.2s;";
+            const hoverOn = "this.style.background='#e5e7eb'";
+            const hoverOff = "this.style.background='#f3f4f6'";
+            
             let emailBtn = '';
             if (hasEmailed) {
-                emailBtn = `<button class="btn-secondary" style="background: #9e9e9e; color: white; padding: 4px 8px; font-size: 12px; margin-top: 5px; cursor: default;" onclick="event.preventDefault()"><i class="fas fa-check"></i> Emailed</button>`;
+                emailBtn = `<button style="${gridBtnStyle}" onclick="event.preventDefault()"><i class="fas fa-check" style="color:#10b981; font-size: 14px;"></i>Emailed</button>`;
             } else {
-                emailBtn = d.emailId ? `<button class="btn-email" style="padding: 4px 8px; font-size: 12px; margin-top: 5px;" onclick="emailDonationReceipt(this, '${d.receiptNo}')"><i class="fas fa-envelope"></i> Email Receipt</button>` : `<span style="font-size: 10px; color: #999; display:block; margin-top: 5px;">No Email</span>`;
+                emailBtn = d.emailId ? `<button onclick="emailDonationReceipt(this, '${d.receiptNo}')" style="${gridBtnStyle}" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-envelope" style="color:#3b82f6; font-size: 14px;"></i>Email</button>` : `<div style="${gridBtnStyle} background:#e5e7eb; color:#9ca3af; cursor:default;"><i class="fas fa-envelope-slash" style="font-size: 14px;"></i>No Email</div>`;
             }
             
+            const printHtml = `<button style="${gridBtnStyle}" onclick="printDonationReceipt('${d.receiptNo}')" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-print" style="color:#ef4444; font-size: 14px;"></i>Print</button>`;
+            const certHtml = `<button style="${gridBtnStyle}" onclick="downloadDonationCertificate('${d.receiptNo}')" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-certificate" style="color:#f59e0b; font-size: 14px;"></i>Certificate</button>`;
+            
             actionHtml = `
-                <button class="btn-secondary" style="padding: 4px 8px; font-size: 12px;" onclick="printDonationReceipt('${d.receiptNo}')"><i class="fas fa-print"></i> Print</button>
-                <button class="btn-primary" style="padding: 4px 8px; font-size: 12px; margin-top: 5px; background-color: #ff9800; border-color: #f57c00;" onclick="downloadDonationCertificate('${d.receiptNo}')"><i class="fas fa-certificate"></i> Certificate</button>
-                <br>${emailBtn}
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                    ${printHtml}
+                    ${certHtml}
+                    ${emailBtn}
+                </div>
             `;
         }
         
@@ -332,37 +341,40 @@ function createMemberRow(m, isPending, index) {
     
     const hasEmailed = emailedList.includes(m.membershipNo);
     
+    const gridBtnStyle = "padding: 6px 2px; font-size: 11px; border: 1px solid #d1d5db; background: #f3f4f6; border-radius: 6px; color: #374151; cursor: pointer; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: background 0.2s;";
+    const hoverOn = "this.style.background='#e5e7eb'";
+    const hoverOff = "this.style.background='#f3f4f6'";
+    
     let emailBtnHtml;
     if (hasEmailed) {
-        emailBtnHtml = `<button class="btn-email" style="background: #9e9e9e; cursor: default;" onclick="event.preventDefault()"><i class="fas fa-check"></i> Email Sent</button>`;
+        emailBtnHtml = `<button style="${gridBtnStyle}" onclick="event.preventDefault()"><i class="fas fa-check" style="color:#10b981; font-size: 14px;"></i>Emailed</button>`;
     } else {
-        emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${(m.fullName || '').replace(/'/g, "\\'")}')" class="btn-email"><i class="fas fa-envelope"></i> Email Applicant</button>` : `<span style="font-size: 0.8em; color: #999;">No Email</span>`;
+        emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${(m.fullName || '').replace(/'/g, "\\'")}')" style="${gridBtnStyle}" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-envelope" style="color:#3b82f6; font-size: 14px;"></i>Email</button>` : `<div style="${gridBtnStyle} background:#e5e7eb; color:#9ca3af; cursor:default;"><i class="fas fa-envelope-slash" style="font-size: 14px;"></i>No Email</div>`;
     }
 
-    const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" style="width:40px;height:40px;object-fit:cover;border-radius:50%;cursor:pointer;" onclick="viewProfile(${m.row})">` : '<i class="fas fa-user-circle" style="font-size:40px;color:#ccc;cursor:pointer;" onclick="viewProfile('+m.row+')"></i>';
-
-    const screenshotHtml = m.screenshotBase64 ? `<br><a href="#" onclick="viewPaymentScreenshot('membership', ${m.row}); return false;" style="font-size: 11px; color: #1976d2; display: inline-block; margin-top: 4px;"><i class="fas fa-receipt"></i> View Receipt</a>` : '';
-
-    const viewEditHtml = `
-        <button class="btn-secondary" style="padding:4px 8px; font-size:12px; margin-bottom: 4px;" onclick="viewProfile(${m.row})"><i class="fas fa-eye"></i> View</button>
-        <button class="btn-secondary" style="padding:4px 8px; font-size:12px; margin-bottom: 4px;" onclick="editProfile(${m.row})"><i class="fas fa-edit"></i> Edit</button>
-    `;
+    const printHtml = `<button style="${gridBtnStyle}" onclick="printApplicationForm(${m.row}, 'hi')" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-print" style="color:#ef4444; font-size: 14px;"></i>Print</button>`;
+    const viewHtml = `<button style="${gridBtnStyle}" onclick="viewProfile(${m.row})" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-eye" style="color:#10b981; font-size: 14px;"></i>View</button>`;
+    const editHtml = `<button style="${gridBtnStyle}" onclick="editProfile(${m.row})" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-edit" style="color:#f59e0b; font-size: 14px;"></i>Edit</button>`;
 
     let actionHtml = '';
     if (isPending) {
         actionHtml = `
-            <button class="btn-approve" onclick="actionMember(${m.row}, 'approve', '${m.emailId}', '${m.membershipNo}')"><i class="fas fa-check"></i> Approve</button>
-            <button class="btn-reject" onclick="actionMember(${m.row}, 'reject')"><i class="fas fa-times"></i> Reject</button>
-            <hr style="margin: 5px 0; border:none; border-top:1px solid #ddd;">
-            ${viewEditHtml}
+            <button class="btn-approve" style="width: 100%; margin-bottom: 6px;" onclick="actionMember(${m.row}, 'approve', '${m.emailId}', '${m.membershipNo}')"><i class="fas fa-check"></i> Approve</button>
+            <button class="btn-reject" style="width: 100%; margin-bottom: 6px;" onclick="actionMember(${m.row}, 'reject')"><i class="fas fa-times"></i> Reject</button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                ${viewHtml}
+                ${editHtml}
+            </div>
         `;
     } else {
         actionHtml = `
-            <span style="color: #4caf50; font-weight: bold;"><i class="fas fa-check-circle"></i> Approved</span><br><br>
-            ${emailBtnHtml}<br>
-            <button class="btn-secondary" style="margin-top: 5px; padding:4px 8px; font-size:12px;" onclick="printApplicationForm(${m.row}, 'hi')"><i class="fas fa-print"></i> Print Form</button>
-            <hr style="margin: 5px 0; border:none; border-top:1px solid #ddd;">
-            ${viewEditHtml}
+            <div style="color: #10b981; font-weight: bold; text-align: center; margin-bottom: 8px; font-size: 13px;"><i class="fas fa-check-circle"></i> Approved</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                ${viewHtml}
+                ${editHtml}
+                ${printHtml}
+                ${emailBtnHtml}
+            </div>
         `;
     }
 
