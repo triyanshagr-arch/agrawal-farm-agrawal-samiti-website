@@ -516,7 +516,7 @@ async function generateHindiDonationCertificate(receiptNo, data) {
     return new Promise(async (resolve, reject) => {
         try {
             // Fill the template data
-            document.getElementById('certDonorName').innerText = 'श्री/श्रीमती ' + (data.donorName || 'NA');
+            document.getElementById('certDonorName').innerText = (data.donorName || 'NA');
             document.getElementById('certPurpose').innerText = data.donationPurpose || 'धर्मार्थ कार्य';
             document.getElementById('certAmount').innerText = parseFloat(data.donationAmount || 0).toLocaleString('en-IN');
             
