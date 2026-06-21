@@ -1346,3 +1346,129 @@ async function generateMonthlyReportPDF(monthStr) {
         showConfirmButton: false
     });
 }
+
+// --- Expense Manager Functions ---
+
+function openAddExpenseModal() {
+    document.getElementById('addExpenseForm').reset();
+    document.getElementById('expDate').valueAsDate = new Date();
+    document.getElementById('addExpenseModal').style.display = 'block';
+}
+
+function loadExpenses() {
+    if (!sessionPassword) return;
+    
+    document.getElementById('expensesTableBody').innerHTML = '<tr><td colspan="6" class="text-center">Loading expenses...</td></tr>';
+    
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_expenses&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                window.expenseData = data.expenses || [];
+                renderExpenses();
+            } else {
+                document.getElementById('expensesTableBody').innerHTML = `<tr><td colspan="6" class="text-center error-text">${data.message || 'Error loading expenses.'}</td></tr>`;
+            }
+        })
+        .catch(err => {
+            console.error("Error fetching expenses:", err);
+            document.getElementById('expensesTableBody').innerHTML = `<tr><td colspan="6" class="text-center error-text">Failed to connect to server.</td></tr>`;
+        });
+}
+
+function renderExpenses() {
+    const expenses = window.expenseData || [];
+    const tbody = document.getElementById('expensesTableBody');
+    tbody.innerHTML = '';
+    
+    const searchVal = document.getElementById('searchExpenses') ? document.getElementById('searchExpenses').value.toLowerCase() : '';
+    
+    let totalExp = 0;
+    let constructionExp = 0;
+    let eventExp = 0;
+
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+
+    let count = 0;
+    expenses.forEach((exp) => {
+        // [Date, Category, Description, Amount, Payment Mode, Added By]
+        const dateStr = exp[0];
+        const category = exp[1];
+        const description = exp[2];
+        const amount = parseFloat(exp[3]) || 0;
+        const mode = exp[4];
+        const addedBy = exp[5];
+
+        const dateObj = new Date(dateStr);
+        if (dateObj.getMonth() === currentMonth && dateObj.getFullYear() === currentYear) {
+            totalExp += amount;
+            if (category === 'Temple Construction') constructionExp += amount;
+            else eventExp += amount;
+        }
+
+        const matchStr = `${category} ${description} ${amount} ${addedBy}`.toLowerCase();
+        if (searchVal && !matchStr.includes(searchVal)) return;
+
+        count++;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${new Date(dateStr).toLocaleDateString('en-IN')}</td>
+            <td><span class="badge" style="background: #e0e0e0; color: #333; padding: 5px 10px; border-radius: 4px; font-size: 0.85rem;">${category}</span></td>
+            <td>${description}</td>
+            <td style="color: #f44336; font-weight: bold;">₹${amount.toLocaleString('en-IN')}</td>
+            <td>${mode}</td>
+            <td>${addedBy}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    if (count === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center">No expenses found matching criteria.</td></tr>';
+    }
+
+    document.getElementById('statTotalExpenses').innerText = '₹' + totalExp.toLocaleString('en-IN');
+    document.getElementById('statConstructionExp').innerText = '₹' + constructionExp.toLocaleString('en-IN');
+    document.getElementById('statEventExp').innerText = '₹' + eventExp.toLocaleString('en-IN');
+}
+
+document.getElementById('addExpenseForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('btnSubmitExpense');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    btn.disabled = true;
+
+    try {
+        const formData = new FormData();
+        formData.append('action', 'add_expense');
+        formData.append('password', sessionPassword);
+        formData.append('date', document.getElementById('expDate').value);
+        formData.append('category', document.getElementById('expCategory').value);
+        formData.append('description', document.getElementById('expDescription').value);
+        formData.append('amount', document.getElementById('expAmount').value);
+        formData.append('mode', document.getElementById('expMode').value);
+        formData.append('addedBy', document.getElementById('expAddedBy').value);
+
+        const res = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await res.json();
+        if (result.status === 'success') {
+            Swal.fire('Success', 'Expense added successfully', 'success');
+            closeModal('addExpenseModal');
+            loadExpenses();
+        } else {
+            Swal.fire('Error', result.message || 'Failed to add expense', 'error');
+        }
+    } catch (err) {
+        console.error(err);
+        Swal.fire('Error', 'Connection failed', 'error');
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+});
