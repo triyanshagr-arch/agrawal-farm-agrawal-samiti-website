@@ -906,7 +906,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end;">
                         <div style="text-align: center; width: 150px;">
                             <div style="height: 50px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: -5px;">
-                                <img src="images/auth_signature.png?v=3" style="max-height: 80px; max-width: 150%; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1000%);" crossorigin="anonymous">
+                                <img src="images/auth_signature.png?v=4" style="max-height: 80px; max-width: 150%; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1000%); clip-path: inset(5px);" crossorigin="anonymous">
                             </div>
                             <div style="border-top: 1px solid #333; padding-top: 5px; font-size: 12px; position: relative; z-index: 2;">Authorized Signatory</div>
                         </div>
