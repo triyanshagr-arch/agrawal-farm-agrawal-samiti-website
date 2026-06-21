@@ -2,6 +2,7 @@ let sessionPassword = "";
 window.memberData = []; // Store fetched members for quick access
 window.donationData = []; // Store fetched donations
 window.bookingData = []; // Store fetched bookings
+window.expenseData = []; // Store fetched expenses
 
 // Login Form Submit
 document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -49,6 +50,9 @@ function switchTab(tabId, el) {
     }
     if (tabId === 'bookings' && window.bookingData.length === 0) {
         loadBookings();
+    }
+    if (tabId === 'expenses' && window.expenseData.length === 0) {
+        loadExpenses();
     }
 }
 
