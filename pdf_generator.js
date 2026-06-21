@@ -242,6 +242,18 @@ async function generateFilledTemplate(membershipNo, data, photoUrl, signatureUrl
         } catch(e) { console.error("Could not load photo", e); }
     }
 
+    // Draw Authorised Signatory
+    try {
+        const authSigImg = await loadImage('images/auth_signature.png');
+        const authSigX = cw * 0.40; // Approx Center position for Authorised Signatory
+        const authSigY = ch * 0.84;
+        const authSigW = cw * 0.15;
+        const authSigH = ch * 0.08;
+        ctx.drawImage(authSigImg, authSigX, authSigY, authSigW, authSigH);
+    } catch(e) { 
+        // Silently fail if auth signature not found
+    }
+
     // Draw Signature
     if (signatureUrl === 'DIGITAL_VERIFIED') {
         ctx.fillStyle = '#28a745';
