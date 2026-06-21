@@ -327,8 +327,16 @@ th {
     margin-bottom: 20px;
 }
 .lh-logo {
-    width: 90px;
-    height: auto;
+    height: 110px;
+    width: auto;
+    object-fit: contain;
+}
+.lh-logo.left {
+    height: 120px;
+}
+.lh-logo.right {
+    height: 110px;
+    transform: scale(1.3); /* Boost size of Lakshmi if her native crop is smaller */
 }
 .lh-title-area {
     text-align: center;
