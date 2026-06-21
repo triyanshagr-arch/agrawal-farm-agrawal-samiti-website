@@ -290,3 +290,127 @@ th {
 .close-modal:hover, .close-modal:focus { color: black; text-decoration: none; cursor: pointer; }
 .profile-table th { background: #f9f9f9; width: 35%; }
 .profile-table td, .profile-table th { padding: 8px 10px; border: 1px solid #eee; }
+
+/* --- Letterhead Maker --- */
+.letterhead-page {
+    width: 794px; /* A4 width at 96 DPI */
+    height: 1123px; /* A4 height at 96 DPI */
+    background: #ffffff;
+    padding: 50px;
+    box-sizing: border-box;
+    position: relative;
+    font-family: 'Tiro Devanagari Hindi', serif;
+    color: #333;
+    overflow: hidden;
+}
+
+.lh-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+}
+.lh-watermark img {
+    width: 450px;
+    height: auto;
+}
+
+.lh-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px;
+}
+.lh-logo {
+    width: 90px;
+    height: auto;
+}
+.lh-title-area {
+    text-align: center;
+    flex: 1;
+    padding: 0 20px;
+}
+.lh-main-title {
+    font-family: 'Yatra One', cursive;
+    color: #b71c1c; /* Deep Red */
+    font-size: 32px;
+    margin: 0 0 5px 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+.lh-sub-title {
+    font-size: 18px;
+    margin: 0;
+    color: #444;
+}
+.lh-address {
+    font-size: 12px;
+    margin: 5px 0 0 0;
+    color: #666;
+}
+
+.lh-divider {
+    height: 4px;
+    background: linear-gradient(to right, #b71c1c, #d4af37, #b71c1c); /* Red and Gold */
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.lh-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.lh-subject-box {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+.lh-subject-box span {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.lh-body {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: justify;
+    position: relative;
+    z-index: 2;
+    white-space: pre-wrap;
+}
+
+.lh-footer-sigs {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    right: 50px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+}
+.sig-block {
+    text-align: center;
+}
+.sig-name {
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+.sig-samiti {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}

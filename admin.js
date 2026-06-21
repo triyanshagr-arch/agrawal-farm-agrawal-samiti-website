@@ -1463,6 +1463,201 @@ document.getElementById('addExpenseForm').addEventListener('submit', async (e) =
             loadExpenses();
         } else {
             Swal.fire('Error', result.message || 'Failed to add expense', 'error');
+    doc.line(14, 38, 196, 38);
+
+    // Summary Section
+    doc.setFontSize(14);
+    doc.setTextColor(211, 47, 47);
+    doc.text("1. Executive Summary", 14, 48);
+    
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`New Members Approved: ${membersThisMonth.length}`, 20, 58);
+    doc.text(`Total Donations Collected: Rs. ${totalDonations.toLocaleString('en-IN')}`, 20, 66);
+    doc.text(`- Mandir Fund: Rs. ${mandirFund.toLocaleString('en-IN')}`, 25, 74);
+    doc.text(`- General Fund: Rs. ${generalFund.toLocaleString('en-IN')}`, 25, 82);
+
+    // Members Table
+    doc.setFontSize(14);
+    doc.setTextColor(211, 47, 47);
+    doc.text("2. New Members Joined", 14, 95);
+    
+    const memberRows = membersThisMonth.map((m, i) => [
+        i + 1,
+        m.membershipNo || '-',
+        m.fullName || '-',
+        m.mobileNumber || '-',
+        new Date(m.timestamp).toLocaleDateString('en-IN')
+    ]);
+
+    doc.autoTable({
+        startY: 100,
+        head: [['S.No', 'Membership No.', 'Name', 'Mobile', 'Join Date']],
+        body: memberRows.length ? memberRows : [['-', '-', 'No new members joined this month', '-', '-']],
+        theme: 'grid',
+        headStyles: { fillColor: [211, 47, 47] },
+        styles: { fontSize: 10 }
+    });
+
+    // Donations Table
+    let finalY = doc.lastAutoTable.finalY || 105;
+    
+    if (finalY > 250) {
+        doc.addPage();
+        finalY = 20;
+    } else {
+        finalY += 15;
+    }
+    
+    doc.setFontSize(14);
+    doc.setTextColor(211, 47, 47);
+    doc.text("3. Donations Received (Including Pending)", 14, finalY);
+    
+    const donationRows = donationsThisMonth.map((d, i) => [
+        i + 1,
+        d.donorName || '-',
+        d.donationPurpose || '-',
+        `Rs. ${parseFloat(d.donationAmount || 0).toLocaleString('en-IN')}`,
+        d.status || 'Pending'
+    ]);
+
+    doc.autoTable({
+        startY: finalY + 5,
+        head: [['S.No', 'Donor Name', 'Purpose', 'Amount', 'Status']],
+        body: donationRows.length ? donationRows : [['-', 'No donations received this month', '-', '-', '-']],
+        theme: 'grid',
+        headStyles: { fillColor: [211, 47, 47] },
+        styles: { fontSize: 10 }
+    });
+
+    // Save PDF
+    doc.save(`Monthly_Report_${monthName.replace(' ', '_')}.pdf`);
+    
+    Swal.fire({
+        icon: 'success',
+        title: 'Report Generated',
+        text: 'The monthly report PDF has been downloaded successfully.',
+        timer: 3000,
+        showConfirmButton: false
+    });
+}
+
+// --- Expense Manager Functions ---
+
+function openAddExpenseModal() {
+    document.getElementById('addExpenseForm').reset();
+    document.getElementById('expDate').valueAsDate = new Date();
+    document.getElementById('addExpenseModal').style.display = 'block';
+}
+
+function loadExpenses() {
+    if (!sessionPassword) return;
+    
+    document.getElementById('expensesTableBody').innerHTML = '<tr><td colspan="6" class="text-center">Loading expenses...</td></tr>';
+    
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_expenses&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                window.expenseData = data.expenses || [];
+                renderExpenses();
+            } else {
+                document.getElementById('expensesTableBody').innerHTML = `<tr><td colspan="6" class="text-center error-text">${data.message || 'Error loading expenses.'}</td></tr>`;
+            }
+        })
+        .catch(err => {
+            console.error("Error fetching expenses:", err);
+            document.getElementById('expensesTableBody').innerHTML = `<tr><td colspan="6" class="text-center error-text">Failed to connect to server.</td></tr>`;
+        });
+}
+
+function renderExpenses() {
+    const expenses = window.expenseData || [];
+    const tbody = document.getElementById('expensesTableBody');
+    tbody.innerHTML = '';
+    
+    const searchVal = document.getElementById('searchExpenses') ? document.getElementById('searchExpenses').value.toLowerCase() : '';
+    
+    let totalExp = 0;
+    let constructionExp = 0;
+    let eventExp = 0;
+
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+
+    let count = 0;
+    expenses.forEach((exp) => {
+        // [Date, Category, Description, Amount, Payment Mode, Added By]
+        const dateStr = exp[0];
+        const category = exp[1];
+        const description = exp[2];
+        const amount = parseFloat(exp[3]) || 0;
+        const mode = exp[4];
+        const addedBy = exp[5];
+
+        const dateObj = new Date(dateStr);
+        if (dateObj.getMonth() === currentMonth && dateObj.getFullYear() === currentYear) {
+            totalExp += amount;
+            if (category === 'Temple Construction') constructionExp += amount;
+            else eventExp += amount;
+        }
+
+        const matchStr = `${category} ${description} ${amount} ${addedBy}`.toLowerCase();
+        if (searchVal && !matchStr.includes(searchVal)) return;
+
+        count++;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${new Date(dateStr).toLocaleDateString('en-IN')}</td>
+            <td><span class="badge" style="background: #e0e0e0; color: #333; padding: 5px 10px; border-radius: 4px; font-size: 0.85rem;">${category}</span></td>
+            <td>${description}</td>
+            <td style="color: #f44336; font-weight: bold;">₹${amount.toLocaleString('en-IN')}</td>
+            <td>${mode}</td>
+            <td>${addedBy}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    if (count === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center">No expenses found matching criteria.</td></tr>';
+    }
+
+    document.getElementById('statTotalExpenses').innerText = '₹' + totalExp.toLocaleString('en-IN');
+    document.getElementById('statConstructionExp').innerText = '₹' + constructionExp.toLocaleString('en-IN');
+    document.getElementById('statEventExp').innerText = '₹' + eventExp.toLocaleString('en-IN');
+}
+
+document.getElementById('addExpenseForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('btnSubmitExpense');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    btn.disabled = true;
+
+    try {
+        const formData = new FormData();
+        formData.append('action', 'add_expense');
+        formData.append('password', sessionPassword);
+        formData.append('date', document.getElementById('expDate').value);
+        formData.append('category', document.getElementById('expCategory').value);
+        formData.append('description', document.getElementById('expDescription').value);
+        formData.append('amount', document.getElementById('expAmount').value);
+        formData.append('mode', document.getElementById('expMode').value);
+        formData.append('addedBy', document.getElementById('expAddedBy').value);
+
+        const res = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await res.json();
+        if (result.status === 'success') {
+            Swal.fire('Success', 'Expense added successfully', 'success');
+            closeModal('addExpenseModal');
+            loadExpenses();
+        } else {
+            Swal.fire('Error', result.message || 'Failed to add expense', 'error');
         }
     } catch (err) {
         console.error(err);
@@ -1472,3 +1667,165 @@ document.getElementById('addExpenseForm').addEventListener('submit', async (e) =
         btn.disabled = false;
     }
 });
+
+// --- Letterhead Maker Functions ---
+
+function updateLetterheadContent() {
+    const dateVal = document.getElementById('lhDate').value;
+    const refVal = document.getElementById('lhRefNo').value;
+    const subjectVal = document.getElementById('lhSubject').value;
+    const contentVal = document.getElementById('lhContent').value;
+
+    // Format Date
+    if (dateVal) {
+        const d = new Date(dateVal);
+        document.querySelector('#lhDispDate span').innerText = d.toLocaleDateString('en-IN');
+    } else {
+        document.querySelector('#lhDispDate span').innerText = '';
+    }
+
+    // Ref No
+    if (refVal.trim()) {
+        document.querySelector('#lhDispRef span').innerText = refVal;
+    } else {
+        document.querySelector('#lhDispRef span').innerText = '';
+    }
+
+    // Subject
+    if (subjectVal.trim()) {
+        document.getElementById('lhDispSubjectBox').style.display = 'block';
+        document.getElementById('lhDispSubject').innerText = subjectVal;
+    } else {
+        document.getElementById('lhDispSubjectBox').style.display = 'none';
+    }
+
+    // Body
+    document.getElementById('lhDispBody').innerHTML = contentVal;
+}
+
+function previewLetterhead() {
+    updateLetterheadContent();
+    Swal.fire({
+        title: 'Letterhead Preview',
+        html: `
+            <div style="transform: scale(0.6); transform-origin: top center; height: 700px; overflow-y: auto; overflow-x: hidden; border: 1px solid #ccc;">
+                ${document.getElementById('letterheadTemplate').outerHTML}
+            </div>
+            <p style="font-size: 0.9em; color: #666;">Note: This is a scaled-down preview.</p>
+        `,
+        width: '850px',
+        showCloseButton: true,
+        showConfirmButton: false
+    });
+}
+
+function printLetterhead() {
+    updateLetterheadContent();
+    
+    const printWindow = window.open('', '_blank');
+    const templateHtml = document.getElementById('letterheadTemplate').outerHTML;
+    
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>Print Letterhead</title>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
+                <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap" rel="stylesheet">
+                <style>
+                    body { margin: 0; padding: 0; background: #fff; display: flex; justify-content: center; }
+                    /* Inject the CSS required for the letterhead */
+                    .letterhead-page { width: 794px; height: 1123px; background: #ffffff; padding: 50px; box-sizing: border-box; position: relative; font-family: 'Tiro Devanagari Hindi', serif; color: #333; overflow: hidden; }
+                    .lh-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; pointer-events: none; }
+                    .lh-watermark img { width: 450px; height: auto; }
+                    .lh-header { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; margin-bottom: 20px; }
+                    .lh-logo { width: 90px; height: auto; }
+                    .lh-title-area { text-align: center; flex: 1; padding: 0 20px; }
+                    .lh-main-title { font-family: 'Yatra One', cursive; color: #b71c1c; font-size: 32px; margin: 0 0 5px 0; }
+                    .lh-sub-title { font-size: 18px; margin: 0; color: #444; }
+                    .lh-address { font-size: 12px; margin: 5px 0 0 0; color: #666; }
+                    .lh-divider { height: 4px; background: linear-gradient(to right, #b71c1c, #d4af37, #b71c1c); margin-bottom: 30px; position: relative; z-index: 2; }
+                    .lh-meta { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; margin-bottom: 25px; position: relative; z-index: 2; }
+                    .lh-subject-box { text-align: center; font-size: 18px; margin-bottom: 30px; position: relative; z-index: 2; }
+                    .lh-subject-box span { font-weight: bold; text-decoration: underline; }
+                    .lh-body { font-size: 16px; line-height: 1.6; text-align: justify; position: relative; z-index: 2; white-space: pre-wrap; }
+                    .lh-footer-sigs { position: absolute; bottom: 50px; left: 50px; right: 50px; display: flex; justify-content: space-between; z-index: 2; }
+                    .sig-block { text-align: center; }
+                    .sig-name { font-weight: bold; margin: 0 0 5px 0; font-size: 18px; }
+                    .sig-samiti { margin: 0; font-size: 14px; color: #666; }
+                    @media print {
+                        @page { margin: 0; size: A4; }
+                        body { margin: 0; padding: 0; box-shadow: none; }
+                        .letterhead-page { padding: 50px !important; }
+                    }
+                </style>
+            </head>
+            <body>
+                ${templateHtml}
+                <script>
+                    window.onload = function() {
+                        setTimeout(() => {
+                            window.print();
+                            window.close();
+                        }, 500);
+                    };
+                </script>
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+}
+
+async function downloadLetterheadPDF() {
+    updateLetterheadContent();
+
+    const element = document.getElementById('letterheadTemplate');
+    const originalContainer = document.getElementById('letterheadContainer');
+    
+    // Temporarily bring it on screen to capture properly, but hide it visually
+    originalContainer.style.left = '0';
+    originalContainer.style.top = '0';
+    originalContainer.style.zIndex = '-1000';
+    originalContainer.style.visibility = 'visible';
+
+    Swal.fire({
+        title: 'Generating PDF',
+        text: 'Please wait...',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    try {
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            logging: false
+        });
+
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+        
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        
+        let filename = 'Letterhead.pdf';
+        const ref = document.getElementById('lhRefNo').value.trim();
+        if (ref) {
+            filename = `Letterhead_${ref.replace(/[/\\?%*:|"<>]/g, '-')}.pdf`;
+        }
+        
+        pdf.save(filename);
+        Swal.fire('Success', 'PDF Downloaded Successfully', 'success');
+
+    } catch (error) {
+        console.error("Error generating Letterhead PDF:", error);
+        Swal.fire('Error', 'Failed to generate PDF.', 'error');
+    } finally {
+        // Hide again
+        originalContainer.style.left = '-9999px';
+        originalContainer.style.top = '-9999px';
+        originalContainer.style.visibility = 'hidden';
+    }
+}
