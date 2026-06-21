@@ -905,10 +905,10 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     
                     <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end;">
                         <div style="text-align: center; width: 150px;">
-                            <div style="height: 40px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 5px;">
-                                <img src="images/auth_signature.png" style="max-height: 40px; max-width: 100%; object-fit: contain;" crossorigin="anonymous">
+                            <div style="height: 50px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: -5px;">
+                                <img src="images/auth_signature.png" style="max-height: 70px; max-width: 150%; object-fit: contain; filter: brightness(0) saturate(100%) drop-shadow(0.5px 0.5px 0px rgba(0,0,0,0.8));" crossorigin="anonymous">
                             </div>
-                            <div style="border-top: 1px solid #333; padding-top: 5px; font-size: 12px;">Authorized Signatory</div>
+                            <div style="border-top: 1px solid #333; padding-top: 5px; font-size: 12px; position: relative; z-index: 2;">Authorized Signatory</div>
                         </div>
                         <div style="text-align: center; width: 150px;">
                             <div style="height: 40px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 5px;">
