@@ -1652,7 +1652,9 @@ function printLetterhead() {
                     .lh-meta { display: flex; justify-content: space-between; font-size: 14px; font-weight: bold; margin-bottom: 15px; }
                     .lh-subject-box { text-align: center; font-size: 16px; margin-bottom: 15px; }
                     .lh-subject-box span { font-weight: bold; text-decoration: underline; }
-                    .lh-body { font-size: 16px; line-height: 1.6; text-align: justify; flex: 1; white-space: pre-wrap; }
+                    .lh-body { font-size: 14px; text-align: justify; line-height: 1.6; min-height: 500px; }
+                    .lh-body p { margin-bottom: 15px; }
+                    .lh-footer-note { margin-top: auto; padding-top: 20px; padding-bottom: 20px; font-size: 12px; color: #555; text-align: center; font-style: italic; opacity: 0.8; }
                     @media print {
                         @page { margin: 0; size: A4; }
                         body { margin: 0; padding: 0; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
