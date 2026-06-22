@@ -367,7 +367,7 @@ th {
     font-family: 'Yatra One', cursive;
     color: #8B0000;
     font-size: 38px;
-    margin: 15px 0 0 0;
+    margin: 22px 0 0 0;
     line-height: 1.1;
     white-space: nowrap;
 }
@@ -390,7 +390,7 @@ th {
     gap: 0;
     position: relative;
     z-index: 2;
-    margin-top: -35px;
+    margin-top: -42px;
     margin-bottom: 5px;
     border-top: 2px solid #8B0000;
 }
