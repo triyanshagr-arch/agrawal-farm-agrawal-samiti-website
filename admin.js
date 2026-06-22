@@ -1448,12 +1448,12 @@ function renderExpenses() {
 function addExpenseLineItem() {
     const container = document.getElementById('expenseLineItems');
     const template = `
-        <div class="expense-item" style="background: #f9f9f9; border: 1px solid #ddd; padding: 15px; border-radius: 6px; margin-bottom: 10px; position: relative;">
-            <span class="remove-item" onclick="this.parentElement.remove()" style="position: absolute; right: 10px; top: 10px; cursor: pointer; color: red;"><i class="fas fa-trash"></i></span>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <div class="form-group" style="margin: 0;">
+        <div class="expense-item premium-card">
+            <span class="remove-item" onclick="this.parentElement.remove()" title="Remove this item"><i class="fas fa-times"></i></span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div>
                     <label>Category</label>
-                    <select class="expCategory" required>
+                    <select class="expCategory form-control" required>
                         <option value="Temple Construction">Temple Construction</option>
                         <option value="Event">Event</option>
                         <option value="Maintenance">Maintenance</option>
@@ -1462,9 +1462,9 @@ function addExpenseLineItem() {
                         <option value="Other">Other</option>
                     </select>
                 </div>
-                <div class="form-group" style="margin: 0;">
+                <div>
                     <label>Payment Mode</label>
-                    <select class="expMode" required>
+                    <select class="expMode form-control" required>
                         <option value="Cash">Cash</option>
                         <option value="UPI">UPI</option>
                         <option value="Bank Transfer">Bank Transfer</option>
@@ -1472,12 +1472,12 @@ function addExpenseLineItem() {
                     </select>
                 </div>
             </div>
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-top: 10px;">
-                <div class="form-group" style="margin: 0;">
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; margin-top: 15px;">
+                <div>
                     <label>Description / विवरण</label>
                     <input type="text" class="expDescription" placeholder="What was this expense for?" required>
                 </div>
-                <div class="form-group" style="margin: 0;">
+                <div>
                     <label>Amount (₹)</label>
                     <input type="number" class="expAmount" placeholder="0" required>
                 </div>
