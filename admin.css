@@ -350,9 +350,9 @@ th {
     height: auto;
 }
 .lh-header-logo .logo-subtext {
-    font-size: 8px;
+    font-size: 11px;
     color: #b71c1c;
-    margin: 2px 0 0 0;
+    margin: 4px 0;
     font-weight: bold;
 }
 .lh-header-title {

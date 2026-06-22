@@ -833,6 +833,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                     .info-table th { background: rgba(255, 248, 248, 0.7) !important; width: 18%; font-size: 12px; color: #D32F2F; font-weight: 600; }
                     .info-table tr { background-color: transparent !important; }
                     .info-table td { font-size: 12px; color: #333; width: 32%; background-color: transparent !important; }
+                    .lh-top-phrases { text-align: center; font-size: 11px; font-weight: bold; color: #D32F2F; margin-bottom: 5px; }
                     .section-title { color: #D32F2F; font-size: 15px; font-weight: 700; border-bottom: 2px solid #D32F2F; padding-bottom: 2px; margin: 10px 0 5px 0; display: inline-block; }
                     .family-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; position: relative; z-index: 2; background-color: transparent !important; }
                     .family-table tr { background-color: transparent !important; }
@@ -1619,13 +1620,13 @@ function printLetterhead() {
                     .letterhead-page { width: 794px; height: 1123px; background: #ffffff; padding: 20px 30px; box-sizing: border-box; position: relative; font-family: 'Tiro Devanagari Hindi', serif; color: #333; overflow: hidden; display: flex; flex-direction: column; }
                     .lh-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; pointer-events: none; }
                     .lh-watermark img { width: 550px; height: auto; }
-                    .lh-top-phrases { display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: -5px; position: relative; z-index: 2; }
+                    .lh-top-phrases { display: flex; justify-content: flex-end; font-size: 13px; font-weight: bold; margin-bottom: -5px; position: relative; z-index: 2; }
                     .phrase-red { color: #b71c1c; }
                     .phrase-blue { color: #1565c0; }
                     .lh-header-main { display: flex; align-items: center; position: relative; z-index: 2; margin-bottom: 5px; }
                     .lh-header-logo { width: 120px; text-align: center; margin-right: 5px; }
                     .lh-header-logo img { width: 100px; height: auto; }
-                    .lh-header-logo .logo-subtext { font-size: 8px; color: #b71c1c; margin: 2px 0 0 0; font-weight: bold; }
+                    .lh-header-logo .logo-subtext { font-size: 11px; color: #b71c1c; margin: 4px 0; font-weight: bold; }
                     .lh-header-title { flex: 1; text-align: center; }
                     .lh-header-title .lh-main-title { font-family: 'Yatra One', cursive; color: #8B0000; font-size: 38px; margin: 0; line-height: 1.1; white-space: nowrap; }
                     .lh-committee-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; z-index: 2; margin-bottom: 5px; border-top: 2px solid #8B0000; }
