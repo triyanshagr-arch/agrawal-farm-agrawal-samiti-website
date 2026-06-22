@@ -1623,12 +1623,12 @@ function printLetterhead() {
                     .lh-top-phrases { display: flex; justify-content: flex-end; font-size: 13px; font-weight: bold; margin-bottom: -5px; position: relative; z-index: 2; }
                     .phrase-red { color: #b71c1c; }
                     .phrase-blue { color: #1565c0; }
-                    .lh-header-main { display: flex; align-items: center; position: relative; z-index: 2; margin-bottom: 5px; }
+                    .lh-header-main { display: flex; align-items: flex-start; position: relative; z-index: 2; margin-bottom: 5px; }
                     .lh-header-logo { width: 120px; text-align: center; margin-right: 5px; }
                     .lh-header-logo img { width: 100px; height: auto; }
                     .lh-header-logo .logo-subtext { font-size: 11px; color: #b71c1c; margin: 4px 0; font-weight: bold; }
                     .lh-header-title { flex: 1; text-align: center; }
-                    .lh-header-title .lh-main-title { font-family: 'Yatra One', cursive; color: #8B0000; font-size: 38px; margin: 0; line-height: 1.1; white-space: nowrap; }
+                    .lh-header-title .lh-main-title { font-family: 'Yatra One', cursive; color: #8B0000; font-size: 38px; margin: 5px 0 0 0; line-height: 1.1; white-space: nowrap; }
                     .lh-committee-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; z-index: 2; margin-bottom: 5px; border-top: 2px solid #8B0000; }
                     .grid-col { padding: 4px 2px; text-align: center; border-right: 1px solid #8B0000; }
                     .grid-col:last-child { border-right: none; }

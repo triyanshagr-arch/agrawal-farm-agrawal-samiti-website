@@ -335,7 +335,7 @@ th {
 /* Main Header */
 .lh-header-main {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     z-index: 2;
     margin-bottom: 5px;
@@ -363,7 +363,7 @@ th {
     font-family: 'Yatra One', cursive;
     color: #8B0000;
     font-size: 38px;
-    margin: 0;
+    margin: 5px 0 0 0;
     line-height: 1.1;
     white-space: nowrap;
 }
