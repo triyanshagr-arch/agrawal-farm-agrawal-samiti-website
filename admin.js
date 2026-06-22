@@ -1627,8 +1627,10 @@ function printLetterhead() {
                     .lh-header-logo { width: 120px; text-align: center; margin-right: 5px; }
                     .lh-header-logo img { width: 100px; height: auto; }
                     .lh-header-logo .logo-subtext { font-size: 11px; color: #b71c1c; margin: 4px 0; font-weight: bold; }
-                    .lh-header-title { flex: 1; text-align: center; }
-                    .lh-header-title .lh-main-title { font-family: 'Yatra One', cursive; color: #8B0000; font-size: 38px; margin: 5px 0 0 0; line-height: 1.1; white-space: nowrap; }
+                    .lh-header-title { flex: 1; text-align: center; margin-right: 60px; }
+                    .lh-header-title .lh-main-title { font-family: 'Yatra One', cursive; color: #8B0000; font-size: 38px; margin: 15px 0 0 0; line-height: 1.1; white-space: nowrap; }
+                    .lh-header-address { font-size: 14px; color: #1565c0; font-weight: bold; margin: 5px 0 2px 0; }
+                    .lh-header-email { font-size: 13px; color: #1565c0; margin: 0; }
                     .lh-committee-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; z-index: 2; margin-bottom: 5px; border-top: 2px solid #8B0000; }
                     .grid-col { padding: 4px 2px; text-align: center; border-right: 1px solid #8B0000; }
                     .grid-col:last-child { border-right: none; }
@@ -1651,9 +1653,6 @@ function printLetterhead() {
                     .lh-subject-box { text-align: center; font-size: 16px; margin-bottom: 15px; }
                     .lh-subject-box span { font-weight: bold; text-decoration: underline; }
                     .lh-body { font-size: 16px; line-height: 1.6; text-align: justify; flex: 1; white-space: pre-wrap; }
-                    .lh-footer-address { text-align: center; color: #1565c0; z-index: 2; margin-top: auto; padding-top: 15px; border-top: 1px solid #eee; }
-                    .addr-line { font-size: 15px; font-weight: bold; margin: 0; }
-                    .email-line { font-size: 14px; margin: 2px 0 0 0; }
                     @media print {
                         @page { margin: 0; size: A4; }
                         body { margin: 0; padding: 0; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
