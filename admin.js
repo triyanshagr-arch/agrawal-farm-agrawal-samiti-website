@@ -1641,10 +1641,10 @@ function printLetterhead() {
                     .lh-sidebar { width: 200px; border-right: 1px solid #000; padding-right: 10px; text-align: center; }
                     .sidebar-member { margin-bottom: 2px; }
                     .sidebar-member.top-member { margin-bottom: 4px; }
-                    .s-name { color: #1565c0; font-weight: bold; font-size: 12px; margin: 0; }
-                    .s-role { color: #b71c1c; font-size: 10px; font-weight: bold; margin: 0; }
-                    .sidebar-badge-wrap { text-align: center; margin: 6px 0; }
-                    .sidebar-badge { background: #8B0000; color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 10px; }
+                    .s-name { color: #1565c0; font-weight: bold; font-size: 11px; margin: 0; }
+                    .s-role { color: #b71c1c; font-size: 9px; font-weight: bold; margin: 0; }
+                    .sidebar-badge-wrap { text-align: center; margin: 4px 0; }
+                    .sidebar-badge { background: #8B0000; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 10px; }
                     .lh-main-content { flex: 1; padding-left: 15px; display: flex; flex-direction: column; }
                     .lh-meta { display: flex; justify-content: space-between; font-size: 14px; font-weight: bold; margin-bottom: 15px; }
                     .lh-subject-box { text-align: center; font-size: 16px; margin-bottom: 15px; }
