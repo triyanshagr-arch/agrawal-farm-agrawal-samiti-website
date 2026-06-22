@@ -1641,7 +1641,7 @@ function printLetterhead() {
                     .grid-col .mob { color: #000; font-size: 12px; font-weight: bold; margin: 0; }
                     .lh-divider { display: none; }
                     .lh-layout { display: flex; position: relative; z-index: 2; flex: 1; }
-                    .lh-sidebar { width: 230px; flex-shrink: 0; border-right: 1px solid #000; padding-right: 10px; text-align: center; }
+                    .lh-sidebar { width: 25%; box-sizing: border-box; flex-shrink: 0; border-right: 1px solid #8B0000; padding-right: 10px; text-align: center; }
                     .sidebar-member { margin-bottom: 1px; line-height: 1.1; }
                     .sidebar-member.top-member { margin-bottom: 2px; }
                     .s-name { color: #1565c0; font-weight: 900; font-size: 14px; margin: 0; }
