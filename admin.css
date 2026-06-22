@@ -322,7 +322,8 @@ th {
 /* Top Phrases */
 .lh-top-phrases {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     font-size: 13px;
     font-weight: bold;
     margin-bottom: -5px;
