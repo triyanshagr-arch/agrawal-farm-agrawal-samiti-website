@@ -1443,6 +1443,50 @@ function renderExpenses() {
     document.getElementById('statEventExp').innerText = '₹' + eventExp.toLocaleString('en-IN');
 }
 
+// --- Add Multiple Expenses ---
+
+function addExpenseLineItem() {
+    const container = document.getElementById('expenseLineItems');
+    const template = `
+        <div class="expense-item" style="background: #f9f9f9; border: 1px solid #ddd; padding: 15px; border-radius: 6px; margin-bottom: 10px; position: relative;">
+            <span class="remove-item" onclick="this.parentElement.remove()" style="position: absolute; right: 10px; top: 10px; cursor: pointer; color: red;"><i class="fas fa-trash"></i></span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group" style="margin: 0;">
+                    <label>Category</label>
+                    <select class="expCategory" required>
+                        <option value="Temple Construction">Temple Construction</option>
+                        <option value="Event">Event</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Bills">Electricity/Water Bills</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin: 0;">
+                    <label>Payment Mode</label>
+                    <select class="expMode" required>
+                        <option value="Cash">Cash</option>
+                        <option value="UPI">UPI</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Cheque">Cheque</option>
+                    </select>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-top: 10px;">
+                <div class="form-group" style="margin: 0;">
+                    <label>Description / विवरण</label>
+                    <input type="text" class="expDescription" placeholder="What was this expense for?" required>
+                </div>
+                <div class="form-group" style="margin: 0;">
+                    <label>Amount (₹)</label>
+                    <input type="number" class="expAmount" placeholder="0" required>
+                </div>
+            </div>
+        </div>
+    `;
+    container.insertAdjacentHTML('beforeend', template);
+}
+
 document.getElementById('addExpenseForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('btnSubmitExpense');
@@ -1451,32 +1495,56 @@ document.getElementById('addExpenseForm').addEventListener('submit', async (e) =
     btn.disabled = true;
 
     try {
-        const formData = new FormData();
-        formData.append('action', 'add_expense');
-        formData.append('password', sessionPassword);
-        formData.append('date', document.getElementById('expDate').value);
-        formData.append('category', document.getElementById('expCategory').value);
-        formData.append('description', document.getElementById('expDescription').value);
-        formData.append('amount', document.getElementById('expAmount').value);
-        formData.append('mode', document.getElementById('expMode').value);
-        formData.append('addedBy', document.getElementById('expAddedBy').value);
-
-        const res = await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            body: formData
-        });
+        const date = document.getElementById('expDate').value;
+        const addedBy = document.getElementById('expAddedBy').value;
+        const items = document.querySelectorAll('.expense-item');
         
-        const result = await res.json();
-        if (result.status === 'success') {
-            Swal.fire('Success', 'Expense added successfully', 'success');
+        let successCount = 0;
+        
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            const category = item.querySelector('.expCategory').value;
+            const mode = item.querySelector('.expMode').value;
+            const description = item.querySelector('.expDescription').value;
+            const amount = item.querySelector('.expAmount').value;
+
+            const formData = new FormData();
+            formData.append('action', 'add_expense');
+            formData.append('password', sessionPassword);
+            formData.append('date', date);
+            formData.append('addedBy', addedBy);
+            formData.append('category', category);
+            formData.append('mode', mode);
+            formData.append('description', description);
+            formData.append('amount', amount);
+
+            const res = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            });
+            const result = await res.json();
+            if (result.status === 'success') {
+                successCount++;
+            }
+        }
+        
+        if (successCount === items.length) {
+            Swal.fire('Success', `${successCount} expenses added successfully!`, 'success');
             closeModal('addExpenseModal');
             loadExpenses();
+            // Reset the form manually to keep only 1 item
+            document.getElementById('addExpenseForm').reset();
+            const container = document.getElementById('expenseLineItems');
+            while (container.children.length > 1) {
+                container.removeChild(container.lastChild);
+            }
         } else {
-            Swal.fire('Error', result.message || 'Failed to add expense', 'error');
+            Swal.fire('Warning', `Added ${successCount} out of ${items.length} expenses. Some failed.`, 'warning');
+            loadExpenses();
         }
     } catch (err) {
         console.error(err);
-        Swal.fire('Error', 'Connection failed', 'error');
+        Swal.fire('Error', 'Connection failed during submission', 'error');
     } finally {
         btn.innerHTML = originalText;
         btn.disabled = false;

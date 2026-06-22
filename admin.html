@@ -452,45 +452,60 @@
     <div id="addExpenseModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('addExpenseModal')">&times;</span>
-            <h2><i class="fas fa-wallet"></i> Add New Expense</h2>
-            <form id="addExpenseForm" style="margin-top: 15px;">
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label>Date *</label>
-                    <input type="date" id="expDate" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <h2>Add Expenses</h2>
+            <form id="addExpenseForm">
+                <!-- Global Fields for this batch -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Date / दिनांक</label>
+                        <input type="date" id="expDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Added By / नाम</label>
+                        <input type="text" id="expAddedBy" placeholder="Your Name" required>
+                    </div>
                 </div>
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label>Category *</label>
-                    <select id="expCategory" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                        <option value="">Select Category</option>
-                        <option value="Temple Construction">Temple Construction</option>
-                        <option value="Event/Function">Event/Function</option>
-                        <option value="Maintenance">Maintenance</option>
-                        <option value="Salary/Wages">Salary/Wages</option>
-                        <option value="Other">Other</option>
-                    </select>
+                
+                <div id="expenseLineItems" style="margin-top: 15px;">
+                    <!-- Line Item 1 -->
+                    <div class="expense-item" style="background: #f9f9f9; border: 1px solid #ddd; padding: 15px; border-radius: 6px; margin-bottom: 10px; position: relative;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="form-group" style="margin: 0;">
+                                <label>Category</label>
+                                <select class="expCategory" required>
+                                    <option value="Temple Construction">Temple Construction</option>
+                                    <option value="Event">Event</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                    <option value="Salary">Salary</option>
+                                    <option value="Bills">Electricity/Water Bills</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label>Payment Mode</label>
+                                <select class="expMode" required>
+                                    <option value="Cash">Cash</option>
+                                    <option value="UPI">UPI</option>
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                    <option value="Cheque">Cheque</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-top: 10px;">
+                            <div class="form-group" style="margin: 0;">
+                                <label>Description / विवरण</label>
+                                <input type="text" class="expDescription" placeholder="What was this expense for?" required>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label>Amount (₹)</label>
+                                <input type="number" class="expAmount" placeholder="0" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label>Description *</label>
-                    <input type="text" id="expDescription" required placeholder="What was this expense for?" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                </div>
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label>Amount (₹) *</label>
-                    <input type="number" id="expAmount" required min="1" placeholder="e.g. 5000" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                </div>
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label>Payment Mode *</label>
-                    <select id="expMode" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                        <option value="Cash">Cash</option>
-                        <option value="Bank Transfer">Bank Transfer</option>
-                        <option value="UPI">UPI</option>
-                        <option value="Cheque">Cheque</option>
-                    </select>
-                </div>
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label>Added By (Admin Name) *</label>
-                    <input type="text" id="expAddedBy" required placeholder="Your Name" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%; padding: 12px; font-size: 1.1rem;" id="btnSubmitExpense">Submit Expense</button>
+                
+                <button type="button" onclick="addExpenseLineItem()" class="btn-secondary" style="margin-bottom: 15px; width: 100%;"><i class="fas fa-plus"></i> Add Another Item</button>
+                <button type="submit" id="btnSubmitExpense" class="btn-primary" style="width: 100%;">Submit All Expenses</button>
             </form>
         </div>
     </div>
