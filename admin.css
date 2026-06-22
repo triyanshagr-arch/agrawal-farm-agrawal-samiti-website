@@ -387,6 +387,7 @@ th {
     gap: 0;
     position: relative;
     z-index: 2;
+    margin-top: -15px;
     margin-bottom: 5px;
     border-top: 2px solid #8B0000;
 }
