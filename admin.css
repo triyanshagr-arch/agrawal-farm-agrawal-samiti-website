@@ -350,6 +350,7 @@ th {
 .lh-header-logo img {
     width: 95px;
     height: auto;
+    margin-top: 10px;
 }
 .lh-header-logo .logo-subtext {
     font-size: 11px;

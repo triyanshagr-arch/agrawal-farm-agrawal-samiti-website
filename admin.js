@@ -1625,7 +1625,7 @@ function printLetterhead() {
                     .phrase-blue { color: #1565c0; }
                     .lh-header-main { display: flex; align-items: flex-start; position: relative; z-index: 2; margin-bottom: 5px; }
                     .lh-header-logo { width: 110px; text-align: center; margin-right: 5px; }
-                    .lh-header-logo img { width: 95px; height: auto; }
+                    .lh-header-logo img { width: 95px; height: auto; margin-top: 10px; }
                     .lh-header-logo .logo-subtext { font-size: 11px; color: #b71c1c; margin: 4px 0; font-weight: bold; }
                     .lh-header-title { flex: 1; text-align: center; margin-right: 60px; }
                     .lh-header-title .lh-main-title { font-family: 'Yatra One', cursive; color: #8B0000; font-size: 38px; margin: 15px 0 0 0; line-height: 1.1; white-space: nowrap; }
