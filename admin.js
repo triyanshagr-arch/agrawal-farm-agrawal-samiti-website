@@ -1616,29 +1616,47 @@ function printLetterhead() {
                 <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap" rel="stylesheet">
                 <style>
                     body { margin: 0; padding: 0; background: #fff; display: flex; justify-content: center; }
-                    /* Inject the CSS required for the letterhead */
-                    .letterhead-page { width: 794px; height: 1123px; background: #ffffff; padding: 50px; box-sizing: border-box; position: relative; font-family: 'Tiro Devanagari Hindi', serif; color: #333; overflow: hidden; }
-                    .lh-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; pointer-events: none; }
-                    .lh-watermark img { width: 450px; height: auto; }
-                    .lh-header { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; margin-bottom: 20px; }
-                    .lh-logo { width: 90px; height: auto; }
-                    .lh-title-area { text-align: center; flex: 1; padding: 0 20px; }
-                    .lh-main-title { font-family: 'Yatra One', cursive; color: #b71c1c; font-size: 32px; margin: 0 0 5px 0; }
-                    .lh-sub-title { font-size: 18px; margin: 0; color: #444; }
-                    .lh-address { font-size: 12px; margin: 5px 0 0 0; color: #666; }
-                    .lh-divider { height: 4px; background: linear-gradient(to right, #b71c1c, #d4af37, #b71c1c); margin-bottom: 30px; position: relative; z-index: 2; }
-                    .lh-meta { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; margin-bottom: 25px; position: relative; z-index: 2; }
-                    .lh-subject-box { text-align: center; font-size: 18px; margin-bottom: 30px; position: relative; z-index: 2; }
+                    .letterhead-page { width: 794px; height: 1123px; background: #ffffff; padding: 30px; box-sizing: border-box; position: relative; font-family: 'Tiro Devanagari Hindi', serif; color: #333; overflow: hidden; }
+                    .lh-watermark { position: absolute; top: 55%; left: 55%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; pointer-events: none; }
+                    .lh-watermark img { width: 550px; height: auto; }
+                    .lh-top-phrases { display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: -5px; position: relative; z-index: 2; }
+                    .phrase-red { color: #b71c1c; }
+                    .phrase-blue { color: #1565c0; }
+                    .lh-header-main { display: flex; align-items: center; position: relative; z-index: 2; margin-bottom: 5px; }
+                    .lh-header-logo { width: 120px; text-align: center; margin-right: 5px; }
+                    .lh-header-logo img { width: 100px; height: auto; }
+                    .lh-header-logo .logo-subtext { font-size: 8px; color: #b71c1c; margin: 2px 0 0 0; font-weight: bold; }
+                    .lh-header-title { flex: 1; text-align: center; }
+                    .lh-header-title .lh-main-title { font-family: 'Yatra One', cursive; color: #8B0000; font-size: 40px; margin: 0; line-height: 1.1; white-space: nowrap; }
+                    .lh-committee-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; z-index: 2; margin-bottom: 5px; border-top: 2px solid #8B0000; }
+                    .grid-col { padding: 8px 2px; text-align: center; border-right: 1px solid #8B0000; }
+                    .grid-col:last-child { border-right: none; }
+                    .grid-col .member { margin-bottom: 10px; }
+                    .grid-col .member:last-child { margin-bottom: 0; }
+                    .grid-col .name { color: #1565c0; font-weight: bold; font-size: 15px; margin: 0; }
+                    .grid-col .role { color: #b71c1c; font-size: 13px; margin: 1px 0; font-weight: bold; }
+                    .grid-col .mob { color: #000; font-size: 12px; font-weight: bold; margin: 0; }
+                    .lh-divider { height: 2px; background: #000; margin-bottom: 5px; position: relative; z-index: 2; }
+                    .lh-layout { display: flex; position: relative; z-index: 2; height: calc(100% - 280px); }
+                    .lh-sidebar { width: 200px; border-right: 1px solid #000; padding-right: 10px; text-align: center; }
+                    .sidebar-member { margin-bottom: 2px; }
+                    .sidebar-member.top-member { margin-bottom: 4px; }
+                    .s-name { color: #1565c0; font-weight: bold; font-size: 12px; margin: 0; }
+                    .s-role { color: #b71c1c; font-size: 10px; font-weight: bold; margin: 0; }
+                    .sidebar-badge-wrap { text-align: center; margin: 6px 0; }
+                    .sidebar-badge { background: #8B0000; color: #fff; font-size: 10px; padding: 2px 8px; border-radius: 10px; }
+                    .lh-main-content { flex: 1; padding-left: 15px; display: flex; flex-direction: column; }
+                    .lh-meta { display: flex; justify-content: space-between; font-size: 14px; font-weight: bold; margin-bottom: 15px; }
+                    .lh-subject-box { text-align: center; font-size: 16px; margin-bottom: 15px; }
                     .lh-subject-box span { font-weight: bold; text-decoration: underline; }
-                    .lh-body { font-size: 16px; line-height: 1.6; text-align: justify; position: relative; z-index: 2; white-space: pre-wrap; }
-                    .lh-footer-sigs { position: absolute; bottom: 50px; left: 50px; right: 50px; display: flex; justify-content: space-between; z-index: 2; }
-                    .sig-block { text-align: center; }
-                    .sig-name { font-weight: bold; margin: 0 0 5px 0; font-size: 18px; }
-                    .sig-samiti { margin: 0; font-size: 14px; color: #666; }
+                    .lh-body { font-size: 16px; line-height: 1.6; text-align: justify; flex: 1; white-space: pre-wrap; }
+                    .lh-footer-address { position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center; color: #1565c0; z-index: 2; }
+                    .addr-line { font-size: 15px; font-weight: bold; margin: 0; }
+                    .email-line { font-size: 14px; margin: 2px 0 0 0; }
                     @media print {
                         @page { margin: 0; size: A4; }
-                        body { margin: 0; padding: 0; box-shadow: none; }
-                        .letterhead-page { padding: 50px !important; }
+                        body { margin: 0; padding: 0; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+                        .letterhead-page { padding: 30px !important; }
                     }
                 </style>
             </head>

@@ -291,142 +291,226 @@ th {
 .profile-table th { background: #f9f9f9; width: 35%; }
 .profile-table td, .profile-table th { padding: 8px 10px; border: 1px solid #eee; }
 
-/* --- Letterhead Maker --- */
+/* --- Letterhead Template Specifics --- */
 .letterhead-page {
-    width: 794px; /* A4 width at 96 DPI */
-    height: 1123px; /* A4 height at 96 DPI */
+    width: 794px;
+    height: 1123px; /* A4 */
     background: #ffffff;
-    padding: 50px;
+    padding: 30px;
     box-sizing: border-box;
     position: relative;
     font-family: 'Tiro Devanagari Hindi', serif;
     color: #333;
     overflow: hidden;
 }
-
 .lh-watermark {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 55%;
+    left: 55%;
     transform: translate(-50%, -50%);
     opacity: 0.1;
     z-index: 1;
     pointer-events: none;
 }
 .lh-watermark img {
-    width: 450px;
+    width: 550px;
     height: auto;
 }
 
-.lh-header {
+/* Top Phrases */
+.lh-top-phrases {
     display: flex;
     justify-content: space-between;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: -5px;
+    position: relative;
+    z-index: 2;
+}
+.phrase-red { color: #b71c1c; }
+.phrase-blue { color: #1565c0; }
+
+/* Main Header */
+.lh-header-main {
+    display: flex;
     align-items: center;
     position: relative;
     z-index: 2;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
-.lh-logo {
-    height: 110px;
+.lh-header-logo {
     width: 120px;
-    flex: 0 0 120px;
-    object-fit: contain;
-}
-.lh-logo.left {
-    height: 120px;
-}
-.lh-logo.right {
-    height: 110px;
-    transform: scale(1.3); /* Boost size of Lakshmi if her native crop is smaller */
-}
-.lh-title-area {
     text-align: center;
-    flex: 1;
-    padding: 0 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin-right: 5px;
 }
-.lh-main-title {
+.lh-header-logo img {
+    width: 100px;
+    height: auto;
+}
+.lh-header-logo .logo-subtext {
+    font-size: 8px;
+    color: #b71c1c;
+    margin: 2px 0 0 0;
+    font-weight: bold;
+}
+.lh-header-title {
+    flex: 1;
+    text-align: center;
+}
+.lh-header-title .lh-main-title {
     font-family: 'Yatra One', cursive;
-    color: #b71c1c; /* Deep Red */
-    font-size: 26px;
-    margin: 0 0 5px 0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    color: #8B0000;
+    font-size: 40px;
+    margin: 0;
+    line-height: 1.1;
     white-space: nowrap;
 }
-.lh-sub-title {
-    font-size: 18px;
-    margin: 0;
-    color: #444;
+
+/* Top Committee Grid */
+.lh-committee-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 5px;
+    border-top: 2px solid #8B0000;
 }
-.lh-address {
+.grid-col {
+    padding: 8px 2px;
+    text-align: center;
+    border-right: 1px solid #8B0000;
+}
+.grid-col:last-child {
+    border-right: none;
+}
+.grid-col .member {
+    margin-bottom: 10px;
+}
+.grid-col .member:last-child {
+    margin-bottom: 0;
+}
+.grid-col .name {
+    color: #1565c0;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0;
+}
+.grid-col .role {
+    color: #b71c1c;
+    font-size: 13px;
+    margin: 1px 0;
+    font-weight: bold;
+}
+.grid-col .mob {
+    color: #000;
     font-size: 12px;
-    margin: 5px 0 0 0;
-    color: #666;
+    font-weight: bold;
+    margin: 0;
 }
 
 .lh-divider {
-    height: 4px;
-    background: linear-gradient(to right, #b71c1c, #d4af37, #b71c1c); /* Red and Gold */
-    margin-bottom: 30px;
+    height: 2px;
+    background: #000;
+    margin-bottom: 5px;
     position: relative;
     z-index: 2;
 }
 
+/* Two Column Layout */
+.lh-layout {
+    display: flex;
+    position: relative;
+    z-index: 2;
+    height: calc(100% - 280px); /* Approx space for header */
+}
+
+/* Sidebar */
+.lh-sidebar {
+    width: 200px;
+    border-right: 1px solid #000;
+    padding-right: 10px;
+    text-align: center;
+}
+.sidebar-member {
+    margin-bottom: 2px;
+}
+.sidebar-member.top-member {
+    margin-bottom: 4px;
+}
+.s-name {
+    color: #1565c0;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 0;
+}
+.s-role {
+    color: #b71c1c;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0;
+}
+.sidebar-badge-wrap {
+    text-align: center;
+    margin: 6px 0;
+}
+.sidebar-badge {
+    background: #8B0000;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Main Content Area */
+.lh-main-content {
+    flex: 1;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
 .lh-meta {
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    margin-bottom: 25px;
-    position: relative;
-    z-index: 2;
+    margin-bottom: 15px;
 }
-
 .lh-subject-box {
     text-align: center;
-    font-size: 18px;
-    margin-bottom: 30px;
-    position: relative;
-    z-index: 2;
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 .lh-subject-box span {
     font-weight: bold;
     text-decoration: underline;
 }
-
 .lh-body {
     font-size: 16px;
     line-height: 1.6;
     text-align: justify;
-    position: relative;
-    z-index: 2;
+    flex: 1;
     white-space: pre-wrap;
 }
 
-.lh-footer-sigs {
+/* Footer Address */
+.lh-footer-address {
     position: absolute;
-    bottom: 50px;
-    left: 50px;
-    right: 50px;
-    display: flex;
-    justify-content: space-between;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #1565c0;
     z-index: 2;
 }
-.sig-block {
-    text-align: center;
-}
-.sig-name {
+.addr-line {
+    font-size: 15px;
     font-weight: bold;
-    margin: 0 0 5px 0;
-    font-size: 18px;
-}
-.sig-samiti {
     margin: 0;
+}
+.email-line {
     font-size: 14px;
-    color: #666;
+    margin: 2px 0 0 0;
 }
 
 /* --- Print Styles --- */
