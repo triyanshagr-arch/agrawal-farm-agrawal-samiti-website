@@ -522,16 +522,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script src="pdf_generator.js?v=24"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="admin.js?v=49"></script>
+    <script src="admin.js?v=50"></script>
 
     <!-- Hidden Letterhead Template for PDF/Print -->
     <div id="letterheadContainer" style="position: absolute; left: -9999px; top: -9999px;">
         <div id="letterheadTemplate" class="letterhead-page">
             <!-- Top Phrases -->
             <div class="lh-top-phrases">
-                <span class="phrase-red" style="position: absolute; left: 0; width: 110px; text-align: center;">!! जय अग्रोहा !!</span>
-                <span class="phrase-red" style="text-align: center;">!! श्री अग्रसेन जयते !!</span>
-                <span class="phrase-blue" style="position: absolute; right: 0;">पंजीयन संख्या : 169/जयपुर/93-94</span>
+                <div style="text-align: left;">
+                    <span class="phrase-red" style="display: inline-block; width: 110px; text-align: center;">!! जय अग्रोहा !!</span>
+                </div>
+                <div style="text-align: center;">
+                    <span class="phrase-red">!! श्री अग्रसेन जयते !!</span>
+                </div>
+                <div style="text-align: right;">
+                    <span class="phrase-blue">पंजीयन संख्या : 169/जयपुर/93-94</span>
+                </div>
             </div>
 
             <!-- Main Header -->
