@@ -1617,7 +1617,7 @@ function printLetterhead() {
                 <style>
                     body { margin: 0; padding: 0; background: #fff; display: flex; justify-content: center; }
                     .letterhead-page { width: 794px; height: 1123px; background: #ffffff; padding: 30px; box-sizing: border-box; position: relative; font-family: 'Tiro Devanagari Hindi', serif; color: #333; overflow: hidden; }
-                    .lh-watermark { position: absolute; top: 55%; left: 55%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; pointer-events: none; }
+                    .lh-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; pointer-events: none; }
                     .lh-watermark img { width: 550px; height: auto; }
                     .lh-top-phrases { display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: -5px; position: relative; z-index: 2; }
                     .phrase-red { color: #b71c1c; }
@@ -1645,7 +1645,7 @@ function printLetterhead() {
                     .s-role { color: #b71c1c; font-size: 9px; font-weight: bold; margin: 0; }
                     .sidebar-badge-wrap { text-align: center; margin: 4px 0; }
                     .sidebar-badge { background: #8B0000; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 10px; }
-                    .lh-main-content { flex: 1; padding-left: 15px; display: flex; flex-direction: column; }
+                    .lh-main-content { flex: 1; padding-left: 15px; display: flex; flex-direction: column; position: relative; }
                     .lh-meta { display: flex; justify-content: space-between; font-size: 14px; font-weight: bold; margin-bottom: 15px; }
                     .lh-subject-box { text-align: center; font-size: 16px; margin-bottom: 15px; }
                     .lh-subject-box span { font-weight: bold; text-decoration: underline; }
