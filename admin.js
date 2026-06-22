@@ -1657,7 +1657,8 @@ function printLetterhead() {
                     @media print {
                         @page { margin: 0; size: A4; }
                         body { margin: 0; padding: 0; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-                        .letterhead-page { padding: 30px !important; }
+                        .letterhead-page { height: 1090px !important; padding: 15px 25px !important; overflow: hidden; }
+                        .lh-watermark { opacity: 0.2 !important; }
                     }
                 </style>
             </head>
