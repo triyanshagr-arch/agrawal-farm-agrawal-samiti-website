@@ -1382,6 +1382,7 @@ function renderExpenses() {
     tbody.innerHTML = '';
     
     const searchVal = document.getElementById('searchExpenses') ? document.getElementById('searchExpenses').value.toLowerCase() : '';
+    const filterDateVal = document.getElementById('filterExpenseDate') ? document.getElementById('filterExpenseDate').value : '';
     
     let totalExp = 0;
     let constructionExp = 0;
@@ -1406,6 +1407,15 @@ function renderExpenses() {
             totalExp += amount;
             if (category === 'Temple Construction') constructionExp += amount;
             else eventExp += amount;
+        }
+
+        // Apply Date Filter
+        if (filterDateVal) {
+            const yyyy = dateObj.getFullYear();
+            const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const dd = String(dateObj.getDate()).padStart(2, '0');
+            const formattedDate = `${yyyy}-${mm}-${dd}`;
+            if (formattedDate !== filterDateVal) return;
         }
 
         const matchStr = `${category} ${description} ${amount} ${addedBy}`.toLowerCase();

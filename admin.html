@@ -333,9 +333,15 @@
                 </div>
 
                 <!-- Search and Filter -->
-                <div class="action-bar" style="margin-top: 20px;">
+                <div class="action-bar" style="margin-top: 20px; display: flex; gap: 10px;">
                     <div class="search-box" style="flex: 1;">
                         <input type="text" id="searchExpenses" placeholder="Search by Description, Category, or Amount..." oninput="renderExpenses()">
+                    </div>
+                    <div style="display: flex; gap: 5px; align-items: center;">
+                        <label for="filterExpenseDate" style="font-weight: bold; font-size: 14px; color: #555;">Filter by Date:</label>
+                        <input type="date" id="filterExpenseDate" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;" onchange="renderExpenses()" title="Filter expenses by a specific day">
+                        <button onclick="document.getElementById('filterExpenseDate').value=''; renderExpenses();" class="btn-secondary" title="Clear Date Filter" style="padding: 10px 12px;"><i class="fas fa-times"></i></button>
+                        <button onclick="window.print()" class="btn-primary" style="background: #1976d2; padding: 10px 15px;" title="Print this list"><i class="fas fa-print"></i></button>
                     </div>
                 </div>
 

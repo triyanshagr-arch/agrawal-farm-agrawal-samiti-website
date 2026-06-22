@@ -428,3 +428,28 @@ th {
     font-size: 14px;
     color: #666;
 }
+
+/* --- Print Styles --- */
+@media print {
+    body {
+        background: #fff;
+    }
+    .sidebar, .dashboard-header {
+        display: none !important;
+    }
+    .main-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    .action-bar, .header-bar button, .tab-buttons {
+        display: none !important;
+    }
+    .data-table {
+        border-collapse: collapse;
+    }
+    .data-table th, .data-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+}
