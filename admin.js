@@ -1726,6 +1726,57 @@ async function downloadLetterheadPDF() {
         Swal.fire('Error', 'Failed to generate PDF.', 'error');
     } finally {
         // Hide again
+        originalContainer.style.top = '-9999px';
+        originalContainer.style.visibility = 'hidden';
+    }
+}
+
+async function downloadLetterheadJPG() {
+    updateLetterheadContent();
+
+    const element = document.getElementById('letterheadTemplate');
+    const originalContainer = document.getElementById('letterheadContainer');
+    
+    // Temporarily bring it on screen to capture properly, but hide it visually
+    originalContainer.style.left = '0';
+    originalContainer.style.top = '0';
+    originalContainer.style.zIndex = '-1000';
+    originalContainer.style.visibility = 'visible';
+
+    Swal.fire({
+        title: 'Generating JPG',
+        text: 'Please wait...',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    try {
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            logging: false
+        });
+
+        const imgData = canvas.toDataURL('image/jpeg', 1.0);
+        
+        let filename = 'Letterhead.jpg';
+        const ref = document.getElementById('lhRefNo').value.trim();
+        if (ref) {
+            filename = `Letterhead_${ref.replace(/[\/\\?%*:|"<>]/g, '-')}.jpg`;
+        }
+        
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = imgData;
+        link.click();
+        
+        Swal.fire('Success', 'JPG Downloaded Successfully', 'success');
+
+    } catch (error) {
+        console.error("Error generating Letterhead JPG:", error);
+        Swal.fire('Error', 'Failed to generate JPG.', 'error');
+    } finally {
+        // Hide again
         originalContainer.style.left = '-9999px';
         originalContainer.style.top = '-9999px';
         originalContainer.style.visibility = 'hidden';
