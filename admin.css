@@ -429,13 +429,15 @@ th {
 
 /* Sidebar */
 .lh-sidebar {
-    width: 200px;
+    width: 230px;
+    flex-shrink: 0;
     border-right: 1px solid #000;
     padding-right: 10px;
     text-align: center;
 }
 .sidebar-member {
     margin-bottom: 1px;
+    line-height: 1.1;
 }
 .sidebar-member.top-member {
     margin-bottom: 2px;

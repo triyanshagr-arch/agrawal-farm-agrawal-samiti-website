@@ -1639,8 +1639,8 @@ function printLetterhead() {
                     .grid-col .mob { color: #000; font-size: 12px; font-weight: bold; margin: 0; }
                     .lh-divider { height: 2px; background: #000; margin-bottom: 5px; position: relative; z-index: 2; }
                     .lh-layout { display: flex; position: relative; z-index: 2; flex: 1; }
-                    .lh-sidebar { width: 200px; border-right: 1px solid #000; padding-right: 10px; text-align: center; }
-                    .sidebar-member { margin-bottom: 1px; }
+                    .lh-sidebar { width: 230px; flex-shrink: 0; border-right: 1px solid #000; padding-right: 10px; text-align: center; }
+                    .sidebar-member { margin-bottom: 1px; line-height: 1.1; }
                     .sidebar-member.top-member { margin-bottom: 2px; }
                     .s-name { color: #1565c0; font-weight: bold; font-size: 11px; margin: 0; }
                     .s-role { color: #b71c1c; font-size: 9px; font-weight: bold; margin: 0; }
