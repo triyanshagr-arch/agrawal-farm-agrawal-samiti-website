@@ -296,12 +296,14 @@ th {
     width: 794px;
     height: 1123px; /* A4 */
     background: #ffffff;
-    padding: 30px;
+    padding: 20px 30px; /* Reduced vertical padding */
     box-sizing: border-box;
     position: relative;
     font-family: 'Tiro Devanagari Hindi', serif;
     color: #333;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 .lh-watermark {
     position: absolute;
@@ -360,7 +362,7 @@ th {
 .lh-header-title .lh-main-title {
     font-family: 'Yatra One', cursive;
     color: #8B0000;
-    font-size: 40px;
+    font-size: 38px;
     margin: 0;
     line-height: 1.1;
     white-space: nowrap;
@@ -377,7 +379,7 @@ th {
     border-top: 2px solid #8B0000;
 }
 .grid-col {
-    padding: 8px 2px;
+    padding: 4px 2px;
     text-align: center;
     border-right: 1px solid #8B0000;
 }
@@ -385,7 +387,7 @@ th {
     border-right: none;
 }
 .grid-col .member {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .grid-col .member:last-child {
     margin-bottom: 0;
@@ -422,7 +424,7 @@ th {
     display: flex;
     position: relative;
     z-index: 2;
-    height: calc(100% - 280px); /* Approx space for header */
+    flex: 1; /* Take up remaining height */
 }
 
 /* Sidebar */
@@ -433,20 +435,20 @@ th {
     text-align: center;
 }
 .sidebar-member {
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 .sidebar-member.top-member {
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 .s-name {
     color: #1565c0;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 10.5px;
     margin: 0;
 }
 .s-role {
     color: #b71c1c;
-    font-size: 9px;
+    font-size: 8.5px;
     font-weight: bold;
     margin: 0;
 }
