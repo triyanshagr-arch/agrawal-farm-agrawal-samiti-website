@@ -404,6 +404,7 @@ th {
     margin-top: -35px;
     margin-bottom: 5px;
     border-top: 2px solid #8B0000;
+    border-bottom: 2px solid #8B0000;
 }
 .grid-col {
     padding: 4px 2px;
@@ -439,11 +440,7 @@ th {
 }
 
 .lh-divider {
-    height: 2px;
-    background: #000;
-    margin-bottom: 5px;
-    position: relative;
-    z-index: 2;
+    display: none;
 }
 
 /* Two Column Layout */

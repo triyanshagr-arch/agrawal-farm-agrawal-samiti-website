@@ -1631,7 +1631,7 @@ function printLetterhead() {
                     .lh-header-title .lh-main-title { font-family: 'Yatra One', cursive; color: #8B0000; font-size: 38px; margin: 15px 0 0 0; line-height: 1.1; white-space: nowrap; }
                     .lh-header-address { font-size: 14px; color: #1565c0; font-weight: bold; margin: 5px 0 2px 0; }
                     .lh-header-email { font-size: 13px; color: #1565c0; margin: 0; }
-                    .lh-committee-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; z-index: 2; margin-top: -35px; margin-bottom: 5px; border-top: 2px solid #8B0000; }
+                    .lh-committee-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; z-index: 2; margin-top: -35px; margin-bottom: 5px; border-top: 2px solid #8B0000; border-bottom: 2px solid #8B0000; }
                     .grid-col { padding: 4px 2px; text-align: center; border-right: 1px solid #8B0000; }
                     .grid-col:last-child { border-right: none; }
                     .grid-col .member { margin-bottom: 5px; }
@@ -1639,7 +1639,7 @@ function printLetterhead() {
                     .grid-col .name { color: #1565c0; font-weight: bold; font-size: 15px; margin: 0; }
                     .grid-col .role { color: #b71c1c; font-size: 13px; margin: 1px 0; font-weight: bold; }
                     .grid-col .mob { color: #000; font-size: 12px; font-weight: bold; margin: 0; }
-                    .lh-divider { height: 2px; background: #000; margin-bottom: 5px; position: relative; z-index: 2; }
+                    .lh-divider { display: none; }
                     .lh-layout { display: flex; position: relative; z-index: 2; flex: 1; }
                     .lh-sidebar { width: 230px; flex-shrink: 0; border-right: 1px solid #000; padding-right: 10px; text-align: center; }
                     .sidebar-member { margin-bottom: 1px; line-height: 1.1; }
