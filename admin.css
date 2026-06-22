@@ -197,6 +197,17 @@ th {
     color: #555;
 }
 
+.sidebar-section-title {
+    font-family: 'Yatra One', cursive;
+    background-color: #8B0000;
+    color: white;
+    text-align: center;
+    padding: 4px;
+    border-radius: 15px;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
 .text-center {
     text-align: center;
 }
@@ -460,14 +471,14 @@ th {
 }
 .s-name {
     color: #1565c0;
-    font-weight: bold;
-    font-size: 11px;
+    font-weight: 900;
+    font-size: 14px;
     margin: 0;
 }
 .s-role {
     color: #b71c1c;
-    font-size: 9px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 900;
     margin: 0;
 }
 .sidebar-badge-wrap {
@@ -477,7 +488,7 @@ th {
 .sidebar-badge {
     background: #8B0000;
     color: #fff;
-    font-size: 12px;
+    font-size: 16px;
     padding: 3px 8px;
     border-radius: 10px;
 }
