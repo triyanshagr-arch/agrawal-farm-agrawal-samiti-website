@@ -1650,7 +1650,7 @@ function printLetterhead() {
                     .lh-subject-box { text-align: center; font-size: 16px; margin-bottom: 15px; }
                     .lh-subject-box span { font-weight: bold; text-decoration: underline; }
                     .lh-body { font-size: 16px; line-height: 1.6; text-align: justify; flex: 1; white-space: pre-wrap; }
-                    .lh-footer-address { position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center; color: #1565c0; z-index: 2; }
+                    .lh-footer-address { text-align: center; color: #1565c0; z-index: 2; margin-top: auto; padding-top: 15px; border-top: 1px solid #eee; }
                     .addr-line { font-size: 15px; font-weight: bold; margin: 0; }
                     .email-line { font-size: 14px; margin: 2px 0 0 0; }
                     @media print {

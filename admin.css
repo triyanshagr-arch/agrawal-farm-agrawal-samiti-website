@@ -495,13 +495,12 @@ th {
 
 /* Footer Address */
 .lh-footer-address {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
     text-align: center;
     color: #1565c0;
     z-index: 2;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
 .addr-line {
     font-size: 15px;
