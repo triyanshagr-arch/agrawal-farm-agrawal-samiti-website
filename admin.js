@@ -1714,10 +1714,10 @@ async function downloadLetterheadPDF() {
     const element = document.getElementById('letterheadTemplate');
     const originalContainer = document.getElementById('letterheadContainer');
     
-    // Temporarily bring it on screen to capture properly, but hide it visually
+    // Temporarily bring it on screen to capture properly, and put it ON TOP so UI doesn't bleed into it
     originalContainer.style.left = '0';
     originalContainer.style.top = '0';
-    originalContainer.style.zIndex = '-1000';
+    originalContainer.style.zIndex = '99999';
     originalContainer.style.visibility = 'visible';
 
     Swal.fire({
@@ -1771,7 +1771,7 @@ async function downloadLetterheadJPG() {
     // Temporarily bring it on screen to capture properly, but hide it visually
     originalContainer.style.left = '0';
     originalContainer.style.top = '0';
-    originalContainer.style.zIndex = '-1000';
+    originalContainer.style.zIndex = '99999';
     originalContainer.style.visibility = 'visible';
 
     Swal.fire({
