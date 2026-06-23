@@ -1813,3 +1813,25 @@ async function downloadLetterheadJPG() {
         originalContainer.style.visibility = 'hidden';
     }
 }
+
+let quill = null;
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('lhContentEditor')) {
+        quill = new Quill('#lhContentEditor', {
+            theme: 'snow',
+            placeholder: 'Dear Members...',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],        
+                    ['blockquote'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],          
+                    [{ 'size': ['small', false, 'large', 'huge'] }],  
+                    [{ 'color': [] }, { 'background': [] }],          
+                    [{ 'align': [] }],
+                    ['clean']                                         
+                ]
+            }
+        });
+    }
+});
