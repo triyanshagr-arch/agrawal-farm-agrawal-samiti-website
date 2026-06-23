@@ -553,7 +553,7 @@ th {
 }
 
 .lh-footer-note {
-    margin-top: auto;
+    /* margin-top: auto; removed to allow signatures to push it down */
     padding-top: 20px;
     padding-bottom: 20px;
     font-size: 12px;
@@ -561,4 +561,34 @@ th {
     text-align: center;
     font-style: italic;
     opacity: 0.8;
+}
+
+.lh-signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto; /* Pushes signatures and footer note to bottom */
+    padding: 0 40px;
+    margin-bottom: 10px;
+}
+.sign-block {
+    text-align: center;
+}
+.sign-block img {
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+.sign-block p {
+    margin: 0;
+    line-height: 1.2;
+}
+.sign-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #000;
+}
+.sign-title {
+    font-size: 14px;
+    color: #b71c1c;
+    font-weight: bold;
 }
