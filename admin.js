@@ -1582,9 +1582,9 @@ function updateLetterheadContent() {
     const dateVal = document.getElementById('lhDate').value;
     const refVal = document.getElementById('lhRefNo').value;
     const subjectVal = document.getElementById('lhSubject').value;
-    const contentVal = document.getElementById('lhContent').value;
+    const contentVal = quill ? quill.root.innerHTML : '';
 
-    // Format Date
+    // Update Top Content
     if (dateVal) {
         const d = new Date(dateVal);
         document.querySelector('#lhDispDate span').innerText = d.toLocaleDateString('en-IN');
