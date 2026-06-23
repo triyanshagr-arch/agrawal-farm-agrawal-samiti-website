@@ -1555,6 +1555,20 @@ document.getElementById('addExpenseForm').addEventListener('submit', async (e) =
 // --- Letterhead Maker Functions ---
 
 function updateLetterheadContent() {
+    const formatVal = document.getElementById('lhFormat').value;
+    const sidebar = document.querySelector('.lh-sidebar');
+    const mainContent = document.querySelector('.lh-main-content');
+    
+    if (formatVal === 'without_sidebar') {
+        sidebar.style.display = 'none';
+        mainContent.style.gridColumn = '1 / 5';
+        mainContent.style.paddingLeft = '0px';
+    } else {
+        sidebar.style.display = 'block';
+        mainContent.style.gridColumn = '2 / 5';
+        mainContent.style.paddingLeft = '20px';
+    }
+
     const dateVal = document.getElementById('lhDate').value;
     const refVal = document.getElementById('lhRefNo').value;
     const subjectVal = document.getElementById('lhSubject').value;

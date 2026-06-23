@@ -378,6 +378,13 @@
 
                 <div class="form-container" style="margin-top: 20px; max-width: 100%;">
                     <form id="letterheadForm">
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Letterhead Format / लेटरहेड प्रारूप</label>
+                            <select id="lhFormat" class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                                <option value="with_sidebar">Format 1: With Committee Sidebar (समिति सदस्यों के साथ)</option>
+                                <option value="without_sidebar">Format 2: Without Committee Sidebar (बिना साइडबार)</option>
+                            </select>
+                        </div>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                             <div class="form-group">
                                 <label>Date / दिनांक</label>
@@ -523,7 +530,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script src="pdf_generator.js?v=24"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="admin.js?v=66"></script>
+    <script src="admin.js?v=67"></script>
 
     <!-- Hidden Letterhead Template for PDF/Print -->
     <div id="letterheadContainer" style="position: absolute; left: -9999px; top: -9999px;">
