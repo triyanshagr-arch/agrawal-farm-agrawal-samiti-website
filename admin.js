@@ -1654,7 +1654,6 @@ function printLetterhead() {
                     .lh-subject-box span { font-weight: bold; text-decoration: underline; }
                     .lh-body { font-size: 14px; text-align: justify; line-height: 1.6; min-height: 500px; }
                     .lh-body p { margin-bottom: 15px; }
-                    .lh-footer-note { padding-top: 20px; padding-bottom: 20px; font-size: 12px; color: #555; text-align: center; font-style: italic; opacity: 0.8; }
                     .lh-signatures { display: flex; justify-content: space-between; margin-top: auto; padding: 0 40px; margin-bottom: 10px; }
                     .sign-block { text-align: center; }
                     .sign-block img { height: 60px; object-fit: contain; margin-bottom: 5px; }
