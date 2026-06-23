@@ -1566,7 +1566,7 @@ function updateLetterheadContent() {
         topCommittee.style.display = 'none';
         divider.style.display = 'block';
         divider.style.borderBottom = '2px solid #8B0000';
-        divider.style.margin = '10px 0 15px 0';
+        divider.style.margin = '-25px 0 15px 0';
         divider.style.position = 'relative';
         divider.style.zIndex = '2';
         mainContent.style.gridColumn = '1 / 5';
