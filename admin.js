@@ -1639,9 +1639,10 @@ function printLetterhead() {
                 <title>Print Letterhead</title>
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
                 <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap" rel="stylesheet">
+                <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
                 <style>
                     body { margin: 0; padding: 0; background: #fff; display: flex; justify-content: center; }
-                    .letterhead-page { width: 794px; height: 1123px; background: #ffffff; padding: 20px 30px; box-sizing: border-box; position: relative; font-family: 'Tiro Devanagari Hindi', serif; color: #333; overflow: hidden; display: flex; flex-direction: column; }
+                    .letterhead-page { width: 794px; min-height: 1123px; background: #ffffff; padding: 20px 30px; box-sizing: border-box; position: relative; font-family: 'Tiro Devanagari Hindi', serif; color: #333; overflow: hidden; display: flex; flex-direction: column; }
                     .lh-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 1; pointer-events: none; }
                     .lh-watermark img { width: 550px; height: auto; }
                     .lh-top-phrases { display: grid; grid-template-columns: 1fr 1fr 1fr; width: 100%; align-items: center; font-size: 13px; font-weight: bold; margin-bottom: -5px; position: relative; z-index: 2; }
@@ -1676,8 +1677,7 @@ function printLetterhead() {
                     .lh-meta { display: flex; justify-content: space-between; font-size: 14px; font-weight: bold; margin-bottom: 15px; }
                     .lh-subject-box { text-align: center; font-size: 16px; margin-bottom: 15px; }
                     .lh-subject-box span { font-weight: bold; text-decoration: underline; }
-                    .lh-body { font-size: 14px; text-align: justify; line-height: 1.6; min-height: 500px; }
-                    .lh-body p { margin-bottom: 15px; }
+                    .lh-body { font-size: 14px; text-align: justify; line-height: 1.6; min-height: 500px; overflow-y: visible !important; height: auto !important; padding: 0 !important; }
                     .lh-signatures { display: flex; justify-content: space-between; margin-top: auto; padding: 0 40px; margin-bottom: 0px; }
                     .sign-block { text-align: center; }
                     .sign-block img { height: 60px; object-fit: contain; margin-bottom: 5px; }

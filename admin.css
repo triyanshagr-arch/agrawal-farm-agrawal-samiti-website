@@ -305,7 +305,7 @@ th {
 /* --- Letterhead Template Specifics --- */
 .letterhead-page {
     width: 794px;
-    height: 1123px; /* A4 */
+    min-height: 1123px; /* A4 */
     background: #ffffff;
     padding: 20px 30px; /* Reduced vertical padding */
     box-sizing: border-box;
