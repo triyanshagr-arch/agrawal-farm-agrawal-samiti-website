@@ -1558,13 +1558,23 @@ function updateLetterheadContent() {
     const formatVal = document.getElementById('lhFormat').value;
     const sidebar = document.querySelector('.lh-sidebar');
     const mainContent = document.querySelector('.lh-main-content');
+    const topCommittee = document.querySelector('.lh-committee-grid');
+    const divider = document.querySelector('.lh-divider');
     
     if (formatVal === 'without_sidebar') {
         sidebar.style.display = 'none';
+        topCommittee.style.display = 'none';
+        divider.style.display = 'block';
+        divider.style.borderBottom = '2px solid #8B0000';
+        divider.style.margin = '10px 0 15px 0';
+        divider.style.position = 'relative';
+        divider.style.zIndex = '2';
         mainContent.style.gridColumn = '1 / 5';
         mainContent.style.paddingLeft = '0px';
     } else {
         sidebar.style.display = 'block';
+        topCommittee.style.display = 'grid';
+        divider.style.display = 'none';
         mainContent.style.gridColumn = '2 / 5';
         mainContent.style.paddingLeft = '20px';
     }
