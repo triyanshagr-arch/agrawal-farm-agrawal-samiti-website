@@ -1094,7 +1094,8 @@ function renderBookings() {
         
         let waNumber = String(b.mobileNumber).replace(/\D/g, '');
         if (waNumber.length === 10) waNumber = '91' + waNumber;
-        actionHtml += ` <a href="https://wa.me/${waNumber}" target="_blank" style="padding: 4px 8px; font-size: 12px; margin-top: 4px; display: inline-block; background-color: #25D366; color: white; text-decoration: none; border-radius: 4px; font-family: inherit; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><i class="fab fa-whatsapp"></i> WhatsApp</a>`;
+        let waText = encodeURIComponent(`नमस्ते ${b.fullName}, अग्रवाल समाज समिति में आपका स्वागत है। आपके ${b.facilityRequired} की बुकिंग के संबंध में हम आपसे संपर्क कर रहे हैं।`);
+        actionHtml += ` <a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" style="padding: 4px 8px; font-size: 12px; margin-top: 4px; display: inline-block; background-color: #25D366; color: white; text-decoration: none; border-radius: 4px; font-family: inherit; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"><i class="fab fa-whatsapp"></i> WhatsApp</a>`;
         tr.innerHTML = `
             <td><small>${new Date(b.timestamp).toLocaleDateString()}</small></td>
             <td><strong>${b.fullName}</strong></td>
