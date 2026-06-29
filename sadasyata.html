@@ -75,7 +75,7 @@
                         <div style="display: flex; flex-wrap: wrap-reverse; gap: 30px; margin-bottom: 30px;">
                             <div style="flex: 1; min-width: 300px;">
                                 <div class="form-grid" style="margin-bottom: 0;">
-                                    <div class="form-group">
+                                    <div class="form-group" style="grid-column: 1 / -1;">
                                         <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
                                         <div style="display: flex; gap: 10px;">
                                             <select id="title-dropdown" required style="width: 100px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
@@ -86,13 +86,13 @@
                                             <input type="text" id="fullName" required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" placeholder="Enter Name" data-placeholder-en="Enter Name" data-placeholder-hi="नाम दर्ज करें">
                                         </div>
                                     </div>
+                                    <div class="form-group" style="grid-column: 1 / -1;">
+                                        <label id="guardian-name-label" style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पिता/पति का नाम <span style="color:red">*</span></span><span class="lang-en">Father's/Husband's Name <span style="color:red">*</span></span></label>
+                                        <input type="text" id="guardianName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    </div>
                                     <div class="form-group">
                                         <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">जन्म तिथि</span><span class="lang-en">Date of Birth</span></label>
                                         <input type="text" id="dob" placeholder="DD/MM/YYYY" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                    </div>
-                                    <div class="form-group">
-                                        <label id="guardian-name-label" style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पिता/पति का नाम <span style="color:red">*</span></span><span class="lang-en">Father's/Husband's Name <span style="color:red">*</span></span></label>
-                                        <input type="text" id="guardianName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
                                     </div>
                             <div class="form-group" id="married-status-group" style="display: none;">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाहित?</span><span class="lang-en">Married?</span></label>
