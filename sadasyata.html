@@ -72,11 +72,13 @@
                         <!-- Personal Details -->
                         <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">व्यक्तिगत विवरण</span><span class="lang-en">Personal Details</span></h3>
                         
-                        <div class="form-group" style="margin-bottom: 20px;">
-                            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आवेदक का फोटो <span style="color:red">*</span></span><span class="lang-en">Applicant Photo <span style="color:red">*</span></span></label>
-                            <div style="display: flex; gap: 20px; align-items: flex-start; justify-content: flex-end; width: 100%;">
-                                <input type="file" id="applicantPhoto" required accept="image/*" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'applicantPhotoPreview')">
-                                <img id="applicantPhotoPreview" src="" style="display:none; margin-left: auto; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                            <div class="form-group" style="width: 100%; max-width: 350px;">
+                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333; text-align: right;"><span class="lang-hi">आवेदक का फोटो <span style="color:red">*</span></span><span class="lang-en">Applicant Photo <span style="color:red">*</span></span></label>
+                                <div style="display: flex; gap: 20px; align-items: flex-start; justify-content: flex-end; width: 100%;">
+                                    <input type="file" id="applicantPhoto" required accept="image/*" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'applicantPhotoPreview')">
+                                    <img id="applicantPhotoPreview" src="" style="display:none; margin-left: auto; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                </div>
                             </div>
                         </div>
 
