@@ -74,12 +74,8 @@
                         
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आवेदक का फोटो <span style="color:red">*</span></span><span class="lang-en">Applicant Photo <span style="color:red">*</span></span></label>
-                            <div style="display: flex; gap: 20px; align-items: flex-start;">
-                                <div style="flex: 1;">
-                                    <input type="file" id="applicantPhoto" required accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'applicantPhotoPreview')">
-                                </div>
-                                <img id="applicantPhotoPreview" src="" style="display:none; max-height: 120px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                            </div>
+                            <input type="file" id="applicantPhoto" required accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'applicantPhotoPreview')">
+                            <img id="applicantPhotoPreview" src="" style="display:none; margin-top: 10px; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                         </div>
 
                         <div class="form-grid">
@@ -504,16 +500,28 @@
 
         function previewImage(input, previewId) {
             const preview = document.getElementById(previewId);
+            
+            if (!preview.hasAttribute('data-clickable')) {
+                preview.style.cursor = 'pointer';
+                preview.title = 'Click to change image';
+                preview.addEventListener('click', () => {
+                    input.click();
+                });
+                preview.setAttribute('data-clickable', 'true');
+            }
+
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     preview.src = e.target.result;
-                    preview.style.display = 'inline-block';
+                    preview.style.display = 'block';
+                    input.style.display = 'none';
                 }
                 reader.readAsDataURL(input.files[0]);
             } else {
                 preview.src = '';
                 preview.style.display = 'none';
+                input.style.display = 'block';
             }
         }
     </script>

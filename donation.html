@@ -181,16 +181,28 @@
     <script>
         function previewImage(input, previewId) {
             const preview = document.getElementById(previewId);
+            
+            if (!preview.hasAttribute('data-clickable')) {
+                preview.style.cursor = 'pointer';
+                preview.title = 'Click to change image';
+                preview.addEventListener('click', () => {
+                    input.click();
+                });
+                preview.setAttribute('data-clickable', 'true');
+            }
+
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
+                    input.style.display = 'none';
                 }
                 reader.readAsDataURL(input.files[0]);
             } else {
                 preview.src = '';
                 preview.style.display = 'none';
+                input.style.display = 'block';
             }
         }
     </script>
