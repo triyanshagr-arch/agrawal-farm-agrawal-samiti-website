@@ -80,8 +80,8 @@
                                         <i class="fas fa-camera" style="font-size: 24px; margin-bottom: 8px;"></i>
                                         <span style="font-size: 14px; font-weight: 600;">Upload Photo</span>
                                     </label>
-                                    <input type="file" id="applicantPhoto" required accept="image/*" style="display: none;" onchange="previewImage(this, 'applicantPhotoPreview')">
-                                    <img id="applicantPhotoPreview" src="" style="display:none; width: 140px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); box-sizing: border-box;">
+                                    <input type="file" id="applicantPhoto" required accept="image/*" style="display: none;" onchange="previewImage(this, 'applicantPhotoPreview', 'photoUploadLabel')">
+                                    <img id="applicantPhotoPreview" src="" style="display:none; width: 140px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); box-sizing: border-box;" title="Click to change image">
                                 </div>
                             </div>
                         </div>
@@ -508,8 +508,9 @@
             flatpickr("#marriageDate", { dateFormat: "d/m/Y", allowInput: true });
         });
 
-        function previewImage(input, previewId) {
+        function previewImage(input, previewId, labelId = null) {
             const preview = document.getElementById(previewId);
+            const label = labelId ? document.getElementById(labelId) : null;
             
             if (!preview.hasAttribute('data-clickable')) {
                 preview.style.cursor = 'pointer';
@@ -525,13 +526,21 @@
                 reader.onload = function(e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
-                    input.style.display = 'none';
+                    if (label) {
+                        label.style.display = 'none';
+                    } else {
+                        input.style.display = 'none';
+                    }
                 }
                 reader.readAsDataURL(input.files[0]);
             } else {
                 preview.src = '';
                 preview.style.display = 'none';
-                input.style.display = 'block';
+                if (label) {
+                    label.style.display = 'flex';
+                } else {
+                    input.style.display = 'block';
+                }
             }
         }
     </script>
