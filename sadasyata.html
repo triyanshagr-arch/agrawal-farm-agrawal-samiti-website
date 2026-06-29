@@ -76,8 +76,8 @@
                             <div class="form-group" style="width: fit-content;">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333; text-align: center;"><span class="lang-hi">आवेदक का फोटो <span style="color:red">*</span></span><span class="lang-en">Applicant Photo <span style="color:red">*</span></span></label>
                                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                                    <input type="file" id="applicantPhoto" required accept="image/*" style="width: 220px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'applicantPhotoPreview')">
-                                    <img id="applicantPhotoPreview" src="" style="display:none; max-height: 160px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                    <input type="file" id="applicantPhoto" required accept="image/*" style="width: 140px; padding: 10px 5px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'applicantPhotoPreview')">
+                                    <img id="applicantPhotoPreview" src="" style="display:none; width: 140px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); box-sizing: border-box;">
                                 </div>
                             </div>
                         </div>
