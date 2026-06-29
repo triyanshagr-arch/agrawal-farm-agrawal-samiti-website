@@ -527,18 +527,18 @@
                     preview.src = e.target.result;
                     preview.style.display = 'block';
                     if (uploadLabel) {
-                        uploadLabel.style.display = 'none';
+                        uploadLabel.style.setProperty('display', 'none', 'important');
                     }
-                    input.style.display = 'none';
+                    input.style.setProperty('display', 'none', 'important');
                 }
                 reader.readAsDataURL(input.files[0]);
             } else {
                 preview.src = '';
                 preview.style.display = 'none';
                 if (uploadLabel) {
-                    uploadLabel.style.display = 'flex';
+                    uploadLabel.style.setProperty('display', 'flex', 'important');
                 } else {
-                    input.style.display = 'block';
+                    input.style.setProperty('display', 'block', 'important');
                 }
             }
         }
