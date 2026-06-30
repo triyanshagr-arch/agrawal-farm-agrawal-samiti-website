@@ -173,10 +173,16 @@
                         <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">संपर्क विवरण</span><span class="lang-en">Contact Details</span></h3>
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">स्थाई पता <span style="color:red">*</span></span><span class="lang-en">Permanent Address <span style="color:red">*</span></span></label>
-                            <textarea id="permanentAddress" required rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
+                            <textarea id="permanentAddress" required rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" oninput="if(document.getElementById('sameAsPermanent').checked) document.getElementById('officeAddress').value = this.value;"></textarea>
                         </div>
                         <div class="form-group" style="margin-bottom: 20px;">
-                            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पत्राचार का पता</span><span class="lang-en">Communication Address</span></label>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <label style="font-weight: bold; color: #333; margin: 0;"><span class="lang-hi">पत्राचार का पता</span><span class="lang-en">Communication Address</span></label>
+                                <label style="display: flex; align-items: center; gap: 5px; font-size: 0.9em; cursor: pointer; color: #555;">
+                                    <input type="checkbox" id="sameAsPermanent" onchange="const pa = document.getElementById('permanentAddress'); const ca = document.getElementById('officeAddress'); if(this.checked){ ca.value = pa.value; ca.readOnly = true; ca.style.backgroundColor = '#f9f9f9'; } else { ca.readOnly = false; ca.style.backgroundColor = '#fff'; }">
+                                    <span class="lang-hi">स्थाई पते के समान</span><span class="lang-en">Same as Permanent Address</span>
+                                </label>
+                            </div>
                             <textarea id="officeAddress" rows="2" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
                         </div>
                         <div class="form-grid">
