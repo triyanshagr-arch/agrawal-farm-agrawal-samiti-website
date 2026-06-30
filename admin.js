@@ -608,7 +608,7 @@ function viewProfile(rowNum) {
             <tr><th>Education</th><td>${m.education}</td></tr>
             <tr><th>Domicile</th><td>${m.domicile}</td></tr>
             <tr><th>Permanent Address</th><td>${m.permanentAddress}</td></tr>
-            <tr><th>Office Address</th><td>${m.officeAddress}</td></tr>
+            <tr><th>Communication Address</th><td>${m.officeAddress}</td></tr>
             <tr><th>House Type</th><td>${m.houseType}</td></tr>
             <tr><th>Marriage Date</th><td>${m.marriageDate}</td></tr>
             <tr><th>Payment Mode</th><td>${m.paymentMode}</td></tr>
@@ -729,7 +729,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
             memNo: "Mem No:", status: "Status:", date: "Date:", noPhoto: "No Photo Provided",
             personal: "Personal Details", fullName: "Full Name", fatherName: "Father's / Husband's Name", dob: "Date of Birth",
             gotra: "Gotra", mobile: "Mobile Number", email: "Email ID", mDate: "Marriage Date", domicile: "Domicile",
-            addressDetails: "Address Details", houseType: "House Type", permAddr: "Permanent Address", offAddr: "Office Address",
+            addressDetails: "Address Details", houseType: "House Type", permAddr: "Permanent Address", offAddr: "Communication Address",
             footer: "This is a system-generated document from the Agrawal Samaj Samiti Admin Dashboard."
         },
         hi: {
