@@ -621,11 +621,11 @@ ul {
 }
 
 .logo-placeholder {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     background-color: var(--bg-card);
     background-image: url('images/one_rupee.png');
-    background-size: 80%;
+    background-size: 90%;
     background-position: center;
     background-repeat: no-repeat;
     border: 4px solid var(--primary-color);
@@ -640,15 +640,15 @@ ul {
 }
 
 .logo-placeholder.small {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     font-size: 0;
     border-width: 2px;
 }
 
 .logo-placeholder.tiny {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     font-size: 0;
     border-width: 1px;
 }
