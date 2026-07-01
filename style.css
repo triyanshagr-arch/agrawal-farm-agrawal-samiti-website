@@ -2950,3 +2950,125 @@ footer a:hover {
     transform: scale(0.85);
     transform-origin: top left;
 }
+
+/* ========================================= */
+/* UX UPGRADES: Dark Mode, Animations, Gotras */
+/* ========================================= */
+
+/* Dark Mode Theme */
+body.dark-mode {
+    --bg-main: #121212;
+    --bg-card: #1E1E1E;
+    --text-main: #E0E0E0;
+    --text-muted: #A0A0A0;
+    --border-color: #333333;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.8);
+    --primary-color: #E53935; /* Brighter red for dark mode */
+}
+
+body.dark-mode .custom-header, 
+body.dark-mode .nav-bar { background: rgba(30, 30, 30, 0.95) !important; }
+body.dark-mode .footer { background: #000; }
+body.dark-mode .footer-bottom { background: #111; }
+body.dark-mode .btn-outline { color: var(--text-main); border-color: var(--border-color); }
+body.dark-mode .card, 
+body.dark-mode .member-card, 
+body.dark-mode .gallery-item { background: var(--bg-card); }
+body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; color: #FFF; border-color: #444; }
+
+/* Scroll Reveal Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Interactive Gotras Constellation */
+.gotras-constellation {
+    position: relative;
+    max-width: 600px;
+    height: 600px;
+    margin: 40px auto;
+    border-radius: 50%;
+    border: 2px dashed rgba(211, 47, 47, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gotras-center {
+    width: 140px;
+    height: 140px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(211, 47, 47, 0.6);
+    animation: pulseGlow 3s infinite;
+}
+.gotras-center h4 { color: white !important; margin: 0; font-size: 1.2rem; }
+.gotra-node {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: var(--bg-card);
+    border: 2px solid var(--secondary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    transform-origin: center;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+.gotra-node:hover {
+    transform: scale(1.15) !important;
+    background: var(--secondary-color);
+    color: white;
+    z-index: 20;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 15px rgba(211, 47, 47, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(211, 47, 47, 0.8); }
+    100% { box-shadow: 0 0 15px rgba(211, 47, 47, 0.4); }
+}
+
+@media (max-width: 768px) {
+    .gotras-constellation {
+        height: auto;
+        border: none;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 20px;
+    }
+    .gotra-node {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100px;
+        height: 100px;
+        transform: none !important;
+    }
+    .gotras-center {
+        width: 100%;
+        border-radius: 15px;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+}
