@@ -416,4 +416,29 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // 3. Matrimonial Tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    if (tabBtns.length > 0) {
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset all
+                tabBtns.forEach(b => {
+                    b.classList.remove('active', 'btn-primary');
+                    b.classList.add('btn-outline');
+                });
+                
+                // Set active
+                btn.classList.add('active', 'btn-primary');
+                btn.classList.remove('btn-outline');
+                
+                // Show content
+                const target = btn.getAttribute('data-target');
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(target).style.display = 'block';
+            });
+        });
+    }
 });

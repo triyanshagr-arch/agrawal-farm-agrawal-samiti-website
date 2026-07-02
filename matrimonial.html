@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सदस्यता फॉर्म | Membership Form</title>
+    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+    <a href="https://wa.me/919829220486" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="#" class="facebook-float" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <header class="custom-header">
+        <div class="header-container">
+            <div class="header-image-box">
+                <img src="images/maharaj_agrasen.png" alt="Maharaj Agrasen" class="agrasen-img">
+            </div>
+            <div class="header-content-box">
+                <div class="header-title-row">
+                    <h1 class="header-main-title" style="line-height: 1.2;">
+                        अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)<br>
+                        <span style="font-size: 0.55em; letter-spacing: 1px; color: #555;">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span>
+                    </h1>
+                </div>
+                <nav class="red-navbar" id="navbar">
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar" style="background:#fff"></span>
+                        <span class="bar" style="background:#fff"></span>
+                        <span class="bar" style="background:#fff"></span>
+                    </div>
+                    <ul class="nav-menu">
+                    <div class="mobile-drawer-close" id="drawer-close-btn">&times;</div>
+                        <li><a href="index.html" class="nav-links "><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
+                        <li><a href="about.html" class="nav-links "><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
+                        <li><a href="notices.html" class="nav-links "><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
+                        <li><a href="activities.html" class="nav-links "><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
+                        <li><a href="members.html" class="nav-links "><span class="lang-en">MEMBERS</span><span class="lang-hi">सदस्य</span></a></li>
+                        <li><a href="sadasyata.html" class="nav-links "><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+                        <li><a href="matrimonial.html" class="nav-links "><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
+                        <li><a href="donation.html" class="nav-links "><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+                        <li><a href="booking.html" class="nav-links "><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
+                        <li><a href="contact.html" class="nav-links "><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
+                        
+                    <li class="nav-item-toggle">
+                        <button id="lang-toggle" class="language-toggle"><i class="fas fa-language"></i> English</button>
+                    </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-image-box-right">
+                <img src="images/lakshmi.png" alt="Lakshmi Ji" class="lakshmi-img">
+            </div>
+        </div>
+    </header>
+
+    <main>
+    <!-- Hero Section -->
+    <section class="hero page-hero" style="background: linear-gradient(rgba(44, 30, 22, 0.8), rgba(211, 47, 47, 0.8)), url('images/hero_bg.jpg') center/cover; padding: 100px 0 60px;">
+        <div class="container text-center animate-on-scroll">
+            <h2 class="section-title text-white" style="font-size: 3rem; margin-bottom: 15px;"><span class="lang-hi">वैवाहिक</span><span class="lang-en">Matrimonial</span></h2>
+            <p class="text-white" style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">
+                <span class="lang-hi">अग्रवाल समाज के युवक-युवतियों के लिए वैवाहिक परिचय</span>
+                <span class="lang-en">Matrimonial introductions for young men and women of Agrawal Samaj</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <div class="tabs-container" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 40px;">
+                <button class="btn btn-primary tab-btn active" data-target="view-profiles" style="padding: 12px 30px; font-size: 1.2rem;">
+                    <i class="fas fa-users"></i> <span class="lang-hi">प्रोफ़ाइल देखें</span><span class="lang-en">View Profiles</span>
+                </button>
+                <button class="btn btn-outline tab-btn" data-target="register-profile" style="padding: 12px 30px; font-size: 1.2rem;">
+                    <i class="fas fa-user-plus"></i> <span class="lang-hi">प्रोफ़ाइल पंजीकृत करें</span><span class="lang-en">Register Profile</span>
+                </button>
+            </div>
+
+            <!-- View Profiles Tab -->
+            <div id="view-profiles" class="tab-content active" style="display: block;">
+                <div class="matrimonial-filters" style="background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; gap: 15px; flex-wrap: wrap;">
+                    <select class="input-field" style="flex: 1; min-width: 200px;">
+                        <option value=""><span class="lang-hi">लिंग चुनें</span><span class="lang-en">Select Gender</span></option>
+                        <option value="male"><span class="lang-hi">वर (Groom)</span><span class="lang-en">Groom</span></option>
+                        <option value="female"><span class="lang-hi">वधू (Bride)</span><span class="lang-en">Bride</span></option>
+                    </select>
+                    <input type="text" class="input-field" placeholder="Search by Gotra, Profession..." style="flex: 2; min-width: 200px;">
+                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+
+                <div class="profile-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;">
+                    <!-- Mock Profile 1 -->
+                    <div class="card profile-card animate-on-scroll" style="text-align: center; padding: 25px;">
+                        <img src="images/placeholder_female.jpg" onerror="this.src='https://via.placeholder.com/150'" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 5px; font-size: 1.4rem;">Priya Goyal</h4>
+                        <p style="color: var(--text-muted); font-weight: bold; margin-bottom: 10px;">Age: 26 | Height: 5'4"</p>
+                        <div style="font-size: 0.95rem; text-align: left; line-height: 1.6; margin-bottom: 20px; background: var(--bg-main); padding: 15px; border-radius: 8px;">
+                            <strong>Gotra:</strong> Goyal<br>
+                            <strong>Education:</strong> MBA<br>
+                            <strong>Profession:</strong> Marketing Manager<br>
+                            <strong>Location:</strong> Jaipur
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%;"><i class="fas fa-envelope"></i> Contact</button>
+                    </div>
+
+                    <!-- Mock Profile 2 -->
+                    <div class="card profile-card animate-on-scroll" style="text-align: center; padding: 25px;">
+                        <img src="images/placeholder_male.jpg" onerror="this.src='https://via.placeholder.com/150'" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 5px; font-size: 1.4rem;">Rahul Bansal</h4>
+                        <p style="color: var(--text-muted); font-weight: bold; margin-bottom: 10px;">Age: 29 | Height: 5'10"</p>
+                        <div style="font-size: 0.95rem; text-align: left; line-height: 1.6; margin-bottom: 20px; background: var(--bg-main); padding: 15px; border-radius: 8px;">
+                            <strong>Gotra:</strong> Bansal<br>
+                            <strong>Education:</strong> B.Tech, M.S.<br>
+                            <strong>Profession:</strong> Software Engineer<br>
+                            <strong>Location:</strong> Bangalore
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%;"><i class="fas fa-envelope"></i> Contact</button>
+                    </div>
+
+                    <!-- Mock Profile 3 -->
+                    <div class="card profile-card animate-on-scroll" style="text-align: center; padding: 25px;">
+                        <img src="images/placeholder_female.jpg" onerror="this.src='https://via.placeholder.com/150'" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--border-color);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 5px; font-size: 1.4rem;">Neha Garg</h4>
+                        <p style="color: var(--text-muted); font-weight: bold; margin-bottom: 10px;">Age: 25 | Height: 5'5"</p>
+                        <div style="font-size: 0.95rem; text-align: left; line-height: 1.6; margin-bottom: 20px; background: var(--bg-main); padding: 15px; border-radius: 8px;">
+                            <strong>Gotra:</strong> Garg<br>
+                            <strong>Education:</strong> CA<br>
+                            <strong>Profession:</strong> Chartered Accountant<br>
+                            <strong>Location:</strong> Delhi
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%;"><i class="fas fa-envelope"></i> Contact</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register Profile Tab -->
+            <div id="register-profile" class="tab-content" style="display: none;">
+                <div class="form-container" style="max-width: 900px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 15px; box-shadow: var(--shadow-md);">
+                    <form id="matrimonialForm">
+                        <h3 class="form-section-title"><span class="lang-hi">व्यक्तिगत विवरण</span><span class="lang-en">Personal Details</span></h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label><span class="lang-hi">नाम *</span><span class="lang-en">Full Name *</span></label>
+                                <input type="text" class="input-field" id="matri_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">लिंग *</span><span class="lang-en">Gender *</span></label>
+                                <select class="input-field" id="matri_gender" required>
+                                    <option value=""><span class="lang-hi">चुनें</span><span class="lang-en">Select</span></option>
+                                    <option value="Male"><span class="lang-hi">पुरुष</span><span class="lang-en">Male</span></option>
+                                    <option value="Female"><span class="lang-hi">महिला</span><span class="lang-en">Female</span></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">जन्म तिथि *</span><span class="lang-en">Date of Birth *</span></label>
+                                <input type="text" class="input-field datepicker" id="matri_dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">ऊंचाई *</span><span class="lang-en">Height *</span></label>
+                                <input type="text" class="input-field" id="matri_height" placeholder="e.g. 5'8&quot;" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">गोत्र *</span><span class="lang-en">Gotra *</span></label>
+                                <input type="text" class="input-field" id="matri_gotra" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">मांगलिक *</span><span class="lang-en">Manglik Status *</span></label>
+                                <select class="input-field" id="matri_manglik" required>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="Anshik">Anshik</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3 class="form-section-title"><span class="lang-hi">शिक्षा और पेशा</span><span class="lang-en">Education & Profession</span></h3>
+                        <div class="form-grid">
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label><span class="lang-hi">शिक्षा *</span><span class="lang-en">Education *</span></label>
+                                <input type="text" class="input-field" id="matri_education" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">पेशा *</span><span class="lang-en">Profession *</span></label>
+                                <input type="text" class="input-field" id="matri_profession" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">वार्षिक आय</span><span class="lang-en">Annual Income</span></label>
+                                <input type="text" class="input-field" id="matri_income">
+                            </div>
+                        </div>
+
+                        <h3 class="form-section-title"><span class="lang-hi">पारिवारिक विवरण</span><span class="lang-en">Family Details</span></h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label><span class="lang-hi">पिता का नाम *</span><span class="lang-en">Father's Name *</span></label>
+                                <input type="text" class="input-field" id="matri_father" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">माता का नाम *</span><span class="lang-en">Mother's Name *</span></label>
+                                <input type="text" class="input-field" id="matri_mother" required>
+                            </div>
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label><span class="lang-hi">संपर्क पता *</span><span class="lang-en">Communication Address *</span></label>
+                                <textarea class="input-field" id="matri_address" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">मोबाइल नंबर *</span><span class="lang-en">Mobile Number *</span></label>
+                                <input type="tel" class="input-field" id="matri_mobile" required>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="lang-hi">फोटो अपलोड करें *</span><span class="lang-en">Upload Photo *</span></label>
+                                <input type="file" id="matri_photo" class="input-field" accept="image/*" required>
+                                <img id="matri_photoPreview" style="max-width: 150px; margin-top: 10px; display: none; border-radius: 8px;">
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button type="submit" class="btn btn-primary" style="font-size: 1.3rem; padding: 15px 40px; width: 100%; max-width: 300px;">
+                                <i class="fas fa-paper-plane"></i> <span class="lang-hi">प्रोफ़ाइल सबमिट करें</span><span class="lang-en">Submit Profile</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3><span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm</span></h3>
+                <p><span class="lang-hi">समाज सेवा, एकता और समृद्धि के लिए समर्पित।</span><span class="lang-en">Dedicated to social service, unity, and prosperity.</span></p>
+            </div>
+            <div class="footer-col">
+                <h3><span class="lang-hi">महत्वपूर्ण लिंक</span><span class="lang-en">Quick Links</span></h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3><span class="lang-hi">संपर्क करें</span><span class="lang-en">Contact Us</span></h3>
+                <p><i class="fas fa-map-marker-alt"></i> Agrawal Farm, Mansarovar, Jaipur</p>
+                <p><i class="fas fa-phone-alt"></i> +91-9829220486</p>
+                <p><i class="fas fa-envelope"></i> info@agrawalsamiti.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.). All Rights Reserved. | <a href="#" style="color: #FFD700;">Developed by Triyansh Agrawal</a></p>
+        </div>
+    </footer>
+    <!-- Firebase Analytics -->
+    <script type="module" src="firebase_init.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="react.js?v=3"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleDropdown = document.getElementById('title-dropdown');
+            const guardianNameLabel = document.getElementById('guardian-name-label');
+            const marriedStatusGroup = document.getElementById('married-status-group');
+            const marriageDateGroup = document.getElementById('marriage-date-group');
+            const isMarriedRadios = document.getElementsByName('is_married');
+
+            const updateTitleDropdown = () => {
+                if (!titleDropdown) return;
+                const isEnglish = document.body.classList.contains('lang-english-mode');
+                titleDropdown.options[0].text = isEnglish ? "Mr." : "श्री";
+                titleDropdown.options[1].text = isEnglish ? "Mrs." : "श्रीमती";
+                titleDropdown.options[2].text = isEnglish ? "Miss" : "कुमारी";
+            };
+
+            const updateFormLogic = () => {
+                if(!titleDropdown || !guardianNameLabel) return;
+                const title = titleDropdown.value;
+                const isEnglish = document.body.classList.contains('lang-english-mode');
+                
+                let marriedStatus = 'No';
+                for(const radio of isMarriedRadios) {
+                    if(radio.checked) marriedStatus = radio.value;
+                }
+
+                if (title === 'Mr.') {
+                    guardianNameLabel.innerHTML = isEnglish ? `Father's Name <span style="color:red">*</span>` : `पिता का नाम <span style="color:red">*</span>`;
+                    marriedStatusGroup.style.display = 'block';
+                    marriageDateGroup.style.display = marriedStatus === 'Yes' ? 'block' : 'none';
+                } else if (title === 'Mrs.') {
+                    guardianNameLabel.innerHTML = isEnglish ? `Husband's Name <span style="color:red">*</span>` : `पति का नाम <span style="color:red">*</span>`;
+                    marriedStatusGroup.style.display = 'none';
+                    marriageDateGroup.style.display = 'block';
+                } else if (title === 'Miss') {
+                    guardianNameLabel.innerHTML = isEnglish ? `Father's Name <span style="color:red">*</span>` : `पिता का नाम <span style="color:red">*</span>`;
+                    marriedStatusGroup.style.display = 'none';
+                    marriageDateGroup.style.display = 'none';
+                }
+            };
+
+            window.handleMarriageChange = updateFormLogic;
+            if(titleDropdown) {
+                titleDropdown.addEventListener('change', updateFormLogic);
+            }
+
+            updateTitleDropdown();
+            updateFormLogic();
+
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'class') {
+                        updateTitleDropdown();
+                        updateFormLogic();
+                    }
+                });
+            });
+            observer.observe(document.body, { attributes: true });
+        });
+    </script>
+    <script src="submit_handler.js?v=3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="pdf_generator.js?v=6"></script>
+    <script>
+        function togglePaymentFields() {
+            const mode = document.getElementById('paymentMode').value;
+            const container = document.getElementById('paymentConfirmationContainer');
+            const screenshotInput = document.getElementById('paymentScreenshot');
+            const transactionIdInput = document.getElementById('transactionId');
+            const bankAccountInput = document.getElementById('bankAccountName');
+            const submitBtn = document.getElementById('submitButton');
+
+            // We check if English class is active anywhere to set text, else Hindi fallback
+            const isEnglish = document.body.classList.contains('en');
+
+            if (mode === 'Cash') {
+                container.style.display = 'none';
+                screenshotInput.required = false;
+                transactionIdInput.required = false;
+                bankAccountInput.required = false;
+                
+                submitBtn.innerHTML = isEnglish ? 
+                    '<i class="fas fa-download"></i> Download Application Form' : 
+                    '<i class="fas fa-download"></i> आवेदन पत्र डाउनलोड करें';
+            } else {
+                container.style.display = 'block';
+                screenshotInput.required = true;
+                transactionIdInput.required = true;
+                bankAccountInput.required = true;
+
+                submitBtn.innerHTML = isEnglish ? 
+                    '<i class="fas fa-paper-plane"></i> Submit Form' : 
+                    '<i class="fas fa-paper-plane"></i> फॉर्म जमा करें';
+            }
+        }
+
+        // Initialize global date pickers
+        document.addEventListener('DOMContentLoaded', () => {
+            flatpickr("#dob", { dateFormat: "d/m/Y", allowInput: true });
+            flatpickr("#marriageDate", { dateFormat: "d/m/Y", allowInput: true });
+        });
+
+        function previewImage(input, previewId, labelId = null) {
+            const preview = document.getElementById(previewId);
+            const uploadLabel = labelId ? document.getElementById(labelId) : null;
+            
+            if (!preview.hasAttribute('data-clickable')) {
+                preview.style.cursor = 'pointer';
+                preview.title = 'Click to change image';
+                preview.addEventListener('click', () => {
+                    input.click();
+                });
+                preview.setAttribute('data-clickable', 'true');
+            }
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    if (uploadLabel) {
+                        uploadLabel.style.setProperty('display', 'none', 'important');
+                    }
+                    input.style.setProperty('display', 'none', 'important');
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+                if (uploadLabel) {
+                    uploadLabel.style.setProperty('display', 'flex', 'important');
+                } else {
+                    input.style.setProperty('display', 'block', 'important');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

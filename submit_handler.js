@@ -352,4 +352,84 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Matrimonial Form
+    const matrimonialForm = document.getElementById('matrimonialForm');
+    if (matrimonialForm) {
+        matrimonialForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+            
+            try {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+
+                const photoFile = document.getElementById('matri_photo').files[0];
+                const photoBase64 = photoFile ? await compressImageAsBase64(photoFile, 300) : null;
+                
+                const formData = {
+                    name: document.getElementById('matri_name').value,
+                    gender: document.getElementById('matri_gender').value,
+                    dob: document.getElementById('matri_dob').value,
+                    height: document.getElementById('matri_height').value,
+                    gotra: document.getElementById('matri_gotra').value,
+                    manglik: document.getElementById('matri_manglik').value,
+                    education: document.getElementById('matri_education').value,
+                    profession: document.getElementById('matri_profession').value,
+                    income: document.getElementById('matri_income').value,
+                    father: document.getElementById('matri_father').value,
+                    mother: document.getElementById('matri_mother').value,
+                    address: document.getElementById('matri_address').value,
+                    mobile: document.getElementById('matri_mobile').value,
+                    photo: photoBase64
+                };
+
+                if (typeof window.generateMatrimonialPDF === 'function') {
+                    const pdfBlob = await window.generateMatrimonialPDF(formData);
+                    
+                    if (pdfBlob) {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Matrimonial Biodata generated successfully. Please send it on WhatsApp to the Admin.',
+                            icon: 'success',
+                            confirmButtonColor: '#d32f2f'
+                        }).then(() => {
+                            const message = `Namaste,\nHere is a new Matrimonial Biodata Profile for ${formData.name}.\nPlease find the attached PDF.`;
+                            const encodedMessage = encodeURIComponent(message);
+                            const whatsappUrl = `https://wa.me/919829220486?text=${encodedMessage}`;
+                            window.open(whatsappUrl, '_blank');
+                            matrimonialForm.reset();
+                            const preview = document.getElementById('matri_photoPreview');
+                            if(preview) preview.style.display = 'none';
+                        });
+                    }
+                } else {
+                    alert('PDF generation failed. Please try again.');
+                }
+            } catch(err) {
+                console.error(err);
+                alert("Error processing profile form. Please try again.");
+            } finally {
+                submitBtn.innerHTML = originalBtnHtml;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Photo preview
+        const photoInput = document.getElementById('matri_photo');
+        const photoPreview = document.getElementById('matri_photoPreview');
+        if (photoInput && photoPreview) {
+            photoInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        photoPreview.src = e.target.result;
+                        photoPreview.style.display = 'block';
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        }
+    }
 });
