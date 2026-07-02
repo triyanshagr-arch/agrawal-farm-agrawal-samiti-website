@@ -2102,19 +2102,19 @@ ul {
 
 .red-navbar .nav-menu {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
     list-style: none;
     margin: 0;
-    padding: 5px 0;
-    gap: 2px;
+    padding: 0;
+    gap: 0;
 }
 .red-navbar .nav-links {
     color: #fff;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    padding: 12px 10px;
+    padding: 12px 6px;
     display: block;
     transition: 0.3s;
     text-transform: uppercase;
@@ -2122,7 +2122,7 @@ ul {
     border-radius: 4px;
 }
 .red-navbar .nav-links .lang-hi {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
 }
 .red-navbar .nav-links:hover, .red-navbar .nav-links.active {
     background-color: rgba(0,0,0,0.15);
@@ -2265,7 +2265,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
     font-weight: 600;
     letter-spacing: 0.5px;
     transition: var(--transition);
-    margin-left: 15px;
+    margin-left: 5px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -3075,4 +3075,12 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
         height: 80px;
         margin-bottom: 20px;
     }
+}
+
+/* Squeeze navbar on smaller laptops so it stays on one line */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .red-navbar { padding: 0 10px; margin-top: 5px; }
+    .red-navbar .nav-links { padding: 12px 3px; font-size: 0.7rem; }
+    .red-navbar .nav-links .lang-hi { font-size: 0.85rem; }
+    .language-toggle { padding: 4px 8px; font-size: 0.75rem; margin-left: 2px; }
 }
