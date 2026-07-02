@@ -2556,28 +2556,28 @@ footer a:hover {
 
 .header-container {
     max-width: 100%;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
 }
 
 .header-image-box {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    position: relative;
     z-index: 20;
+    flex-shrink: 0;
 }
 .header-image-box-right {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: relative;
     z-index: 20;
+    flex-shrink: 0;
 }
 .header-content-box {
     flex: 1;
-    max-width: 1100px;
+    max-width: 100%;
+    margin: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3090,7 +3090,7 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
     .lakshmi-img { width: 150px; height: auto; margin-top: 10px; margin-right: -10px; }
     .agrasen-img { width: 100px; height: auto; margin-left: 0; margin-top: 10px; }
     .header-main-title { font-size: 1.2rem; }
-    .header-content-box { max-width: 100%; margin: 0 160px; }
+    .header-content-box { max-width: 100%; margin: 0 10px; }
     
     .red-navbar { padding: 0 5px; }
     .red-navbar .nav-links { padding: 12px 3px; font-size: 0.7rem; }
