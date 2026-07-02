@@ -268,144 +268,15 @@
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="react.js?v=3"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const titleDropdown = document.getElementById('title-dropdown');
-            const guardianNameLabel = document.getElementById('guardian-name-label');
-            const marriedStatusGroup = document.getElementById('married-status-group');
-            const marriageDateGroup = document.getElementById('marriage-date-group');
-            const isMarriedRadios = document.getElementsByName('is_married');
-
-            const updateTitleDropdown = () => {
-                if (!titleDropdown) return;
-                const isEnglish = document.body.classList.contains('lang-english-mode');
-                titleDropdown.options[0].text = isEnglish ? "Mr." : "श्री";
-                titleDropdown.options[1].text = isEnglish ? "Mrs." : "श्रीमती";
-                titleDropdown.options[2].text = isEnglish ? "Miss" : "कुमारी";
-            };
-
-            const updateFormLogic = () => {
-                if(!titleDropdown || !guardianNameLabel) return;
-                const title = titleDropdown.value;
-                const isEnglish = document.body.classList.contains('lang-english-mode');
-                
-                let marriedStatus = 'No';
-                for(const radio of isMarriedRadios) {
-                    if(radio.checked) marriedStatus = radio.value;
-                }
-
-                if (title === 'Mr.') {
-                    guardianNameLabel.innerHTML = isEnglish ? `Father's Name <span style="color:red">*</span>` : `पिता का नाम <span style="color:red">*</span>`;
-                    marriedStatusGroup.style.display = 'block';
-                    marriageDateGroup.style.display = marriedStatus === 'Yes' ? 'block' : 'none';
-                } else if (title === 'Mrs.') {
-                    guardianNameLabel.innerHTML = isEnglish ? `Husband's Name <span style="color:red">*</span>` : `पति का नाम <span style="color:red">*</span>`;
-                    marriedStatusGroup.style.display = 'none';
-                    marriageDateGroup.style.display = 'block';
-                } else if (title === 'Miss') {
-                    guardianNameLabel.innerHTML = isEnglish ? `Father's Name <span style="color:red">*</span>` : `पिता का नाम <span style="color:red">*</span>`;
-                    marriedStatusGroup.style.display = 'none';
-                    marriageDateGroup.style.display = 'none';
-                }
-            };
-
-            window.handleMarriageChange = updateFormLogic;
-            if(titleDropdown) {
-                titleDropdown.addEventListener('change', updateFormLogic);
-            }
-
-            updateTitleDropdown();
-            updateFormLogic();
-
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    if (mutation.attributeName === 'class') {
-                        updateTitleDropdown();
-                        updateFormLogic();
-                    }
-                });
-            });
-            observer.observe(document.body, { attributes: true });
-        });
-    </script>
-    <script src="submit_handler.js?v=3"></script>
+    <script src="react.js?v=4"></script>
+    <script src="submit_handler.js?v=4"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="pdf_generator.js?v=6"></script>
+    <script src="pdf_generator.js?v=7"></script>
     <script>
-        function togglePaymentFields() {
-            const mode = document.getElementById('paymentMode').value;
-            const container = document.getElementById('paymentConfirmationContainer');
-            const screenshotInput = document.getElementById('paymentScreenshot');
-            const transactionIdInput = document.getElementById('transactionId');
-            const bankAccountInput = document.getElementById('bankAccountName');
-            const submitBtn = document.getElementById('submitButton');
-
-            // We check if English class is active anywhere to set text, else Hindi fallback
-            const isEnglish = document.body.classList.contains('en');
-
-            if (mode === 'Cash') {
-                container.style.display = 'none';
-                screenshotInput.required = false;
-                transactionIdInput.required = false;
-                bankAccountInput.required = false;
-                
-                submitBtn.innerHTML = isEnglish ? 
-                    '<i class="fas fa-download"></i> Download Application Form' : 
-                    '<i class="fas fa-download"></i> आवेदन पत्र डाउनलोड करें';
-            } else {
-                container.style.display = 'block';
-                screenshotInput.required = true;
-                transactionIdInput.required = true;
-                bankAccountInput.required = true;
-
-                submitBtn.innerHTML = isEnglish ? 
-                    '<i class="fas fa-paper-plane"></i> Submit Form' : 
-                    '<i class="fas fa-paper-plane"></i> फॉर्म जमा करें';
-            }
-        }
-
-        // Initialize global date pickers
         document.addEventListener('DOMContentLoaded', () => {
-            flatpickr("#dob", { dateFormat: "d/m/Y", allowInput: true });
-            flatpickr("#marriageDate", { dateFormat: "d/m/Y", allowInput: true });
+            flatpickr(".datepicker", { dateFormat: "d/m/Y", allowInput: true });
         });
-
-        function previewImage(input, previewId, labelId = null) {
-            const preview = document.getElementById(previewId);
-            const uploadLabel = labelId ? document.getElementById(labelId) : null;
-            
-            if (!preview.hasAttribute('data-clickable')) {
-                preview.style.cursor = 'pointer';
-                preview.title = 'Click to change image';
-                preview.addEventListener('click', () => {
-                    input.click();
-                });
-                preview.setAttribute('data-clickable', 'true');
-            }
-
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    if (uploadLabel) {
-                        uploadLabel.style.setProperty('display', 'none', 'important');
-                    }
-                    input.style.setProperty('display', 'none', 'important');
-                }
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                preview.src = '';
-                preview.style.display = 'none';
-                if (uploadLabel) {
-                    uploadLabel.style.setProperty('display', 'flex', 'important');
-                } else {
-                    input.style.setProperty('display', 'block', 'important');
-                }
-            }
-        }
     </script>
 </body>
 </html>
