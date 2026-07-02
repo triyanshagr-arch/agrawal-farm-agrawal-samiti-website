@@ -2035,7 +2035,7 @@ ul {
     border-bottom: 2px solid #ddd;
     width: 100%;
     position: sticky;
-    top: 0;
+    top: -40px;
     z-index: 1000;
 }
 
@@ -2089,7 +2089,7 @@ ul {
 .red-navbar {
     background-color: #FF6B00;
     margin: 10px auto 0 auto;
-    width: 100%;
+    width: 90%;
     padding: 0 30px;
     border-radius: var(--radius-md);
     display: flex;
