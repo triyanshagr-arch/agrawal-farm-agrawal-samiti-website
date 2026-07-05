@@ -595,6 +595,11 @@ ul {
     overflow: hidden;
 }
 
+.hero.page-hero {
+    height: auto;
+    min-height: unset;
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
