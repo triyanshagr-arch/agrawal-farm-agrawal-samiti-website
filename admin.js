@@ -729,6 +729,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
             memNo: "Mem No:", status: "Status:", date: "Date:", noPhoto: "No Photo Provided",
             personal: "Personal Details", fullName: "Full Name", fatherName: "Father's / Husband's Name", dob: "Date of Birth",
             gotra: "Gotra", mobile: "Mobile Number", email: "Email ID", mDate: "Marriage Date", domicile: "Domicile",
+            maritalStatus: "Marital Status", unmarried: "Unmarried",
             addressDetails: "Address Details", houseType: "House Type", permAddr: "Permanent Address", offAddr: "Communication Address",
             footer: "This is a system-generated document from the Agrawal Samaj Samiti Admin Dashboard."
         },
@@ -738,6 +739,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
             memNo: "सदस्यता क्र:", status: "स्थिति:", date: "दिनांक:", noPhoto: "फोटो उपलब्ध नहीं",
             personal: "व्यक्तिगत विवरण", fullName: "पूरा नाम", fatherName: "पिता / पति का नाम", dob: "जन्म तिथि",
             gotra: "गोत्र", mobile: "मोबाइल नंबर", email: "ईमेल आईडी", mDate: "विवाह तिथि", domicile: "मूल निवास",
+            maritalStatus: "वैवाहिक स्थिति", unmarried: "अविवाहित",
             addressDetails: "पता विवरण", houseType: "मकान का प्रकार (स्वयं/किराए)", permAddr: "स्थाई पता", offAddr: "पत्राचार का पता",
             footer: "यह अग्रवाल समाज समिति एडमिन डैशबोर्ड से सिस्टम-जनित दस्तावेज़ है।"
         }
@@ -885,10 +887,10 @@ function printApplicationForm(rowNum, lang = 'hi') {
                             <th>${t.domicile}</th><td>${m.domicile || ''}</td>
                         </tr>
                         <tr>
-                            <th>${t.dob}</th>
+                            <th>${t.dob}</th><td>${formatDate(m.dob)}</td>
                             ${m.marriageDate 
-                                ? `<td>${formatDate(m.dob)}</td><th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>` 
-                                : `<td colspan="3">${formatDate(m.dob)}</td>`}
+                                ? `<th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>` 
+                                : `<th>${t.maritalStatus}</th><td>${t.unmarried}</td>`}
                         </tr>
                         <tr>
                             <th>${t.bg}</th><td>${m.bloodGroup || ''}</td>
