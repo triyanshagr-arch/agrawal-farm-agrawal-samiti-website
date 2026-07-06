@@ -886,7 +886,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                         </tr>
                         <tr>
                             <th>${t.dob}</th><td>${formatDate(m.dob)}</td>
-                            <th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>
+                            ${m.marriageDate ? `<th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>` : `<th></th><td></td>`}
                         </tr>
                         <tr>
                             <th>${t.bg}</th><td>${m.bloodGroup || ''}</td>
