@@ -885,8 +885,10 @@ function printApplicationForm(rowNum, lang = 'hi') {
                             <th>${t.domicile}</th><td>${m.domicile || ''}</td>
                         </tr>
                         <tr>
-                            <th>${t.dob}</th><td>${formatDate(m.dob)}</td>
-                            ${m.marriageDate ? `<th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>` : `<th></th><td></td>`}
+                            <th>${t.dob}</th>
+                            ${m.marriageDate 
+                                ? `<td>${formatDate(m.dob)}</td><th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>` 
+                                : `<td colspan="3">${formatDate(m.dob)}</td>`}
                         </tr>
                         <tr>
                             <th>${t.bg}</th><td>${m.bloodGroup || ''}</td>
