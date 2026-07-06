@@ -888,7 +888,7 @@ function printApplicationForm(rowNum, lang = 'hi') {
                         </tr>
                         <tr>
                             <th>${t.dob}</th><td>${formatDate(m.dob)}</td>
-                            ${m.marriageDate 
+                            ${(m.marriageDate && m.marriageDate !== 'undefined' && m.marriageDate !== 'null' && String(m.marriageDate).trim() !== '') 
                                 ? `<th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>` 
                                 : `<th>${t.maritalStatus}</th><td>${t.unmarried}</td>`}
                         </tr>
