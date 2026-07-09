@@ -3117,6 +3117,16 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
 }
 
 @media (max-width: 992px) {
+    /* Fix red-navbar trapping position:fixed elements and looking like a pill */
+    .red-navbar {
+        border-radius: 0 !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
     /* Sticky Top Header */
     .custom-header {
         position: sticky;
