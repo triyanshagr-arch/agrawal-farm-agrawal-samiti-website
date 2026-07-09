@@ -3111,3 +3111,126 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
     .red-navbar .nav-links .lang-hi { font-size: 0.85rem; }
     .language-toggle { padding: 4px 6px; font-size: 0.7rem; margin-left: 2px; }
 }
+
+/* App-Like Mobile UX Enhancements */
+.mobile-bottom-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* Sticky Top Header */
+    .custom-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        background: #fff;
+    }
+    
+    /* Remove default dropdown behavior from older code */
+    .red-navbar .nav-menu {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: 80% !important;
+        max-width: 300px !important;
+        height: 100vh !important;
+        background: #fff !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 80px 20px 20px !important;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.2) !important;
+        transition: right 0.3s ease-in-out !important;
+        z-index: 999 !important;
+        overflow-y: auto !important;
+        border-radius: 0 !important;
+    }
+    
+    .red-navbar .nav-menu.active {
+        right: 0 !important;
+    }
+
+    .nav-menu li a {
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        border-bottom: 1px solid #eee !important;
+        padding: 15px 0 !important;
+        font-size: 1.1rem !important;
+        width: 100%;
+        display: block;
+    }
+    
+    /* Make the hamburger icon visible above the drawer */
+    .menu-toggle {
+        z-index: 1001;
+        position: relative;
+    }
+
+    /* Menu Overlay */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        z-index: 998;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    .menu-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Sticky Bottom Action Bar */
+    .mobile-bottom-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        justify-content: space-around;
+        padding: 10px 0 15px 0;
+        border-top: 1px solid #eee;
+    }
+    
+    .mobile-bottom-bar a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        gap: 6px;
+        flex: 1;
+        font-weight: 600;
+    }
+    
+    .mobile-bottom-bar a.active {
+        color: var(--primary-color);
+    }
+    
+    .mobile-bottom-bar a i {
+        font-size: 1.4rem;
+        margin-bottom: 2px;
+    }
+    
+    /* Make space for the bottom bar so content doesn't hide behind it */
+    body {
+        padding-bottom: 75px;
+    }
+    
+    /* Adjust floating buttons up to not block bottom bar */
+    .whatsapp-float {
+        bottom: 85px;
+    }
+    .facebook-float {
+        bottom: 145px;
+    }
+}

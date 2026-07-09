@@ -3,26 +3,92 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.querySelector('.nav-menu');
 
-    mobileMenu.addEventListener('click', () => {
-        mobileMenu.classList.toggle('is-active');
-        navMenu.classList.toggle('active');
-    });
+    // Mobile App UI Elements Injection
+    let overlay = document.querySelector('.menu-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'menu-overlay';
+        overlay.id = 'menu-overlay';
+        document.body.appendChild(overlay);
 
-    // Drawer Close Button
-    const drawerCloseBtn = document.getElementById('drawer-close-btn');
-    if (drawerCloseBtn) {
-        drawerCloseBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('is-active');
-            navMenu.classList.remove('active');
+        overlay.addEventListener('click', () => {
+            if(mobileMenu) mobileMenu.classList.remove('is-active');
+            if(navMenu) navMenu.classList.remove('active');
+            overlay.classList.remove('active');
         });
     }
 
+    if (!document.querySelector('.mobile-bottom-bar')) {
+        const bottomBar = document.createElement('nav');
+        bottomBar.className = 'mobile-bottom-bar';
+        
+        const currentPath = window.location.pathname;
+        const isHome = currentPath.endsWith('index.html') || currentPath.endsWith('/');
+        const isDonate = currentPath.endsWith('donation.html');
+        const isMember = currentPath.endsWith('sadasyata.html');
+        const isContact = currentPath.endsWith('contact.html');
+
+        bottomBar.innerHTML = `
+            <a href="index.html" class="${isHome ? 'active' : ''}">
+                <i class="fas fa-home"></i>
+                <span class="lang-hi">होम</span>
+                <span class="lang-en" style="display:none">Home</span>
+            </a>
+            <a href="donation.html" class="${isDonate ? 'active' : ''}">
+                <i class="fas fa-hand-holding-heart"></i>
+                <span class="lang-hi">दान दें</span>
+                <span class="lang-en" style="display:none">Donate</span>
+            </a>
+            <a href="sadasyata.html" class="${isMember ? 'active' : ''}">
+                <i class="fas fa-users"></i>
+                <span class="lang-hi">सदस्यता</span>
+                <span class="lang-en" style="display:none">Join</span>
+            </a>
+            <a href="contact.html" class="${isContact ? 'active' : ''}">
+                <i class="fas fa-phone-alt"></i>
+                <span class="lang-hi">संपर्क</span>
+                <span class="lang-en" style="display:none">Contact</span>
+            </a>
+        `;
+        document.body.appendChild(bottomBar);
+        
+        // Sync language for bottom bar immediately
+        const savedLang = localStorage.getItem('preferredLanguage') || 'hi';
+        const elementsHi = bottomBar.querySelectorAll('.lang-hi');
+        const elementsEn = bottomBar.querySelectorAll('.lang-en');
+        if (savedLang === 'en') {
+            elementsHi.forEach(el => el.style.display = 'none');
+            elementsEn.forEach(el => el.style.display = 'inline-block');
+        } else {
+            elementsHi.forEach(el => el.style.display = 'inline-block');
+            elementsEn.forEach(el => el.style.display = 'none');
+        }
+    }
+
+    if (mobileMenu && navMenu) {
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('is-active');
+            navMenu.classList.toggle('active');
+            if(overlay) overlay.classList.toggle('active');
+        });
+    }
+
+    // Drawer Close Button
+    const drawerCloseBtn = document.getElementById('drawer-close-btn');
+    if (drawerCloseBtn && mobileMenu && navMenu) {
+        drawerCloseBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-active');
+            navMenu.classList.remove('active');
+            if(overlay) overlay.classList.remove('active');
+        });
+    }
 
     // Close mobile menu when link is clicked (unless it's a dropdown toggle)
     document.querySelectorAll('.nav-links:not(.dropdown-toggle), .dropdown-link').forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenu.classList.remove('is-active');
-            navMenu.classList.remove('active');
+            if(mobileMenu) mobileMenu.classList.remove('is-active');
+            if(navMenu) navMenu.classList.remove('active');
+            if(overlay) overlay.classList.remove('active');
         });
     });
 
