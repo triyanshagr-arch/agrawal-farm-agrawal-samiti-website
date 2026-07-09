@@ -3117,7 +3117,7 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     /* Sticky Top Header */
     .custom-header {
         position: sticky;
