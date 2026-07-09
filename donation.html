@@ -235,6 +235,35 @@
         
         document.addEventListener('DOMContentLoaded', () => {
             updateBankDetails();
+            
+            // Dynamic UPI Amount logic
+            const amountInput = document.getElementById('donationAmount');
+            const upiLinks = document.querySelectorAll('a[href^="upi://pay"]');
+            
+            if (amountInput && upiLinks.length > 0) {
+                // Store the original base URLs so we don't duplicate &am=
+                const baseUrls = Array.from(upiLinks).map(link => link.href);
+                
+                amountInput.addEventListener('input', (e) => {
+                    const amount = e.target.value;
+                    upiLinks.forEach((link, index) => {
+                        if (amount && amount > 0) {
+                            link.href = baseUrls[index] + `&am=${amount}`;
+                            // Optional: Update button text to show amount
+                            const spanHi = link.querySelector('.lang-hi');
+                            const spanEn = link.querySelector('.lang-en');
+                            if(spanHi) spanHi.innerText = `UPI ऐप से भुगतान करें (₹${amount})`;
+                            if(spanEn) spanEn.innerText = `Pay via UPI App (₹${amount})`;
+                        } else {
+                            link.href = baseUrls[index];
+                            const spanHi = link.querySelector('.lang-hi');
+                            const spanEn = link.querySelector('.lang-en');
+                            if(spanHi) spanHi.innerText = `UPI ऐप से भुगतान करें`;
+                            if(spanEn) spanEn.innerText = `Pay via UPI App`;
+                        }
+                    });
+                });
+            }
         });
 
 
