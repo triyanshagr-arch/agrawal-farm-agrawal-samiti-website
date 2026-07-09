@@ -803,14 +803,23 @@ ul {
 }
 
 .row-2 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
 }
 
 .row-4 {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .row-2 { grid-template-columns: repeat(2, 1fr); }
+    .row-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+    .row-4 { grid-template-columns: repeat(4, 1fr); }
 }
 
 .committee-card {
