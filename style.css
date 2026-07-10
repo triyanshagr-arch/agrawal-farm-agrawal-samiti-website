@@ -2260,10 +2260,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 
 
 
-@media (max-width: 992px) {
-    
-    .agrasen-img, 
-}
+
 
 /* Modern Premium Language Toggle (Festive) */
 .language-toggle {
@@ -3174,6 +3171,18 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
         font-size: 1.1rem !important;
         width: 100%;
         display: block;
+    }
+    
+    .nav-menu .language-toggle {
+        background: var(--primary-color) !important;
+        color: #fff !important;
+        border: none !important;
+        width: 100%;
+        justify-content: center;
+        padding: 12px !important;
+        font-size: 1.1rem !important;
+        margin-top: 15px;
+        box-shadow: 0 4px 10px rgba(227, 24, 55, 0.3) !important;
     }
     
     /* Make the hamburger icon visible above the drawer */
