@@ -385,7 +385,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     photo: photoBase64
                 };
 
+                
+                // Send data to backend
+                try {
+                    const formDataObj = new FormData();
+                    formDataObj.append('action', 'submit_matrimonial');
+                    formDataObj.append('name', formData.name);
+                    formDataObj.append('gender', formData.gender);
+                    formDataObj.append('dob', formData.dob);
+                    formDataObj.append('height', formData.height);
+                    formDataObj.append('gotra', formData.gotra);
+                    formDataObj.append('manglik', formData.manglik);
+                    formDataObj.append('education', formData.education);
+                    formDataObj.append('profession', formData.profession);
+                    formDataObj.append('income', formData.income);
+                    formDataObj.append('father', formData.father);
+                    formDataObj.append('mother', formData.mother);
+                    formDataObj.append('address', formData.address);
+                    formDataObj.append('mobile', formData.mobile);
+                    formDataObj.append('photo', formData.photo || '');
+
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        body: formDataObj
+                    });
+                } catch (err) {
+                    console.error('Failed to save to backend:', err);
+                }
+
                 if (typeof window.generateMatrimonialPDF === 'function') {
+
                     const pdfBlob = await window.generateMatrimonialPDF(formData);
                     
                     if (pdfBlob) {
