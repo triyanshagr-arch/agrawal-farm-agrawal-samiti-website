@@ -2845,16 +2845,22 @@ footer a:hover {
     }
     .header-content-box {
         grid-area: text;
-        margin-top: 5px;
+        margin-top: 0;
         text-align: center;
+    }
+    .header-title-row {
+        padding: 0 !important;
+        gap: 2px !important;
+        margin-bottom: 5px !important;
+    }
+    .header-main-title {
+        font-size: 1.1rem !important;
+        margin-top: 0 !important;
     }
     .agrasen-img, .lakshmi-img {
         width: auto !important;
-        height: 80px !important;
+        height: 60px !important;
         margin: 0 !important;
-    }
-    .header-text h1 {
-        font-size: 1.2rem !important;
     }
 }
 
