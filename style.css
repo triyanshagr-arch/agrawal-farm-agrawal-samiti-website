@@ -3147,7 +3147,7 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
         right: -100% !important;
         width: 80% !important;
         max-width: 300px !important;
-        height: 100vh !important;
+        height: 100% !important;
         background: #fff !important;
         display: flex !important;
         flex-direction: column !important;
@@ -3182,6 +3182,7 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
         padding: 12px !important;
         font-size: 1.1rem !important;
         margin-top: 15px;
+        margin-bottom: 150px !important;
         box-shadow: 0 4px 10px rgba(227, 24, 55, 0.3) !important;
     }
     
