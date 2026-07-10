@@ -1832,7 +1832,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-\n
 // ==========================================
 // MATRIMONIAL MANAGEMENT LOGIC
 // ==========================================
