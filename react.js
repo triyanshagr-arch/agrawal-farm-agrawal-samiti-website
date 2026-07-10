@@ -448,6 +448,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeSections = document.querySelectorAll('.section, .card, .service-card');
     fadeSections.forEach(section => section.classList.add('fade-in-section'));
     
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -457,13 +459,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
+                if (entry.target.classList.contains('animate-on-scroll')) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.add('is-visible');
+                }
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
     fadeSections.forEach(section => observer.observe(section));
+    animateElements.forEach(el => observer.observe(el));
     
     // Back to Top Button
     const backToTop = document.createElement('div');
