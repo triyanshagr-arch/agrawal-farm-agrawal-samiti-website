@@ -3152,7 +3152,7 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
         background: #fff !important;
         display: flex !important;
         flex-direction: column !important;
-        padding: 20px 20px 80px !important; /* Reduced to fix scrolling */
+        padding: 50px 20px 80px !important; /* Added safe area for notch/status bar */
         box-shadow: -5px 0 20px rgba(0,0,0,0.2) !important;
         transition: right 0.3s ease-in-out !important;
         z-index: 999 !important;
