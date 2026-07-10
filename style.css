@@ -3168,9 +3168,23 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
         font-weight: 600 !important;
         border-bottom: 1px solid #eee !important;
         padding: 15px 0 !important;
+        display: block !important;
+        text-align: center !important;
         font-size: 1.1rem !important;
-        width: 100%;
-        display: block;
+        background-color: transparent !important;
+    }
+    .red-navbar .nav-menu li a.active,
+    .nav-menu li a.active,
+    .nav-links.active {
+        color: var(--primary-color) !important;
+        background-color: rgba(211, 47, 47, 0.05) !important;
+    }
+    
+    .mobile-drawer-close {
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 10000 !important;
     }
     
     .nav-menu .language-toggle {
