@@ -2847,6 +2847,7 @@ footer a:hover {
         grid-area: text;
         margin-top: 0;
         text-align: center;
+        z-index: 9999 !important;
     }
     .header-title-row {
         padding: 0 !important;
