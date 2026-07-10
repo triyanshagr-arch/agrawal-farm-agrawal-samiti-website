@@ -171,8 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Send data to Google Sheets in the background
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJ1e5XCWBYEwbm7tQBgfkYsLHFDhGHZXpztTwkbbwCkuRfZv6BHZ0qTSiVY9k68rE/exec";
-                fetch('https://script.google.com/macros/s/AKfycbxJ1e5XCWBYEwbm7tQBgfkYsLHFDhGHZXpztTwkbbwCkuRfZv6BHZ0qTSiVY9k68rE/exec', {
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec";
+                fetch('https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec', {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, signatureBase64: compressedSignatureBase64, ...dataObj } })
                 }).catch(err => console.error("Sheets Error:", err));
@@ -261,8 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const compressedScreenshotBase64 = paymentScreenshotInput.files.length > 0 ? await compressImageAsBase64(paymentScreenshotInput.files[0], 600, 0.7) : null;
 
                 // Send data to Google Sheets in the background
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJ1e5XCWBYEwbm7tQBgfkYsLHFDhGHZXpztTwkbbwCkuRfZv6BHZ0qTSiVY9k68rE/exec";
-                fetch('https://script.google.com/macros/s/AKfycbxJ1e5XCWBYEwbm7tQBgfkYsLHFDhGHZXpztTwkbbwCkuRfZv6BHZ0qTSiVY9k68rE/exec', {
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec";
+                fetch('https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec', {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_donation', data: { receiptNo: receiptNo, screenshotBase64: compressedScreenshotBase64, ...dataObj } })
                 }).catch(err => console.error("Sheets Error:", err));
@@ -332,8 +332,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Format Dates for backend mapping if needed (optional, keeping YYYY-MM-DD is often fine for backend, but we can leave as is)
 
                 // Send data to Google Sheets in the background
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJ1e5XCWBYEwbm7tQBgfkYsLHFDhGHZXpztTwkbbwCkuRfZv6BHZ0qTSiVY9k68rE/exec";
-                fetch('https://script.google.com/macros/s/AKfycbxJ1e5XCWBYEwbm7tQBgfkYsLHFDhGHZXpztTwkbbwCkuRfZv6BHZ0qTSiVY9k68rE/exec', {
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec";
+                fetch('https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec', {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_booking', data: dataObj })
                 }).catch(err => console.error("Sheets Error:", err));
@@ -405,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     formDataObj.append('mobile', formData.mobile);
                     formDataObj.append('photo', formData.photo || '');
 
-                    await fetch('https://script.google.com/macros/s/AKfycbxJ1e5XCWBYEwbm7tQBgfkYsLHFDhGHZXpztTwkbbwCkuRfZv6BHZ0qTSiVY9k68rE/exec', {
+                    await fetch('https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec', {
                         method: 'POST',
                         body: formDataObj
                     });

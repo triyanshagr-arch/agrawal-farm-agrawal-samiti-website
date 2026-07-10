@@ -10,7 +10,7 @@ function loadPublicMatrimonialProfiles() {
     // But since it's not defined in matrimonial.html, we need to define it or fetch it.
     // wait, is GOOGLE_SCRIPT_URL defined in matrimonial.html? No, only in admin.html, notices.html, and submit_handler.js
     // I'll define it here so this script is self-contained.
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJ1e5XCWBYEwbm7tQBgfkYsLHFDhGHZXpztTwkbbwCkuRfZv6BHZ0qTSiVY9k68rE/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec';
 
     fetch(`${SCRIPT_URL}?action=get_public_matrimonial&t=${Date.now()}`)
         .then(response => response.json())
