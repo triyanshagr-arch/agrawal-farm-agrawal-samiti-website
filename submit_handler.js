@@ -514,4 +514,85 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // ====== EVENT REGISTRATION FORM ======
+    const eventForm = document.getElementById('eventForm');
+    if (eventForm) {
+        eventForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (typeof grecaptcha !== 'undefined') {
+                if (!grecaptcha.getResponse()) {
+                    const isHi = localStorage.getItem('preferredLang') === 'hi';
+                    alert(isHi ? "कृपया पुष्टि करें कि आप रोबोट नहीं हैं।" : "Please confirm you are not a robot.");
+                    return;
+                }
+            }
+            
+            const submitBtn = document.getElementById('eventSubmitBtn');
+            const originalBtnHtml = submitBtn.innerHTML;
+            
+            try {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.disabled = true;
+
+                // Generate a random ticket ID
+                const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
+                const ticketId = "TKT-" + new Date().getFullYear() + "-" + randomStr;
+                
+                const fullName = document.getElementById('eventFullName').value;
+                const guests = document.getElementById('eventGuests').value;
+
+                const dataObj = {
+                    ticketId: ticketId,
+                    fullName: fullName,
+                    mobileNumber: document.getElementById('eventMobile').value,
+                    guests: guests
+                };
+                
+                if (typeof grecaptcha !== 'undefined') dataObj.recaptchaToken = grecaptcha.getResponse();
+
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzOrs-sG-R5lqSNhggWDxTwgGyN2JSKjDcGFgXZgpfo_0IJLcMME1EyzZRTWmHaQAuC/exec";
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'add_event_registration', data: dataObj })
+                });
+                
+                const result = await response.json();
+                if (result.success === false || result.status === 'error') {
+                    throw new Error(result.error || result.message || "Failed to register event");
+                }
+
+                // Show QR Code Container
+                document.getElementById('registrationContainer').style.display = 'none';
+                const qrContainer = document.getElementById('qrCodeContainer');
+                qrContainer.style.display = 'block';
+                
+                document.getElementById('displayTicketName').innerText = fullName;
+                document.getElementById('displayTicketId').innerText = ticketId;
+                document.getElementById('displayTicketGuests').innerText = "Guests: " + guests;
+                
+                // Generate QR Code
+                const qrcodeDiv = document.getElementById('qrcode');
+                qrcodeDiv.innerHTML = '';
+                new QRCode(qrcodeDiv, {
+                    text: ticketId,
+                    width: 200,
+                    height: 200,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+
+            } catch (error) {
+                console.error("Error submitting event:", error);
+                alert("An error occurred while registering for the event. Please try again.");
+            } finally {
+                submitBtn.innerHTML = originalBtnHtml;
+                submitBtn.disabled = false;
+                if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+            }
+        });
+    }
+
 });
