@@ -24,7 +24,7 @@ function loadPublicMatrimonialProfiles() {
     const gallery = document.getElementById('profiles-grid');
     if(!loader || !gallery) return;
     
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOrs-sG-R5lqSNhggWDxTwgGyN2JSKjDcGFgXZgpfo_0IJLcMME1EyzZRTWmHaQAuC/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwP0zYZQp9ynZxFDulMpRIPVUC2K3pgxj2Pm3IGuH9u_Tu3Qique-iZPSvDQdFwoNeY/exec';
 
     fetch(`${SCRIPT_URL}?action=get_public_matrimonial&t=${Date.now()}`)
         .then(response => response.json())
