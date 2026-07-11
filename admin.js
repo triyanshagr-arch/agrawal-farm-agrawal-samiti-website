@@ -243,8 +243,8 @@ function emailDonationReceipt(btnElement, receiptNo) {
     const d = window.donationData.find(x => x.receiptNo === receiptNo);
     if (!d) return;
     
-    const emailSubject = encodeURIComponent("Donation Receipt - Agrawal Samaj Samiti");
-    const emailBody = encodeURIComponent(`Dear ${d.donorName},\n\nJai Shri Agrasen!\n\nThank you for your generous donation of Rs. ${d.donationAmount}/- to Agrawal Samaj Samiti, Jaipur.\n\nYour payment has been successfully verified. Please find your official Donation Receipt (No: ${receiptNo}) attached to this email.\n\nMay the blessings of Maharaj Agrasen be with you always.\n\nBest Regards,\nAdmin Team\nAgrawal Samaj Samiti`);
+    const emailSubject = encodeURIComponent("Donation Certificate - Agrawal Samaj Samiti");
+    const emailBody = encodeURIComponent(`Dear ${d.donorName},\n\nJai Shri Agrasen!\n\nThank you for your generous donation of Rs. ${d.donationAmount}/- to Agrawal Samaj Samiti, Jaipur.\n\nYour payment has been successfully verified. Please find your official Donation Certificate (No: ${receiptNo}) attached to this email.\n\nMay the blessings of Maharaj Agrasen be with you always.\n\nBest Regards, Admin Team Agrawal Samaj Samiti`);
     
     const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${d.emailId}&su=${emailSubject}&body=${emailBody}`;
     window.open(gmailLink, '_blank');
@@ -1159,9 +1159,9 @@ function emailBookingApplicant(btnElement, emailId, fullName, status) {
     const emailSubject = encodeURIComponent(`Booking Request ${status} - Agrawal Samiti`);
     let emailBody = "";
     if (status === "Approved") {
-        emailBody = encodeURIComponent(`Dear ${fullName},\n\nJai Shri Agrasen!\n\nWe are pleased to inform you that your facility booking request at Agrawal Farm has been APPROVED.\n\nPlease visit the Samiti office to finalize the booking details and complete the advance payment.\n\nBest Regards,\nAdmin Team\nAgrawal Samaj Samiti`);
+        emailBody = encodeURIComponent(`Dear ${fullName},\n\nJai Shri Agrasen!\n\nWe are pleased to inform you that your facility booking request at Agrawal Farm has been APPROVED.\n\nPlease visit the Samiti office to finalize the booking details and complete the advance payment.\n\nBest Regards, Admin Team Agrawal Samaj Samiti`);
     } else {
-        emailBody = encodeURIComponent(`Dear ${fullName},\n\nJai Shri Agrasen!\n\nWe regret to inform you that your facility booking request at Agrawal Farm has been REJECTED, likely due to unavailability on your requested dates.\n\nPlease contact the Samiti office for alternate dates or more information.\n\nBest Regards,\nAdmin Team\nAgrawal Samaj Samiti`);
+        emailBody = encodeURIComponent(`Dear ${fullName},\n\nJai Shri Agrasen!\n\nWe regret to inform you that your facility booking request at Agrawal Farm has been REJECTED, likely due to unavailability on your requested dates.\n\nPlease contact the Samiti office for alternate dates or more information.\n\nBest Regards, Admin Team Agrawal Samaj Samiti`);
     }
     
     const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailId}&su=${emailSubject}&body=${emailBody}`;
