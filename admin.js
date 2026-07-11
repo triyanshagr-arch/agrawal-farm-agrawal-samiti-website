@@ -1887,7 +1887,7 @@ function renderMatrimonial() {
         
         let photoBtn = '';
         if(p.photo && p.photo.trim() !== '') {
-            photoBtn = `<button onclick="viewMatrimonialPhoto('${p.row}')" class="btn-secondary btn-sm" title="View Photo"><i class="fas fa-image"></i></button>`;
+            photoBtn = `<button onclick="viewMatrimonialPhoto('${p.row}')" style="background: #fff; color: #d32f2f; border: 1px solid #d32f2f; padding: 5px 11px; border-radius: 4px; cursor: pointer; margin-right: 5px;" title="View Photo"><i class="fas fa-image"></i></button>`;
         }
         
         const status = p.status || "Pending";
@@ -1906,11 +1906,11 @@ function renderMatrimonial() {
             <td>${p.gotra || '-'}</td>
             <td>${p.mobile || '-'}</td>
             <td>${statusBadge}</td>
-            <td>
+            <td style="white-space: nowrap;">
                 ${photoBtn}
-                <button onclick="viewMatrimonialDetails('${p.row}')" class="btn-primary btn-sm" title="View Details"><i class="fas fa-eye"></i></button>
+                <button onclick="viewMatrimonialDetails('${p.row}')" style="background: #2196F3; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; margin-right: 5px;" title="View Details"><i class="fas fa-eye"></i></button>
                 ${approveBtn}
-                <button onclick="deleteMatrimonial('${p.row}')" class="btn-danger btn-sm" title="Delete"><i class="fas fa-trash"></i></button>
+                <button onclick="deleteMatrimonial('${p.row}')" style="background: #f44336; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;" title="Delete"><i class="fas fa-trash"></i></button>
             </td>
         `;
         tbody.appendChild(tr);
