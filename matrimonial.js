@@ -1,15 +1,29 @@
+
+let allProfiles = [];
+
 document.addEventListener('DOMContentLoaded', () => {
     loadPublicMatrimonialProfiles();
+    
+    const searchInput = document.getElementById('searchProfile');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = allProfiles.filter(p => {
+                return (p.name && p.name.toLowerCase().includes(query)) ||
+                       (p.gotra && p.gotra.toLowerCase().includes(query)) ||
+                       (p.profession && p.profession.toLowerCase().includes(query)) ||
+                       (p.education && p.education.toLowerCase().includes(query));
+            });
+            renderGallery(filtered);
+        });
+    }
 });
 
 function loadPublicMatrimonialProfiles() {
-    const loader = document.getElementById('matrimonialGalleryLoader');
-    const gallery = document.getElementById('matrimonialGallery');
+    const loader = document.getElementById('profiles-loader');
+    const gallery = document.getElementById('profiles-grid');
+    if(!loader || !gallery) return;
     
-    // We fetch from the globally defined GOOGLE_SCRIPT_URL
-    // But since it's not defined in matrimonial.html, we need to define it or fetch it.
-    // wait, is GOOGLE_SCRIPT_URL defined in matrimonial.html? No, only in admin.html, notices.html, and submit_handler.js
-    // I'll define it here so this script is self-contained.
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec';
 
     fetch(`${SCRIPT_URL}?action=get_public_matrimonial&t=${Date.now()}`)
@@ -17,64 +31,84 @@ function loadPublicMatrimonialProfiles() {
         .then(data => {
             loader.style.display = 'none';
             if (data.profiles && data.profiles.length > 0) {
+                allProfiles = data.profiles;
                 gallery.style.display = 'grid';
-                renderGallery(data.profiles);
+                renderGallery(allProfiles);
+                
+                // Trigger language update if translate exists
+                if(typeof updateLanguage === 'function'){
+                    setTimeout(updateLanguage, 100);
+                }
             } else {
-                loader.innerHTML = '<i class="fas fa-info-circle fa-2x"></i><br><br>No profiles available right now.';
+                loader.innerHTML = '<i class="fas fa-info-circle fa-2x"></i><br><br><span class="lang-hi">अभी कोई प्रोफाइल उपलब्ध नहीं है।</span><span class="lang-en">No profiles available right now.</span>';
                 loader.style.display = 'block';
             }
         })
         .catch(err => {
             console.error(err);
-            loader.innerHTML = '<i class="fas fa-exclamation-triangle fa-2x" style="color:#d32f2f;"></i><br><br>Failed to load profiles.';
+            loader.innerHTML = '<i class="fas fa-exclamation-triangle fa-2x" style="color:#d32f2f;"></i><br><br><span class="lang-hi">प्रोफाइल लोड करने में विफल।</span><span class="lang-en">Failed to load profiles.</span>';
+            loader.style.display = 'block';
         });
 }
 
+function calculateAge(dobString) {
+    if(!dobString) return '-';
+    // Handle both dd/mm/yyyy and yyyy-mm-dd
+    let parts = dobString.split(/[\/\-]/);
+    if(parts.length !== 3) return dobString;
+    
+    let year, month, day;
+    if(parts[0].length === 4) { // yyyy-mm-dd
+        year = parts[0]; month = parts[1]; day = parts[2];
+    } else { // dd/mm/yyyy
+        day = parts[0]; month = parts[1]; year = parts[2];
+    }
+    
+    const birthDate = new Date(year, month - 1, day);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 function renderGallery(profiles) {
-    const gallery = document.getElementById('matrimonialGallery');
+    const gallery = document.getElementById('profiles-grid');
+    if(!gallery) return;
+    
     gallery.innerHTML = '';
     
+    if(profiles.length === 0) {
+        gallery.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;"><span class="lang-hi">कोई प्रोफाइल नहीं मिला।</span><span class="lang-en">No profiles found matching your search.</span></div>';
+        return;
+    }
+    
     profiles.forEach(p => {
-        // Build card
         const card = document.createElement('div');
-        card.className = 'matrimonial-card';
-        card.style.cssText = 'background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; display: flex; flex-direction: column;';
+        card.className = 'card profile-card animate-on-scroll';
+        card.style.cssText = 'text-align: center; padding: 25px; transition: transform 0.3s;';
         
-        // Default avatar if no photo
-        let photoUrl = p.photo && p.photo.trim() !== '' ? p.photo : 'images/default_avatar.png'; // Need a fallback or just empty div
+        let photoSrc = p.photo && p.photo.trim() !== '' ? p.photo : (p.gender === 'Female' ? 'images/placeholder_female.jpg' : 'images/placeholder_male.jpg');
         
-        const photoSection = p.photo ? `
-            <div style="height: 250px; overflow: hidden; background: #eee;">
-                <img src="${p.photo}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-            </div>
-        ` : `
-            <div style="height: 200px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #ccc;">
-                <i class="fas fa-user"></i>
-            </div>
-        `;
+        let age = calculateAge(p.dob);
         
         card.innerHTML = `
-            ${photoSection}
-            <div style="padding: 20px; flex-grow: 1; display: flex; flex-direction: column;">
-                <h3 style="margin-top: 0; color: #d32f2f; margin-bottom: 5px; font-size: 1.4rem;">${p.name || 'Unknown'}</h3>
-                <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">
-                    <i class="fas fa-venus-mars"></i> ${p.gender || '-'} &nbsp;|&nbsp; 
-                    <i class="fas fa-birthday-cake"></i> ${p.dob || '-'}
-                </p>
-                
-                <div style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; flex-grow: 1;">
-                    <div><strong>Gotra:</strong> ${p.gotra || '-'}</div>
-                    <div><strong>Education:</strong> ${p.education || '-'}</div>
-                    <div><strong>Profession:</strong> ${p.profession || '-'}</div>
-                </div>
-                
-                <button class="btn-primary" onclick="showContactModal('${escapeHtml(p.name)}')" style="width: 100%; margin-top: auto; border-radius: 4px; padding: 10px;">
-                    <i class="fas fa-envelope"></i> Contact Admin
-                </button>
+            <img src="${photoSrc}" onerror="this.src='https://via.placeholder.com/150'" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--border-color);">
+            <h4 style="color: var(--primary-color); margin-bottom: 5px; font-size: 1.4rem;">${escapeHtml(p.name)}</h4>
+            <p style="color: var(--text-muted); font-weight: bold; margin-bottom: 10px;">
+                <span class="lang-hi">आयु</span><span class="lang-en">Age</span>: ${age} | <span class="lang-hi">ऊंचाई</span><span class="lang-en">Height</span>: ${escapeHtml(p.height || '-')}
+            </p>
+            <div style="font-size: 0.95rem; text-align: left; line-height: 1.6; margin-bottom: 20px; background: var(--bg-main); padding: 15px; border-radius: 8px;">
+                <strong><span class="lang-hi">गोत्र</span><span class="lang-en">Gotra</span>:</strong> ${escapeHtml(p.gotra || '-')}<br>
+                <strong><span class="lang-hi">शिक्षा</span><span class="lang-en">Education</span>:</strong> ${escapeHtml(p.education || '-')}<br>
+                <strong><span class="lang-hi">पेशा</span><span class="lang-en">Profession</span>:</strong> ${escapeHtml(p.profession || '-')}<br>
+                <strong><span class="lang-hi">मांगलिक</span><span class="lang-en">Manglik</span>:</strong> ${escapeHtml(p.manglik || '-')}
             </div>
+            <button class="btn btn-outline" style="width: 100%;" onclick="showContactModal('${escapeHtml(p.name)}')"><i class="fas fa-envelope"></i> <span class="lang-hi">संपर्क करें</span><span class="lang-en">Contact</span></button>
         `;
         
-        // Add hover effect via JS since CSS isn't defined
         card.onmouseover = () => card.style.transform = 'translateY(-5px)';
         card.onmouseout = () => card.style.transform = 'translateY(0)';
         
@@ -84,12 +118,14 @@ function renderGallery(profiles) {
 
 function showContactModal(profileName) {
     Swal.fire({
-        title: 'Interested in ' + profileName + '?',
-        text: 'To protect privacy, contact details are kept secure. Please WhatsApp the Admin to request more details or connect with this family.',
+        title: document.body.classList.contains('lang-en') ? `Interested in ${profileName}?` : `क्या आप ${profileName} में रुचि रखते हैं?`,
+        text: document.body.classList.contains('lang-en') ? 
+            'To protect privacy, contact details are kept secure. Please WhatsApp the Admin to request more details or connect with this family.' : 
+            'गोपनीयता की रक्षा के लिए संपर्क विवरण सुरक्षित रखे गए हैं। अधिक विवरण मांगने या इस परिवार से जुड़ने के लिए कृपया एडमिन को व्हाट्सएप करें।',
         icon: 'info',
         showCancelButton: true,
-        confirmButtonText: '<i class="fab fa-whatsapp"></i> WhatsApp Admin',
-        cancelButtonText: 'Close',
+        confirmButtonText: '<i class="fab fa-whatsapp"></i> ' + (document.body.classList.contains('lang-en') ? 'WhatsApp Admin' : 'व्हाट्सएप एडमिन'),
+        cancelButtonText: document.body.classList.contains('lang-en') ? 'Close' : 'बंद करें',
         confirmButtonColor: '#25D366'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -101,7 +137,7 @@ function showContactModal(profileName) {
 
 function escapeHtml(unsafe) {
     if(!unsafe) return '';
-    return unsafe
+    return unsafe.toString()
          .replace(/&/g, "&amp;")
          .replace(/</g, "&lt;")
          .replace(/>/g, "&gt;")
