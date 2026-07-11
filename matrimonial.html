@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
     <link rel="stylesheet" href="style.css?v=16">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <a href="https://wa.me/919829220486" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
@@ -267,7 +268,9 @@
                         </div>
 
                         <div style="text-align: center; margin-top: 30px;">
-                            <button type="submit" class="btn btn-primary" style="font-size: 1.3rem; padding: 15px 40px; width: 100%; max-width: 300px;">
+                            
+                <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
+                <button type="submit" class="btn btn-primary" style="font-size: 1.3rem; padding: 15px 40px; width: 100%; max-width: 300px;">
                                 <i class="fas fa-paper-plane"></i> <span class="lang-hi">प्रोफ़ाइल सबमिट करें</span><span class="lang-en">Submit Profile</span>
                             </button>
                         </div>
@@ -311,7 +314,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="react.js?v=16"></script>
-    <script src="submit_handler.js?v=7"></script>
+    <script src="submit_handler.js?v=90"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="pdf_generator.js?v=7"></script>
@@ -320,6 +323,6 @@
             flatpickr(".datepicker", { dateFormat: "d/m/Y", allowInput: true });
         });
     </script>
-    <script src="matrimonial.js?v=1"></script>
+    <script src="matrimonial.js?v=90"></script>
 </body>
 </html>

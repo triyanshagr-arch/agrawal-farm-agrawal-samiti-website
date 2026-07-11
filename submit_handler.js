@@ -86,6 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (typeof grecaptcha !== 'undefined') {
+                if (!grecaptcha.getResponse()) {
+                    const isHi = localStorage.getItem('preferredLang') === 'hi';
+                    alert(isHi ? "कृपया पुष्टि करें कि आप रोबोट नहीं हैं।" : "Please confirm you are not a robot.");
+                    return;
+                }
+            }
             
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
@@ -103,7 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const randomString = Math.random().toString(36).substring(2, 6).toUpperCase();
                 const membershipNo = `ASS-${year}${month}${day}-${randomString}`;
 
-                const dataObj = {}; 
+                const dataObj = {};
+                if (typeof grecaptcha !== 'undefined') dataObj.recaptchaToken = grecaptcha.getResponse(); 
                 
                 // Text fields (removed familyDetails, added marriageDate)
                 const textFields = ['title-dropdown', 'fullName', 'guardianName', 'dob', 'marriageDate', 'bloodGroup', 'gotra', 
@@ -220,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
+                if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
             }
         });
     }
@@ -229,6 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (donationForm) {
         donationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (typeof grecaptcha !== 'undefined') {
+                if (!grecaptcha.getResponse()) {
+                    const isHi = localStorage.getItem('preferredLang') === 'hi';
+                    alert(isHi ? "कृपया पुष्टि करें कि आप रोबोट नहीं हैं।" : "Please confirm you are not a robot.");
+                    return;
+                }
+            }
             
             const submitBtn = donationForm.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
@@ -246,7 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const randomString = Math.random().toString(36).substring(2, 6).toUpperCase();
                 const receiptNo = `DON-${year}${month}${day}-${randomString}`;
 
-                const dataObj = {}; 
+                const dataObj = {};
+                if (typeof grecaptcha !== 'undefined') dataObj.recaptchaToken = grecaptcha.getResponse(); 
                 const textFields = ['donorName', 'mobileNumber', 'emailId', 'address', 'panNumber', 'donationAmount', 'donationPurpose', 'transactionId'];
                 
                 textFields.forEach(id => {
@@ -297,6 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
+                if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
             }
         });
     }
@@ -306,6 +324,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bookingForm) {
         bookingForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (typeof grecaptcha !== 'undefined') {
+                if (!grecaptcha.getResponse()) {
+                    const isHi = localStorage.getItem('preferredLang') === 'hi';
+                    alert(isHi ? "कृपया पुष्टि करें कि आप रोबोट नहीं हैं।" : "Please confirm you are not a robot.");
+                    return;
+                }
+            }
             
             const submitBtn = bookingForm.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
@@ -313,7 +338,8 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             try {
-                const dataObj = {}; 
+                const dataObj = {};
+                if (typeof grecaptcha !== 'undefined') dataObj.recaptchaToken = grecaptcha.getResponse(); 
                 const textFields = ['bookingName', 'bookingMobile', 'bookingEmail', 'eventType', 'facilityRequired', 'startDate', 'endDate', 'expectedGuests', 'remarks'];
                 
                 textFields.forEach(id => {
@@ -349,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
+                if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
             }
         });
     }
@@ -358,6 +385,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (matrimonialForm) {
         matrimonialForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            if (typeof grecaptcha !== 'undefined') {
+                if (!grecaptcha.getResponse()) {
+                    const isHi = localStorage.getItem('preferredLang') === 'hi';
+                    alert(isHi ? "कृपया पुष्टि करें कि आप रोबोट नहीं हैं।" : "Please confirm you are not a robot.");
+                    return;
+                }
+            }
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalBtnHtml = submitBtn.innerHTML;
             
@@ -404,6 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     formDataObj.append('address', formData.address);
                     formDataObj.append('mobile', formData.mobile);
                     formDataObj.append('photo', formData.photo || '');
+                    if (typeof grecaptcha !== 'undefined') formDataObj.append('recaptchaToken', grecaptcha.getResponse());
 
                     await fetch('https://script.google.com/macros/s/AKfycbyAa5F3qja9vdo-8DA_vy9wOuLrQZTD-tDjAXjKrcYKlmaZXZHdyFfziFFlKt0e2BM/exec', {
                         method: 'POST',
@@ -442,6 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
+                if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
             }
         });
 
