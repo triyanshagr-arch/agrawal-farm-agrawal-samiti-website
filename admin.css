@@ -523,7 +523,6 @@ th {
     font-size: 16px;
     line-height: 1.6;
     text-align: justify;
-    flex: 1; /* Pushes footer down */
     white-space: pre-wrap; /* preserve formatting */
 }
 
