@@ -949,12 +949,27 @@ function toggleNoticeFields() {
     const genFields = document.querySelectorAll('.general-field');
     const achFields = document.querySelectorAll('.achievement-field');
     
+    const noticeTitle = document.getElementById('noticeTitle');
+    const noticeDesc = document.getElementById('noticeDesc');
+    const achName = document.getElementById('achName');
+    const achScore = document.getElementById('achScore');
+    
     if (type === 'Achievement') {
         genFields.forEach(el => el.style.display = 'none');
         achFields.forEach(el => el.style.display = 'block');
+        
+        if (noticeTitle) noticeTitle.required = false;
+        if (noticeDesc) noticeDesc.required = false;
+        if (achName) achName.required = true;
+        if (achScore) achScore.required = true;
     } else {
         genFields.forEach(el => el.style.display = 'block');
         achFields.forEach(el => el.style.display = 'none');
+        
+        if (noticeTitle) noticeTitle.required = true;
+        if (noticeDesc) noticeDesc.required = true;
+        if (achName) achName.required = false;
+        if (achScore) achScore.required = false;
     }
 }
 
