@@ -121,7 +121,7 @@ function renderGallery(profiles) {
         let age = calculateAge(p.dob);
         
         card.innerHTML = `
-            <img src="${photoSrc}" onerror="this.src='https://via.placeholder.com/150'" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--border-color);">
+            <img src="${photoSrc}" onerror="this.src='https://via.placeholder.com/150'" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--border-color); cursor: pointer;" onclick="viewFullImage(this.src, '${escapeHtml(p.name)}')">
             <h4 style="color: var(--primary-color); margin-bottom: 5px; font-size: 1.4rem;">${escapeHtml(p.name)}</h4>
             <p style="color: var(--text-muted); font-weight: bold; margin-bottom: 10px;">
                 <span class="lang-hi">आयु</span><span class="lang-en">Age</span>: ${age} | <span class="lang-hi">ऊंचाई</span><span class="lang-en">Height</span>: ${escapeHtml(p.height || '-')}
@@ -170,3 +170,18 @@ function escapeHtml(unsafe) {
          .replace(/"/g, "&quot;")
          .replace(/'/g, "&#039;");
 }
+
+window.viewFullImage = function(src, name) {
+    if (src.includes('placeholder')) return;
+    
+    Swal.fire({
+        title: name,
+        imageUrl: src,
+        imageAlt: name,
+        showCloseButton: true,
+        showConfirmButton: false,
+        customClass: {
+            popup: 'profile-img-modal'
+        }
+    });
+};
