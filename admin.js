@@ -2000,51 +2000,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function approveMatrimonial(rowNum) {
-    if(!confirm("Are you sure you want to approve this profile? It will be publicly visible on the Matrimonial page.")) return;
-    
-    const tbody = document.getElementById('matrimonialTableBody');
-    const originalHtml = tbody.innerHTML;
-    tbody.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Approving Profile...</td></tr>';
-    
-    fetch(`${GOOGLE_SCRIPT_URL}?action=approve_matrimonial&row=${rowNum}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success || data.status === "success") {
-                Swal.fire("Success", "Profile has been approved!", "success");
-                loadMatrimonial();
-            } else {
-                Swal.fire("Error", "Failed to approve: " + data.error, "error");
-                tbody.innerHTML = originalHtml;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            Swal.fire("Error", "Network error occurred.", "error");
-            tbody.innerHTML = originalHtml;
-        });
+    Swal.fire({
+        title: 'Approve Profile?',
+        text: "Are you sure you want to approve this profile? It will be publicly visible on the Matrimonial page.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#25D366',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, approve it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const tbody = document.getElementById('matrimonialTableBody');
+            const originalHtml = tbody.innerHTML;
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Approving Profile...</td></tr>';
+            
+            fetch(`${GOOGLE_SCRIPT_URL}?action=approve_matrimonial&row=${rowNum}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success || data.status === "success") {
+                        Swal.fire("Success", "Profile has been approved!", "success");
+                        loadMatrimonial();
+                    } else {
+                        Swal.fire("Error", "Failed to approve: " + data.error, "error");
+                        tbody.innerHTML = originalHtml;
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire("Error", "Network error occurred.", "error");
+                    tbody.innerHTML = originalHtml;
+                });
+        }
+    });
 }
 
 function deleteMatrimonial(rowNum) {
-    if(!confirm("Are you sure you want to delete this profile? This action cannot be undone.")) return;
-    
-    const tbody = document.getElementById('matrimonialTableBody');
-    const originalHtml = tbody.innerHTML;
-    tbody.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Deleting Profile...</td></tr>';
-    
-    fetch(`${GOOGLE_SCRIPT_URL}?action=delete_matrimonial&row=${rowNum}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success || data.status === "success") {
-                Swal.fire("Deleted", "Profile has been deleted.", "success");
-                loadMatrimonial();
-            } else {
-                Swal.fire("Error", "Failed to delete: " + data.error, "error");
-                tbody.innerHTML = originalHtml;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            Swal.fire("Error", "Network error occurred.", "error");
-            tbody.innerHTML = originalHtml;
-        });
+    Swal.fire({
+        title: 'Delete Profile?',
+        text: "Are you sure you want to delete this profile? This action cannot be undone.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const tbody = document.getElementById('matrimonialTableBody');
+            const originalHtml = tbody.innerHTML;
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center"><i class="fas fa-spinner fa-spin"></i> Deleting Profile...</td></tr>';
+            
+            fetch(`${GOOGLE_SCRIPT_URL}?action=delete_matrimonial&row=${rowNum}&password=${encodeURIComponent(sessionPassword)}&t=${Date.now()}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success || data.status === "success") {
+                        Swal.fire("Deleted", "Profile has been deleted.", "success");
+                        loadMatrimonial();
+                    } else {
+                        Swal.fire("Error", "Failed to delete: " + data.error, "error");
+                        tbody.innerHTML = originalHtml;
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire("Error", "Network error occurred.", "error");
+                    tbody.innerHTML = originalHtml;
+                });
+        }
+    });
 }
