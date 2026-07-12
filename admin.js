@@ -949,40 +949,39 @@ function toggleNoticeFields() {
     const genFields = document.querySelectorAll('.general-field');
     const achFields = document.querySelectorAll('.achievement-field');
     
-    const noticeTitle = document.getElementById('noticeTitle');
-    const noticeDesc = document.getElementById('noticeDesc');
-    const achName = document.getElementById('achName');
-    const achScore = document.getElementById('achScore');
+    const noticeTitleEn = document.getElementById('noticeTitleEn');
+    const noticeTitleHi = document.getElementById('noticeTitleHi');
+    const noticeDescEn = document.getElementById('noticeDescEn');
+    const noticeDescHi = document.getElementById('noticeDescHi');
+    const achNameEn = document.getElementById('achNameEn');
+    const achNameHi = document.getElementById('achNameHi');
+    const achScoreEn = document.getElementById('achScoreEn');
+    const achScoreHi = document.getElementById('achScoreHi');
     
     if (type === 'Achievement') {
         genFields.forEach(el => el.style.display = 'none');
         achFields.forEach(el => el.style.display = 'block');
         
-        if (noticeTitle) noticeTitle.required = false;
-        if (noticeDesc) noticeDesc.required = false;
-        if (achName) achName.required = true;
-        if (achScore) achScore.required = true;
+        if (noticeTitleEn) noticeTitleEn.required = false;
+        if (noticeTitleHi) noticeTitleHi.required = false;
+        if (noticeDescEn) noticeDescEn.required = false;
+        if (noticeDescHi) noticeDescHi.required = false;
+        if (achNameEn) achNameEn.required = true;
+        if (achNameHi) achNameHi.required = true;
+        if (achScoreEn) achScoreEn.required = true;
+        if (achScoreHi) achScoreHi.required = true;
     } else {
         genFields.forEach(el => el.style.display = 'block');
         achFields.forEach(el => el.style.display = 'none');
         
-        if (noticeTitle) noticeTitle.required = true;
-        if (noticeDesc) noticeDesc.required = true;
-        if (achName) achName.required = false;
-        if (achScore) achScore.required = false;
-    }
-}
-
-async function translateText(text, targetLang) {
-    if (!text || text.trim() === '') return '';
-    try {
-        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
-        const res = await fetch(url);
-        const data = await res.json();
-        return data[0].map(part => part[0]).join('');
-    } catch (e) {
-        console.error("Translation error", e);
-        return text;
+        if (noticeTitleEn) noticeTitleEn.required = true;
+        if (noticeTitleHi) noticeTitleHi.required = true;
+        if (noticeDescEn) noticeDescEn.required = true;
+        if (noticeDescHi) noticeDescHi.required = true;
+        if (achNameEn) achNameEn.required = false;
+        if (achNameHi) achNameHi.required = false;
+        if (achScoreEn) achScoreEn.required = false;
+        if (achScoreHi) achScoreHi.required = false;
     }
 }
 
@@ -995,31 +994,25 @@ document.getElementById('addNoticeForm').addEventListener('submit', async (e) =>
     let descText = '';
     let linkText = '';
     
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Translating & Publishing...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
     btn.disabled = true;
 
     try {
         const type = document.getElementById('noticeType').value;
         if (type === 'Achievement') {
             const cat = document.getElementById('achCategory').value;
-            const name = document.getElementById('achName').value;
-            const score = document.getElementById('achScore').value;
-            
-            const nameHi = await translateText(name, 'hi');
-            const nameEn = await translateText(name, 'en');
-            const scoreHi = await translateText(score, 'hi');
-            const scoreEn = await translateText(score, 'en');
+            const nameEn = document.getElementById('achNameEn').value;
+            const nameHi = document.getElementById('achNameHi').value;
+            const scoreEn = document.getElementById('achScoreEn').value;
+            const scoreHi = document.getElementById('achScoreHi').value;
             
             titleText = '[ACHIEVEMENT] ' + cat;
             descText = nameHi + '|' + scoreHi + '|||' + nameEn + '|' + scoreEn;
         } else {
-            const title = document.getElementById('noticeTitle').value;
-            const desc = document.getElementById('noticeDesc').value;
-            
-            const titleHi = await translateText(title, 'hi');
-            const titleEn = await translateText(title, 'en');
-            const descHi = await translateText(desc, 'hi');
-            const descEn = await translateText(desc, 'en');
+            const titleEn = document.getElementById('noticeTitleEn').value;
+            const titleHi = document.getElementById('noticeTitleHi').value;
+            const descEn = document.getElementById('noticeDescEn').value;
+            const descHi = document.getElementById('noticeDescHi').value;
             
             titleText = titleHi + '|||' + titleEn;
             descText = descHi + '|||' + descEn;

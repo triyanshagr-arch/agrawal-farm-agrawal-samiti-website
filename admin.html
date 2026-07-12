@@ -168,10 +168,6 @@
                                         <option value="Achievement">Academic Achievement</option>
                                     </select>
                                 </div>
-                                <div class="general-field">
-                                    <label>Notice Title *</label>
-                                    <input type="text" id="noticeTitle" required placeholder="e.g. Annual General Meeting">
-                                </div>
                                 <div class="achievement-field" style="display: none;">
                                     <label>Exam Category *</label>
                                     <select id="achCategory">
@@ -183,15 +179,37 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group general-field">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label>Notice Title (English) *</label>
+                                    <input type="text" id="noticeTitleEn" required placeholder="e.g. Annual General Meeting">
+                                </div>
+                                <div>
+                                    <label>Notice Title (Hindi) *</label>
+                                    <input type="text" id="noticeTitleHi" required placeholder="e.g. वार्षिक आम बैठक">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group achievement-field" style="display: none;">
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
-                                    <label>Student Name (with title) *</label>
-                                    <input type="text" id="achName" placeholder="e.g. सुश्री अंजलि अग्रवाल">
+                                    <label>Student Name (English) *</label>
+                                    <input type="text" id="achNameEn" placeholder="e.g. Ms. Anjali Agrawal">
                                 </div>
                                 <div>
-                                    <label>Score / Rank / College *</label>
-                                    <input type="text" id="achScore" placeholder="e.g. 98.2%, 12th OR IIT Bombay">
+                                    <label>Student Name (Hindi) *</label>
+                                    <input type="text" id="achNameHi" placeholder="e.g. सुश्री अंजलि अग्रवाल">
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                                <div>
+                                    <label>Score / Rank / College (English) *</label>
+                                    <input type="text" id="achScoreEn" placeholder="e.g. 98.2%, 12th OR IIT Bombay">
+                                </div>
+                                <div>
+                                    <label>Score / Rank / College (Hindi) *</label>
+                                    <input type="text" id="achScoreHi" placeholder="e.g. 98.2%, 12वीं या आईआईटी बॉम्बे">
                                 </div>
                             </div>
                         </div>
@@ -200,8 +218,16 @@
                             <input type="date" id="noticeDate" required>
                         </div>
                         <div class="form-group general-field">
-                            <label>Description *</label>
-                            <textarea id="noticeDesc" rows="4" required placeholder="Enter the full notice details here..."></textarea>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label>Description (English) *</label>
+                                    <textarea id="noticeDescEn" rows="4" required placeholder="Enter English details here..."></textarea>
+                                </div>
+                                <div>
+                                    <label>Description (Hindi) *</label>
+                                    <textarea id="noticeDescHi" rows="4" required placeholder="Enter Hindi details here..."></textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group general-field">
                             <label>Document / Link URL (Optional)</label>
