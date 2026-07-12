@@ -113,8 +113,8 @@ function renderGallery(profiles) {
     
     profiles.forEach(p => {
         const card = document.createElement('div');
-        card.className = 'card profile-card animate-on-scroll';
-        card.style.cssText = 'text-align: center; padding: 25px; transition: transform 0.3s;';
+        card.className = 'card profile-card';
+        card.style.cssText = 'text-align: center; padding: 25px; transition: transform 0.3s; animation: fadeIn 0.5s ease-out forwards;';
         
         let photoSrc = p.photo && p.photo.trim() !== '' ? p.photo : (p.gender === 'Female' ? 'images/placeholder_female.jpg' : 'images/placeholder_male.jpg');
         
