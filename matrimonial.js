@@ -1,23 +1,39 @@
 
 let allProfiles = [];
 
-document.addEventListener('DOMContentLoaded', () => {
+function initMatrimonial() {
     loadPublicMatrimonialProfiles();
     
     const searchInput = document.getElementById('searchProfile');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            const filtered = allProfiles.filter(p => {
-                return (p.name && p.name.toLowerCase().includes(query)) ||
-                       (p.gotra && p.gotra.toLowerCase().includes(query)) ||
-                       (p.profession && p.profession.toLowerCase().includes(query)) ||
-                       (p.education && p.education.toLowerCase().includes(query));
-            });
-            renderGallery(filtered);
+    const genderFilter = document.getElementById('genderFilter');
+    
+    function filterProfiles() {
+        const query = searchInput ? searchInput.value.toLowerCase() : '';
+        const gender = genderFilter ? genderFilter.value : '';
+        
+        const filtered = allProfiles.filter(p => {
+            const matchesQuery = !query || 
+                   (p.name && p.name.toLowerCase().includes(query)) ||
+                   (p.gotra && p.gotra.toLowerCase().includes(query)) ||
+                   (p.profession && p.profession.toLowerCase().includes(query)) ||
+                   (p.education && p.education.toLowerCase().includes(query));
+                   
+            const matchesGender = !gender || (p.gender && p.gender.toLowerCase() === gender.toLowerCase());
+            
+            return matchesQuery && matchesGender;
         });
+        renderGallery(filtered);
     }
-});
+    
+    if (searchInput) searchInput.addEventListener('input', filterProfiles);
+    if (genderFilter) genderFilter.addEventListener('change', filterProfiles);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMatrimonial);
+} else {
+    initMatrimonial();
+}
 
 function loadPublicMatrimonialProfiles() {
     const loader = document.getElementById('profiles-loader');
@@ -53,25 +69,35 @@ function loadPublicMatrimonialProfiles() {
 
 function calculateAge(dobString) {
     if(!dobString) return '-';
-    // Handle both dd/mm/yyyy and yyyy-mm-dd
-    let parts = dobString.split(/[\/\-]/);
-    if(parts.length !== 3) return dobString;
-    
-    let year, month, day;
-    if(parts[0].length === 4) { // yyyy-mm-dd
-        year = parts[0]; month = parts[1]; day = parts[2];
-    } else { // dd/mm/yyyy
-        day = parts[0]; month = parts[1]; year = parts[2];
+    try {
+        let birthDate;
+        if (dobString.includes('T')) {
+            birthDate = new Date(dobString);
+        } else {
+            let parts = dobString.split(/[\/\-]/);
+            if(parts.length === 3) {
+                if(parts[0].length === 4) { // yyyy-mm-dd
+                    birthDate = new Date(parts[0], parts[1]-1, parts[2]);
+                } else { // dd/mm/yyyy
+                    birthDate = new Date(parts[2], parts[1]-1, parts[0]);
+                }
+            } else {
+                birthDate = new Date(dobString);
+            }
+        }
+        
+        if (isNaN(birthDate.getTime())) return '-';
+        
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    } catch(e) {
+        return '-';
     }
-    
-    const birthDate = new Date(year, month - 1, day);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return age;
 }
 
 function renderGallery(profiles) {
