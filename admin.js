@@ -1660,8 +1660,8 @@ function updateLetterheadContent() {
         const node = nodes[i];
         currentBody.appendChild(node.cloneNode(true));
         
-        // Check for overflow (1110 is a safe threshold for A4)
-        if (currentPage.scrollHeight > 1110 && currentBody.childNodes.length > 1) {
+        // Check for overflow (1125 accurately detects if min-height of 1123px was exceeded)
+        if (currentPage.scrollHeight > 1125 && currentBody.childNodes.length > 1) {
             // Revert adding this node
             currentBody.removeChild(currentBody.lastChild);
             
