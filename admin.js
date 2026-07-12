@@ -1609,7 +1609,7 @@ function updateLetterheadContent() {
     const subjectVal = document.getElementById('lhSubject').value;
     const contentVal = quill ? quill.root.innerHTML : '';
 
-    // Update Top Content
+    // Update Meta on master template
     if (dateVal) {
         const d = new Date(dateVal);
         document.querySelector('#lhDispDate span').innerText = d.toLocaleDateString('en-IN');
@@ -1632,17 +1632,85 @@ function updateLetterheadContent() {
         document.getElementById('lhDispSubjectBox').style.display = 'none';
     }
 
-    // Body
-    document.getElementById('lhDispBody').innerHTML = contentVal;
+    // Clean up previous generated pages
+    const container = document.getElementById('letterheadContainer');
+    document.querySelectorAll('.generated-lh-page').forEach(el => el.remove());
+
+    const template = document.getElementById('letterheadTemplate');
+    template.style.display = 'flex'; // Ensure it can be measured
+    
+    // Clear template body (we inject dynamically)
+    document.getElementById('lhDispBody').innerHTML = '';
+
+    // Parse nodes from quill
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = contentVal;
+    const nodes = Array.from(tempDiv.childNodes);
+
+    // Initialize Page 1
+    let currentPage = template.cloneNode(true);
+    currentPage.id = '';
+    currentPage.classList.add('generated-lh-page');
+    container.appendChild(currentPage);
+
+    let currentBody = currentPage.querySelector('.lh-body');
+    let currentSignatures = currentPage.querySelector('.lh-signatures');
+
+    for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        currentBody.appendChild(node.cloneNode(true));
+        
+        // Check for overflow (1110 is a safe threshold for A4)
+        if (currentPage.scrollHeight > 1110 && currentBody.childNodes.length > 1) {
+            // Revert adding this node
+            currentBody.removeChild(currentBody.lastChild);
+            
+            // Remove signatures from this page (they only go on the LAST page)
+            if (currentSignatures) currentSignatures.remove();
+            
+            // Hide subject on subsequent pages
+            const sb = currentPage.querySelector('.lh-subject-box');
+            if (sb) sb.style.display = 'none';
+
+            // Create new page
+            currentPage = template.cloneNode(true);
+            currentPage.id = '';
+            currentPage.classList.add('generated-lh-page');
+            container.appendChild(currentPage);
+            
+            currentBody = currentPage.querySelector('.lh-body');
+            currentSignatures = currentPage.querySelector('.lh-signatures');
+            
+            // Hide subject on the new page
+            const newSb = currentPage.querySelector('.lh-subject-box');
+            if (newSb) newSb.style.display = 'none';
+            
+            // Append node to the new page
+            currentBody.appendChild(node.cloneNode(true));
+        }
+    }
+
+    // Hide master template
+    template.style.display = 'none';
 }
 
 function previewLetterhead() {
     updateLetterheadContent();
+    
+    const pages = document.querySelectorAll('.generated-lh-page');
+    let html = '';
+    pages.forEach((p, idx) => {
+        html += p.outerHTML;
+        if (idx < pages.length - 1) {
+            html += '<div style="height: 20px; background: #ddd; margin: 10px -20px;"></div>';
+        }
+    });
+    
     Swal.fire({
         title: 'Letterhead Preview',
         html: `
-            <div style="transform: scale(0.6); transform-origin: top center; height: 700px; overflow-y: auto; overflow-x: hidden; border: 1px solid #ccc;">
-                ${document.getElementById('letterheadTemplate').outerHTML}
+            <div style="transform: scale(0.6); transform-origin: top center; height: 700px; overflow-y: auto; overflow-x: hidden; border: 1px solid #ccc; background: #eee; padding: 20px;">
+                ${html}
             </div>
             <p style="font-size: 0.9em; color: #666;">Note: This is a scaled-down preview.</p>
         `,
@@ -1655,8 +1723,11 @@ function previewLetterhead() {
 function printLetterhead() {
     updateLetterheadContent();
     
+    const pages = document.querySelectorAll('.generated-lh-page');
+    let html = '';
+    pages.forEach(p => { html += p.outerHTML; });
+    
     const printWindow = window.open('', '_blank');
-    const templateHtml = document.getElementById('letterheadTemplate').outerHTML;
     
     printWindow.document.write(`
         <html>
@@ -1712,13 +1783,13 @@ function printLetterhead() {
                     @media print {
                         @page { margin: 0; size: A4; }
                         body { margin: 0; padding: 0; box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-                        .letterhead-page { height: 1090px !important; padding: 15px 25px !important; overflow: hidden; }
+                        .letterhead-page { height: 1090px !important; padding: 15px 25px !important; overflow: hidden; page-break-after: always; }
                         .lh-watermark { opacity: 0.2 !important; }
                     }
                 </style>
             </head>
             <body>
-                ${templateHtml}
+                ${html}
                 <script>
                     window.onload = function() {
                         setTimeout(() => {
@@ -1736,7 +1807,7 @@ function printLetterhead() {
 async function downloadLetterheadPDF() {
     updateLetterheadContent();
 
-    const element = document.getElementById('letterheadTemplate');
+    const pages = document.querySelectorAll('.generated-lh-page');
 
     Swal.fire({
         title: 'Generating PDF',
@@ -1746,31 +1817,34 @@ async function downloadLetterheadPDF() {
     });
 
     try {
-        const canvas = await html2canvas(element, {
-            scale: 2,
-            useCORS: true,
-            logging: false,
-            onclone: (clonedDoc) => {
-                const clonedContainer = clonedDoc.getElementById('letterheadContainer');
-                clonedContainer.style.left = '0';
-                clonedContainer.style.top = '0';
-                clonedContainer.style.position = 'relative';
-            }
-        });
-
-        const imgData = canvas.toDataURL('image/jpeg', 0.95);
         const { jsPDF } = window.jspdf;
         const pdf = new jsPDF('p', 'mm', 'a4');
-        
         const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+        const pdfHeight = pdf.internal.pageSize.getHeight();
         
-        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        for (let i = 0; i < pages.length; i++) {
+            if (i > 0) pdf.addPage();
+            
+            const canvas = await html2canvas(pages[i], {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                onclone: (clonedDoc) => {
+                    const clonedContainer = clonedDoc.getElementById('letterheadContainer');
+                    clonedContainer.style.left = '0';
+                    clonedContainer.style.top = '0';
+                    clonedContainer.style.position = 'relative';
+                }
+            });
+            
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        }
         
         let filename = 'Letterhead.pdf';
         const ref = document.getElementById('lhRefNo').value.trim();
         if (ref) {
-            filename = `Letterhead_${ref.replace(/[/\\?%*:|"<>]/g, '-')}.pdf`;
+            filename = `Letterhead_${ref.replace(/[\/\\?%*:|"<>]/g, '-')}.pdf`;
         }
         
         pdf.save(filename);
@@ -1785,7 +1859,7 @@ async function downloadLetterheadPDF() {
 async function downloadLetterheadJPG() {
     updateLetterheadContent();
 
-    const element = document.getElementById('letterheadTemplate');
+    const pages = document.querySelectorAll('.generated-lh-page');
 
     Swal.fire({
         title: 'Generating JPG',
@@ -1795,30 +1869,32 @@ async function downloadLetterheadJPG() {
     });
 
     try {
-        const canvas = await html2canvas(element, {
-            scale: 2,
-            useCORS: true,
-            logging: false,
-            onclone: (clonedDoc) => {
-                const clonedContainer = clonedDoc.getElementById('letterheadContainer');
-                clonedContainer.style.left = '0';
-                clonedContainer.style.top = '0';
-                clonedContainer.style.position = 'relative';
-            }
-        });
+        let ref = document.getElementById('lhRefNo').value.trim();
+        
+        for (let i = 0; i < pages.length; i++) {
+            const canvas = await html2canvas(pages[i], {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                onclone: (clonedDoc) => {
+                    const clonedContainer = clonedDoc.getElementById('letterheadContainer');
+                    clonedContainer.style.left = '0';
+                    clonedContainer.style.top = '0';
+                    clonedContainer.style.position = 'relative';
+                }
+            });
 
-        const imgData = canvas.toDataURL('image/jpeg', 1.0);
-        
-        let filename = 'Letterhead.jpg';
-        const ref = document.getElementById('lhRefNo').value.trim();
-        if (ref) {
-            filename = `Letterhead_${ref.replace(/[\/\\?%*:|"<>]/g, '-')}.jpg`;
+            const imgData = canvas.toDataURL('image/jpeg', 1.0);
+            let filename = `Letterhead_${i + 1}.jpg`;
+            if (ref) {
+                filename = `Letterhead_${ref.replace(/[\/\\?%*:|"<>]/g, '-')}_Page_${i + 1}.jpg`;
+            }
+            
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = imgData;
+            link.click();
         }
-        
-        const link = document.createElement('a');
-        link.download = filename;
-        link.href = imgData;
-        link.click();
         
         Swal.fire('Success', 'JPG Downloaded Successfully', 'success');
 
