@@ -186,8 +186,17 @@
                         <div class="form-group achievement-field" style="display: none;">
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                                 <div>
-                                    <label>Student Name (with title) *</label>
-                                    <input type="text" id="achName" placeholder="e.g. सुश्री अंजलि अग्रवाल">
+                                    <label>Title & Student Name *</label>
+                                    <div style="display: flex; gap: 10px;">
+                                        <select id="achTitle" style="width: 35%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px;">
+                                            <option value="Mr.">Mr. (श्री)</option>
+                                            <option value="Ms.">Ms. (सुश्री)</option>
+                                            <option value="Chi.">Chi. (चि.)</option>
+                                            <option value="Ku.">Ku. (कु.)</option>
+                                            <option value="Dr.">Dr. (डॉ.)</option>
+                                        </select>
+                                        <input type="text" id="achName" placeholder="e.g. Anjali Agrawal" style="width: 65%;">
+                                    </div>
                                 </div>
                                 <div>
                                     <label>Score / Rank / College *</label>

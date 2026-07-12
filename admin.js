@@ -1002,7 +1002,9 @@ document.getElementById('addNoticeForm').addEventListener('submit', async (e) =>
         const type = document.getElementById('noticeType').value;
         if (type === 'Achievement') {
             const cat = document.getElementById('achCategory').value;
-            const name = document.getElementById('achName').value;
+            const titlePrefix = document.getElementById('achTitle').value;
+            const rawName = document.getElementById('achName').value;
+            const name = titlePrefix + " " + rawName;
             const score = document.getElementById('achScore').value;
             
             const nameHi = await translateText(name, 'hi');
