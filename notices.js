@@ -55,9 +55,17 @@ function renderNotices(notices, container) {
         const descHi = partsDesc[0].replace(/\n/g, '<br>');
         const descEn = partsDesc[1] ? partsDesc[1].replace(/\n/g, '<br>') : descHi;
 
+        let displayDate = n.date;
+        try {
+            const d = new Date(n.date);
+            if (!isNaN(d.getTime())) {
+                displayDate = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            }
+        } catch(e) {}
+
         li.innerHTML = `
             <strong><span class="lang-hi">${titleHi}</span><span class="lang-en">${titleEn}</span></strong><br>
-            <span style="font-size: 0.9em; color: var(--secondary-color);"><i class="far fa-clock"></i> ${n.date}</span>
+            <span style="font-size: 0.9em; color: var(--secondary-color);"><i class="far fa-clock"></i> ${displayDate}</span>
             <p style="margin-top: 5px; color: var(--text-dark);"><span class="lang-hi">${descHi}</span><span class="lang-en">${descEn}</span></p>
             ${linkHtml}
         `;
