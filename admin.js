@@ -1609,34 +1609,37 @@ function updateLetterheadContent() {
     const subjectVal = document.getElementById('lhSubject').value;
     const contentVal = quill ? quill.root.innerHTML : '';
 
-    // Update Meta on master template
-    if (dateVal) {
-        const d = new Date(dateVal);
-        document.querySelector('#lhDispDate span').innerText = d.toLocaleDateString('en-IN');
-    } else {
-        document.querySelector('#lhDispDate span').innerText = '';
-    }
-
-    // Ref No
-    if (refVal.trim()) {
-        document.querySelector('#lhDispRef span').innerText = refVal;
-    } else {
-        document.querySelector('#lhDispRef span').innerText = '';
-    }
-
-    // Subject
-    if (subjectVal.trim()) {
-        document.getElementById('lhDispSubjectBox').style.display = 'block';
-        document.getElementById('lhDispSubject').innerText = subjectVal;
-    } else {
-        document.getElementById('lhDispSubjectBox').style.display = 'none';
-    }
-
-    // Clean up previous generated pages
+    // Clean up previous generated pages first, so we don't accidentally update their duplicate IDs
     const container = document.getElementById('letterheadContainer');
     document.querySelectorAll('.generated-lh-page').forEach(el => el.remove());
 
     const template = document.getElementById('letterheadTemplate');
+
+    // Update Meta strictly on the master template
+    if (dateVal) {
+        const d = new Date(dateVal);
+        template.querySelector('#lhDispDate span').innerText = d.toLocaleDateString('en-IN');
+    } else {
+        template.querySelector('#lhDispDate span').innerText = '';
+    }
+
+    // Ref No
+    if (refVal.trim()) {
+        template.querySelector('#lhDispRef span').innerText = refVal;
+    } else {
+        template.querySelector('#lhDispRef span').innerText = '';
+    }
+
+    // Subject
+    const subjectBox = template.querySelector('#lhDispSubjectBox');
+    const subjectText = template.querySelector('#lhDispSubject');
+    if (subjectVal.trim()) {
+        subjectBox.style.display = 'block';
+        subjectText.innerText = subjectVal;
+    } else {
+        subjectBox.style.display = 'none';
+    }
+
     template.style.display = 'flex'; // Ensure it can be measured
     
     // Clear template body (we inject dynamically)
