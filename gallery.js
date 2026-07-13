@@ -93,7 +93,8 @@ function renderPhotos(photos, isGalleryPage, isActivitiesPage) {
 
 function createPhotoCard(photo) {
     const div = document.createElement('div');
-    div.className = 'gallery-item animate-on-scroll';
+    // We add 'visible' so it doesn't stay hidden by the scroll animation CSS
+    div.className = 'gallery-item animate-on-scroll visible';
     
     // Create an image element instead of a placeholder
     const img = document.createElement('img');
