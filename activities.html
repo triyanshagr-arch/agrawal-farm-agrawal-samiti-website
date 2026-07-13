@@ -112,31 +112,12 @@
                 <h3 style="margin-top: 60px; text-align: center; color: var(--primary-color); font-family: 'Hind', sans-serif; font-size: 1.8rem;"><span class="lang-hi">गतिविधियों की झलकियाँ</span><span class="lang-en">Activity Highlights</span></h3>
                 <div class="divider">❋ ༺ ॐ ༻ ❋</div>
                 
-                <div class="gallery-grid" style="margin-top: 30px;">
-                    <div class="gallery-item animate-on-scroll">
-                        <div class="gallery-placeholder">ॐ</div>
-                        <div class="gallery-overlay"><span class="lang-hi">अग्रसेन जयंती</span><span class="lang-en">Agrasen Jayanti</span></div>
-                    </div>
-                    <div class="gallery-item animate-on-scroll">
-                        <div class="gallery-placeholder">ॐ</div>
-                        <div class="gallery-overlay"><span class="lang-hi">रक्तदान शिविर</span><span class="lang-en">Blood Donation Camp</span></div>
-                    </div>
-                    <div class="gallery-item animate-on-scroll">
-                        <div class="gallery-placeholder">ॐ</div>
-                        <div class="gallery-overlay"><span class="lang-hi">परिचय सम्मेलन</span><span class="lang-en">Introduction Meet</span></div>
-                    </div>
-                    <div class="gallery-item animate-on-scroll">
-                        <div class="gallery-placeholder">ॐ</div>
-                        <div class="gallery-overlay">सांस्कृतिक कार्यक्रम</div>
-                    </div>
-                    <div class="gallery-item animate-on-scroll">
-                        <div class="gallery-placeholder">ॐ</div>
-                        <div class="gallery-overlay"><span class="lang-hi">बैठक</span><span class="lang-en">Meeting</span></div>
-                    </div>
-                    <div class="gallery-item animate-on-scroll">
-                        <div class="gallery-placeholder">ॐ</div>
-                        <div class="gallery-overlay"><span class="lang-hi">सम्मान समारोह</span><span class="lang-en">Felicitation Ceremony</span></div>
-                    </div>
+                <div id="activities-loader" style="text-align:center; padding: 40px; color: var(--primary-color);">
+                    <i class="fas fa-spinner fa-spin fa-3x"></i><br><br>
+                    <span class="lang-hi">तस्वीरें लोड हो रही हैं...</span><span class="lang-en">Loading photos...</span>
+                </div>
+                <div class="gallery-grid" id="dynamic-activities-grid" style="display: none; margin-top: 30px;">
+                    <!-- Photos will be loaded here dynamically -->
                 </div>
 
             </div>
@@ -180,5 +161,6 @@
     </footer>
 
     <script src="react.js?v=16"></script>
+    <script src="gallery.js?v=1"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ window.memberData = []; // Store fetched members for quick access
 window.donationData = []; // Store fetched donations
 window.bookingData = []; // Store fetched bookings
 window.expenseData = []; // Store fetched expenses
+window.galleryData = []; // Store fetched gallery photos
 
 // Login Form Submit
 document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -53,6 +54,9 @@ function switchTab(tabId, el) {
     }
     if (tabId === 'expenses' && window.expenseData.length === 0) {
         loadExpenses();
+    }
+    if (tabId === 'gallery' && window.galleryData.length === 0) {
+        loadGallery();
     }
 }
 
@@ -2143,6 +2147,157 @@ function deleteMatrimonial(rowNum) {
                     console.error(err);
                     Swal.fire("Error", "Network error occurred.", "error");
                     tbody.innerHTML = originalHtml;
+                });
+        }
+    });
+}
+
+// ==========================================
+// GALLERY MANAGEMENT
+// ==========================================
+const IMGBB_API_KEY = "3e4122c43631fca2c80e8b257dcb1348";
+
+function loadGallery() {
+    const tbody = document.getElementById('galleryTableBody');
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading Gallery...</td></tr>';
+    
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_gallery_photos&t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                window.galleryData = data.photos || [];
+                renderGalleryTable();
+            } else {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center text-danger">Error loading gallery.</td></tr>';
+            }
+        })
+        .catch(err => {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center text-danger">Network Error.</td></tr>';
+        });
+}
+
+function renderGalleryTable() {
+    const tbody = document.getElementById('galleryTableBody');
+    tbody.innerHTML = '';
+    
+    if (window.galleryData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center">No photos found. Upload one!</td></tr>';
+        return;
+    }
+    
+    window.galleryData.forEach(p => {
+        const d = new Date(p.timestamp).toLocaleDateString('en-IN');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${d}</td>
+            <td><img src="${p.imageUrl}" style="width:100px; height:auto; border-radius:4px; box-shadow:0 2px 5px rgba(0,0,0,0.1);"></td>
+            <td>${p.title || '-'}</td>
+            <td><span class="status-badge status-${p.category === 'Activities' ? 'pending' : 'verified'}">${p.category}</span></td>
+            <td>
+                <button onclick="deleteGalleryPhoto(${p.row})" class="btn-secondary" style="color:red; border-color:red; background:white;"><i class="fas fa-trash"></i> Delete</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+async function handleGalleryUpload(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnUploadGallery');
+    const title = document.getElementById('galleryTitle').value;
+    const category = document.getElementById('galleryCategory').value;
+    const fileInput = document.getElementById('galleryFile');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        Swal.fire('Error', 'Please select an image', 'error');
+        return;
+    }
+    
+    // Check file size (5MB limit)
+    if (file.size > 5 * 1024 * 1024) {
+        Swal.fire('Error', 'File size exceeds 5MB limit.', 'error');
+        return;
+    }
+
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading to ImgBB...';
+    btn.disabled = true;
+    
+    try {
+        // 1. Upload to ImgBB
+        const formData = new FormData();
+        formData.append('image', file);
+        
+        const imgbbRes = await fetch(\`https://api.imgbb.com/1/upload?key=\${IMGBB_API_KEY}\`, {
+            method: 'POST',
+            body: formData
+        });
+        const imgbbData = await imgbbRes.json();
+        
+        if (!imgbbData.success) {
+            throw new Error(imgbbData.error.message || "Failed to upload to ImgBB");
+        }
+        
+        const imageUrl = imgbbData.data.url;
+        
+        // 2. Save URL to Google Apps Script
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving to Database...';
+        
+        const payload = {
+            action: 'add_gallery_photo',
+            password: sessionPassword,
+            imageUrl: imageUrl,
+            title: title,
+            category: category
+        };
+        
+        const gsRes = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(payload)
+        });
+        const gsData = await gsRes.json();
+        
+        if (gsData.status === "success" || gsData.success) {
+            Swal.fire('Success', 'Photo uploaded and saved successfully!', 'success');
+            document.getElementById('galleryUploadForm').reset();
+            loadGallery();
+        } else {
+            throw new Error(gsData.message || gsData.error || "Failed to save to database");
+        }
+        
+    } catch (err) {
+        console.error(err);
+        Swal.fire('Error', err.message || 'An error occurred during upload', 'error');
+    } finally {
+        btn.innerHTML = '<i class="fas fa-upload"></i> Upload to Website';
+        btn.disabled = false;
+    }
+}
+
+function deleteGalleryPhoto(row) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This photo will be permanently removed from the website.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.showLoading();
+            fetch(\`\${GOOGLE_SCRIPT_URL}?action=delete_gallery_photo&password=\${encodeURIComponent(sessionPassword)}&row=\${row}&t=\${Date.now()}\`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success) {
+                        Swal.fire('Deleted!', 'The photo has been removed.', 'success');
+                        loadGallery();
+                    } else {
+                        Swal.fire('Error', data.error || 'Failed to delete photo', 'error');
+                    }
+                })
+                .catch(err => {
+                    Swal.fire('Error', 'Network Error', 'error');
                 });
         }
     });
