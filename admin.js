@@ -2228,7 +2228,7 @@ async function handleGalleryUpload(e) {
         const formData = new FormData();
         formData.append('image', file);
         
-        const imgbbRes = await fetch(\`https://api.imgbb.com/1/upload?key=\${IMGBB_API_KEY}\`, {
+        const imgbbRes = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
             method: 'POST',
             body: formData
         });
@@ -2286,7 +2286,7 @@ function deleteGalleryPhoto(row) {
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.showLoading();
-            fetch(\`\${GOOGLE_SCRIPT_URL}?action=delete_gallery_photo&password=\${encodeURIComponent(sessionPassword)}&row=\${row}&t=\${Date.now()}\`)
+            fetch(`${GOOGLE_SCRIPT_URL}?action=delete_gallery_photo&password=${encodeURIComponent(sessionPassword)}&row=${row}&t=${Date.now()}`)
                 .then(res => res.json())
                 .then(data => {
                     if(data.success) {
