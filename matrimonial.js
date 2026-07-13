@@ -42,28 +42,47 @@ function loadPublicMatrimonialProfiles() {
     
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwP0zYZQp9ynZxFDulMpRIPVUC2K3pgxj2Pm3IGuH9u_Tu3Qique-iZPSvDQdFwoNeY/exec';
 
+    // 1. Instantly load from cache if available
+    const cachedData = localStorage.getItem('cachedMatrimonialProfiles');
+    if (cachedData) {
+        try {
+            allProfiles = JSON.parse(cachedData);
+            loader.style.display = 'none';
+            gallery.style.display = 'grid';
+            renderGallery(allProfiles);
+            if(typeof updateLanguage === 'function') setTimeout(updateLanguage, 50);
+        } catch (e) {
+            console.error('Error parsing cache', e);
+        }
+    }
+
+    // 2. Fetch fresh data in the background
     fetch(`${SCRIPT_URL}?action=get_public_matrimonial&t=${Date.now()}`)
         .then(response => response.json())
         .then(data => {
-            loader.style.display = 'none';
+            if (!cachedData) loader.style.display = 'none';
+            
             if (data.profiles && data.profiles.length > 0) {
-                allProfiles = data.profiles;
-                gallery.style.display = 'grid';
-                renderGallery(allProfiles);
-                
-                // Trigger language update if translate exists
-                if(typeof updateLanguage === 'function'){
-                    setTimeout(updateLanguage, 100);
+                const newDataStr = JSON.stringify(data.profiles);
+                // Check if data changed to avoid unnecessary re-renders
+                if (cachedData !== newDataStr) {
+                    allProfiles = data.profiles;
+                    gallery.style.display = 'grid';
+                    renderGallery(allProfiles);
+                    localStorage.setItem('cachedMatrimonialProfiles', newDataStr);
+                    if(typeof updateLanguage === 'function') setTimeout(updateLanguage, 50);
                 }
-            } else {
+            } else if (!cachedData) {
                 loader.innerHTML = '<i class="fas fa-info-circle fa-2x"></i><br><br><span class="lang-hi">अभी कोई प्रोफाइल उपलब्ध नहीं है।</span><span class="lang-en">No profiles available right now.</span>';
                 loader.style.display = 'block';
             }
         })
         .catch(err => {
             console.error(err);
-            loader.innerHTML = '<i class="fas fa-exclamation-triangle fa-2x" style="color:#d32f2f;"></i><br><br><span class="lang-hi">प्रोफाइल लोड करने में विफल।</span><span class="lang-en">Failed to load profiles.</span>';
-            loader.style.display = 'block';
+            if (!cachedData) {
+                loader.innerHTML = '<i class="fas fa-exclamation-triangle fa-2x" style="color:#d32f2f;"></i><br><br><span class="lang-hi">प्रोफाइल लोड करने में विफल।</span><span class="lang-en">Failed to load profiles.</span>';
+                loader.style.display = 'block';
+            }
         });
 }
 

@@ -7,24 +7,51 @@ function loadNotices() {
     const achievementsContainer = document.getElementById('dynamic-achievements');
     if (!container) return;
 
+    // 1. Load from cache instantly if available
+    const cachedNoticesStr = localStorage.getItem('cachedNotices');
+    if (cachedNoticesStr) {
+        try {
+            const data = JSON.parse(cachedNoticesStr);
+            const regularNotices = data.notices.filter(n => !n.title.startsWith('[ACHIEVEMENT]'));
+            const achievementNotices = data.notices.filter(n => n.title.startsWith('[ACHIEVEMENT]'));
+            renderNotices(regularNotices, container);
+            if (achievementsContainer && achievementNotices.length > 0) {
+                renderAchievements(achievementNotices, achievementsContainer);
+            }
+        } catch(e) {
+            console.error('Error parsing cached notices', e);
+        }
+    } else {
+        // Only show loading if we don't have cache
+        container.innerHTML = '<li style="text-align:center;"><i class="fas fa-spinner fa-spin fa-2x"></i><br><br><span class="lang-hi">लोड हो रहा है...</span><span class="lang-en">Loading...</span></li>';
+    }
+
+    // 2. Fetch fresh data in the background
     fetch(`${GOOGLE_SCRIPT_URL}?action=get_notices&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             if (data.success && data.notices) {
-                const regularNotices = data.notices.filter(n => !n.title.startsWith('[ACHIEVEMENT]'));
-                const achievementNotices = data.notices.filter(n => n.title.startsWith('[ACHIEVEMENT]'));
-                
-                renderNotices(regularNotices, container);
-                
-                if (achievementsContainer && achievementNotices.length > 0) {
-                    renderAchievements(achievementNotices, achievementsContainer);
+                const newDataStr = JSON.stringify(data);
+                if (cachedNoticesStr !== newDataStr) {
+                    const regularNotices = data.notices.filter(n => !n.title.startsWith('[ACHIEVEMENT]'));
+                    const achievementNotices = data.notices.filter(n => n.title.startsWith('[ACHIEVEMENT]'));
+                    
+                    renderNotices(regularNotices, container);
+                    
+                    if (achievementsContainer && achievementNotices.length > 0) {
+                        renderAchievements(achievementNotices, achievementsContainer);
+                    }
+                    localStorage.setItem('cachedNotices', newDataStr);
                 }
-            } else {
+            } else if (!cachedNoticesStr) {
                 container.innerHTML = '<li style="color:red;"><span class="lang-hi">सूचनाएँ लोड करने में विफल।</span><span class="lang-en">Failed to load notices.</span></li>';
             }
         })
         .catch(err => {
-            container.innerHTML = '<li style="color:red;"><span class="lang-hi">सूचनाएँ लोड करने में त्रुटि। कृपया अपना कनेक्शन जांचें।</span><span class="lang-en">Error loading notices. Please check your connection.</span></li>';
+            console.error(err);
+            if (!cachedNoticesStr) {
+                container.innerHTML = '<li style="color:red;"><span class="lang-hi">सूचनाएँ लोड करने में त्रुटि। कृपया अपना कनेक्शन जांचें।</span><span class="lang-en">Error loading notices. Please check your connection.</span></li>';
+            }
         });
 }
 
