@@ -62,6 +62,9 @@ function switchTab(tabId, el) {
     if (tabId === 'events' && window.eventData.length === 0) {
         loadEvents();
     }
+    if (tabId === 'notices') {
+        loadNotices();
+    }
 }
 
 function logout() {
