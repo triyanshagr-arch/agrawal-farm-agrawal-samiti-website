@@ -2158,10 +2158,7 @@ ul {
 /* Override old navbar styles so they don't interfere */
 .navbar { display: none !important; } 
 
-/* Move whatsapp float to top right (hidden) */
-.whatsapp-float {
-    display: none !important;
-}
+
 
 /* Maharaja Agrasen 2-Column Layout */
 .agrasen-layout {
