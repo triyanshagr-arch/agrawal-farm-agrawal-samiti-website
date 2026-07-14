@@ -2419,3 +2419,74 @@ function deleteEvent(row) {
         }
     });
 }
+
+// Notice Management
+async function loadNotices() {
+    if(!sessionPassword) return;
+    const tbody = document.querySelector('#noticesTable tbody');
+    if(!tbody) return;
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Loading notices...</td></tr>';
+    
+    try {
+        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=get_notices&t=${Date.now()}`);
+        const data = await response.json();
+        
+        if (data.success && data.notices) {
+            tbody.innerHTML = '';
+            if (data.notices.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No active notices.</td></tr>';
+                return;
+            }
+            
+            data.notices.forEach(notice => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${notice.date || ''}</td>
+                    <td><span class="status-badge" style="background:#1976d2;">${notice.type || 'General'}</span></td>
+                    <td><strong>${notice.title || ''}</strong></td>
+                    <td style="max-width:300px; white-space:normal;">${(notice.description || '').substring(0, 100)}...</td>
+                    <td style="white-space: nowrap;">
+                        <button onclick="deleteNotice(${notice.row})" class="btn-reject" style="padding: 5px 10px; font-size: 12px;"><i class="fas fa-trash"></i> Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        } else {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:red;">Error loading notices</td></tr>';
+        }
+    } catch(err) {
+        console.error(err);
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:red;">Network Error</td></tr>';
+    }
+}
+
+function deleteNotice(row) {
+    Swal.fire({
+        title: 'Delete this Notice?',
+        text: "Are you sure? It will be permanently removed.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({title: 'Deleting...', allowOutsideClick: false});
+            Swal.showLoading();
+            
+            fetch(`${GOOGLE_SCRIPT_URL}?action=delete_notice&password=${encodeURIComponent(sessionPassword)}&row=${row}&t=${Date.now()}`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success) {
+                        Swal.fire('Deleted!', 'Notice has been removed.', 'success');
+                        loadNotices();
+                    } else {
+                        Swal.fire('Error', data.error || 'Failed to delete notice', 'error');
+                    }
+                })
+                .catch(err => {
+                    Swal.fire('Error', 'Network error while deleting', 'error');
+                });
+        }
+    });
+}
