@@ -76,37 +76,12 @@
                 <h2 class="section-title animate-on-scroll"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities / Events</span></h2>
                 <div class="divider">❋ ༺ ॐ ༻ ❋</div>
                 
-                <div class="activities-list">
-                    <div class="activity-item">
-                        <div class="activity-logo">
-                            <div class="logo-placeholder tiny"><i class="fas fa-crown"></i></div>
-                        </div>
-                        <div class="activity-content">
-                            <h3><span class="lang-hi"><span class="lang-hi">अग्रसेन जयंती</span><span class="lang-en">Agrasen Jayanti</span> महोत्सव</span><span class="lang-en">Agrasen Jayanti Mahotsav</span></h3>
-                            <p class="activity-date"><i class="far fa-calendar-alt"></i> <span class="lang-hi">प्रतिवर्ष</span><span class="lang-en">Every Year</span></p>
-                            <p><span class="lang-hi">महाराजा अग्रसेन जी की जयंती के पावन अवसर पर विभिन्न सांस्कृतिक कार्यक्रम, खेलकूद प्रतियोगिताएं और शोभा यात्रा का भव्य आयोजन।</span><span class="lang-en">Grand organization of various cultural programs, sports competitions, and processions on the auspicious occasion of Maharaja Agrasen Ji's birth anniversary.</span></p>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-logo">
-                            <div class="logo-placeholder tiny"><i class="fas fa-user-friends"></i></div>
-                        </div>
-                        <div class="activity-content">
-                            <h3><span class="lang-hi">युवक-युवती <span class="lang-hi">परिचय सम्मेलन</span><span class="lang-en">Introduction Meet</span></span><span class="lang-en">Youth Introduction Meet</span></h3>
-                            <p class="activity-date"><i class="far fa-calendar-alt"></i> वार्षिक आयोजन</p>
-                            <p><span class="lang-hi">समाज के विवाह योग्य युवक-युवतियों के लिए एक सुलभ और पारदर्शी मंच, जहाँ परिवार एक दूसरे से मिल सकते हैं।</span><span class="lang-en">An accessible and transparent platform for marriageable youth of the society, where families can meet each other.</span></p>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-logo">
-                            <div class="logo-placeholder tiny"><i class="fas fa-tint"></i></div>
-                        </div>
-                        <div class="activity-content">
-                            <h3><span class="lang-hi">विशाल चिकित्सा एवं <span class="lang-hi">रक्तदान शिविर</span><span class="lang-en">Blood Donation Camp</span></span><span class="lang-en">Mega Medical & Blood Donation Camp</span></h3>
-                            <p class="activity-date"><i class="far fa-calendar-alt"></i> <span class="lang-hi">समय-समय पर</span><span class="lang-en">Periodically</span></p>
-                            <p><span class="lang-hi">समाज और आमजन के स्वास्थ्य लाभ के लिए निःशुल्क चिकित्सा जांच और स्वैच्छिक <span class="lang-hi">रक्तदान शिविर</span><span class="lang-en">Blood Donation Camp</span>ों का नियमित आयोजन।</span><span class="lang-en">Regular organization of free medical checkups and voluntary blood donation camps for the health benefit of the society and the general public.</span></p>
-                        </div>
-                    </div>
+                <div id="events-loader" style="text-align:center; padding: 40px; color: var(--primary-color);">
+                    <i class="fas fa-spinner fa-spin fa-2x"></i><br><br>
+                    <span class="lang-hi">गतिविधियाँ लोड हो रही हैं...</span><span class="lang-en">Loading activities...</span>
+                </div>
+                <div class="activities-list" id="dynamic-events-list" style="display: none;">
+                    <!-- Events will be loaded here dynamically -->
                 </div>
                 
                 <h3 style="margin-top: 60px; text-align: center; color: var(--primary-color); font-family: 'Hind', sans-serif; font-size: 1.8rem;"><span class="lang-hi">गतिविधियों की झलकियाँ</span><span class="lang-en">Activity Highlights</span></h3>
@@ -161,6 +136,7 @@
     </footer>
 
     <script src="react.js?v=16"></script>
+    <script src="activities_data.js?v=1"></script>
     <script src="gallery.js?v=2"></script>
 </body>
 </html>

@@ -48,6 +48,7 @@
                 <li><a href="#" class="active" onclick="switchTab('memberships', this)"><i class="fas fa-clock"></i> Pending Members</a></li>
                 <li><a href="#" onclick="switchTab('approved', this)"><i class="fas fa-users"></i> Approved Members</a></li>
                 <li><a href="#" onclick="switchTab('notices', this)"><i class="fas fa-bullhorn"></i> Manage Notices</a></li>
+                <li><a href="#" onclick="switchTab('events', this)"><i class="fas fa-calendar-alt"></i> Manage Events</a></li>
                 <li><a href="#" onclick="switchTab('donations', this)"><i class="fas fa-hand-holding-heart"></i> Manage Donations</a></li>
                 <li><a href="#" onclick="switchTab('bookings', this)"><i class="fas fa-calendar-check"></i> Manage Bookings</a></li>
                 <li><a href="#" onclick="switchTab('expenses', this)"><i class="fas fa-wallet"></i> Expense Manager</a></li>
@@ -219,6 +220,67 @@
                         </div>
                         <button type="submit" class="btn-primary" id="noticeSubmitBtn"><i class="fas fa-paper-plane"></i> Publish</button>
                     </form>
+                </div>
+            </section>
+
+            <!-- Events Tab -->
+            <section id="tab-events" class="tab-content" style="display: none;">
+                <div class="header-bar">
+                    <h2>Manage Activities & Events</h2>
+                    <button onclick="loadEvents()" class="btn-secondary"><i class="fas fa-sync"></i> Refresh</button>
+                </div>
+                
+                <div class="form-container">
+                    <form id="addEventForm">
+                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <label>Icon *</label>
+                                <select id="eventIcon" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; font-family: 'FontAwesome', sans-serif;">
+                                    <option value="fas fa-crown">&#xf52b; Crown (Agrasen Jayanti)</option>
+                                    <option value="fas fa-user-friends">&#xf500; People (Introduction Meet)</option>
+                                    <option value="fas fa-tint">&#xf043; Blood Drop (Medical Camp)</option>
+                                    <option value="fas fa-star">&#xf005; Star (Special Event)</option>
+                                    <option value="fas fa-calendar-alt">&#xf073; Calendar (Generic Event)</option>
+                                    <option value="fas fa-hands-helping">&#xf4c4; Helping Hands (Social Work)</option>
+                                    <option value="fas fa-bullhorn">&#xf0a1; Megaphone (Announcement)</option>
+                                    <option value="fas fa-heart">&#xf004; Heart (Charity)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Frequency *</label>
+                                <input type="text" id="eventFreq" required placeholder="e.g. Every Year OR Periodically">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Event Title *</label>
+                            <input type="text" id="eventTitle" required placeholder="e.g. Agrasen Jayanti Mahotsav">
+                        </div>
+                        <div class="form-group">
+                            <label>Description *</label>
+                            <textarea id="eventDesc" rows="4" required placeholder="Enter the description of the event..."></textarea>
+                        </div>
+                        <div style="background: #eef2f5; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 0.9em; color: #555;">
+                            <i class="fas fa-info-circle"></i> <b>Bilingual Tip:</b> To show text in both Hindi and English on the website, write it like this: <code>हिंदी टेक्स्ट|||English Text</code>
+                        </div>
+                        <button type="submit" class="btn-primary" id="eventSubmitBtn"><i class="fas fa-plus"></i> Add Event</button>
+                    </form>
+                </div>
+
+                <div class="table-container" style="margin-top: 30px;">
+                    <table id="eventsTable">
+                        <thead>
+                            <tr>
+                                <th>Icon</th>
+                                <th>Title</th>
+                                <th>Frequency</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventsTableBody">
+                            <tr><td colspan="5" class="text-center">Loading...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 

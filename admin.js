@@ -4,6 +4,7 @@ window.donationData = []; // Store fetched donations
 window.bookingData = []; // Store fetched bookings
 window.expenseData = []; // Store fetched expenses
 window.galleryData = []; // Store fetched gallery photos
+window.eventData = []; // Store fetched events
 
 // Login Form Submit
 document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -57,6 +58,9 @@ function switchTab(tabId, el) {
     }
     if (tabId === 'gallery' && window.galleryData.length === 0) {
         loadGallery();
+    }
+    if (tabId === 'events' && window.eventData.length === 0) {
+        loadEvents();
     }
 }
 
@@ -2298,6 +2302,119 @@ function deleteGalleryPhoto(row) {
                 })
                 .catch(err => {
                     Swal.fire('Error', 'Network Error', 'error');
+                });
+        }
+    });
+}
+
+// ----------------------------------------------------
+// EVENTS & ACTIVITIES MANAGEMENT
+// ----------------------------------------------------
+
+document.getElementById('addEventForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('eventSubmitBtn');
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+    btn.disabled = true;
+
+    const payload = {
+        action: "add_event",
+        password: sessionPassword,
+        event: {
+            icon: document.getElementById('eventIcon').value,
+            title: document.getElementById('eventTitle').value,
+            frequency: document.getElementById('eventFreq').value,
+            description: document.getElementById('eventDesc').value
+        }
+    };
+
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success) {
+            Swal.fire('Success', 'Event added successfully!', 'success');
+            e.target.reset();
+            loadEvents();
+        } else {
+            Swal.fire('Error', data.error || 'Failed to add event', 'error');
+        }
+    })
+    .catch(err => Swal.fire('Error', 'Network Error', 'error'))
+    .finally(() => {
+        btn.innerHTML = '<i class="fas fa-plus"></i> Add Event';
+        btn.disabled = false;
+    });
+});
+
+function loadEvents() {
+    const tbody = document.getElementById('eventsTableBody');
+    if(!tbody) return;
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center"><i class="fas fa-spinner fa-spin"></i> Loading events...</td></tr>';
+    
+    fetch(`${GOOGLE_SCRIPT_URL}?action=get_events&t=${Date.now()}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                window.eventData = data.events || [];
+                renderEvents();
+            } else {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center" style="color:red;">Error: ${data.error}</td></tr>`;
+            }
+        })
+        .catch(err => {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center" style="color:red;">Network Error.</td></tr>`;
+        });
+}
+
+function renderEvents() {
+    const tbody = document.getElementById('eventsTableBody');
+    if (!tbody) return;
+    tbody.innerHTML = "";
+    
+    if (window.eventData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center">No events found.</td></tr>';
+        return;
+    }
+    
+    window.eventData.forEach(event => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><i class="${event.icon}" style="font-size: 24px; color: var(--primary-color);"></i></td>
+            <td><strong>${event.title.replace('|||', '<br><small style="color:#666;">')}</strong></small></td>
+            <td>${event.frequency.replace('|||', '<br>')}</td>
+            <td style="max-width: 300px; white-space: normal;">${event.description.replace('|||', '<br><small style="color:#666;">')}</small></td>
+            <td>
+                <button onclick="deleteEvent(${event.row})" class="btn-reject" style="padding: 5px 10px; font-size: 12px;"><i class="fas fa-trash"></i> Delete</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function deleteEvent(row) {
+    Swal.fire({
+        title: 'Delete this Event?',
+        text: "It will be removed from the public activities page immediately.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.showLoading();
+            fetch(`${GOOGLE_SCRIPT_URL}?action=delete_event&password=${encodeURIComponent(sessionPassword)}&row=${row}&t=${Date.now()}`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success) {
+                        Swal.fire('Deleted!', 'Event has been removed.', 'success');
+                        loadEvents();
+                    } else {
+                        Swal.fire('Error', data.error, 'error');
+                    }
                 });
         }
     });
