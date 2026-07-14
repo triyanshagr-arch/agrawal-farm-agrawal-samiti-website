@@ -3267,7 +3267,7 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
     
     /* Adjust floating buttons up to not block bottom bar */
     .whatsapp-float {
-        bottom: 85px;
+        bottom: 95px !important;
     }
     .facebook-float {
         bottom: 145px;
