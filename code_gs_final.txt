@@ -258,7 +258,8 @@ The following code has been modified to include a line number before every line,
 
 128:   // Delete Notice
   if (action === "delete_notice") {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Notice"); // Change to "Notices" if your sheet is named that
+    let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Notice");
+    if (!sheet) sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Notices");
     if (!sheet) return respond({ success: false, error: "Notice sheet not found" });
     sheet.deleteRow(e.parameter.row);
     return respond({ success: true });
