@@ -17,7 +17,7 @@ for root, _, files in os.walk("assets"):
 missing_assets = set()
 broken_links = set()
 url_mismatches = []
-target_url = "https://script.google.com/macros/s/AKfycbwtv-SNOpiiZEYRWldEfDGFZgcjRqyCv-6A--64Lw2F3Sz9dNtwz7OCgj3QCeB35lx8/exec"
+target_url = "https://script.google.com/macros/s/AKfycbx7AbtWMWCd47qG4fod0dvrV5EGQNt9tgvtKegn0zihWA3rn92ZYjKZZC_AS3fhhX6R/exec"
 
 def check_file(path):
     path = path.split('?')[0] # remove query params like ?v=1
