@@ -1,0 +1,124 @@
+// ==========================================
+// AGRAWAL SAMITI - ADMIN BACKEND API
+// ==========================================
+
+// 1. CHOOSE YOUR PASSWORD HERE
+const ADMIN_PASSWORD = "admin"; // Change this to whatever you want!
+const RECAPTCHA_SECRET = "6LcNtE0tAAAAADBS6Od6gbQwncGDpvgrrpG44epq";
+
+function verifyRecaptcha(token) {
+  if (!token) return false;
+  const url = 'https://www.google.com/recaptcha/api/siteverify';
+  const payload = {
+    'secret': RECAPTCHA_SECRET,
+    'response': token
+  };
+  const options = {
+    'method': 'post',
+    'payload': payload
+  };
+  const response = UrlFetchApp.fetch(url, options);
+  const json = JSON.parse(response.getContentText());
+  return json.success;
+}
+
+function doGet(e) {
+  const action = e.parameter.action;
+  
+  // Public actions (No password required)
+  if (action === "get_notices") {
+    return getNotices();
+  }
+  if (action === "get_public_matrimonial") {
+    return getPublicMatrimonial();
+  }
+  
+  // Admin actions (Password required)
+  const password = e.parameter.password;
+  if (password !== ADMIN_PASSWORD) {
+    return respond({ success: false, error: "Invalid password" });
+  }
+  
+  if (action === "get_members") {
+    return getMembers();
+  }
+  if (action === "get_donations") {
+    return getDonations();
+  }
+  if (action === "get_bookings") {
+    return getBookings();
+  }
+  if (action === "get_expenses") {
+    var expSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Expenses");
+    if (!expSheet) return respond({ success: false, error: "Expenses sheet not found" });
+    
+    // Get all data
+    var expData = expSheet.getDataRange().getValues();
+    if (expData.length <= 1) return respond({ status: "success", expenses: [] });
+    
+    var expenses = [];
+    // Skip header row
+    for (var i = 1; i < expData.length; i++) {
+      expenses.push([
+        expData[i][1], // Date
+<truncated 14951 bytes>
+status = data[i][15]; // Column P
+    if (status === "Approved") {
+      profiles.push({
+        name: data[i][1],
+        gender: data[i][2],
+        dob: data[i][3],
+        height: data[i][4],
+        gotra: data[i][5],
+        manglik: data[i][6],
+        education: data[i][7],
+        profession: data[i][8],
+        income: data[i][9],
+        father: data[i][10],
+        mother: data[i][11],
+        // NOT sending address and mobile for privacy!
+        photo: data[i][14]
+      });
+    }
+  }
+  
+  profiles.reverse();
+  return respond({ profiles: profiles });
+}
+
+function updateMatrimonialStatus(rowNum, newStatus) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Matrimonial");
+  // Status is saved in Column P (16th column)
+  sheet.getRange(rowNum, 16).setValue(newStatus);
+  return respond({ success: true });
+}
+
+function updateMemberStatus(rowNum, newStatus, userEmail, membershipNo) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Memberships");
+  // Update Column W (Status) which is column number 23
+  sheet.getRange(rowNum, 23).setValue(newStatus);
+  return respond({ success: true });
+}
+
+function updateDonationStatus(rowNum, newStatus) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Donations");
+  if (!sheet) return respond({ success: false, error: "Donations sheet not found" });
+  
+  // Update Column L (Status) which is column number 12
+  sheet.getRange(rowNum, 12).setValue(newStatus);
+  return respond({ success: true });
+}
+
+function updateBookingStatus(rowNum, newStatus, email, bookingName) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Bookings");
+  if (!sheet) return respond({ success: false, error: "Bookings sheet not found" });
+  
+  // Update Column K (Status) which is column number 11
+  sheet.getRange(rowNum, 11).setValue(newStatus);
+  return respond({ success: true });
+}
+
+function respond(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}

@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Send data to Google Sheets
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7AbtWMWCd47qG4fod0dvrV5EGQNt9tgvtKegn0zihWA3rn92ZYjKZZC_AS3fhhX6R/exec";
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby08nUWGacQ6RlJNVu76AfH3IWNZczVF8ePdDS2TudKySASjGb-B-6NTR__p6iZdnEE/exec";
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, signatureBase64: compressedSignatureBase64, ...dataObj } })
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const compressedScreenshotBase64 = paymentScreenshotInput.files.length > 0 ? await compressImageAsBase64(paymentScreenshotInput.files[0], 600, 0.7) : null;
 
                 // Send data to Google Sheets
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7AbtWMWCd47qG4fod0dvrV5EGQNt9tgvtKegn0zihWA3rn92ZYjKZZC_AS3fhhX6R/exec";
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby08nUWGacQ6RlJNVu76AfH3IWNZczVF8ePdDS2TudKySASjGb-B-6NTR__p6iZdnEE/exec";
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_donation', data: { receiptNo: receiptNo, screenshotBase64: compressedScreenshotBase64, ...dataObj } })
@@ -368,8 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Format Dates for backend mapping if needed (optional, keeping YYYY-MM-DD is often fine for backend, but we can leave as is)
 
                 // Send data to Google Sheets in the background
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7AbtWMWCd47qG4fod0dvrV5EGQNt9tgvtKegn0zihWA3rn92ZYjKZZC_AS3fhhX6R/exec";
-                fetch('https://script.google.com/macros/s/AKfycbx7AbtWMWCd47qG4fod0dvrV5EGQNt9tgvtKegn0zihWA3rn92ZYjKZZC_AS3fhhX6R/exec', {
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby08nUWGacQ6RlJNVu76AfH3IWNZczVF8ePdDS2TudKySASjGb-B-6NTR__p6iZdnEE/exec";
+                fetch('https://script.google.com/macros/s/AKfycby08nUWGacQ6RlJNVu76AfH3IWNZczVF8ePdDS2TudKySASjGb-B-6NTR__p6iZdnEE/exec', {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_booking', data: dataObj })
                 }).catch(err => console.error("Sheets Error:", err));
@@ -450,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     formDataObj.append('photo', formData.photo || '');
                     if (typeof grecaptcha !== 'undefined') formDataObj.append('recaptchaToken', grecaptcha.getResponse());
 
-                    const response = await fetch('https://script.google.com/macros/s/AKfycbx7AbtWMWCd47qG4fod0dvrV5EGQNt9tgvtKegn0zihWA3rn92ZYjKZZC_AS3fhhX6R/exec', {
+                    const response = await fetch('https://script.google.com/macros/s/AKfycby08nUWGacQ6RlJNVu76AfH3IWNZczVF8ePdDS2TudKySASjGb-B-6NTR__p6iZdnEE/exec', {
                         method: 'POST',
                         body: formDataObj
                     });

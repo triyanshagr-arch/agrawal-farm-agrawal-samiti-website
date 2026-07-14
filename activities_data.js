@@ -1,6 +1,6 @@
 // Fetch and Render Dynamic Events
 document.addEventListener('DOMContentLoaded', () => {
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7AbtWMWCd47qG4fod0dvrV5EGQNt9tgvtKegn0zihWA3rn92ZYjKZZC_AS3fhhX6R/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby08nUWGacQ6RlJNVu76AfH3IWNZczVF8ePdDS2TudKySASjGb-B-6NTR__p6iZdnEE/exec";
     const cacheKey = "cachedEventsData";
     const cacheTimeKey = "cachedEventsTime";
     const CACHE_DURATION = 15 * 60 * 1000; // 15 mins
