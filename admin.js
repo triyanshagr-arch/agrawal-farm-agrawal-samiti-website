@@ -2442,12 +2442,25 @@ async function loadNotices() {
             }
             
             data.notices.forEach(notice => {
+                let title = notice.title || '';
+                let desc = notice.description || '';
+                if(title.includes('|||')) title = title.split('|||')[1] || title.split('|||')[0];
+                if(desc.includes('|||')) desc = desc.split('|||')[1] || desc.split('|||')[0];
+                
+                let displayDate = notice.date || '';
+                try {
+                    const d = new Date(notice.date);
+                    if (!isNaN(d.getTime())) {
+                        displayDate = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                    }
+                } catch(e) {}
+
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${notice.date || ''}</td>
+                    <td>${displayDate}</td>
                     <td><span class="status-badge" style="background:#1976d2;">${notice.type || 'General'}</span></td>
-                    <td><strong>${notice.title || ''}</strong></td>
-                    <td style="max-width:300px; white-space:normal;">${(notice.description || '').substring(0, 100)}...</td>
+                    <td><strong>${title}</strong></td>
+                    <td style="max-width:300px; white-space:normal;">${desc.substring(0, 100)}...</td>
                     <td style="white-space: nowrap;">
                         <button onclick="deleteNotice(${notice.row})" class="btn-reject" style="padding: 5px 10px; font-size: 12px;"><i class="fas fa-trash"></i> Delete</button>
                     </td>
