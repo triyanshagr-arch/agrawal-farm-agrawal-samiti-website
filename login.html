@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - अग्रवाल समाज समिति</title>
+    <!-- Favicon -->
+    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css?v=16">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .login-section {
+            padding: 80px 20px;
+            background-color: var(--bg-cream);
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-family: var(--font-primary);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+            outline: none;
+        }
+        .btn-full {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #otpSection {
+            display: none;
+        }
+        #recaptcha-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="custom-header">
+        <div class="header-container">
+            <div class="header-image-box">
+                <img src="images/maharaj_agrasen.png" alt="Maharaj Agrasen" class="agrasen-img">
+            </div>
+            <div class="header-content-box">
+                <div class="header-title-row">
+                    <h1 class="header-main-title" style="line-height: 1.2;">
+                        <span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br>
+                        <span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-hi">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-en">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
+                    </h1>
+                </div>
+                
+                <nav class="red-navbar" id="navbar">
+                    <div class="menu-toggle" id="mobile-menu">
+                        <span class="bar" style="background:#fff"></span>
+                        <span class="bar" style="background:#fff"></span>
+                        <span class="bar" style="background:#fff"></span>
+                    </div>
+                    <div class="mobile-drawer-close" id="drawer-close-btn">&times;</div>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-links"><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
+                        <li><a href="about.html" class="nav-links"><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
+                        <li><a href="notices.html" class="nav-links"><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
+                        <li><a href="activities.html" class="nav-links"><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
+                        <li><a href="members.html" class="nav-links"><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
+                        <li><a href="sadasyata.html" class="nav-links"><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+                        <li><a href="matrimonial.html" class="nav-links"><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
+                        <li><a href="donation.html" class="nav-links"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+                        <li><a href="booking.html" class="nav-links"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
+                        <li><a href="contact.html" class="nav-links"><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
+                        <li><a href="login.html" class="nav-links active" id="navLoginLink"><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
+                        <li class="nav-item-toggle">
+                            <button id="lang-toggle" class="language-toggle"><i class="fas fa-language"></i> English</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-image-box-right">
+                <img src="images/lakshmi.png" alt="Lakshmi Ji" class="lakshmi-img">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="login-section">
+            <div class="login-card">
+                <h2><span class="lang-hi">लॉगिन / Login</span><span class="lang-en">Login</span></h2>
+                <div class="divider" style="margin-bottom: 20px;">❋ ༺ ॐ ༻ ❋</div>
+                
+                <div id="phoneSection">
+                    <div class="form-group">
+                        <label><span class="lang-hi">मोबाइल नंबर</span><span class="lang-en">Mobile Number</span></label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" class="form-control" value="+91" disabled style="width: 60px; text-align: center; background: #f5f5f5;">
+                            <input type="tel" id="phoneNumber" class="form-control" placeholder="10-digit mobile number" maxlength="10">
+                        </div>
+                    </div>
+                    <div id="recaptcha-container"></div>
+                    <button class="btn btn-primary btn-full" id="btnSendOtp">
+                        <span class="lang-hi">OTP भेजें</span><span class="lang-en">Send OTP</span>
+                    </button>
+                </div>
+
+                <div id="otpSection">
+                    <p style="margin-bottom: 15px; color: #666; font-size: 0.9em;">
+                        <span class="lang-hi">OTP आपके मोबाइल पर भेजा गया है।</span>
+                        <span class="lang-en">OTP has been sent to your mobile.</span>
+                    </p>
+                    <div class="form-group">
+                        <label><span class="lang-hi">OTP दर्ज करें</span><span class="lang-en">Enter OTP</span></label>
+                        <input type="text" id="otpCode" class="form-control" placeholder="6-digit OTP" maxlength="6" style="letter-spacing: 5px; text-align: center; font-size: 20px; font-weight: bold;">
+                    </div>
+                    <button class="btn btn-primary btn-full" id="btnVerifyOtp">
+                        <span class="lang-hi">वेरीफाई करें</span><span class="lang-en">Verify OTP</span>
+                    </button>
+                    <button class="btn btn-secondary btn-full" id="btnChangeNumber" style="margin-top: 10px;">
+                        <span class="lang-hi">नंबर बदलें</span><span class="lang-en">Change Number</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-placeholder small">ॐ</div>
+                    <h3>अग्रवाल समाज समिति<br>अग्रवाल फार्म</h3>
+                </div>
+                <div class="footer-links">
+                    <h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
+                        <li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
+                        <li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
+                        <li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
+                        <li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
+                        <li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
+                    <p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
+                <p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="react.js?v=16"></script>
+    <script type="module">
+        import { auth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged } from './firebase_auth.js';
+
+        let confirmationResult = null;
+        let recaptchaVerifier = null;
+
+        // Ensure we check if user is already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // If logged in, send them to dashboard immediately
+                window.location.href = 'dashboard.html';
+            }
+        });
+
+        // Initialize reCAPTCHA
+        function initRecaptcha() {
+            if (!recaptchaVerifier) {
+                recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                    'size': 'normal',
+                    'callback': (response) => {
+                        // reCAPTCHA solved
+                    },
+                    'expired-callback': () => {
+                        // Response expired
+                        Swal.fire('Error', 'reCAPTCHA expired. Please solve it again.', 'error');
+                    }
+                });
+            }
+        }
+
+        document.getElementById('btnSendOtp').addEventListener('click', () => {
+            const phoneInput = document.getElementById('phoneNumber').value;
+            if (phoneInput.length !== 10 || isNaN(phoneInput)) {
+                Swal.fire('Invalid Number', 'Please enter a valid 10-digit mobile number.', 'warning');
+                return;
+            }
+
+            const phoneNumber = "+91" + phoneInput;
+            const btn = document.getElementById('btnSendOtp');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+
+            initRecaptcha();
+
+            signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier)
+                .then((result) => {
+                    confirmationResult = result;
+                    document.getElementById('phoneSection').style.display = 'none';
+                    document.getElementById('otpSection').style.display = 'block';
+                    Swal.fire('Sent!', 'OTP has been sent to your mobile.', 'success');
+                }).catch((error) => {
+                    console.error("Error during signInWithPhoneNumber", error);
+                    btn.innerHTML = '<span class="lang-hi">OTP भेजें</span><span class="lang-en">Send OTP</span>';
+                    btn.disabled = false;
+                    Swal.fire('Error', error.message, 'error');
+                    
+                    // Reset recaptcha if failed
+                    if (recaptchaVerifier) {
+                        recaptchaVerifier.clear();
+                        recaptchaVerifier = null;
+                        document.getElementById('recaptcha-container').innerHTML = '';
+                    }
+                });
+        });
+
+        document.getElementById('btnVerifyOtp').addEventListener('click', () => {
+            const otpCode = document.getElementById('otpCode').value;
+            if (otpCode.length !== 6 || isNaN(otpCode)) {
+                Swal.fire('Invalid OTP', 'Please enter the 6-digit OTP.', 'warning');
+                return;
+            }
+
+            const btn = document.getElementById('btnVerifyOtp');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            btn.disabled = true;
+
+            confirmationResult.confirm(otpCode).then((result) => {
+                // User signed in successfully.
+                const user = result.user;
+                Swal.fire('Success', 'Logged in successfully!', 'success').then(() => {
+                    // Redirect to dashboard (or admin if it's admin)
+                    // For now, redirect to dashboard.
+                    window.location.href = 'dashboard.html';
+                });
+            }).catch((error) => {
+                console.error("Error during confirmation", error);
+                btn.innerHTML = '<span class="lang-hi">वेरीफाई करें</span><span class="lang-en">Verify OTP</span>';
+                btn.disabled = false;
+                Swal.fire('Error', 'Invalid OTP code. Please try again.', 'error');
+            });
+        });
+
+        document.getElementById('btnChangeNumber').addEventListener('click', () => {
+            document.getElementById('otpSection').style.display = 'none';
+            document.getElementById('phoneSection').style.display = 'block';
+            document.getElementById('otpCode').value = '';
+            
+            const btnSend = document.getElementById('btnSendOtp');
+            btnSend.innerHTML = '<span class="lang-hi">OTP भेजें</span><span class="lang-en">Send OTP</span>';
+            btnSend.disabled = false;
+            
+            if (recaptchaVerifier) {
+                recaptchaVerifier.clear();
+                recaptchaVerifier = null;
+                document.getElementById('recaptcha-container').innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
