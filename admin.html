@@ -489,7 +489,12 @@
                             </div>
                         </div>
                         <div class="form-group" style="margin-top: 15px;">
-                            <label>Subject / विषय</label>
+                            <label style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>Subject / विषय</span>
+                                <label style="font-weight: normal; font-size: 0.9em; display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                                    <input type="checkbox" id="lhIncludeSubject" checked onchange="document.getElementById('lhSubject').style.display = this.checked ? 'block' : 'none'"> Include Subject
+                                </label>
+                            </label>
                             <input type="text" id="lhSubject" placeholder="Enter the subject of the letter...">
                         </div>
                         <div class="form-group" style="margin-top: 15px;">

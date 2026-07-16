@@ -1617,6 +1617,7 @@ function updateLetterheadContent() {
 
     const dateVal = document.getElementById('lhDate').value;
     const refVal = document.getElementById('lhRefNo').value;
+    const includeSubject = document.getElementById('lhIncludeSubject').checked;
     const subjectVal = document.getElementById('lhSubject').value;
     const contentVal = quill ? quill.root.innerHTML : '';
 
@@ -1644,7 +1645,7 @@ function updateLetterheadContent() {
     // Subject
     const subjectBox = template.querySelector('#lhDispSubjectBox');
     const subjectText = template.querySelector('#lhDispSubject');
-    if (subjectVal.trim()) {
+    if (includeSubject && subjectVal.trim()) {
         subjectBox.style.display = 'block';
         subjectText.innerText = subjectVal;
     } else {
