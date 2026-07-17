@@ -8,7 +8,7 @@ window.eventData = [];
 
 // ADMIN ALLOWLIST: Add the testing phone numbers (or real admin numbers) here. Must include +91.
 const ADMIN_PHONE_NUMBERS = [
-    "+911111111111" // <--- Update this to your testing number
+    "+918764294920" // <--- Update this to your testing number
 ];
 
 let confirmationResult = null;
@@ -141,9 +141,17 @@ function switchTab(tabId, el) {
 }
 
 function logout() {
-    sessionPassword = "";
-    // Reload the page to cleanly clear all data and reset the view
-    window.location.reload();
+    if(window.firebaseAuth) {
+        window.signOut(window.firebaseAuth).then(() => {
+            sessionPassword = "";
+            window.location.reload();
+        }).catch((err) => {
+            console.error("Logout error", err);
+            window.location.reload();
+        });
+    } else {
+        window.location.reload();
+    }
 }
 
 function loadMembers() {
