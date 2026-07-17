@@ -226,7 +226,7 @@
                 // User is signed in.
                 document.getElementById('displayPhone').innerText = user.phoneNumber;
                 
-                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyb194qKqY_sO2oXQp2b8h_1n228b7jN19iHnS_R1w1F7d5hF6qB3L7_H1d_g1f1a1/exec'; // Ensure this matches their actual URL
+                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxY6kQq6RjVfZfkPCpOLIWF2SojN52zw4jK0N29B2rr4YmvZZg56PyRSjLBVRTSjLhD/exec'; // Ensure this matches their actual URL
                 
                 fetch(`${GOOGLE_SCRIPT_URL}?action=get_member_dashboard&phone=${encodeURIComponent(user.phoneNumber)}`)
                     .then(res => res.json())
