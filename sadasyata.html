@@ -216,9 +216,20 @@
                                     <option value="Rented" data-en="Rented" data-hi="किराए का">Rented / किराए का</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="position: relative;">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
-                                <input type="tel" id="mobileNumber" required pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="tel" id="mobileNumber" required pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
+                                    <button type="button" id="btnSendOtp" class="btn" style="background: #e0e0e0; color: #333; border: none; white-space: nowrap; padding: 0 20px; border-radius: 8px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#d0d0d0'" onmouseout="this.style.background='#e0e0e0'">Verify SMS</button>
+                                </div>
+                                <div id="otpSection" style="display: none; margin-top: 10px;">
+                                    <div style="display: flex; gap: 10px;">
+                                        <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" maxlength="6" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box;">
+                                        <button type="button" id="btnVerifyOtp" class="btn btn-primary" style="white-space: nowrap; padding: 0 20px; border-radius: 8px; border: none; cursor: pointer;">Confirm</button>
+                                    </div>
+                                </div>
+                                <div id="recaptcha-container" style="margin-top: 10px;"></div>
+                                <div id="phoneStatus" style="margin-top: 5px; font-size: 0.9em; font-weight: bold; display: none;"></div>
                             </div>
                             <div class="form-group">
                                 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
@@ -405,7 +416,7 @@
                         <div style="text-align: center;">
                             
                 <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
-                <button type="submit" id="submitButton" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(220,53,69,0.3);"><i class="fas fa-paper-plane"></i> <span class="lang-hi">फॉर्म जमा करें</span><span class="lang-en">Submit Form</span></button>
+                <button type="submit" id="submitButton" class="btn" disabled style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: not-allowed; background-color: #ccc; box-shadow: none; color: #666; transition: 0.3s;"><i class="fas fa-lock" id="submitLockIcon"></i> <span class="lang-hi">फॉर्म जमा करें (पहले फोन वेरीफाई करें)</span><span class="lang-en">Submit Form (Verify Phone First)</span></button>
                         </div>
 
                     </form>
