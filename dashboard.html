@@ -226,13 +226,28 @@
                 // User is signed in.
                 document.getElementById('displayPhone').innerText = user.phoneNumber;
                 
-                // TODO: Fetch user data from Google Apps Script using user.phoneNumber
+                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyb194qKqY_sO2oXQp2b8h_1n228b7jN19iHnS_R1w1F7d5hF6qB3L7_H1d_g1f1a1/exec'; // Ensure this matches their actual URL
                 
-                // For now, simulate loading delay
-                setTimeout(() => {
-                    document.getElementById('loadingData').style.display = 'none';
-                    document.getElementById('dashboardContent').style.display = 'grid';
-                }, 1000);
+                fetch(`${GOOGLE_SCRIPT_URL}?action=get_member_dashboard&phone=${encodeURIComponent(user.phoneNumber)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('loadingData').style.display = 'none';
+                        document.getElementById('dashboardContent').style.display = 'grid';
+                        
+                        if (data.success) {
+                            renderProfile(data.profile);
+                            renderDonations(data.donations);
+                            renderBookings(data.bookings);
+                        } else {
+                            Swal.fire('Error', 'Failed to load your records: ' + data.error, 'error');
+                        }
+                    })
+                    .catch(err => {
+                        document.getElementById('loadingData').style.display = 'none';
+                        document.getElementById('dashboardContent').style.display = 'grid';
+                        Swal.fire('Error', 'Network error. Please try again later.', 'error');
+                        console.error(err);
+                    });
 
             } else {
                 // User is not signed in, redirect to login
@@ -240,7 +255,91 @@
             }
         });
 
+        function getStatusBadge(status) {
+            if (status === 'Approved' || status === 'Verified') {
+                return `<span style="background: #e8f5e9; color: #2e7d32; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;"><i class="fas fa-check-circle"></i> ${status}</span>`;
+            } else if (status === 'Pending') {
+                return `<span style="background: #fff3e0; color: #ef6c00; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;"><i class="fas fa-clock"></i> Pending</span>`;
+            } else {
+                return `<span style="background: #f1f5f9; color: #475569; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">${status || 'Unknown'}</span>`;
+            }
+        }
+
+        function renderProfile(profile) {
+            const container = document.getElementById('membershipContent');
+            if (!profile) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 24px; color: #ff9800; margin-bottom: 10px;"></i>
+                        <p style="color: #666; margin-bottom: 15px;">No membership profile linked to this number.</p>
+                        <a href="sadasyata.html" class="btn btn-primary" style="text-decoration: none; display: inline-block;">Apply for Membership</a>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div style="background: #fafafa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 style="margin: 0 0 10px 0; color: #333; font-size: 1.2em;">${profile.fullName}</h4>
+                    <p style="margin: 5px 0; color: #555;"><strong>Member ID:</strong> ${profile.membershipNo || 'Awaiting ID'}</p>
+                    <p style="margin: 5px 0; color: #555;"><strong>Status:</strong> ${getStatusBadge(profile.status)}</p>
+                    <p style="margin: 5px 0; color: #555;"><strong>Joined:</strong> ${new Date(profile.timestamp).toLocaleDateString()}</p>
+                </div>
+            `;
+        }
+
+        function renderDonations(donations) {
+            const container = document.getElementById('donationsContent');
+            if (!donations || donations.length === 0) {
+                container.innerHTML = `<p style="color: #666; font-style: italic; text-align: center; padding: 20px;">No donation history found for this number.</p>`;
+                return;
+            }
+
+            let html = '<div style="max-height: 300px; overflow-y: auto;">';
+            donations.forEach(d => {
+                html += `
+                    <div style="border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: #333;">₹${d.donationAmount}</strong>
+                            <p style="margin: 2px 0; font-size: 0.85em; color: #666;">${d.donationPurpose}</p>
+                            <small style="color: #999;">${new Date(d.timestamp).toLocaleDateString()}</small>
+                        </div>
+                        <div>
+                            ${getStatusBadge(d.status)}
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderBookings(bookings) {
+            const container = document.getElementById('bookingsContent');
+            if (!bookings || bookings.length === 0) {
+                container.innerHTML = `<p style="color: #666; font-style: italic; text-align: center; padding: 20px;">No event bookings found for this number.</p>`;
+                return;
+            }
+
+            let html = '<div style="max-height: 300px; overflow-y: auto;">';
+            bookings.forEach(b => {
+                html += `
+                    <div style="border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="color: #333;">${b.eventType || 'Event Booking'}</strong>
+                            <p style="margin: 2px 0; font-size: 0.85em; color: #666;">${new Date(b.bookingDate).toLocaleDateString()}</p>
+                        </div>
+                        <div>
+                            ${getStatusBadge(b.status)}
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
         // Logout
+
         document.getElementById('btnLogout').addEventListener('click', () => {
             signOut(auth).then(() => {
                 window.location.href = 'login.html';
