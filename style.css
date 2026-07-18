@@ -2104,7 +2104,7 @@ ul {
 .red-navbar {
     background-color: #FF6B00;
     margin: 10px auto 0 auto;
-    width: 104%;
+    width: 100%; max-width: 1200px;
     padding: 0 30px;
     border-radius: var(--radius-md);
     display: flex;
@@ -2117,19 +2117,20 @@ ul {
 
 .red-navbar .nav-menu {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
     gap: 0;
+    width: 100%;
 }
 .red-navbar .nav-links {
     color: #fff;
     text-decoration: none;
     font-size: 0.75rem;
     font-weight: 600;
-    padding: 12px 6px;
+    padding: 10px 8px;
     display: block;
     transition: 0.3s;
     text-transform: uppercase;
@@ -2302,7 +2303,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 .nav-links {
     font-weight: 500 !important;
     letter-spacing: 0.3px;
-    padding: 12px 20px !important;
+    padding: 10px 6px !important;
     border-radius: var(--radius-sm);
     transition: var(--transition-fast) !important;
 }
@@ -3272,4 +3273,57 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
     .facebook-float {
         bottom: 145px;
     }
+}
+
+/* Material Design Filled Form Styles */
+.material-filled-group {
+    position: relative !important;
+    background-color: #f0f2f5 !important;
+    border-radius: 8px !important;
+    padding: 8px 16px 4px 16px !important;
+    margin-bottom: 20px !important;
+    transition: background-color 0.2s ease, border-bottom-color 0.2s ease !important;
+    box-sizing: border-box !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+.material-filled-group:focus-within {
+    border-bottom: 2px solid var(--primary-color) !important;
+    background-color: #e4e6eb !important;
+}
+
+.material-filled-group label {
+    display: block !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: #65676b !important;
+    margin-bottom: 2px !important;
+    font-family: inherit !important;
+    line-height: 1.2 !important;
+}
+
+.material-filled-group:focus-within label {
+    color: var(--primary-color) !important;
+}
+
+.material-filled-group input, 
+.material-filled-group select, 
+.material-filled-group textarea {
+    width: 100% !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    padding: 4px 0 4px 0 !important;
+    font-size: 15px !important;
+    color: #050505 !important;
+    box-shadow: none !important;
+    height: auto !important;
+}
+
+/* Fix flex child layout inside groups */
+.material-filled-group > div {
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }

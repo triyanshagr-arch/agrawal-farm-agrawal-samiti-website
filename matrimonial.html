@@ -1,285 +1,268 @@
 <!DOCTYPE html>
+
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>वैवाहिक | Matrimonial | Agrawal Samaj Samiti</title>
-    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css?v=16">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>वैवाहिक | Matrimonial | Agrawal Samaj Samiti</title>
+<link href="images/maharaj_agrasen.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=1784367175" rel="stylesheet"/>
+<script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
-    <a href="https://wa.me/919829220486" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <header class="custom-header">
-        <div class="header-container">
-            <div class="header-image-box">
-                <img src="images/maharaj_agrasen.png" alt="Maharaj Agrasen" class="agrasen-img">
-            </div>
-            <div class="header-content-box">
-                <div class="header-title-row">
-                    <h1 class="header-main-title" style="line-height: 1.2;">
-                        <span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br>
-                        <span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-hi">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-en">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
-                    </h1>
-                </div>
-                <nav class="red-navbar" id="navbar">
-                    <div class="menu-toggle" id="mobile-menu">
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                    </div>
-                    <div class="mobile-drawer-close" id="drawer-close-btn">&times;</div>
-                    <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-links "><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
-                        <li><a href="about.html" class="nav-links "><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
-                        <li><a href="notices.html" class="nav-links "><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
-                        <li><a href="activities.html" class="nav-links "><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
-                        <li><a href="members.html" class="nav-links "><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
-                        <li><a href="sadasyata.html" class="nav-links "><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
-                        <li><a href="matrimonial.html" class="nav-links "><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
-                        <li><a href="donation.html" class="nav-links "><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
-                        <li><a href="booking.html" class="nav-links "><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
-                        <li><a href="contact.html" class="nav-links "><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
-                        <li><a href="login.html" class="nav-links "><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
-                        
-                    <li class="nav-item-toggle">
-                        <button id="lang-toggle" class="language-toggle"><i class="fas fa-language"></i> English</button>
-                    </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header-image-box-right">
-                <img src="images/lakshmi.png" alt="Lakshmi Ji" class="lakshmi-img">
-            </div>
-        </div>
-    </header>
-
-    <main>
-    <!-- Hero Section -->
-    <section class="hero page-hero" style="background: linear-gradient(rgba(44, 30, 22, 0.8), rgba(211, 47, 47, 0.8)), url('images/hero_bg.jpg') center/cover; padding: 100px 0 60px;">
-        <div class="container text-center animate-on-scroll">
-            <h2 class="section-title text-white" style="font-size: 3rem; margin-bottom: 15px;"><span class="lang-hi">वैवाहिक</span><span class="lang-en">Matrimonial</span></h2>
-            <p class="text-white" style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">
-                <span class="lang-hi">अग्रवाल समाज के युवक-युवतियों के लिए वैवाहिक परिचय</span>
-                <span class="lang-en">Matrimonial introductions for young men and women of Agrawal Samaj</span>
-            </p>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    
-
-
-    <section class="section">
-        <div class="container">
-            <div class="tabs-container" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 40px;">
-                <button class="btn btn-primary tab-btn active" data-target="view-profiles" style="padding: 12px 30px; font-size: 1.2rem;">
-                    <i class="fas fa-users"></i> <span class="lang-hi">प्रोफ़ाइल देखें</span><span class="lang-en">View Profiles</span>
-                </button>
-                <button class="btn btn-outline tab-btn" data-target="register-profile" style="padding: 12px 30px; font-size: 1.2rem;">
-                    <i class="fas fa-user-plus"></i> <span class="lang-hi">प्रोफ़ाइल पंजीकृत करें</span><span class="lang-en">Register Profile</span>
-                </button>
-            </div>
-
-            <!-- View Profiles Tab -->
-            <div id="view-profiles" class="tab-content active" style="display: block;">
-                <div class="matrimonial-filters" style="background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; gap: 15px; flex-wrap: wrap;">
-                    <select id="genderFilter" class="input-field" style="flex: 1; min-width: 200px;">
-                        <option value="" data-en="Select Gender" data-hi="लिंग चुनें">लिंग चुनें</option>
-                        <option value="male" data-en="Male" data-hi="पुरुष">पुरुष</option>
-                        <option value="female" data-en="Female" data-hi="महिला">महिला</option>
-                    </select>
-                    <input type="text" id="searchProfile" class="input-field" placeholder="Search by Name, Gotra, Profession..." style="flex: 2; min-width: 200px;">
-                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                </div>
-
-                <div id="profiles-loader" style="text-align: center; padding: 50px; color: var(--primary-color);">
-                    <i class="fas fa-spinner fa-spin fa-3x"></i>
-                    <p style="margin-top: 15px; font-weight: bold;"><span class="lang-hi">प्रोफाइल लोड हो रहे हैं...</span><span class="lang-en">Loading profiles...</span></p>
-                </div>
-                <div id="profiles-grid" class="profile-grid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;">
-                    <!-- Profiles injected via JS -->
-                </div>
-            </div>
-
-            <!-- Register Profile Tab -->
-            <div id="register-profile" class="tab-content" style="display: none;">
-                <div class="form-container" style="max-width: 900px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 15px; box-shadow: var(--shadow-md);">
-                    <form id="matrimonialForm">
-                        <h3 class="form-section-title"><span class="lang-hi">व्यक्तिगत विवरण</span><span class="lang-en">Personal Details</span></h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label><span class="lang-hi">नाम *</span><span class="lang-en">Full Name *</span></label>
-                                <input type="text" class="input-field" id="matri_name" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">लिंग *</span><span class="lang-en">Gender *</span></label>
-                                <select class="input-field" id="matri_gender" required>
-                                    <option value="" data-en="Select" data-hi="चुनें">चुनें</option>
-                                    <option value="Male" data-en="Male" data-hi="पुरुष">पुरुष</option>
-                                    <option value="Female" data-en="Female" data-hi="महिला">महिला</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">जन्म तिथि *</span><span class="lang-en">Date of Birth *</span></label>
-                                <input type="text" class="input-field datepicker" id="matri_dob" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">ऊंचाई *</span><span class="lang-en">Height *</span></label>
-                                <input type="text" class="input-field" id="matri_height" placeholder="e.g. 5'8&quot;" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">गोत्र *</span><span class="lang-en">Gotra *</span></label>
-                                <select class="input-field" id="matri_gotra" required>
-                                    <option value="" data-en="Select Gotra" data-hi="गोत्र चुनें">Select Gotra / गोत्र चुनें</option>
-                                    <option value="Airan" data-en="Airan" data-hi="ऐरन">Airan (ऐरन)</option>
-                                    <option value="Bansal" data-en="Bansal" data-hi="बंसल">Bansal (बंसल)</option>
-                                    <option value="Bindal" data-en="Bindal" data-hi="बिंदल">Bindal (बिंदल)</option>
-                                    <option value="Bhandal" data-en="Bhandal" data-hi="भंदल">Bhandal (भंदल)</option>
-                                    <option value="Dharan" data-en="Dharan" data-hi="धारण">Dharan (धारण)</option>
-                                    <option value="Garg" data-en="Garg" data-hi="गर्ग">Garg (गर्ग)</option>
-                                    <option value="Goyal" data-en="Goyal" data-hi="गोयल">Goyal (गोयल)</option>
-                                    <option value="Goyan" data-en="Goyan" data-hi="गोयन">Goyan (गोयन)</option>
-                                    <option value="Jindal" data-en="Jindal" data-hi="जिंदल">Jindal (जिंदल)</option>
-                                    <option value="Kansal" data-en="Kansal" data-hi="कंसल">Kansal (कंसल)</option>
-                                    <option value="Kuchhal" data-en="Kuchhal" data-hi="कुच्छल">Kuchhal (कुच्छल)</option>
-                                    <option value="Madhukul" data-en="Madhukul" data-hi="मधुकुल">Madhukul (मधुकुल)</option>
-                                    <option value="Mangal" data-en="Mangal" data-hi="मंगल">Mangal (मंगल)</option>
-                                    <option value="Mittal" data-en="Mittal" data-hi="मित्तल">Mittal (मित्तल)</option>
-                                    <option value="Nangal" data-en="Nangal" data-hi="नांगल">Nangal (नांगल)</option>
-                                    <option value="Singhal" data-en="Singhal" data-hi="सिंघल">Singhal (सिंघल)</option>
-                                    <option value="Tayal" data-en="Tayal" data-hi="तायल">Tayal (तायल)</option>
-                                    <option value="Tingal" data-en="Tingal" data-hi="तिंगल">Tingal (तिंगल)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">मांगलिक *</span><span class="lang-en">Manglik Status *</span></label>
-                                <select class="input-field" id="matri_manglik" required>
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="Anshik">Anshik</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">शहर / राज्य *</span><span class="lang-en">City / State *</span></label>
-                                <input type="text" class="input-field" id="matri_city" required>
-                            </div>
-                        </div>
-
-                        <h3 class="form-section-title"><span class="lang-hi">शिक्षा और पेशा</span><span class="lang-en">Education & Profession</span></h3>
-                        <div class="form-grid">
-                            <div class="form-group" style="grid-column: 1 / -1;">
-                                <label><span class="lang-hi">शिक्षा *</span><span class="lang-en">Education *</span></label>
-                                <input type="text" class="input-field" id="matri_education" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">पेशा *</span><span class="lang-en">Profession *</span></label>
-                                <input type="text" class="input-field" id="matri_profession" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">वार्षिक आय</span><span class="lang-en">Annual Income</span></label>
-                                <input type="text" class="input-field" id="matri_income">
-                            </div>
-                        </div>
-
-                        <h3 class="form-section-title"><span class="lang-hi">पारिवारिक विवरण</span><span class="lang-en">Family Details</span></h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label><span class="lang-hi">पिता का नाम *</span><span class="lang-en">Father's Name *</span></label>
-                                <input type="text" class="input-field" id="matri_father" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">माता का नाम *</span><span class="lang-en">Mother's Name *</span></label>
-                                <input type="text" class="input-field" id="matri_mother" required>
-                            </div>
-                            <div class="form-group" style="grid-column: 1 / -1;">
-                                <label><span class="lang-hi">पूरा पता *</span><span class="lang-en">Full Address *</span></label>
-                                <textarea class="input-field" id="matri_address" rows="3" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">मोबाइल नंबर *</span><span class="lang-en">Mobile Number *</span></label>
-                                <input type="tel" class="input-field" id="matri_mobile" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span class="lang-hi">फोटो अपलोड करें *</span><span class="lang-en">Upload Photo *</span></label>
-                                <input type="file" id="matri_photo" class="input-field" accept="image/*" required>
-                                <img id="matri_photoPreview" style="max-width: 150px; margin-top: 10px; display: none; border-radius: 8px;">
-                            </div>
-                        </div>
-
-                        <div style="text-align: center; margin-top: 30px;">
-                            
-                <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
-                <button type="submit" class="btn btn-primary" style="font-size: 1.3rem; padding: 15px 40px; width: 100%; max-width: 300px;">
-                                <i class="fas fa-paper-plane"></i> <span class="lang-hi">प्रोफ़ाइल सबमिट करें</span><span class="lang-en">Submit Profile</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/919829220486" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+<header class="custom-header">
+<div class="header-container">
+<div class="header-image-box">
+<img alt="Maharaj Agrasen" class="agrasen-img" src="images/maharaj_agrasen.png"/>
+</div>
+<div class="header-content-box">
+<div class="header-title-row">
+<h1 class="header-main-title" style="line-height: 1.2;">
+<span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br/>
+<span class="lang-hi" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span class="lang-en" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
+</h1>
+</div>
+<nav class="red-navbar" id="navbar">
+<div class="menu-toggle" id="mobile-menu">
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+</div>
+<div class="mobile-drawer-close" id="drawer-close-btn">×</div>
+<ul class="nav-menu">
+<li><a class="nav-links" href="index.html"><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
+<li><a class="nav-links" href="about.html"><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
+<li><a class="nav-links" href="notices.html"><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
+<li><a class="nav-links" href="activities.html"><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
+<li><a class="nav-links" href="members.html"><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
+<li><a class="nav-links" href="sadasyata.html"><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+<li><a class="nav-links" href="matrimonial.html"><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
+<li><a class="nav-links" href="donation.html"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+<li><a class="nav-links" href="booking.html"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
+<li><a class="nav-links" href="contact.html"><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
+<li><a class="nav-links" href="login.html"><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
+<li class="nav-item-toggle">
+<button class="language-toggle" id="lang-toggle"><i class="fas fa-language"></i> English</button>
+</li>
+</ul>
+</nav>
+</div>
+<div class="header-image-box-right">
+<img alt="Lakshmi Ji" class="lakshmi-img" src="images/lakshmi.png"/>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="hero page-hero" style="background: linear-gradient(rgba(44, 30, 22, 0.8), rgba(211, 47, 47, 0.8)), url('images/hero_bg.jpg') center/cover; padding: 100px 0 60px;">
+<div class="container text-center animate-on-scroll">
+<h2 class="section-title text-white" style="font-size: 3rem; margin-bottom: 15px;"><span class="lang-hi">वैवाहिक</span><span class="lang-en">Matrimonial</span></h2>
+<p class="text-white" style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; opacity: 0.9;">
+<span class="lang-hi">अग्रवाल समाज के युवक-युवतियों के लिए वैवाहिक परिचय</span>
+<span class="lang-en">Matrimonial introductions for young men and women of Agrawal Samaj</span>
+</p>
+</div>
+</section>
+<!-- Main Content -->
+<section class="section">
+<div class="container">
+<div class="tabs-container" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 40px;">
+<button class="btn btn-primary tab-btn active" data-target="view-profiles" style="padding: 12px 30px; font-size: 1.2rem;">
+<i class="fas fa-users"></i> <span class="lang-hi">प्रोफ़ाइल देखें</span><span class="lang-en">View Profiles</span>
+</button>
+<button class="btn btn-outline tab-btn" data-target="register-profile" style="padding: 12px 30px; font-size: 1.2rem;">
+<i class="fas fa-user-plus"></i> <span class="lang-hi">प्रोफ़ाइल पंजीकृत करें</span><span class="lang-en">Register Profile</span>
+</button>
+</div>
+<!-- View Profiles Tab -->
+<div class="tab-content active" id="view-profiles" style="display: block;">
+<div class="matrimonial-filters" style="background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; gap: 15px; flex-wrap: wrap;">
+<select class="input-field" id="genderFilter" style="flex: 1; min-width: 200px;">
+<option data-en="Select Gender" data-hi="लिंग चुनें" value="">लिंग चुनें</option>
+<option data-en="Male" data-hi="पुरुष" value="male">पुरुष</option>
+<option data-en="Female" data-hi="महिला" value="female">महिला</option>
+</select>
+<input class="input-field" id="searchProfile" placeholder="Search by Name, Gotra, Profession..." style="flex: 2; min-width: 200px;" type="text"/>
+<button class="btn btn-primary"><i class="fas fa-search"></i></button>
+</div>
+<div id="profiles-loader" style="text-align: center; padding: 50px; color: var(--primary-color);">
+<i class="fas fa-spinner fa-spin fa-3x"></i>
+<p style="margin-top: 15px; font-weight: bold;"><span class="lang-hi">प्रोफाइल लोड हो रहे हैं...</span><span class="lang-en">Loading profiles...</span></p>
+</div>
+<div class="profile-grid" id="profiles-grid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;">
+<!-- Profiles injected via JS -->
+</div>
+</div>
+<!-- Register Profile Tab -->
+<div class="tab-content" id="register-profile" style="display: none;">
+<div class="form-container" style="max-width: 900px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 15px; box-shadow: var(--shadow-md);">
+<form id="matrimonialForm">
+<h3 class="form-section-title"><span class="lang-hi">व्यक्तिगत विवरण</span><span class="lang-en">Personal Details</span></h3>
+<div class="form-grid">
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">नाम *</span><span class="lang-en">Full Name *</span></label>
+<input class="input-field" data-placeholder-en="Enter Full Name" data-placeholder-hi="नाम दर्ज करें" id="matri_name" placeholder="Enter Full Name" required="" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">लिंग *</span><span class="lang-en">Gender *</span></label>
+<select class="input-field" id="matri_gender" required="">
+<option data-en="Select" data-hi="चुनें" value="">चुनें</option>
+<option data-en="Male" data-hi="पुरुष" value="Male">पुरुष</option>
+<option data-en="Female" data-hi="महिला" value="Female">महिला</option>
+</select>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">जन्म तिथि *</span><span class="lang-en">Date of Birth *</span></label>
+<input class="input-field datepicker" data-placeholder-en="Enter Date of Birth" data-placeholder-hi="जन्म तिथि दर्ज करें" id="matri_dob" placeholder="Enter Date of Birth" required="" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">ऊंचाई *</span><span class="lang-en">Height *</span></label>
+<input class="input-field" data-placeholder-en="Enter Height" data-placeholder-hi="ऊंचाई दर्ज करें" id="matri_height" placeholder="Enter Height" required="" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">गोत्र *</span><span class="lang-en">Gotra *</span></label>
+<select class="input-field" id="matri_gotra" required="">
+<option data-en="Select Gotra" data-hi="गोत्र चुनें" value="">Select Gotra / गोत्र चुनें</option>
+<option data-en="Airan" data-hi="ऐरन" value="Airan">Airan (ऐरन)</option>
+<option data-en="Bansal" data-hi="बंसल" value="Bansal">Bansal (बंसल)</option>
+<option data-en="Bindal" data-hi="बिंदल" value="Bindal">Bindal (बिंदल)</option>
+<option data-en="Bhandal" data-hi="भंदल" value="Bhandal">Bhandal (भंदल)</option>
+<option data-en="Dharan" data-hi="धारण" value="Dharan">Dharan (धारण)</option>
+<option data-en="Garg" data-hi="गर्ग" value="Garg">Garg (गर्ग)</option>
+<option data-en="Goyal" data-hi="गोयल" value="Goyal">Goyal (गोयल)</option>
+<option data-en="Goyan" data-hi="गोयन" value="Goyan">Goyan (गोयन)</option>
+<option data-en="Jindal" data-hi="जिंदल" value="Jindal">Jindal (जिंदल)</option>
+<option data-en="Kansal" data-hi="कंसल" value="Kansal">Kansal (कंसल)</option>
+<option data-en="Kuchhal" data-hi="कुच्छल" value="Kuchhal">Kuchhal (कुच्छल)</option>
+<option data-en="Madhukul" data-hi="मधुकुल" value="Madhukul">Madhukul (मधुकुल)</option>
+<option data-en="Mangal" data-hi="मंगल" value="Mangal">Mangal (मंगल)</option>
+<option data-en="Mittal" data-hi="मित्तल" value="Mittal">Mittal (मित्तल)</option>
+<option data-en="Nangal" data-hi="नांगल" value="Nangal">Nangal (नांगल)</option>
+<option data-en="Singhal" data-hi="सिंघल" value="Singhal">Singhal (सिंघल)</option>
+<option data-en="Tayal" data-hi="तायल" value="Tayal">Tayal (तायल)</option>
+<option data-en="Tingal" data-hi="तिंगल" value="Tingal">Tingal (तिंगल)</option>
+</select>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">मांगलिक *</span><span class="lang-en">Manglik Status *</span></label>
+<select class="input-field" id="matri_manglik" required="">
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="Anshik">Anshik</option>
+</select>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">शहर / राज्य *</span><span class="lang-en">City / State *</span></label>
+<input class="input-field" data-placeholder-en="Enter City / State" data-placeholder-hi="शहर / राज्य दर्ज करें" id="matri_city" placeholder="Enter City / State" required="" type="text"/>
+</div>
+</div>
+<h3 class="form-section-title"><span class="lang-hi">शिक्षा और पेशा</span><span class="lang-en">Education &amp; Profession</span></h3>
+<div class="form-grid">
+<div class="form-group material-filled-group" style="grid-column: 1 / -1;">
+<label><span class="lang-hi">शिक्षा *</span><span class="lang-en">Education *</span></label>
+<input class="input-field" data-placeholder-en="Enter Education" data-placeholder-hi="शिक्षा दर्ज करें" id="matri_education" placeholder="Enter Education" required="" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">पेशा *</span><span class="lang-en">Profession *</span></label>
+<input class="input-field" data-placeholder-en="Enter Profession" data-placeholder-hi="पेशा दर्ज करें" id="matri_profession" placeholder="Enter Profession" required="" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">वार्षिक आय</span><span class="lang-en">Annual Income</span></label>
+<input class="input-field" data-placeholder-en="Enter Annual Income" data-placeholder-hi="वार्षिक आय दर्ज करें" id="matri_income" placeholder="Enter Annual Income" type="text"/>
+</div>
+</div>
+<h3 class="form-section-title"><span class="lang-hi">पारिवारिक विवरण</span><span class="lang-en">Family Details</span></h3>
+<div class="form-grid">
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">पिता का नाम *</span><span class="lang-en">Father's Name *</span></label>
+<input class="input-field" data-placeholder-en="Enter Father's Name" data-placeholder-hi="पिता का नाम दर्ज करें" id="matri_father" placeholder="Enter Father's Name" required="" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">माता का नाम *</span><span class="lang-en">Mother's Name *</span></label>
+<input class="input-field" data-placeholder-en="Enter Mother's Name" data-placeholder-hi="माता का नाम दर्ज करें" id="matri_mother" placeholder="Enter Mother's Name" required="" type="text"/>
+</div>
+<div class="form-group material-filled-group" style="grid-column: 1 / -1;">
+<label><span class="lang-hi">पूरा पता *</span><span class="lang-en">Full Address *</span></label>
+<textarea class="input-field" data-placeholder-en="Enter Full Address" data-placeholder-hi="पूरा पता दर्ज करें" id="matri_address" placeholder="Enter Full Address" required="" rows="3"></textarea>
+</div>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">मोबाइल नंबर *</span><span class="lang-en">Mobile Number *</span></label>
+<input class="input-field" data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="matri_mobile" placeholder="Enter Mobile Number" required="" type="tel"/>
+</div>
+<div class="form-group">
+<label><span class="lang-hi">फोटो अपलोड करें *</span><span class="lang-en">Upload Photo *</span></label>
+<input accept="image/*" class="input-field" id="matri_photo" required="" type="file"/>
+<img id="matri_photoPreview" style="max-width: 150px; margin-top: 10px; display: none; border-radius: 8px;"/>
+</div>
+</div>
+<div style="text-align: center; margin-top: 30px;">
+<div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
+<button class="btn btn-primary" style="font-size: 1.3rem; padding: 15px 40px; width: 100%; max-width: 300px;" type="submit">
+<i class="fas fa-paper-plane"></i> <span class="lang-hi">प्रोफ़ाइल सबमिट करें</span><span class="lang-en">Submit Profile</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
 </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo-placeholder small">ॐ</div>
-                    <h3>अग्रवाल समाज समिति<br>अग्रवाल फार्म</h3>
-                </div>
-                <div class="footer-links">
-                    <h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
-                        <li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
-                        <li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
-                        <li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
-                        <li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
-                        <li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
-                        <li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
-                        <li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
-                        <li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
-                        <li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
-                        <li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
-                    <p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
-                <p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
-            </div>
-        </div>
-    </footer>
-    <!-- Firebase Analytics -->
-    
-
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="react.js?v=16"></script>
-    <script src="submit_handler.js?v=96"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="pdf_generator.js?v=7"></script>
-    <script>
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<div class="logo-placeholder small">ॐ</div>
+<h3>अग्रवाल समाज समिति<br/>अग्रवाल फार्म</h3>
+</div>
+<div class="footer-links">
+<h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
+<ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
+<li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
+<li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
+<li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
+<li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
+<li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
+<li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
+<li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
+<li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
+<li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
+<li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
+<p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
+<p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
+<p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
+</div>
+</div>
+</footer>
+<!-- Firebase Analytics -->
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="react.js?v=16"></script>
+<script src="submit_handler.js?v=96"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="pdf_generator.js?v=7"></script>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             flatpickr(".datepicker", { dateFormat: "d/m/Y", allowInput: true });
         });
     </script>
-    <script src="matrimonial.js?v=97"></script>
+<script src="matrimonial.js?v=97"></script>
 </body>
 </html>

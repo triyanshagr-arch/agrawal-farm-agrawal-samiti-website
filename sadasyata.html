@@ -1,271 +1,263 @@
 <!DOCTYPE html>
+
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>सदस्यता फॉर्म | Membership Form</title>
-    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css?v=16">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>सदस्यता फॉर्म | Membership Form</title>
+<link href="images/maharaj_agrasen.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=1784367175" rel="stylesheet"/>
+<script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
-    <a href="https://wa.me/919829220486" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <header class="custom-header">
-        <div class="header-container">
-            <div class="header-image-box">
-                <img src="images/maharaj_agrasen.png" alt="Maharaj Agrasen" class="agrasen-img">
-            </div>
-            <div class="header-content-box">
-                <div class="header-title-row">
-                    <h1 class="header-main-title" style="line-height: 1.2;">
-                        <span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br>
-                        <span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-hi">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-en">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
-                    </h1>
-                </div>
-                <nav class="red-navbar" id="navbar">
-                    <div class="menu-toggle" id="mobile-menu">
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                    </div>
-                    <div class="mobile-drawer-close" id="drawer-close-btn">&times;</div>
-                    <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-links "><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
-                        <li><a href="about.html" class="nav-links "><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
-                        <li><a href="notices.html" class="nav-links "><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
-                        <li><a href="activities.html" class="nav-links "><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
-                        <li><a href="members.html" class="nav-links "><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
-                        <li><a href="sadasyata.html" class="nav-links active"><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
-                        <li><a href="matrimonial.html" class="nav-links "><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
-                        <li><a href="donation.html" class="nav-links "><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
-                        <li><a href="booking.html" class="nav-links "><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
-                        <li><a href="contact.html" class="nav-links "><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
-                        <li><a href="login.html" class="nav-links "><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
-                        
-                    <li class="nav-item-toggle">
-                        <button id="lang-toggle" class="language-toggle"><i class="fas fa-language"></i> English</button>
-                    </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header-image-box-right">
-                <img src="images/lakshmi.png" alt="Lakshmi Ji" class="lakshmi-img">
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="section bg-cream" style="padding-top: 40px; padding-bottom: 60px;">
-            <div class="container" style="max-width: 900px;">
-                <h2 class="section-title animate-on-scroll"><span class="lang-hi">सदस्यता फॉर्म</span><span class="lang-en">Membership Form</span></h2>
-                <div class="divider">❋ ༺ ॐ ༻ ❋</div>
-
-                <div class="form-container" style="background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 30px;">
-                    <form id="membershipForm" action="#" method="POST">
-                        
-                        <!-- Personal Details -->
-                        <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">व्यक्तिगत विवरण</span><span class="lang-en">Personal Details</span></h3>
-                        
-                        <div style="display: flex; flex-wrap: wrap-reverse; gap: 30px; margin-bottom: 30px;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <div class="form-grid" style="margin-bottom: 0;">
-                                    <div class="form-group" style="grid-column: 1 / -1;">
-                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
-                                        <div style="display: flex; gap: 10px;">
-                                            <select id="title-dropdown" required style="width: 100px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                                <option value="Mr." data-en="Mr." data-hi="श्री">श्री</option>
-                                                <option value="Mrs." data-en="Mrs." data-hi="श्रीमती">श्रीमती</option>
-                                                <option value="Miss" data-en="Miss" data-hi="कुमारी">कुमारी</option>
-                                            </select>
-                                            <input type="text" id="fullName" required style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" placeholder="Enter Name" data-placeholder-en="Enter Name" data-placeholder-hi="नाम दर्ज करें">
-                                        </div>
-                                    </div>
-                                    <div class="form-group" style="grid-column: 1 / -1;">
-                                        <label id="guardian-name-label" style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पिता/पति का नाम <span style="color:red">*</span></span><span class="lang-en">Father's/Husband's Name <span style="color:red">*</span></span></label>
-                                        <input type="text" id="guardianName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">जन्म तिथि</span><span class="lang-en">Date of Birth</span></label>
-                                        <input type="date" id="dob" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                    </div>
-                            <div class="form-group" id="married-status-group" style="display: none;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाहित?</span><span class="lang-en">Married?</span></label>
-                                <div style="display: flex; gap: 20px; align-items: center; height: calc(100% - 28px); padding-left: 10px;">
-                                    <label style="cursor: pointer;"><input type="radio" name="is_married" value="Yes" onchange="if(window.handleMarriageChange) window.handleMarriageChange()"> <span class="lang-hi">हाँ</span><span class="lang-en">Yes</span></label>
-                                    <label style="cursor: pointer;"><input type="radio" name="is_married" value="No" onchange="if(window.handleMarriageChange) window.handleMarriageChange()" checked> <span class="lang-hi">नहीं</span><span class="lang-en">No</span></label>
-                                </div>
-                            </div>
-                            <div class="form-group" id="marriage-date-group" style="display: none;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाह तिथि</span><span class="lang-en">Marriage Date</span></label>
-                                <input type="date" id="marriageDate" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                            </div>
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">रक्त समूह</span><span class="lang-en">Blood Group</span></label>
-                                <select id="bloodGroup" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="" data-en="Select" data-hi="चुनें">Select / चुनें</option>
-                                    <option value="A+">A+</option><option value="A-">A-</option>
-                                    <option value="B+">B+</option><option value="B-">B-</option>
-                                    <option value="O+">O+</option><option value="O-">O-</option>
-                                    <option value="AB+">AB+</option><option value="AB-">AB-</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">गोत्र <span style="color:red">*</span></span><span class="lang-en">Gotra <span style="color:red">*</span></span></label>
-                                <select id="gotra" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="" data-en="Select Gotra" data-hi="गोत्र चुनें">Select Gotra / गोत्र चुनें</option>
-                                    <option value="Airan" data-en="Airan" data-hi="ऐरन">Airan (ऐरन)</option>
-                                    <option value="Bansal" data-en="Bansal" data-hi="बंसल">Bansal (बंसल)</option>
-                                    <option value="Bindal" data-en="Bindal" data-hi="बिंदल">Bindal (बिंदल)</option>
-                                    <option value="Bhandal" data-en="Bhandal" data-hi="भंदल">Bhandal (भंदल)</option>
-                                    <option value="Dharan" data-en="Dharan" data-hi="धारण">Dharan (धारण)</option>
-                                    <option value="Garg" data-en="Garg" data-hi="गर्ग">Garg (गर्ग)</option>
-                                    <option value="Goyal" data-en="Goyal" data-hi="गोयल">Goyal (गोयल)</option>
-                                    <option value="Goyan" data-en="Goyan" data-hi="गोयन">Goyan (गोयन)</option>
-                                    <option value="Jindal" data-en="Jindal" data-hi="जिंदल">Jindal (जिंदल)</option>
-                                    <option value="Kansal" data-en="Kansal" data-hi="कंसल">Kansal (कंसल)</option>
-                                    <option value="Kuchhal" data-en="Kuchhal" data-hi="कुच्छल">Kuchhal (कुच्छल)</option>
-                                    <option value="Madhukul" data-en="Madhukul" data-hi="मधुकुल">Madhukul (मधुकुल)</option>
-                                    <option value="Mangal" data-en="Mangal" data-hi="मंगल">Mangal (मंगल)</option>
-                                    <option value="Mittal" data-en="Mittal" data-hi="मित्तल">Mittal (मित्तल)</option>
-                                    <option value="Nangal" data-en="Nangal" data-hi="नांगल">Nangal (नांगल)</option>
-                                    <option value="Singhal" data-en="Singhal" data-hi="सिंघल">Singhal (सिंघल)</option>
-                                    <option value="Tayal" data-en="Tayal" data-hi="तायल">Tayal (तायल)</option>
-                                    <option value="Tingal" data-en="Tingal" data-hi="तिंगल">Tingal (तिंगल)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">व्यवसाय / Occupation</span><span class="lang-en">Occupation / Profession</span></label>
-                                <select id="occupation" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="" data-en="Select Occupation" data-hi="पेशा चुनें">Select Occupation / पेशा चुनें</option>
-                                    <option value="Government Job" data-en="Government Job" data-hi="सरकारी नौकरी">Government Job / सरकारी नौकरी</option>
-                                    <option value="Private Job" data-en="Private Job" data-hi="प्राइवेट नौकरी">Private Job / प्राइवेट नौकरी</option>
-                                    <option value="Business" data-en="Business" data-hi="व्यापार (Business)">Business / व्यापार</option>
-                                    <option value="Self Employed" data-en="Self Employed" data-hi="स्वरोजगार (Self Employed)">Self Employed / स्वरोजगार</option>
-                                    <option value="Professional" data-en="Professional" data-hi="पेशेवर (Professional)">Professional / पेशेवर</option>
-                                    <option value="Retired" data-en="Retired" data-hi="सेवानिवृत्त (Retired)">Retired / सेवानिवृत्त</option>
-                                    <option value="Student" data-en="Student" data-hi="विद्यार्थी (Student)">Student / विद्यार्थी</option>
-                                    <option value="Homemaker" data-en="Housewife / Homemaker" data-hi="गृहिणी (Homemaker)">Housewife / गृहिणी</option>
-                                    <option value="Other" data-en="Other" data-hi="अन्य (Other)">Other / अन्य</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">शिक्षा</span><span class="lang-en">Education</span></label>
-                                <select id="education" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="" data-en="Select Education" data-hi="शिक्षा चुनें">Select Education / शिक्षा चुनें</option>
-                                    <option value="High School" data-en="High School (10th)" data-hi="हाई स्कूल (10वीं)">High School (10th) / हाई स्कूल (10वीं)</option>
-                                    <option value="Intermediate" data-en="Intermediate (12th)" data-hi="इंटरमीडिएट (12वीं)">Intermediate (12th) / इंटरमीडिएट (12वीं)</option>
-                                    <option value="Diploma" data-en="Diploma" data-hi="डिप्लोमा">Diploma / डिप्लोमा</option>
-                                    <option value="Graduate" data-en="Graduate" data-hi="स्नातक (Graduate)">Graduate / स्नातक</option>
-                                    <option value="Post Graduate" data-en="Post Graduate" data-hi="स्नातकोत्तर (Post Graduate)">Post Graduate / स्नातकोत्तर</option>
-                                    <option value="Doctorate" data-en="Doctorate" data-hi="डॉक्टरेट (Doctorate)">Doctorate / डॉक्टरेट</option>
-                                    <option value="Professional Degree" data-en="Professional Degree" data-hi="व्यावसायिक डिग्री">Professional Degree / व्यावसायिक डिग्री</option>
-                                    <option value="Other" data-en="Other" data-hi="अन्य (Other)">Other / अन्य</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मूल निवास</span><span class="lang-en">Domicile</span></label>
-                                <input type="text" id="domicile" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                            </div>
-                        </div>
-                            </div>
-                            
-                            <div style="width: 150px; flex-shrink: 0;">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333; text-align: center;"><span class="lang-hi">आवेदक का फोटो <span style="color:red">*</span></span><span class="lang-en">Applicant Photo <span style="color:red">*</span></span></label>
-                                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                                        <label id="photoUploadLabel" for="applicantPhoto" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 140px; height: 160px; border: 2px dashed #bbb; border-radius: 8px; cursor: pointer; background: #f9f9f9; color: #666; transition: 0.3s; box-sizing: border-box;" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.color='var(--primary-color)';" onmouseout="this.style.borderColor='#bbb'; this.style.color='#666';">
-                                            <i class="fas fa-camera" style="font-size: 24px; margin-bottom: 8px;"></i>
-                                            <span style="font-size: 14px; font-weight: 600;">Upload Photo</span>
-                                        </label>
-                                        <input type="file" id="applicantPhoto" required accept="image/*" style="display: none;" onchange="previewImage(this, 'applicantPhotoPreview', 'photoUploadLabel')">
-                                        <img id="applicantPhotoPreview" src="" style="display:none; width: 140px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); box-sizing: border-box;" title="Click to change image">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contact Details -->
-                        <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">संपर्क विवरण</span><span class="lang-en">Contact Details</span></h3>
-                        <div class="form-group" style="margin-bottom: 20px;">
-                            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">स्थाई पता <span style="color:red">*</span></span><span class="lang-en">Permanent Address <span style="color:red">*</span></span></label>
-                            <textarea id="permanentAddress" required rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" oninput="if(document.getElementById('sameAsPermanent').checked) document.getElementById('officeAddress').value = this.value;"></textarea>
-                        </div>
-                        <div class="form-group" style="margin-bottom: 20px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 10px;">
-                                <label style="font-weight: bold; color: #333; margin: 0;"><span class="lang-hi">पत्राचार का पता</span><span class="lang-en">Communication Address</span></label>
-                                <label style="display: flex; align-items: center; gap: 8px; font-size: 0.9em; cursor: pointer; color: var(--primary-color); background: #fff4f4; border: 1px solid #f0d0d0; padding: 6px 15px; border-radius: 20px; font-weight: 500; white-space: nowrap; transition: 0.3s; box-shadow: 0 2px 5px rgba(220,53,69,0.1);" onmouseover="this.style.background='#ffefef'" onmouseout="this.style.background='#fff4f4'">
-                                    <input type="checkbox" id="sameAsPermanent" style="width: 16px; height: 16px; accent-color: var(--primary-color); cursor: pointer;" onchange="const pa = document.getElementById('permanentAddress'); const ca = document.getElementById('officeAddress'); if(this.checked){ ca.value = pa.value; ca.readOnly = true; ca.style.backgroundColor = '#f9f9f9'; } else { ca.readOnly = false; ca.style.backgroundColor = '#fff'; }">
-                                    <span class="lang-hi">स्थाई पते के समान</span><span class="lang-en">Same as Permanent Address</span>
-                                </label>
-                            </div>
-                            <textarea id="officeAddress" rows="2" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मकान</span><span class="lang-en">House Type</span></label>
-                                <select id="houseType" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="" data-en="Select" data-hi="चुनें">Select / चुनें</option>
-                                    <option value="Private" data-en="Private" data-hi="निजी">Private / निजी</option>
-                                    <option value="Rented" data-en="Rented" data-hi="किराए का">Rented / किराए का</option>
-                                </select>
-                            </div>
-                            <div class="form-group" style="position: relative;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
-                                <div style="display: flex; gap: 10px;">
-                                    <input type="tel" id="mobileNumber" required pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                    <button type="button" id="btnSendOtp" class="btn" style="background: #e0e0e0; color: #333; border: none; white-space: nowrap; padding: 0 20px; border-radius: 8px; cursor: pointer; transition: 0.2s;" onmouseover="this.style.background='#d0d0d0'" onmouseout="this.style.background='#e0e0e0'">Verify SMS</button>
-                                </div>
-                                <div id="otpSection" style="display: none; margin-top: 10px;">
-                                    <div style="display: flex; gap: 10px;">
-                                        <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" maxlength="6" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box;">
-                                        <button type="button" id="btnVerifyOtp" class="btn btn-primary" style="white-space: nowrap; padding: 0 20px; border-radius: 8px; border: none; cursor: pointer;">Confirm</button>
-                                    </div>
-                                </div>
-                                <div id="recaptcha-container" style="margin-top: 10px;"></div>
-                                <div id="phoneStatus" style="margin-top: 5px; font-size: 0.9em; font-weight: bold; display: none;"></div>
-                            </div>
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
-                                <input type="email" id="emailId" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                            </div>
-                        </div>
-
-                        <!-- Family Details -->
-                        <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">परिवार और बच्चों का विवरण</span><span class="lang-en">Family & Children Details</span></h3>
-                        <div class="form-group" style="margin-bottom: 30px; overflow-x: auto;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                <label style="font-weight: bold; color: #333; margin: 0;"><span class="lang-hi">परिवार के सदस्यों का विवरण</span><span class="lang-en">Family Members Details</span></label>
-                                <button type="button" id="addFamilyBtn" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.9rem;" onclick="addFamilyRow()">
-                                    <span class="lang-hi">+ सदस्य जोड़ें</span><span class="lang-en">+ Add Member</span>
-                                </button>
-                            </div>
-                            <table id="familyTable" style="width: 100%; border-collapse: collapse; min-width: 700px; text-align: left;">
-                                <thead>
-                                    <tr style="background: #f1f1f1; border-bottom: 2px solid #ddd;">
-                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">नाम</span><span class="lang-en">Name</span></th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">संबंध</span><span class="lang-en">Relationship</span></th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">जन्म तिथि</span><span class="lang-en">DOB</span></th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">वैवाहिक स्थिति</span><span class="lang-en">Marital Status</span></th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">शिक्षा</span><span class="lang-en">Education</span></th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">व्यवसाय</span><span class="lang-en">Business</span></th>
-                                        <th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">हटाएं</span><span class="lang-en">Action</span></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Rows added dynamically -->
-                                </tbody>
-                            </table>
-                            <small id="familyCountWarning" style="color: red; display: none; margin-top: 5px;">
-                                <span class="lang-hi">अधिकतम 8 परिवार के सदस्यों की अनुमति है।</span><span class="lang-en">Maximum 8 family members allowed.</span>
-                            </small>
-                            <script>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/919829220486" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+<header class="custom-header">
+<div class="header-container">
+<div class="header-image-box">
+<img alt="Maharaj Agrasen" class="agrasen-img" src="images/maharaj_agrasen.png"/>
+</div>
+<div class="header-content-box">
+<div class="header-title-row">
+<h1 class="header-main-title" style="line-height: 1.2;">
+<span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br/>
+<span class="lang-hi" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span class="lang-en" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
+</h1>
+</div>
+<nav class="red-navbar" id="navbar">
+<div class="menu-toggle" id="mobile-menu">
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+</div>
+<div class="mobile-drawer-close" id="drawer-close-btn">×</div>
+<ul class="nav-menu">
+<li><a class="nav-links" href="index.html"><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
+<li><a class="nav-links" href="about.html"><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
+<li><a class="nav-links" href="notices.html"><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
+<li><a class="nav-links" href="activities.html"><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
+<li><a class="nav-links" href="members.html"><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
+<li><a class="nav-links active" href="sadasyata.html"><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+<li><a class="nav-links" href="matrimonial.html"><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
+<li><a class="nav-links" href="donation.html"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+<li><a class="nav-links" href="booking.html"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
+<li><a class="nav-links" href="contact.html"><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
+<li><a class="nav-links" href="login.html"><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
+<li class="nav-item-toggle">
+<button class="language-toggle" id="lang-toggle"><i class="fas fa-language"></i> English</button>
+</li>
+</ul>
+</nav>
+</div>
+<div class="header-image-box-right">
+<img alt="Lakshmi Ji" class="lakshmi-img" src="images/lakshmi.png"/>
+</div>
+</div>
+</header>
+<main>
+<section class="section bg-cream" style="padding-top: 40px; padding-bottom: 60px;">
+<div class="container" style="max-width: 900px;">
+<h2 class="section-title animate-on-scroll"><span class="lang-hi">सदस्यता फॉर्म</span><span class="lang-en">Membership Form</span></h2>
+<div class="divider">❋ ༺ ॐ ༻ ❋</div>
+<div class="form-container" style="background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 30px;">
+<form action="#" id="membershipForm" method="POST">
+<!-- Personal Details -->
+<h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">व्यक्तिगत विवरण</span><span class="lang-en">Personal Details</span></h3>
+<div style="display: flex; flex-wrap: wrap-reverse; gap: 30px; margin-bottom: 30px;">
+<div style="flex: 1; min-width: 300px;">
+<div class="form-grid" style="margin-bottom: 0;">
+<div class="form-group material-filled-group" style="grid-column: 1 / -1;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
+<div style="display: flex; gap: 10px;">
+<select id="title-dropdown" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" required="" style="width: 100px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+<option data-en="Mr." data-hi="श्री" value="Mr.">श्री</option>
+<option data-en="Mrs." data-hi="श्रीमती" value="Mrs.">श्रीमती</option>
+<option data-en="Miss" data-hi="कुमारी" value="Miss">कुमारी</option>
+</select>
+<input data-placeholder-en="Enter Full Name" data-placeholder-hi="पूरा नाम दर्ज करें" id="fullName" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Full Name" required="" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" type="text"/>
+</div>
+</div>
+<div class="form-group material-filled-group" style="grid-column: 1 / -1;">
+<label id="guardian-name-label" style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पिता/पति का नाम <span style="color:red">*</span></span><span class="lang-en">Father's/Husband's Name <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Father's/Husband's Name" data-placeholder-hi="पिता/पति का नाम दर्ज करें" id="guardianName" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Father's/Husband's Name" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">जन्म तिथि</span><span class="lang-en">Date of Birth</span></label>
+<input data-placeholder-en="Enter Date of Birth" data-placeholder-hi="जन्म तिथि दर्ज करें" id="dob" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Date of Birth" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;" type="date"/>
+</div>
+<div class="form-group" id="married-status-group" style="display: none;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाहित?</span><span class="lang-en">Married?</span></label>
+<div style="display: flex; gap: 20px; align-items: center; height: calc(100% - 28px); padding-left: 10px;">
+<label style="cursor: pointer;"><input name="is_married" onchange="if(window.handleMarriageChange) window.handleMarriageChange()" type="radio" value="Yes"/> <span class="lang-hi">हाँ</span><span class="lang-en">Yes</span></label>
+<label style="cursor: pointer;"><input checked="" name="is_married" onchange="if(window.handleMarriageChange) window.handleMarriageChange()" type="radio" value="No"/> <span class="lang-hi">नहीं</span><span class="lang-en">No</span></label>
+</div>
+</div>
+<div class="form-group material-filled-group" id="marriage-date-group" style="display: none;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विवाह तिथि</span><span class="lang-en">Marriage Date</span></label>
+<input data-placeholder-en="Enter Marriage Date" data-placeholder-hi="विवाह तिथि दर्ज करें" id="marriageDate" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Marriage Date" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;" type="date"/>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">रक्त समूह</span><span class="lang-en">Blood Group</span></label>
+<select id="bloodGroup" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+<option data-en="Select" data-hi="चुनें" value="">Select / चुनें</option>
+<option value="A+">A+</option><option value="A-">A-</option>
+<option value="B+">B+</option><option value="B-">B-</option>
+<option value="O+">O+</option><option value="O-">O-</option>
+<option value="AB+">AB+</option><option value="AB-">AB-</option>
+</select>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">गोत्र <span style="color:red">*</span></span><span class="lang-en">Gotra <span style="color:red">*</span></span></label>
+<select id="gotra" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+<option data-en="Select Gotra" data-hi="गोत्र चुनें" value="">Select Gotra / गोत्र चुनें</option>
+<option data-en="Airan" data-hi="ऐरन" value="Airan">Airan (ऐरन)</option>
+<option data-en="Bansal" data-hi="बंसल" value="Bansal">Bansal (बंसल)</option>
+<option data-en="Bindal" data-hi="बिंदल" value="Bindal">Bindal (बिंदल)</option>
+<option data-en="Bhandal" data-hi="भंदल" value="Bhandal">Bhandal (भंदल)</option>
+<option data-en="Dharan" data-hi="धारण" value="Dharan">Dharan (धारण)</option>
+<option data-en="Garg" data-hi="गर्ग" value="Garg">Garg (गर्ग)</option>
+<option data-en="Goyal" data-hi="गोयल" value="Goyal">Goyal (गोयल)</option>
+<option data-en="Goyan" data-hi="गोयन" value="Goyan">Goyan (गोयन)</option>
+<option data-en="Jindal" data-hi="जिंदल" value="Jindal">Jindal (जिंदल)</option>
+<option data-en="Kansal" data-hi="कंसल" value="Kansal">Kansal (कंसल)</option>
+<option data-en="Kuchhal" data-hi="कुच्छल" value="Kuchhal">Kuchhal (कुच्छल)</option>
+<option data-en="Madhukul" data-hi="मधुकुल" value="Madhukul">Madhukul (मधुकुल)</option>
+<option data-en="Mangal" data-hi="मंगल" value="Mangal">Mangal (मंगल)</option>
+<option data-en="Mittal" data-hi="मित्तल" value="Mittal">Mittal (मित्तल)</option>
+<option data-en="Nangal" data-hi="नांगल" value="Nangal">Nangal (नांगल)</option>
+<option data-en="Singhal" data-hi="सिंघल" value="Singhal">Singhal (सिंघल)</option>
+<option data-en="Tayal" data-hi="तायल" value="Tayal">Tayal (तायल)</option>
+<option data-en="Tingal" data-hi="तिंगल" value="Tingal">Tingal (तिंगल)</option>
+</select>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">व्यवसाय / Occupation</span><span class="lang-en">Occupation / Profession</span></label>
+<select id="occupation" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+<option data-en="Select Occupation" data-hi="पेशा चुनें" value="">Select Occupation / पेशा चुनें</option>
+<option data-en="Government Job" data-hi="सरकारी नौकरी" value="Government Job">Government Job / सरकारी नौकरी</option>
+<option data-en="Private Job" data-hi="प्राइवेट नौकरी" value="Private Job">Private Job / प्राइवेट नौकरी</option>
+<option data-en="Business" data-hi="व्यापार (Business)" value="Business">Business / व्यापार</option>
+<option data-en="Self Employed" data-hi="स्वरोजगार (Self Employed)" value="Self Employed">Self Employed / स्वरोजगार</option>
+<option data-en="Professional" data-hi="पेशेवर (Professional)" value="Professional">Professional / पेशेवर</option>
+<option data-en="Retired" data-hi="सेवानिवृत्त (Retired)" value="Retired">Retired / सेवानिवृत्त</option>
+<option data-en="Student" data-hi="विद्यार्थी (Student)" value="Student">Student / विद्यार्थी</option>
+<option data-en="Housewife / Homemaker" data-hi="गृहिणी (Homemaker)" value="Homemaker">Housewife / गृहिणी</option>
+<option data-en="Other" data-hi="अन्य (Other)" value="Other">Other / अन्य</option>
+</select>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">शिक्षा</span><span class="lang-en">Education</span></label>
+<select id="education" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+<option data-en="Select Education" data-hi="शिक्षा चुनें" value="">Select Education / शिक्षा चुनें</option>
+<option data-en="High School (10th)" data-hi="हाई स्कूल (10वीं)" value="High School">High School (10th) / हाई स्कूल (10वीं)</option>
+<option data-en="Intermediate (12th)" data-hi="इंटरमीडिएट (12वीं)" value="Intermediate">Intermediate (12th) / इंटरमीडिएट (12वीं)</option>
+<option data-en="Diploma" data-hi="डिप्लोमा" value="Diploma">Diploma / डिप्लोमा</option>
+<option data-en="Graduate" data-hi="स्नातक (Graduate)" value="Graduate">Graduate / स्नातक</option>
+<option data-en="Post Graduate" data-hi="स्नातकोत्तर (Post Graduate)" value="Post Graduate">Post Graduate / स्नातकोत्तर</option>
+<option data-en="Doctorate" data-hi="डॉक्टरेट (Doctorate)" value="Doctorate">Doctorate / डॉक्टरेट</option>
+<option data-en="Professional Degree" data-hi="व्यावसायिक डिग्री" value="Professional Degree">Professional Degree / व्यावसायिक डिग्री</option>
+<option data-en="Other" data-hi="अन्य (Other)" value="Other">Other / अन्य</option>
+</select>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मूल निवास</span><span class="lang-en">Domicile</span></label>
+<input data-placeholder-en="Enter Domicile" data-placeholder-hi="मूल निवास दर्ज करें" id="domicile" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Domicile" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" type="text"/>
+</div>
+</div>
+</div>
+<div style="width: 150px; flex-shrink: 0;">
+<div class="form-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333; text-align: center;"><span class="lang-hi">आवेदक का फोटो <span style="color:red">*</span></span><span class="lang-en">Applicant Photo <span style="color:red">*</span></span></label>
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+<label for="applicantPhoto" id="photoUploadLabel" onmouseout="this.style.borderColor='#bbb'; this.style.color='#666';" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.color='var(--primary-color)';" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 140px; height: 160px; border: 2px dashed #bbb; border-radius: 8px; cursor: pointer; background: #f9f9f9; color: #666; transition: 0.3s; box-sizing: border-box;">
+<i class="fas fa-camera" style="font-size: 24px; margin-bottom: 8px;"></i>
+<span style="font-size: 14px; font-weight: 600;">Upload Photo</span>
+</label>
+<input accept="image/*" id="applicantPhoto" onchange="previewImage(this, 'applicantPhotoPreview', 'photoUploadLabel')" required="" style="display: none;" type="file"/>
+<img id="applicantPhotoPreview" src="" style="display:none; width: 140px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); box-sizing: border-box;" title="Click to change image"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Contact Details -->
+<h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">संपर्क विवरण</span><span class="lang-en">Contact Details</span></h3>
+<div class="form-group material-filled-group" style="margin-bottom: 20px;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">स्थाई पता <span style="color:red">*</span></span><span class="lang-en">Permanent Address <span style="color:red">*</span></span></label>
+<textarea data-placeholder-en="Enter Permanent Address" data-placeholder-hi="स्थाई पता दर्ज करें" id="permanentAddress" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" oninput="if(document.getElementById('sameAsPermanent').checked) document.getElementById('officeAddress').value = this.value;" placeholder="Enter Permanent Address" required="" rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;"></textarea>
+</div>
+<div class="form-group" style="margin-bottom: 20px;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 10px;">
+<label style="font-weight: bold; color: #333; margin: 0;"><span class="lang-hi">पत्राचार का पता</span><span class="lang-en">Communication Address</span></label>
+<label onmouseout="this.style.background='#fff4f4'" onmouseover="this.style.background='#ffefef'" style="display: flex; align-items: center; gap: 8px; font-size: 0.9em; cursor: pointer; color: var(--primary-color); background: #fff4f4; border: 1px solid #f0d0d0; padding: 6px 15px; border-radius: 20px; font-weight: 500; white-space: nowrap; transition: 0.3s; box-shadow: 0 2px 5px rgba(220,53,69,0.1);">
+<input id="sameAsPermanent" onchange="const pa = document.getElementById('permanentAddress'); const ca = document.getElementById('officeAddress'); if(this.checked){ ca.value = pa.value; ca.readOnly = true; ca.style.backgroundColor = '#f9f9f9'; } else { ca.readOnly = false; ca.style.backgroundColor = '#fff'; }" style="width: 16px; height: 16px; accent-color: var(--primary-color); cursor: pointer;" type="checkbox"/>
+<span class="lang-hi">स्थाई पते के समान</span><span class="lang-en">Same as Permanent Address</span>
+</label>
+</div>
+<textarea data-placeholder-en="Enter Communication Address" data-placeholder-hi="पत्राचार का पता दर्ज करें" id="officeAddress" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Communication Address" rows="2" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;"></textarea>
+</div>
+<div class="form-grid">
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मकान</span><span class="lang-en">House Type</span></label>
+<select id="houseType" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+<option data-en="Select" data-hi="चुनें" value="">Select / चुनें</option>
+<option data-en="Private" data-hi="निजी" value="Private">Private / निजी</option>
+<option data-en="Rented" data-hi="किराए का" value="Rented">Rented / किराए का</option>
+</select>
+</div>
+<div class="form-group material-filled-group" style="position: relative;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
+<div style="display: flex; gap: 10px;">
+<input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="mobileNumber" maxlength="10" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" title="Please enter exactly 10 digits" type="tel"/>
+<button class="btn" id="btnSendOtp" onmouseout="this.style.background='#e0e0e0'" onmouseover="this.style.background='#d0d0d0'" style="background: #e0e0e0; color: #333; border: none; white-space: nowrap; padding: 0 20px; border-radius: 8px; cursor: pointer; transition: 0.2s;" type="button">Verify SMS</button>
+</div>
+<div id="otpSection" style="display: none; margin-top: 10px;">
+<div style="display: flex; gap: 10px;">
+<input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="otpInput" maxlength="6" placeholder="Enter Mobile Number" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box;" type="text"/>
+<button class="btn btn-primary" id="btnVerifyOtp" style="white-space: nowrap; padding: 0 20px; border-radius: 8px; border: none; cursor: pointer;" type="button">Confirm</button>
+</div>
+</div>
+<div id="recaptcha-container" style="margin-top: 10px;"></div>
+<div id="phoneStatus" style="margin-top: 5px; font-size: 0.9em; font-weight: bold; display: none;"></div>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
+<input data-placeholder-en="Enter Email ID" data-placeholder-hi="ईमेल आईडी दर्ज करें" id="emailId" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Email ID" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" type="email"/>
+</div>
+</div>
+<!-- Family Details -->
+<h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">परिवार और बच्चों का विवरण</span><span class="lang-en">Family &amp; Children Details</span></h3>
+<div class="form-group material-filled-group" style="margin-bottom: 30px; overflow-x: auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+<label style="font-weight: bold; color: #333; margin: 0;"><span class="lang-hi">परिवार के सदस्यों का विवरण</span><span class="lang-en">Family Members Details</span></label>
+<button class="btn btn-secondary" id="addFamilyBtn" onclick="addFamilyRow()" style="padding: 6px 12px; font-size: 0.9rem;" type="button">
+<span class="lang-hi">+ सदस्य जोड़ें</span><span class="lang-en">+ Add Member</span>
+</button>
+</div>
+<table id="familyTable" style="width: 100%; border-collapse: collapse; min-width: 700px; text-align: left;">
+<thead>
+<tr style="background: #f1f1f1; border-bottom: 2px solid #ddd;">
+<th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">नाम</span><span class="lang-en">Name</span></th>
+<th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">संबंध</span><span class="lang-en">Relationship</span></th>
+<th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">जन्म तिथि</span><span class="lang-en">DOB</span></th>
+<th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">वैवाहिक स्थिति</span><span class="lang-en">Marital Status</span></th>
+<th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">शिक्षा</span><span class="lang-en">Education</span></th>
+<th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">व्यवसाय</span><span class="lang-en">Business</span></th>
+<th style="padding: 10px; border: 1px solid #ddd;"><span class="lang-hi">हटाएं</span><span class="lang-en">Action</span></th>
+</tr>
+</thead>
+<tbody>
+<!-- Rows added dynamically -->
+</tbody>
+</table>
+<small id="familyCountWarning" style="color: red; display: none; margin-top: 5px;">
+<span class="lang-hi">अधिकतम 8 परिवार के सदस्यों की अनुमति है।</span><span class="lang-en">Maximum 8 family members allowed.</span>
+</small>
+<script>
                                 function addFamilyRow() {
                                     const tbody = document.querySelector('#familyTable tbody');
                                     if (tbody.children.length >= 8) {
@@ -303,171 +295,156 @@
                                     addFamilyRow();
                                 });
                             </script>
-                        </div>
-
-                        <!-- Membership Type & Payment -->
-                        <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">सदस्यता प्रकार और शुल्क</span><span class="lang-en">Membership Type & Fees</span></h3>
-                        <div style="background: #fdf5e6; padding: 20px; border-radius: 8px; border-left: 5px solid var(--primary-color); margin-bottom: 25px;">
-                            <h4 style="margin-bottom: 15px; color: var(--primary-color);">Membership Fees / सदस्यता शुल्क</h4>
-                            <ul style="list-style-type: disc; margin-left: 20px; line-height: 1.8; color: #555;">
-                                <li><strong>आजीवन सदस्य (Life Member):</strong> ₹ 501/-</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">सदस्यता प्रकार चुनें <span style="color:red">*</span></span><span class="lang-en">Select Membership Type <span style="color:red">*</span></span></label>
-                                <div style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: #f9f9f9; color: #555; cursor: not-allowed;">
-                                    <span class="lang-hi">आजीवन सदस्य</span><span class="lang-en">Life Member</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">भुगतान का माध्यम <span style="color:red">*</span></span><span class="lang-en">Payment Mode <span style="color:red">*</span></span></label>
-                                <select id="paymentMode" onchange="togglePaymentFields()" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
-                                    <option value="" data-en="Select" data-hi="चुनें">Select / चुनें</option>
-                                    <option value="Bank" data-en="Bank Transfer" data-hi="बैंक ट्रांसफर">बैंक ट्रांसफर (Bank Transfer)</option>
-                                    <option value="UPI" data-en="UPI" data-hi="यूपीआई">यूपीआई (UPI)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Payment Information Box -->
-                        <div style="background: #fff8f8; padding: 25px; border-radius: 12px; border: 1px solid #ffcccc; margin-bottom: 35px; text-align: center;">
-                            <h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-university"></i> <span class="lang-hi">भुगतान विवरण</span><span class="lang-en">Payment Details</span></h4>
-                            <p style="margin-bottom: 15px; color: #555;"><span class="lang-hi">कृपया नीचे दिए गए बैंक खाते या UPI में शुल्क जमा करें।</span><span class="lang-en">Please deposit the fees in the bank account or UPI below.</span></p>
-                            
-                            <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left;">
-                                <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 300px;">
-                                    <h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Bank Details</h5>
-                                    <p style="margin-bottom: 5px;"><strong>Bank:</strong> State Bank of India</p>
-                                    <p style="margin-bottom: 5px;"><strong>A/C Name:</strong> Agrawal Samaj Samiti Agrawal Farm</p>
-                                    <p style="margin-bottom: 5px;"><strong>A/C No:</strong> 61324425081</p>
-                                    <p><strong>IFSC Code:</strong> SBIN0031767</p>
-                                </div>
-                                <div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 200px; text-align: center;">
-                                    <h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">UPI Scan & Pay</h5>
-                                    <div style="width: 150px; height: 150px; margin: 0 auto;">
-                                        <img src="images/sbi_donation_qr.png" alt="Donate via SBI UPI QR Code" style="width: 100%; height: 100%; border-radius: 8px; object-fit: contain; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                                    </div>
-                                    <p style="margin-top: 10px; font-size: 0.9rem; color: #555;">Scan to Pay</p>
-                                    <p style="margin-top: 5px; font-weight: bold; font-size: 0.95rem;">UPI ID: agarwalsamajsamiti@sbi</p>
-                                    <div style="margin-top: 15px;">
-                                        <a href="upi://pay?pa=agarwalsamajsamiti@sbi&pn=Agrawal%20Samaj%20Samiti&am=501&cu=INR" style="display: inline-block; background: var(--primary-color); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 3px 6px rgba(0,0,0,0.15)';">
-                                            <i class="fas fa-mobile-alt" style="margin-right: 6px;"></i> <span class="lang-hi">UPI ऐप से भुगतान करें (₹501)</span><span class="lang-en">Pay via UPI App (₹501)</span>
-                                        </a>
-                                        <p style="font-size: 0.75rem; color: #777; margin-top: 8px; line-height: 1.2;">
-                                            <span class="lang-hi">* केवल मोबाइल पर काम करेगा</span><span class="lang-en">* Works on mobile devices only</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Transaction Details Form Fields -->
-                        <div id="paymentConfirmationContainer" style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 30px;">
-                            <h4 style="margin-bottom: 15px; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 8px;"><span class="lang-hi">भुगतान पुष्टि विवरण</span><span class="lang-en">Payment Confirmation Details</span></h4>
-                            
-                            <div id="onlinePaymentSection">
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">UPI / पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">UPI / Payment Screenshot <span style="color:red">*</span></span></label>
-                                        <div style="display: flex; gap: 20px; align-items: flex-start; justify-content: flex-end; width: 100%;">
-                                            <input type="file" id="paymentScreenshot" required accept="image/*" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'paymentScreenshotPreview')">
-                                            <img id="paymentScreenshotPreview" src="" style="display:none; margin-left: auto; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ट्रांजेक्शन आईडी / संदर्भ संख्या <span style="color:red">*</span></span><span class="lang-en">Transaction ID / Reference No. <span style="color:red">*</span></span></label>
-                                        <input type="text" id="transactionId" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आवेदक के बैंक खाते का नाम <span style="color:red">*</span></span><span class="lang-en">Applicant Bank Account Name <span style="color:red">*</span></span></label>
-                                        <input type="text" id="bankAccountName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                    </div>
-                                    <div class="form-group">
-                                        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">यूटीआर (UTR) नंबर</span><span class="lang-en">UTR No.</span></label>
-                                        <input type="text" id="utrNo" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="background: #fff8e1; border-left: 4px solid var(--primary-color); padding: 15px; margin-bottom: 25px; border-radius: 4px; font-size: 0.95rem; line-height: 1.6; color: #444;">
-                            <strong style="color: var(--primary-color);"><span class="lang-hi">विशेष:</span><span class="lang-en">Note:</span></strong><br>
-                            <span class="lang-hi">1. कृपया 21 वर्ष से अधिक के अविवाहित युवक, 18 वर्ष से अधिक की अविवाहित युवती का सम्पूर्ण विवरण संलग्न करें।</span>
-                            <span class="lang-en">1. Please attach complete details of unmarried young men above 21 years of age and unmarried young women above 18 years of age.</span><br>
-                            <span class="lang-hi">2. यह केवल आजीवन सदस्यता फॉर्म है, जिसका शुल्क 501/- रू. है।</span>
-                            <span class="lang-en">2. This is only a lifetime membership form, the fee is Rs. 501/-.</span><br>
-                            <span class="lang-hi">3. 18 वर्ष से अधिक के युवक युवती अलग से सदस्यता गृहण कर सकते है।</span>
-                            <span class="lang-en">3. Young men and women above 18 years of age can take membership separately.</span>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 30px; background: #fff8f8; padding: 20px; border-radius: 8px; border: 1px solid #f0d0d0; text-align: left;">
-                            <label style="display: flex; align-items: flex-start; gap: 15px; cursor: pointer;">
-                                <input type="checkbox" id="applicantSignatureDeclaration" required style="width: 25px; height: 25px; margin-top: 2px; accent-color: var(--primary-color);">
-                                <div style="color: #333; font-size: 1.05rem; line-height: 1.5;">
-                                    <strong style="color: var(--primary-color); display: block; margin-bottom: 5px; font-size: 1.1rem;"><span class="lang-hi">डिजिटल घोषणा (Digital Declaration)</span><span class="lang-en">Digital Declaration</span> <span style="color:red">*</span></strong>
-                                    <span class="lang-hi">मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई उपरोक्त सभी जानकारी पूर्णतया सत्य है। मैं अग्रवाल समाज समिति के विधान एवं नियमों से सहमत हूँ और उनके पालन के लिए वचनबद्ध हूँ। यह मेरी डिजिटल सहमति है।</span>
-                                    <span class="lang-en">I declare that all information provided by me is true and correct. I agree to abide by the rules of Agrawal Samaj Samiti. This acts as my digital signature.</span>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div style="text-align: center;">
-                            
-                <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
-                <button type="submit" id="submitButton" class="btn" disabled style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: not-allowed; background-color: #ccc; box-shadow: none; color: #666; transition: 0.3s;"><i class="fas fa-lock" id="submitLockIcon"></i> <span class="lang-hi">फॉर्म जमा करें (पहले फोन वेरीफाई करें)</span><span class="lang-en">Submit Form (Verify Phone First)</span></button>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo-placeholder small">ॐ</div>
-                    <h3>अग्रवाल समाज समिति<br>अग्रवाल फार्म</h3>
-                </div>
-                <div class="footer-links">
-                    <h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
-                        <li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
-                        <li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
-                        <li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
-                        <li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
-                        <li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
-                        <li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
-                        <li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
-                        <li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
-                        <li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
-                        <li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
-                    <p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
-                <p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
-            </div>
-        </div>
-    </footer>
-    <!-- Firebase Analytics -->
-    
-
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="react.js?v=16"></script>
-    <script>
+</div>
+<!-- Membership Type & Payment -->
+<h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">सदस्यता प्रकार और शुल्क</span><span class="lang-en">Membership Type &amp; Fees</span></h3>
+<div style="background: #fdf5e6; padding: 20px; border-radius: 8px; border-left: 5px solid var(--primary-color); margin-bottom: 25px;">
+<h4 style="margin-bottom: 15px; color: var(--primary-color);">Membership Fees / सदस्यता शुल्क</h4>
+<ul style="list-style-type: disc; margin-left: 20px; line-height: 1.8; color: #555;">
+<li><strong>आजीवन सदस्य (Life Member):</strong> ₹ 501/-</li>
+</ul>
+</div>
+<div class="form-grid">
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">सदस्यता प्रकार चुनें <span style="color:red">*</span></span><span class="lang-en">Select Membership Type <span style="color:red">*</span></span></label>
+<div style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: #f9f9f9; color: #555; cursor: not-allowed;">
+<span class="lang-hi">आजीवन सदस्य</span><span class="lang-en">Life Member</span>
+</div>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">भुगतान का माध्यम <span style="color:red">*</span></span><span class="lang-en">Payment Mode <span style="color:red">*</span></span></label>
+<select id="paymentMode" onchange="togglePaymentFields()" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+<option data-en="Select" data-hi="चुनें" value="">Select / चुनें</option>
+<option data-en="Bank Transfer" data-hi="बैंक ट्रांसफर" value="Bank">बैंक ट्रांसफर (Bank Transfer)</option>
+<option data-en="UPI" data-hi="यूपीआई" value="UPI">यूपीआई (UPI)</option>
+</select>
+</div>
+</div>
+<!-- Payment Information Box -->
+<div style="background: #fff8f8; padding: 25px; border-radius: 12px; border: 1px solid #ffcccc; margin-bottom: 35px; text-align: center;">
+<h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-university"></i> <span class="lang-hi">भुगतान विवरण</span><span class="lang-en">Payment Details</span></h4>
+<p style="margin-bottom: 15px; color: #555;"><span class="lang-hi">कृपया नीचे दिए गए बैंक खाते या UPI में शुल्क जमा करें।</span><span class="lang-en">Please deposit the fees in the bank account or UPI below.</span></p>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left;">
+<div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 300px;">
+<h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Bank Details</h5>
+<p style="margin-bottom: 5px;"><strong>Bank:</strong> State Bank of India</p>
+<p style="margin-bottom: 5px;"><strong>A/C Name:</strong> Agrawal Samaj Samiti Agrawal Farm</p>
+<p style="margin-bottom: 5px;"><strong>A/C No:</strong> 61324425081</p>
+<p><strong>IFSC Code:</strong> SBIN0031767</p>
+</div>
+<div style="background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 200px; text-align: center;">
+<h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">UPI Scan &amp; Pay</h5>
+<div style="width: 150px; height: 150px; margin: 0 auto;">
+<img alt="Donate via SBI UPI QR Code" src="images/sbi_donation_qr.png" style="width: 100%; height: 100%; border-radius: 8px; object-fit: contain; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"/>
+</div>
+<p style="margin-top: 10px; font-size: 0.9rem; color: #555;">Scan to Pay</p>
+<p style="margin-top: 5px; font-weight: bold; font-size: 0.95rem;">UPI ID: agarwalsamajsamiti@sbi</p>
+<div style="margin-top: 15px;">
+<a href="upi://pay?pa=agarwalsamajsamiti@sbi&amp;pn=Agrawal%20Samaj%20Samiti&amp;am=501&amp;cu=INR" onmouseout="this.style.transform='none'; this.style.boxShadow='0 3px 6px rgba(0,0,0,0.15)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 12px rgba(0,0,0,0.2)';" style="display: inline-block; background: var(--primary-color); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.3s;">
+<i class="fas fa-mobile-alt" style="margin-right: 6px;"></i> <span class="lang-hi">UPI ऐप से भुगतान करें (₹501)</span><span class="lang-en">Pay via UPI App (₹501)</span>
+</a>
+<p style="font-size: 0.75rem; color: #777; margin-top: 8px; line-height: 1.2;">
+<span class="lang-hi">* केवल मोबाइल पर काम करेगा</span><span class="lang-en">* Works on mobile devices only</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Transaction Details Form Fields -->
+<div id="paymentConfirmationContainer" style="background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 30px;">
+<h4 style="margin-bottom: 15px; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 8px;"><span class="lang-hi">भुगतान पुष्टि विवरण</span><span class="lang-en">Payment Confirmation Details</span></h4>
+<div id="onlinePaymentSection">
+<div class="form-grid">
+<div class="form-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">UPI / पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">UPI / Payment Screenshot <span style="color:red">*</span></span></label>
+<div style="display: flex; gap: 20px; align-items: flex-start; justify-content: flex-end; width: 100%;">
+<input accept="image/*" id="paymentScreenshot" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'paymentScreenshotPreview')" onfocus="this.style.borderColor='var(--primary-color)'" required="" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" type="file"/>
+<img id="paymentScreenshotPreview" src="" style="display:none; margin-left: auto; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"/>
+</div>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ट्रांजेक्शन आईडी / संदर्भ संख्या <span style="color:red">*</span></span><span class="lang-en">Transaction ID / Reference No. <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Transaction ID / Reference No." data-placeholder-hi="ट्रांजेक्शन आईडी / संदर्भ संख्या दर्ज करें" id="transactionId" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Transaction ID / Reference No." required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आवेदक के बैंक खाते का नाम <span style="color:red">*</span></span><span class="lang-en">Applicant Bank Account Name <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Applicant Bank Account Name" data-placeholder-hi="आवेदक के बैंक खाते का नाम दर्ज करें" id="bankAccountName" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Applicant Bank Account Name" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">यूटीआर (UTR) नंबर</span><span class="lang-en">UTR No.</span></label>
+<input data-placeholder-en="Enter UTR No." data-placeholder-hi="यूटीआर (UTR) नंबर दर्ज करें" id="utrNo" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter UTR No." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<div style="background: #fff8e1; border-left: 4px solid var(--primary-color); padding: 15px; margin-bottom: 25px; border-radius: 4px; font-size: 0.95rem; line-height: 1.6; color: #444;">
+<strong style="color: var(--primary-color);"><span class="lang-hi">विशेष:</span><span class="lang-en">Note:</span></strong><br/>
+<span class="lang-hi">1. कृपया 21 वर्ष से अधिक के अविवाहित युवक, 18 वर्ष से अधिक की अविवाहित युवती का सम्पूर्ण विवरण संलग्न करें।</span>
+<span class="lang-en">1. Please attach complete details of unmarried young men above 21 years of age and unmarried young women above 18 years of age.</span><br/>
+<span class="lang-hi">2. यह केवल आजीवन सदस्यता फॉर्म है, जिसका शुल्क 501/- रू. है।</span>
+<span class="lang-en">2. This is only a lifetime membership form, the fee is Rs. 501/-.</span><br/>
+<span class="lang-hi">3. 18 वर्ष से अधिक के युवक युवती अलग से सदस्यता गृहण कर सकते है।</span>
+<span class="lang-en">3. Young men and women above 18 years of age can take membership separately.</span>
+</div>
+<div class="form-group" style="margin-bottom: 30px; background: #fff8f8; padding: 20px; border-radius: 8px; border: 1px solid #f0d0d0; text-align: left;">
+<label style="display: flex; align-items: flex-start; gap: 15px; cursor: pointer;">
+<input id="applicantSignatureDeclaration" required="" style="width: 25px; height: 25px; margin-top: 2px; accent-color: var(--primary-color);" type="checkbox"/>
+<div style="color: #333; font-size: 1.05rem; line-height: 1.5;">
+<strong style="color: var(--primary-color); display: block; margin-bottom: 5px; font-size: 1.1rem;"><span class="lang-hi">डिजिटल घोषणा (Digital Declaration)</span><span class="lang-en">Digital Declaration</span> <span style="color:red">*</span></strong>
+<span class="lang-hi">मैं घोषणा करता/करती हूँ कि मेरे द्वारा दी गई उपरोक्त सभी जानकारी पूर्णतया सत्य है। मैं अग्रवाल समाज समिति के विधान एवं नियमों से सहमत हूँ और उनके पालन के लिए वचनबद्ध हूँ। यह मेरी डिजिटल सहमति है।</span>
+<span class="lang-en">I declare that all information provided by me is true and correct. I agree to abide by the rules of Agrawal Samaj Samiti. This acts as my digital signature.</span>
+</div>
+</label>
+</div>
+<div style="text-align: center;">
+<div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
+<button class="btn" disabled="" id="submitButton" style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: not-allowed; background-color: #ccc; box-shadow: none; color: #666; transition: 0.3s;" type="submit"><i class="fas fa-lock" id="submitLockIcon"></i> <span class="lang-hi">फॉर्म जमा करें (पहले फोन वेरीफाई करें)</span><span class="lang-en">Submit Form (Verify Phone First)</span></button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<div class="logo-placeholder small">ॐ</div>
+<h3>अग्रवाल समाज समिति<br/>अग्रवाल फार्म</h3>
+</div>
+<div class="footer-links">
+<h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
+<ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
+<li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
+<li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
+<li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
+<li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
+<li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
+<li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
+<li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
+<li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
+<li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
+<li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
+<p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
+<p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
+<p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
+</div>
+</div>
+</footer>
+<!-- Firebase Analytics -->
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="react.js?v=16"></script>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             const titleDropdown = document.getElementById('title-dropdown');
             const guardianNameLabel = document.getElementById('guardian-name-label');
@@ -527,10 +504,10 @@
             observer.observe(document.body, { attributes: true });
         });
     </script>
-    <script src="submit_handler.js?v=96"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="pdf_generator.js?v=7"></script>
-    <script>
+<script src="submit_handler.js?v=96"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="pdf_generator.js?v=7"></script>
+<script>
         function togglePaymentFields() {
             const mode = document.getElementById('paymentMode').value;
             const container = document.getElementById('paymentConfirmationContainer');
@@ -600,9 +577,8 @@
             }
         }
     </script>
-
-    <!-- Firebase Phone Auth for Form -->
-    <script type="module">
+<!-- Firebase Phone Auth for Form -->
+<script type="module">
         import { auth, RecaptchaVerifier, signInWithPhoneNumber } from './firebase_auth.js';
 
         let confirmationResult = null;
@@ -755,5 +731,4 @@
 
     </script>
 </body>
-
 </html>

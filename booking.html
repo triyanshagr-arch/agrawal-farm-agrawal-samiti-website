@@ -1,198 +1,182 @@
 <!DOCTYPE html>
+
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>हॉल बुकिंग | Hall Booking - Agrawal Samiti</title>
-    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css?v=16">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>हॉल बुकिंग | Hall Booking - Agrawal Samiti</title>
+<link href="images/maharaj_agrasen.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=1784367175" rel="stylesheet"/>
+<script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
-    <a href="https://wa.me/919829220486" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <header class="custom-header">
-        <div class="header-container">
-            <div class="header-image-box">
-                <img src="images/maharaj_agrasen.png" alt="Maharaj Agrasen" class="agrasen-img">
-            </div>
-            <div class="header-content-box">
-                <div class="header-title-row">
-                    <h1 class="header-main-title" style="line-height: 1.2;">
-                        <span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br>
-                        <span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-hi">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-en">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
-                    </h1>
-                </div>
-                <nav class="red-navbar" id="navbar">
-                    <div class="menu-toggle" id="mobile-menu">
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                    </div>
-                    <div class="mobile-drawer-close" id="drawer-close-btn">&times;</div>
-                    <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-links "><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
-                        <li><a href="about.html" class="nav-links "><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
-                        <li><a href="notices.html" class="nav-links "><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
-                        <li><a href="activities.html" class="nav-links "><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
-                        <li><a href="members.html" class="nav-links "><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
-                        <li><a href="sadasyata.html" class="nav-links "><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
-                        <li><a href="matrimonial.html" class="nav-links "><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
-                        <li><a href="donation.html" class="nav-links "><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
-                        <li><a href="booking.html" class="nav-links active"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
-                        <li><a href="contact.html" class="nav-links "><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
-                        <li><a href="login.html" class="nav-links "><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
-                        
-                    <li class="nav-item-toggle">
-                        <button id="lang-toggle" class="language-toggle"><i class="fas fa-language"></i> English</button>
-                    </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header-image-box-right">
-                <img src="images/lakshmi.png" alt="Lakshmi Ji" class="lakshmi-img">
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="section bg-cream" style="padding-top: 40px; padding-bottom: 60px;">
-            <div class="container" style="max-width: 900px;">
-                <h2 class="section-title animate-on-scroll"><span class="lang-hi">हॉल एवं सुविधा बुकिंग</span><span class="lang-en">Hall & Facility Booking</span></h2>
-                <div class="divider">❋ ༺ ॐ ༻ ❋</div>
-
-                <div style="background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 30px; text-align: center;">
-                    
-                    <div style="margin-bottom: 30px;">
-                        <i class="fas fa-calendar-check" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 20px;"></i>
-                        <h3 style="font-size: 2rem; color: #333; margin-bottom: 15px;"><span class="lang-hi">अग्र मंदिर भवन सुविधा बुकिंग</span><span class="lang-en">Agra Mandir Bhawan Facility Booking</span></h3>
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555;"><span class="lang-hi">अग्रवाल समाज समिति द्वारा विभिन्न सामाजिक और पारिवारिक कार्यक्रमों के लिए रियायती दरों पर सुविधाएँ प्रदान की जाती हैं। कृपया नीचे दिए गए फॉर्म को भरकर अपनी बुकिंग का अनुरोध करें। समिति आपसे जल्द ही संपर्क करेगी।</span><span class="lang-en">Agrawal Samaj Samiti provides facilities at discounted rates for various social and family events. Please fill the form below to request a booking. The Samiti will contact you shortly.</span></p>
-                    </div>
-
-                    <div style="background: #fff; padding: 30px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 35px; text-align: left;">
-                        <h4 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.4rem; text-align: center;"><span class="lang-hi">बुकिंग फॉर्म</span><span class="lang-en">Booking Form</span></h4>
-                        
-                        <form id="bookingForm" style="max-width: 700px; margin: 0 auto;">
-                            <!-- Personal Details -->
-                            <div class="form-group" style="margin-bottom: 20px;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
-                                <input type="text" id="bookingName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;">
-                            </div>
-
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
-                                    <input type="tel" id="bookingMobile" required pattern="[0-9]{10}" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;">
-                                </div>
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
-                                    <input type="email" id="bookingEmail" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;">
-                                </div>
-                            </div>
-
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">कार्यक्रम का प्रकार <span style="color:red">*</span></span><span class="lang-en">Event Type <span style="color:red">*</span></span></label>
-                                    <select id="eventType" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;">
-                                        <option value="">Select Event Type / कार्यक्रम चुनें</option>
-                                        <option value="Marriage / Reception">Marriage / Reception (विवाह / रिसेप्शन)</option>
-                                        <option value="Sagai / Roka">Sagai / Roka (सगाई / रोका)</option>
-                                        <option value="Birthday / Anniversary">Birthday / Anniversary (जन्मदिन / सालगिरह)</option>
-                                        <option value="Meeting / Seminar">Meeting / Seminar (बैठक / संगोष्ठी)</option>
-                                        <option value="Other">Other (अन्य)</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">सुविधा <span style="color:red">*</span></span><span class="lang-en">Facility Required <span style="color:red">*</span></span></label>
-                                    <select id="facilityRequired" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;">
-                                        <option value="">Select Facility / सुविधा चुनें</option>
-                                        <option value="AC Banquet Hall">AC Banquet Hall / एसी बैंक्वेट हॉल</option>
-                                        <option value="Open Ground / Lawn">Open Ground / Lawn / खुला मैदान / लॉन</option>
-                                        <option value="Conference Room">Conference Room / सम्मेलन कक्ष</option>
-                                        <option value="Guest Rooms">Guest Rooms / अतिथि कक्ष</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आरंभ तिथि <span style="color:red">*</span></span><span class="lang-en">Start Date <span style="color:red">*</span></span></label>
-                                    <input type="date" id="startDate" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;">
-                                </div>
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">समाप्ति तिथि <span style="color:red">*</span></span><span class="lang-en">End Date <span style="color:red">*</span></span></label>
-                                    <input type="date" id="endDate" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;">
-                                </div>
-                            </div>
-                            
-                            <div class="form-group" style="margin-bottom: 20px;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">अपेक्षित अतिथि संख्या</span><span class="lang-en">Expected Guests</span></label>
-                                <input type="number" id="expectedGuests" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;">
-                            </div>
-
-                            <div class="form-group" style="margin-bottom: 30px;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विशेष विवरण / टिप्पणी</span><span class="lang-en">Remarks / Special Requests</span></label>
-                                <textarea id="remarks" rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical; font-family: inherit;"></textarea>
-                            </div>
-
-                            
-                <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
-                <button type="submit" class="btn btn-primary" id="submitBookingBtn" style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 8px;">
-                                <span class="lang-hi">बुकिंग अनुरोध सबमिट करें</span><span class="lang-en">Submit Booking Request</span>
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo-placeholder small">ॐ</div>
-                    <h3>अग्रवाल समाज समिति<br>अग्रवाल फार्म</h3>
-                </div>
-                <div class="footer-links">
-                    <h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
-                        <li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
-                        <li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
-                        <li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
-                        <li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
-                        <li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
-                        <li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
-                        <li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
-                        <li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
-                        <li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
-                        <li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
-                    <p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
-                <p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="react.js?v=16"></script>
-    <script src="submit_handler.js?v=96"></script>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/919829220486" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+<header class="custom-header">
+<div class="header-container">
+<div class="header-image-box">
+<img alt="Maharaj Agrasen" class="agrasen-img" src="images/maharaj_agrasen.png"/>
+</div>
+<div class="header-content-box">
+<div class="header-title-row">
+<h1 class="header-main-title" style="line-height: 1.2;">
+<span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br/>
+<span class="lang-hi" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span class="lang-en" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
+</h1>
+</div>
+<nav class="red-navbar" id="navbar">
+<div class="menu-toggle" id="mobile-menu">
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+</div>
+<div class="mobile-drawer-close" id="drawer-close-btn">×</div>
+<ul class="nav-menu">
+<li><a class="nav-links" href="index.html"><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
+<li><a class="nav-links" href="about.html"><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
+<li><a class="nav-links" href="notices.html"><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
+<li><a class="nav-links" href="activities.html"><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
+<li><a class="nav-links" href="members.html"><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
+<li><a class="nav-links" href="sadasyata.html"><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+<li><a class="nav-links" href="matrimonial.html"><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
+<li><a class="nav-links" href="donation.html"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+<li><a class="nav-links active" href="booking.html"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
+<li><a class="nav-links" href="contact.html"><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
+<li><a class="nav-links" href="login.html"><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
+<li class="nav-item-toggle">
+<button class="language-toggle" id="lang-toggle"><i class="fas fa-language"></i> English</button>
+</li>
+</ul>
+</nav>
+</div>
+<div class="header-image-box-right">
+<img alt="Lakshmi Ji" class="lakshmi-img" src="images/lakshmi.png"/>
+</div>
+</div>
+</header>
+<main>
+<section class="section bg-cream" style="padding-top: 40px; padding-bottom: 60px;">
+<div class="container" style="max-width: 900px;">
+<h2 class="section-title animate-on-scroll"><span class="lang-hi">हॉल एवं सुविधा बुकिंग</span><span class="lang-en">Hall &amp; Facility Booking</span></h2>
+<div class="divider">❋ ༺ ॐ ༻ ❋</div>
+<div style="background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 30px; text-align: center;">
+<div style="margin-bottom: 30px;">
+<i class="fas fa-calendar-check" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+<h3 style="font-size: 2rem; color: #333; margin-bottom: 15px;"><span class="lang-hi">अग्र मंदिर भवन सुविधा बुकिंग</span><span class="lang-en">Agra Mandir Bhawan Facility Booking</span></h3>
+<p style="font-size: 1.1rem; line-height: 1.8; color: #555;"><span class="lang-hi">अग्रवाल समाज समिति द्वारा विभिन्न सामाजिक और पारिवारिक कार्यक्रमों के लिए रियायती दरों पर सुविधाएँ प्रदान की जाती हैं। कृपया नीचे दिए गए फॉर्म को भरकर अपनी बुकिंग का अनुरोध करें। समिति आपसे जल्द ही संपर्क करेगी।</span><span class="lang-en">Agrawal Samaj Samiti provides facilities at discounted rates for various social and family events. Please fill the form below to request a booking. The Samiti will contact you shortly.</span></p>
+</div>
+<div style="background: #fff; padding: 30px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 35px; text-align: left;">
+<h4 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.4rem; text-align: center;"><span class="lang-hi">बुकिंग फॉर्म</span><span class="lang-en">Booking Form</span></h4>
+<form id="bookingForm" style="max-width: 700px; margin: 0 auto;">
+<!-- Personal Details -->
+<div class="form-group material-filled-group" style="margin-bottom: 20px;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Full Name" data-placeholder-hi="पूरा नाम दर्ज करें" id="bookingName" placeholder="Enter Full Name" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="text"/>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="bookingMobile" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="tel"/>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
+<input data-placeholder-en="Enter Email ID" data-placeholder-hi="ईमेल आईडी दर्ज करें" id="bookingEmail" placeholder="Enter Email ID" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="email"/>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">कार्यक्रम का प्रकार <span style="color:red">*</span></span><span class="lang-en">Event Type <span style="color:red">*</span></span></label>
+<select id="eventType" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;">
+<option value="">Select Event Type / कार्यक्रम चुनें</option>
+<option value="Marriage / Reception">Marriage / Reception (विवाह / रिसेप्शन)</option>
+<option value="Sagai / Roka">Sagai / Roka (सगाई / रोका)</option>
+<option value="Birthday / Anniversary">Birthday / Anniversary (जन्मदिन / सालगिरह)</option>
+<option value="Meeting / Seminar">Meeting / Seminar (बैठक / संगोष्ठी)</option>
+<option value="Other">Other (अन्य)</option>
+</select>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">सुविधा <span style="color:red">*</span></span><span class="lang-en">Facility Required <span style="color:red">*</span></span></label>
+<select id="facilityRequired" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;">
+<option value="">Select Facility / सुविधा चुनें</option>
+<option value="AC Banquet Hall">AC Banquet Hall / एसी बैंक्वेट हॉल</option>
+<option value="Open Ground / Lawn">Open Ground / Lawn / खुला मैदान / लॉन</option>
+<option value="Conference Room">Conference Room / सम्मेलन कक्ष</option>
+<option value="Guest Rooms">Guest Rooms / अतिथि कक्ष</option>
+</select>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">आरंभ तिथि <span style="color:red">*</span></span><span class="lang-en">Start Date <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Start Date" data-placeholder-hi="आरंभ तिथि दर्ज करें" id="startDate" placeholder="Enter Start Date" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="date"/>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">समाप्ति तिथि <span style="color:red">*</span></span><span class="lang-en">End Date <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter End Date" data-placeholder-hi="समाप्ति तिथि दर्ज करें" id="endDate" placeholder="Enter End Date" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="date"/>
+</div>
+</div>
+<div class="form-group material-filled-group" style="margin-bottom: 20px;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">अपेक्षित अतिथि संख्या</span><span class="lang-en">Expected Guests</span></label>
+<input data-placeholder-en="Enter Expected Guests" data-placeholder-hi="अपेक्षित अतिथि संख्या दर्ज करें" id="expectedGuests" placeholder="Enter Expected Guests" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="number"/>
+</div>
+<div class="form-group material-filled-group" style="margin-bottom: 30px;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विशेष विवरण / टिप्पणी</span><span class="lang-en">Remarks / Special Requests</span></label>
+<textarea data-placeholder-en="Enter Remarks / Special Requests" data-placeholder-hi="विशेष विवरण / टिप्पणी दर्ज करें" id="remarks" placeholder="Enter Remarks / Special Requests" rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical; font-family: inherit;"></textarea>
+</div>
+<div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
+<button class="btn btn-primary" id="submitBookingBtn" style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 8px;" type="submit">
+<span class="lang-hi">बुकिंग अनुरोध सबमिट करें</span><span class="lang-en">Submit Booking Request</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<div class="logo-placeholder small">ॐ</div>
+<h3>अग्रवाल समाज समिति<br/>अग्रवाल फार्म</h3>
+</div>
+<div class="footer-links">
+<h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
+<ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
+<li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
+<li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
+<li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
+<li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
+<li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
+<li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
+<li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
+<li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
+<li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
+<li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
+<p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
+<p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
+<p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
+</div>
+</div>
+</footer>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="react.js?v=16"></script>
+<script src="submit_handler.js?v=96"></script>
 </body>
 </html>

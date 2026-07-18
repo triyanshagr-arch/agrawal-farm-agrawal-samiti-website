@@ -1,22 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - अग्रवाल समाज समिति</title>
-    <!-- Favicon -->
-    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css?v=16">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - अग्रवाल समाज समिति</title>
+<!-- Favicon -->
+<link href="images/maharaj_agrasen.png" rel="icon" type="image/png"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=1784367175" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
         .login-section {
             padding: 80px 20px;
             background-color: var(--bg-cream);
@@ -79,124 +79,117 @@
     </style>
 </head>
 <body>
-    <header class="custom-header">
-        <div class="header-container">
-            <div class="header-image-box">
-                <img src="images/maharaj_agrasen.png" alt="Maharaj Agrasen" class="agrasen-img">
-            </div>
-            <div class="header-content-box">
-                <div class="header-title-row">
-                    <h1 class="header-main-title" style="line-height: 1.2;">
-                        <span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br>
-                        <span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-hi">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-en">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
-                    </h1>
-                </div>
-                
-                <nav class="red-navbar" id="navbar">
-                    <div class="menu-toggle" id="mobile-menu">
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                    </div>
-                    <div class="mobile-drawer-close" id="drawer-close-btn">&times;</div>
-                    <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-links"><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
-                        <li><a href="about.html" class="nav-links"><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
-                        <li><a href="notices.html" class="nav-links"><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
-                        <li><a href="activities.html" class="nav-links"><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
-                        <li><a href="members.html" class="nav-links"><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
-                        <li><a href="sadasyata.html" class="nav-links"><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
-                        <li><a href="matrimonial.html" class="nav-links"><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
-                        <li><a href="donation.html" class="nav-links"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
-                        <li><a href="booking.html" class="nav-links"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
-                        <li><a href="contact.html" class="nav-links"><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
-                        <li><a href="login.html" class="nav-links active" id="navLoginLink"><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
-                        <li class="nav-item-toggle">
-                            <button id="lang-toggle" class="language-toggle"><i class="fas fa-language"></i> English</button>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header-image-box-right">
-                <img src="images/lakshmi.png" alt="Lakshmi Ji" class="lakshmi-img">
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="login-section">
-            <div class="login-card">
-                <h2><span class="lang-hi">लॉगिन / Login</span><span class="lang-en">Login</span></h2>
-                <div class="divider" style="margin-bottom: 20px;">❋ ༺ ॐ ༻ ❋</div>
-                
-                <div id="phoneSection">
-                    <div class="form-group">
-                        <label><span class="lang-hi">मोबाइल नंबर</span><span class="lang-en">Mobile Number</span></label>
-                        <div style="display: flex; gap: 10px;">
-                            <input type="text" class="form-control" value="+91" disabled style="width: 60px; text-align: center; background: #f5f5f5;">
-                            <input type="tel" id="phoneNumber" class="form-control" placeholder="10-digit mobile number" maxlength="10">
-                        </div>
-                    </div>
-                    <div id="recaptcha-container"></div>
-                    <button class="btn btn-primary btn-full" id="btnSendOtp">
-                        <span class="lang-hi">OTP भेजें</span><span class="lang-en">Send OTP</span>
-                    </button>
-                </div>
-
-                <div id="otpSection">
-                    <p style="margin-bottom: 15px; color: #666; font-size: 0.9em;">
-                        <span class="lang-hi">OTP आपके मोबाइल पर भेजा गया है।</span>
-                        <span class="lang-en">OTP has been sent to your mobile.</span>
-                    </p>
-                    <div class="form-group">
-                        <label><span class="lang-hi">OTP दर्ज करें</span><span class="lang-en">Enter OTP</span></label>
-                        <input type="text" id="otpCode" class="form-control" placeholder="6-digit OTP" maxlength="6" style="letter-spacing: 5px; text-align: center; font-size: 20px; font-weight: bold;">
-                    </div>
-                    <button class="btn btn-primary btn-full" id="btnVerifyOtp">
-                        <span class="lang-hi">वेरीफाई करें</span><span class="lang-en">Verify OTP</span>
-                    </button>
-                    <button class="btn btn-secondary btn-full" id="btnChangeNumber" style="margin-top: 10px;">
-                        <span class="lang-hi">नंबर बदलें</span><span class="lang-en">Change Number</span>
-                    </button>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo-placeholder small">ॐ</div>
-                    <h3>अग्रवाल समाज समिति<br>अग्रवाल फार्म</h3>
-                </div>
-                <div class="footer-links">
-                    <h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
-                        <li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
-                        <li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
-                        <li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
-                        <li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
-                        <li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
-                    <p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
-                <p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="react.js?v=16"></script>
-    <script type="module">
+<header class="custom-header">
+<div class="header-container">
+<div class="header-image-box">
+<img alt="Maharaj Agrasen" class="agrasen-img" src="images/maharaj_agrasen.png"/>
+</div>
+<div class="header-content-box">
+<div class="header-title-row">
+<h1 class="header-main-title" style="line-height: 1.2;">
+<span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br/>
+<span class="lang-hi" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span class="lang-en" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
+</h1>
+</div>
+<nav class="red-navbar" id="navbar">
+<div class="menu-toggle" id="mobile-menu">
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+</div>
+<div class="mobile-drawer-close" id="drawer-close-btn">×</div>
+<ul class="nav-menu">
+<li><a class="nav-links" href="index.html"><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
+<li><a class="nav-links" href="about.html"><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
+<li><a class="nav-links" href="notices.html"><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
+<li><a class="nav-links" href="activities.html"><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
+<li><a class="nav-links" href="members.html"><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
+<li><a class="nav-links" href="sadasyata.html"><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+<li><a class="nav-links" href="matrimonial.html"><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
+<li><a class="nav-links" href="donation.html"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+<li><a class="nav-links" href="booking.html"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
+<li><a class="nav-links" href="contact.html"><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
+<li><a class="nav-links active" href="login.html" id="navLoginLink"><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
+<li class="nav-item-toggle">
+<button class="language-toggle" id="lang-toggle"><i class="fas fa-language"></i> English</button>
+</li>
+</ul>
+</nav>
+</div>
+<div class="header-image-box-right">
+<img alt="Lakshmi Ji" class="lakshmi-img" src="images/lakshmi.png"/>
+</div>
+</div>
+</header>
+<main>
+<section class="login-section">
+<div class="login-card">
+<h2><span class="lang-hi">लॉगिन / Login</span><span class="lang-en">Login</span></h2>
+<div class="divider" style="margin-bottom: 20px;">❋ ༺ ॐ ༻ ❋</div>
+<div id="phoneSection">
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">मोबाइल नंबर</span><span class="lang-en">Mobile Number</span></label>
+<div style="display: flex; gap: 10px;">
+<input class="form-control" data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" disabled="" placeholder="Enter Mobile Number" style="width: 60px; text-align: center; background: #f5f5f5;" type="text" value="+91"/>
+<input class="form-control" data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="phoneNumber" maxlength="10" placeholder="Enter Mobile Number" type="tel"/>
+</div>
+</div>
+<div id="recaptcha-container"></div>
+<button class="btn btn-primary btn-full" id="btnSendOtp">
+<span class="lang-hi">OTP भेजें</span><span class="lang-en">Send OTP</span>
+</button>
+</div>
+<div id="otpSection">
+<p style="margin-bottom: 15px; color: #666; font-size: 0.9em;">
+<span class="lang-hi">OTP आपके मोबाइल पर भेजा गया है।</span>
+<span class="lang-en">OTP has been sent to your mobile.</span>
+</p>
+<div class="form-group material-filled-group">
+<label><span class="lang-hi">OTP दर्ज करें</span><span class="lang-en">Enter OTP</span></label>
+<input class="form-control" data-placeholder-en="Enter OTP" data-placeholder-hi="OTP दर्ज करें" id="otpCode" maxlength="6" placeholder="Enter OTP" style="letter-spacing: 5px; text-align: center; font-size: 20px; font-weight: bold;" type="text"/>
+</div>
+<button class="btn btn-primary btn-full" id="btnVerifyOtp">
+<span class="lang-hi">वेरीफाई करें</span><span class="lang-en">Verify OTP</span>
+</button>
+<button class="btn btn-secondary btn-full" id="btnChangeNumber" style="margin-top: 10px;">
+<span class="lang-hi">नंबर बदलें</span><span class="lang-en">Change Number</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<div class="logo-placeholder small">ॐ</div>
+<h3>अग्रवाल समाज समिति<br/>अग्रवाल फार्म</h3>
+</div>
+<div class="footer-links">
+<h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
+<ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
+<li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
+<li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
+<li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
+<li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
+<li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
+<p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
+<p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
+<p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
+</div>
+</div>
+</footer>
+<script src="react.js?v=16"></script>
+<script type="module">
         import { auth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged } from './firebase_auth.js';
 
         let confirmationResult = null;

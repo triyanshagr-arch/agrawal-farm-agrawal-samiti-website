@@ -1,16 +1,5 @@
-// --- DASHBOARD BACKEND UPDATE ---
-// Add this code to your Google Apps Script (Code.gs)
-
-// 1. First, find your `function doGet(e)` at the top of Code.gs.
-// Inside `doGet(e)`, under `// Public actions (No password required)`, add this IF statement:
-
-/*
-  if (action === "get_member_dashboard") {
-    return getMemberDashboard(e.parameter.phone);
-  }
-*/
-
-// 2. Second, paste this entire new function at the very bottom of your Code.gs file:
+// --- DASHBOARD BACKEND UPDATE V2 ---
+// Copy this entire function and use it to REPLACE your existing `getMemberDashboard` function at the bottom of Code.gs.
 
 function getMemberDashboard(phone) {
   if (!phone) return respond({ success: false, error: "Phone number required" });
@@ -28,10 +17,27 @@ function getMemberDashboard(phone) {
         const mPhone = String(memData[i][6]).replace(/^\+91|\D/g, ''); // Col G
         if (mPhone === cleanPhone) {
           result.profile = {
+            timestamp: memData[i][0],
             membershipNo: memData[i][1],
-            fullName: memData[i][2] + " " + memData[i][3],
+            title: memData[i][2],
+            fullName: memData[i][3],
+            guardianName: memData[i][4],
+            dob: memData[i][5],
+            mobileNumber: memData[i][6],
+            emailId: memData[i][7],
+            bloodGroup: memData[i][8],
+            gotra: memData[i][9],
+            occupation: memData[i][10],
+            education: memData[i][11],
+            domicile: memData[i][12],
+            permanentAddress: memData[i][13],
+            officeAddress: memData[i][14],
+            houseType: memData[i][15],
+            marriageDate: memData[i][16],
+            maritalStatus: memData[i][16] ? 'Married' : 'Unmarried',
+            familyMembers: memData[i][21] ? memData[i][21] : "[]",
             status: memData[i][22],
-            timestamp: memData[i][0]
+            photoBase64: memData[i][23] || ''
           };
           break; // Stop when we find their latest profile
         }
@@ -55,8 +61,8 @@ function getMemberDashboard(phone) {
           result.donations.push({
             receiptNo: donData[i][1],
             donorName: donData[i][2],
-            donationAmount: donData[i][7], // Correct column for Amount
-            donationPurpose: donData[i][8], // Correct column for Purpose
+            donationAmount: donData[i][7],
+            donationPurpose: donData[i][8],
             status: donData[i][11],
             timestamp: donData[i][0]
           });

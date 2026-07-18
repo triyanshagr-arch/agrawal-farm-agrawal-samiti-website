@@ -1,260 +1,238 @@
 <!DOCTYPE html>
+
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>मंदिर निर्माण हेतु दान | Mandir Donation</title>
-    <link rel="icon" href="images/maharaj_agrasen.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css?v=16">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>मंदिर निर्माण हेतु दान | Mandir Donation</title>
+<link href="images/maharaj_agrasen.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css?v=1784367175" rel="stylesheet"/>
+<script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
-    <a href="https://wa.me/919829220486" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <header class="custom-header">
-        <div class="header-container">
-            <div class="header-image-box">
-                <img src="images/maharaj_agrasen.png" alt="Maharaj Agrasen" class="agrasen-img">
-            </div>
-            <div class="header-content-box">
-                <div class="header-title-row">
-                    <h1 class="header-main-title" style="line-height: 1.2;">
-                        <span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br>
-                        <span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-hi">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span style="font-size: 0.55em; letter-spacing: 1px; color: #555;" class="lang-en">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
-                    </h1>
-                </div>
-                <nav class="red-navbar" id="navbar">
-                    <div class="menu-toggle" id="mobile-menu">
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                        <span class="bar" style="background:#fff"></span>
-                    </div>
-                    <div class="mobile-drawer-close" id="drawer-close-btn">&times;</div>
-                    <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-links "><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
-                        <li><a href="about.html" class="nav-links "><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
-                        <li><a href="notices.html" class="nav-links "><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
-                        <li><a href="activities.html" class="nav-links "><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
-                        <li><a href="members.html" class="nav-links "><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
-                        <li><a href="sadasyata.html" class="nav-links "><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
-                        <li><a href="matrimonial.html" class="nav-links "><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
-                        <li><a href="donation.html" class="nav-links active"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
-                        <li><a href="booking.html" class="nav-links "><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
-                        <li><a href="contact.html" class="nav-links "><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
-                        <li><a href="login.html" class="nav-links "><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
-                        
-                    <li class="nav-item-toggle">
-                        <button id="lang-toggle" class="language-toggle"><i class="fas fa-language"></i> English</button>
-                    </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header-image-box-right">
-                <img src="images/lakshmi.png" alt="Lakshmi Ji" class="lakshmi-img">
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="section bg-cream" style="padding-top: 40px; padding-bottom: 60px;">
-            <div class="container" style="max-width: 900px;">
-                <h2 class="section-title animate-on-scroll"><span class="lang-hi">मंदिर निर्माण हेतु दान</span><span class="lang-en">Mandir Construction Donation</span></h2>
-                <div class="divider">❋ ༺ ॐ ༻ ❋</div>
-
-                <div style="background: #fff; padding: 20px 15px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 30px; text-align: center;">
-                    
-                    <div style="margin-bottom: 30px;">
-                        <img src="images/one_rupee.png" alt="One Rupee Logo" style="height: 64px; margin-bottom: 20px; border-radius: 50%;">
-                        <h3 style="font-size: 2rem; color: #333; margin-bottom: 15px;"><span class="lang-hi">श्री महाराजा अग्रसेन मंदिर (निर्माणाधीन)</span><span class="lang-en">Shri Maharaja Agrasen Mandir (Under Construction)</span></h3>
-                        <p style="font-size: 1.1rem; line-height: 1.8; color: #555;"><span class="lang-hi">अग्रवाल समाज समिति द्वारा एक भव्य मंदिर का निर्माण किया जा रहा है। 'एक ईंट और एक रुपया' के सिद्धांत का पालन करते हुए, हम समाज के सभी बंधुओं से अनुरोध करते हैं कि मंदिर निर्माण में अपना अमूल्य सहयोग और दान प्रदान करें। आपका एक छोटा सा योगदान एक भव्य संकल्प को पूरा करेगा।</span><span class="lang-en">A grand temple is being constructed by the Agrawal Samaj Samiti. Following the principle of 'One Brick and One Rupee', we request all community members to provide their invaluable support and donation for the construction of the temple. Your small contribution will fulfill a grand resolution.</span></p>
-                    </div>
-
-
-                    <div style="background: #fff; padding: 20px 15px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 35px; text-align: left;">
-                        <h4 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.4rem; text-align: center;"><span class="lang-hi">दान रसीद जनरेट करें</span><span class="lang-en">Generate Donation Receipt</span></h4>
-                        
-                        <form id="donationForm" style="width: 100%; margin: 0 auto;">
-                            <!-- Personal Details -->
-                            <div class="form-group" style="margin-bottom: 20px;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
-                                <input type="text" id="donorName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                            </div>
-
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
-                                    <input type="tel" id="mobileNumber" required pattern="[0-9]{10}" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                </div>
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
-                                    <input type="email" id="emailId" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="margin-bottom: 20px;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा पता <span style="color:red">*</span></span><span class="lang-en">Full Address <span style="color:red">*</span></span></label>
-                                <textarea id="address" rows="3" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'"></textarea>
-                            </div>
-
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पैन कार्ड नंबर (वैकल्पिक)</span><span class="lang-en">PAN Card No. (Optional)</span></label>
-                                    <input type="text" id="panNumber" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; text-transform: uppercase;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                </div>
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">दान राशि (₹) <span style="color:red">*</span></span><span class="lang-en">Donation Amount (₹) <span style="color:red">*</span></span></label>
-                                    <input type="number" id="donationAmount" required min="1" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="margin-bottom: 20px;">
-                                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">दान का उद्देश्य <span style="color:red">*</span></span><span class="lang-en">Purpose of Donation <span style="color:red">*</span></span></label>
-                                <select id="donationPurpose" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="updateBankDetails()">
-                                    <option value="Mandir Construction Fund" data-en="Mandir Construction Fund" data-hi="मंदिर निर्माण कोष">Mandir Construction Fund / मंदिर निर्माण कोष</option>
-                                    <option value="General Donation" data-en="General Donation" data-hi="सामान्य दान">General Donation / सामान्य दान</option>
-                                    <option value="Event Sponsorship" data-en="Event Sponsorship" data-hi="कार्यक्रम प्रायोजन">Event Sponsorship / कार्यक्रम प्रायोजन</option>
-                                </select>
-                            </div>
-
-                            <!-- Payment Information Box -->
-                            <div style="background: #fff8f8; padding: 20px 15px; border-radius: 12px; border: 1px solid #ffcccc; margin-bottom: 35px; text-align: center;">
-                                <h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-university"></i> <span class="lang-hi">भुगतान विवरण</span><span class="lang-en">Payment Details</span></h4>
-                                <p style="margin-bottom: 15px; color: #555;"><span class="lang-hi">कृपया नीचे दिए गए बैंक खाते या UPI में शुल्क जमा करें।</span><span class="lang-en">Please deposit the fees in the bank account or UPI below.</span></p>
-                                
-
-
-                                <div id="bank-mandir" style="display: block;">
-                                    <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left;">
-                                        <div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 300px;">
-                                            <h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--primary-color);">Mandir Construction Fund</h5>
-                                            <p style="margin-bottom: 5px;"><strong>Bank:</strong> Union Bank of India</p>
-                                            <p style="margin-bottom: 5px; "><strong>A/C Name:</strong> Agarwal Samaj Samiti Agarwal Farm</p>
-                                            <p style="margin-bottom: 5px;"><strong>A/C No:</strong> 749002010002343</p>
-                                            <p><strong>IFSC Code:</strong> UBIN0574902</p>
-                                        </div>
-                                        <div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 200px; text-align: center;">
-                                            <h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--primary-color);">UPI Scan & Pay</h5>
-                                            <div style="width: 150px; height: 150px; margin: 0 auto;">
-                                                <img src="images/donation_qr.png" alt="Donate via UPI QR Code" style="width: 100%; height: 100%; border-radius: 8px; object-fit: contain; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                                            </div>
-                                            <p style="margin-top: 5px; font-weight: bold; font-size: 0.95rem;">UPI ID: qr919351460993-2343@unionbankofindia</p>
-                                            <div style="margin-top: 15px;">
-                                                <a href="upi://pay?pa=qr919351460993-2343@unionbankofindia&pn=Agarwal%20Samaj%20Samiti%20Agarwal%20Farm&cu=INR" style="display: inline-block; background: var(--primary-color); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 3px 6px rgba(0,0,0,0.15)';">
-                                                    <i class="fas fa-mobile-alt" style="margin-right: 6px;"></i> <span class="lang-hi">UPI ऐप से भुगतान करें</span><span class="lang-en">Pay via UPI App</span>
-                                                </a>
-                                                <p style="font-size: 0.75rem; color: #777; margin-top: 8px; line-height: 1.2;">
-                                                    <span class="lang-hi">* केवल मोबाइल पर काम करेगा</span><span class="lang-en">* Works on mobile devices only</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="bank-general" style="display: none;">
-                                    <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left;">
-                                        <div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 300px;">
-                                            <h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--primary-color);">General & Event Sponsorship</h5>
-                                            <p style="margin-bottom: 5px;"><strong>Bank:</strong> State Bank of India</p>
-                                            <p style="margin-bottom: 5px; "><strong>A/C Name:</strong> Agrawal Samaj Samiti Agrawal Farm</p>
-                                            <p style="margin-bottom: 5px;"><strong>A/C No:</strong> 61324425081</p>
-                                            <p><strong>IFSC Code:</strong> SBIN0031767</p>
-                                        </div>
-                                        <div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 200px; text-align: center;">
-                                            <h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--primary-color);">UPI Scan & Pay</h5>
-                                            <div style="width: 150px; height: 150px; margin: 0 auto;">
-                                                <img src="images/sbi_donation_qr.png" alt="Donate via SBI UPI QR Code" style="width: 100%; height: 100%; border-radius: 8px; object-fit: contain; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                                            </div>
-                                            <p style="margin-top: 5px; font-weight: bold; font-size: 0.95rem;">UPI ID: agarwalsamajsamiti@sbi</p>
-                                            <div style="margin-top: 15px;">
-                                                <a href="upi://pay?pa=agarwalsamajsamiti@sbi&pn=Agrawal%20Samaj%20Samiti%20Agrawal%20Farm&cu=INR" style="display: inline-block; background: var(--primary-color); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 12px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 3px 6px rgba(0,0,0,0.15)';">
-                                                    <i class="fas fa-mobile-alt" style="margin-right: 6px;"></i> <span class="lang-hi">UPI ऐप से भुगतान करें</span><span class="lang-en">Pay via UPI App</span>
-                                                </a>
-                                                <p style="font-size: 0.75rem; color: #777; margin-top: 8px; line-height: 1.2;">
-                                                    <span class="lang-hi">* केवल मोबाइल पर काम करेगा</span><span class="lang-en">* Works on mobile devices only</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Payment Details -->
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ट्रांजेक्शन आईडी / UTR <span style="color:red">*</span></span><span class="lang-en">Transaction ID / UTR No. <span style="color:red">*</span></span></label>
-                                    <input type="text" id="transactionId" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'">
-                                </div>
-                                <div class="form-group">
-                                    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">Payment Screenshot <span style="color:red">*</span></span></label>
-                                    <div style="display: flex; gap: 20px; align-items: flex-start; justify-content: flex-end; width: 100%;">
-                                        <input type="file" id="paymentScreenshot" required accept="image/*" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" onfocus="this.style.borderColor='var(--primary-color)'" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'paymentScreenshotPreview')">
-                                        <img id="paymentScreenshotPreview" src="" style="display:none; margin-left: auto; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                                    </div>
-                                </div>
-                            </div>
-
-                            
-                <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 8px; margin-top: 10px;">
-                                <span class="lang-hi">रसीद जनरेट करें</span><span class="lang-en">Generate Receipt</span>
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo-placeholder small">ॐ</div>
-                    <h3>अग्रवाल समाज समिति<br>अग्रवाल फार्म</h3>
-                </div>
-                <div class="footer-links">
-                    <h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
-                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                        <li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
-                        <li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
-                        <li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
-                        <li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
-                        <li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
-                        <li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
-                        <li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
-                        <li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
-                        <li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
-                        <li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
-                        <li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
-                    <p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
-                <p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="react.js?v=16"></script>
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="submit_handler.js?v=96"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="pdf_generator.js?v=7"></script>
-    <script>
+<a aria-label="WhatsApp" class="whatsapp-float" href="https://wa.me/919829220486" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+<header class="custom-header">
+<div class="header-container">
+<div class="header-image-box">
+<img alt="Maharaj Agrasen" class="agrasen-img" src="images/maharaj_agrasen.png"/>
+</div>
+<div class="header-content-box">
+<div class="header-title-row">
+<h1 class="header-main-title" style="line-height: 1.2;">
+<span class="lang-hi">अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर (रजि.)</span><span class="lang-en">Agrawal Samaj Samiti Agrawal Farm, Jaipur (Reg.)</span><br/>
+<span class="lang-hi" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">सुन्दर नगर - प्रथम, इस्कॉन रोड, जयपुर, राजस्थान - 302020</span><span class="lang-en" style="font-size: 0.55em; letter-spacing: 1px; color: #555;">Sundar Nagar - Pratham, ISKCON Road, Jaipur, Rajasthan - 302020</span>
+</h1>
+</div>
+<nav class="red-navbar" id="navbar">
+<div class="menu-toggle" id="mobile-menu">
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+<span class="bar" style="background:#fff"></span>
+</div>
+<div class="mobile-drawer-close" id="drawer-close-btn">×</div>
+<ul class="nav-menu">
+<li><a class="nav-links" href="index.html"><span class="lang-en">HOME</span><span class="lang-hi">होम</span></a></li>
+<li><a class="nav-links" href="about.html"><span class="lang-en">ABOUT US</span><span class="lang-hi">हमारे बारे में</span></a></li>
+<li><a class="nav-links" href="notices.html"><span class="lang-en">NOTICES</span><span class="lang-hi">सूचनाएँ</span></a></li>
+<li><a class="nav-links" href="activities.html"><span class="lang-en">ACTIVITIES</span><span class="lang-hi">गतिविधियाँ</span></a></li>
+<li><a class="nav-links" href="members.html"><span class="lang-en">COMMITTEE</span><span class="lang-hi">सदस्य</span></a></li>
+<li><a class="nav-links" href="sadasyata.html"><span class="lang-en">MEMBERSHIP</span><span class="lang-hi">सदस्यता</span></a></li>
+<li><a class="nav-links" href="matrimonial.html"><span class="lang-en">MATRIMONIAL</span><span class="lang-hi">वैवाहिक</span></a></li>
+<li><a class="nav-links active" href="donation.html"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
+<li><a class="nav-links" href="booking.html"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
+<li><a class="nav-links" href="contact.html"><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
+<li><a class="nav-links" href="login.html"><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
+<li class="nav-item-toggle">
+<button class="language-toggle" id="lang-toggle"><i class="fas fa-language"></i> English</button>
+</li>
+</ul>
+</nav>
+</div>
+<div class="header-image-box-right">
+<img alt="Lakshmi Ji" class="lakshmi-img" src="images/lakshmi.png"/>
+</div>
+</div>
+</header>
+<main>
+<section class="section bg-cream" style="padding-top: 40px; padding-bottom: 60px;">
+<div class="container" style="max-width: 900px;">
+<h2 class="section-title animate-on-scroll"><span class="lang-hi">मंदिर निर्माण हेतु दान</span><span class="lang-en">Mandir Construction Donation</span></h2>
+<div class="divider">❋ ༺ ॐ ༻ ❋</div>
+<div style="background: #fff; padding: 20px 15px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 30px; text-align: center;">
+<div style="margin-bottom: 30px;">
+<img alt="One Rupee Logo" src="images/one_rupee.png" style="height: 64px; margin-bottom: 20px; border-radius: 50%;"/>
+<h3 style="font-size: 2rem; color: #333; margin-bottom: 15px;"><span class="lang-hi">श्री महाराजा अग्रसेन मंदिर (निर्माणाधीन)</span><span class="lang-en">Shri Maharaja Agrasen Mandir (Under Construction)</span></h3>
+<p style="font-size: 1.1rem; line-height: 1.8; color: #555;"><span class="lang-hi">अग्रवाल समाज समिति द्वारा एक भव्य मंदिर का निर्माण किया जा रहा है। 'एक ईंट और एक रुपया' के सिद्धांत का पालन करते हुए, हम समाज के सभी बंधुओं से अनुरोध करते हैं कि मंदिर निर्माण में अपना अमूल्य सहयोग और दान प्रदान करें। आपका एक छोटा सा योगदान एक भव्य संकल्प को पूरा करेगा।</span><span class="lang-en">A grand temple is being constructed by the Agrawal Samaj Samiti. Following the principle of 'One Brick and One Rupee', we request all community members to provide their invaluable support and donation for the construction of the temple. Your small contribution will fulfill a grand resolution.</span></p>
+</div>
+<div style="background: #fff; padding: 20px 15px; border-radius: 12px; border: 1px solid #eee; margin-bottom: 35px; text-align: left;">
+<h4 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.4rem; text-align: center;"><span class="lang-hi">दान रसीद जनरेट करें</span><span class="lang-en">Generate Donation Receipt</span></h4>
+<form id="donationForm" style="width: 100%; margin: 0 auto;">
+<!-- Personal Details -->
+<div class="form-group material-filled-group" style="margin-bottom: 20px;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा नाम <span style="color:red">*</span></span><span class="lang-en">Full Name <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Full Name" data-placeholder-hi="पूरा नाम दर्ज करें" id="donorName" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Full Name" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="text"/>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="mobileNumber" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="tel"/>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
+<input data-placeholder-en="Enter Email ID" data-placeholder-hi="ईमेल आईडी दर्ज करें" id="emailId" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Email ID" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="email"/>
+</div>
+</div>
+<div class="form-group material-filled-group" style="margin-bottom: 20px;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पूरा पता <span style="color:red">*</span></span><span class="lang-en">Full Address <span style="color:red">*</span></span></label>
+<textarea data-placeholder-en="Enter Full Address" data-placeholder-hi="पूरा पता दर्ज करें" id="address" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Full Address" required="" rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical; font-family: inherit;"></textarea>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px;">
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पैन कार्ड नंबर (वैकल्पिक)</span><span class="lang-en">PAN Card No. (Optional)</span></label>
+<input data-placeholder-en="Enter PAN Card No. (Optional)" data-placeholder-hi="पैन कार्ड नंबर (वैकल्पिक) दर्ज करें" id="panNumber" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter PAN Card No. (Optional)" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; text-transform: uppercase;" type="text"/>
+</div>
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">दान राशि (₹) <span style="color:red">*</span></span><span class="lang-en">Donation Amount (₹) <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Donation Amount (₹)" data-placeholder-hi="दान राशि (₹) दर्ज करें" id="donationAmount" min="1" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Donation Amount (₹)" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="number"/>
+</div>
+</div>
+<div class="form-group material-filled-group" style="margin-bottom: 20px;">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">दान का उद्देश्य <span style="color:red">*</span></span><span class="lang-en">Purpose of Donation <span style="color:red">*</span></span></label>
+<select id="donationPurpose" onblur="this.style.borderColor='#ddd'" onchange="updateBankDetails()" onfocus="this.style.borderColor='var(--primary-color)'" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit; background: #fff;">
+<option data-en="Mandir Construction Fund" data-hi="मंदिर निर्माण कोष" value="Mandir Construction Fund">Mandir Construction Fund / मंदिर निर्माण कोष</option>
+<option data-en="General Donation" data-hi="सामान्य दान" value="General Donation">General Donation / सामान्य दान</option>
+<option data-en="Event Sponsorship" data-hi="कार्यक्रम प्रायोजन" value="Event Sponsorship">Event Sponsorship / कार्यक्रम प्रायोजन</option>
+</select>
+</div>
+<!-- Payment Information Box -->
+<div style="background: #fff8f8; padding: 20px 15px; border-radius: 12px; border: 1px solid #ffcccc; margin-bottom: 35px; text-align: center;">
+<h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-university"></i> <span class="lang-hi">भुगतान विवरण</span><span class="lang-en">Payment Details</span></h4>
+<p style="margin-bottom: 15px; color: #555;"><span class="lang-hi">कृपया नीचे दिए गए बैंक खाते या UPI में शुल्क जमा करें।</span><span class="lang-en">Please deposit the fees in the bank account or UPI below.</span></p>
+<div id="bank-mandir" style="display: block;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left;">
+<div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 300px;">
+<h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--primary-color);">Mandir Construction Fund</h5>
+<p style="margin-bottom: 5px;"><strong>Bank:</strong> Union Bank of India</p>
+<p style="margin-bottom: 5px; "><strong>A/C Name:</strong> Agarwal Samaj Samiti Agarwal Farm</p>
+<p style="margin-bottom: 5px;"><strong>A/C No:</strong> 749002010002343</p>
+<p><strong>IFSC Code:</strong> UBIN0574902</p>
+</div>
+<div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 200px; text-align: center;">
+<h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--primary-color);">UPI Scan &amp; Pay</h5>
+<div style="width: 150px; height: 150px; margin: 0 auto;">
+<img alt="Donate via UPI QR Code" src="images/donation_qr.png" style="width: 100%; height: 100%; border-radius: 8px; object-fit: contain; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"/>
+</div>
+<p style="margin-top: 5px; font-weight: bold; font-size: 0.95rem;">UPI ID: qr919351460993-2343@unionbankofindia</p>
+<div style="margin-top: 15px;">
+<a href="upi://pay?pa=qr919351460993-2343@unionbankofindia&amp;pn=Agarwal%20Samaj%20Samiti%20Agarwal%20Farm&amp;cu=INR" onmouseout="this.style.transform='none'; this.style.boxShadow='0 3px 6px rgba(0,0,0,0.15)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 12px rgba(0,0,0,0.2)';" style="display: inline-block; background: var(--primary-color); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.3s;">
+<i class="fas fa-mobile-alt" style="margin-right: 6px;"></i> <span class="lang-hi">UPI ऐप से भुगतान करें</span><span class="lang-en">Pay via UPI App</span>
+</a>
+<p style="font-size: 0.75rem; color: #777; margin-top: 8px; line-height: 1.2;">
+<span class="lang-hi">* केवल मोबाइल पर काम करेगा</span><span class="lang-en">* Works on mobile devices only</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="bank-general" style="display: none;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; text-align: left;">
+<div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 300px;">
+<h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--primary-color);">General &amp; Event Sponsorship</h5>
+<p style="margin-bottom: 5px;"><strong>Bank:</strong> State Bank of India</p>
+<p style="margin-bottom: 5px; "><strong>A/C Name:</strong> Agrawal Samaj Samiti Agrawal Farm</p>
+<p style="margin-bottom: 5px;"><strong>A/C No:</strong> 61324425081</p>
+<p><strong>IFSC Code:</strong> SBIN0031767</p>
+</div>
+<div style="background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1 1 200px; text-align: center;">
+<h5 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--primary-color);">UPI Scan &amp; Pay</h5>
+<div style="width: 150px; height: 150px; margin: 0 auto;">
+<img alt="Donate via SBI UPI QR Code" src="images/sbi_donation_qr.png" style="width: 100%; height: 100%; border-radius: 8px; object-fit: contain; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"/>
+</div>
+<p style="margin-top: 5px; font-weight: bold; font-size: 0.95rem;">UPI ID: agarwalsamajsamiti@sbi</p>
+<div style="margin-top: 15px;">
+<a href="upi://pay?pa=agarwalsamajsamiti@sbi&amp;pn=Agrawal%20Samaj%20Samiti%20Agrawal%20Farm&amp;cu=INR" onmouseout="this.style.transform='none'; this.style.boxShadow='0 3px 6px rgba(0,0,0,0.15)';" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 12px rgba(0,0,0,0.2)';" style="display: inline-block; background: var(--primary-color); color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95rem; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.3s;">
+<i class="fas fa-mobile-alt" style="margin-right: 6px;"></i> <span class="lang-hi">UPI ऐप से भुगतान करें</span><span class="lang-en">Pay via UPI App</span>
+</a>
+<p style="font-size: 0.75rem; color: #777; margin-top: 8px; line-height: 1.2;">
+<span class="lang-hi">* केवल मोबाइल पर काम करेगा</span><span class="lang-en">* Works on mobile devices only</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Payment Details -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+<div class="form-group material-filled-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ट्रांजेक्शन आईडी / UTR <span style="color:red">*</span></span><span class="lang-en">Transaction ID / UTR No. <span style="color:red">*</span></span></label>
+<input data-placeholder-en="Enter Transaction ID / UTR No." data-placeholder-hi="ट्रांजेक्शन आईडी / UTR दर्ज करें" id="transactionId" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Transaction ID / UTR No." required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="text"/>
+</div>
+<div class="form-group">
+<label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">Payment Screenshot <span style="color:red">*</span></span></label>
+<div style="display: flex; gap: 20px; align-items: flex-start; justify-content: flex-end; width: 100%;">
+<input accept="image/*" id="paymentScreenshot" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'paymentScreenshotPreview')" onfocus="this.style.borderColor='var(--primary-color)'" required="" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" type="file"/>
+<img id="paymentScreenshotPreview" src="" style="display:none; margin-left: auto; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"/>
+</div>
+</div>
+</div>
+<div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
+<button class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 8px; margin-top: 10px;" type="submit">
+<span class="lang-hi">रसीद जनरेट करें</span><span class="lang-en">Generate Receipt</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<div class="logo-placeholder small">ॐ</div>
+<h3>अग्रवाल समाज समिति<br/>अग्रवाल फार्म</h3>
+</div>
+<div class="footer-links">
+<h4><span class="lang-hi">त्वरित लिंक</span><span class="lang-en">Quick Links</span></h4>
+<ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<li><a href="index.html"><span class="lang-hi">होम</span><span class="lang-en">Home</span></a></li>
+<li><a href="about.html"><span class="lang-hi">हमारे बारे में</span><span class="lang-en">About Us</span></a></li>
+<li><a href="members.html"><span class="lang-hi">सदस्य</span><span class="lang-en">Committee</span></a></li>
+<li><a href="sadasyata.html"><span class="lang-hi">सदस्यता</span><span class="lang-en">Membership</span></a></li>
+<li><a href="donation.html"><span class="lang-hi">दान करें</span><span class="lang-en">Donate</span></a></li>
+<li><a href="booking.html"><span class="lang-hi">बुकिंग</span><span class="lang-en">Booking</span></a></li>
+<li><a href="notices.html"><span class="lang-hi">सूचनाएँ</span><span class="lang-en">Notices</span></a></li>
+<li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
+<li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
+<li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
+<li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h4><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></h4>
+<p><i class="fas fa-envelope"></i> assagarwalfarmjpr@gmail.com</p>
+<p><i class="fas fa-map-marker-alt"></i> जयपुर, राजस्थान - 302020</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर</p>
+<p><span class="lang-hi">Designed with ❤️ for समाज सेवा</span><span class="lang-en">Designed with ❤️ for Social Service</span></p>
+</div>
+</div>
+</footer>
+<script src="react.js?v=16"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="submit_handler.js?v=96"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="pdf_generator.js?v=7"></script>
+<script>
         function updateBankDetails() {
             const purpose = document.getElementById('donationPurpose');
             if (purpose && purpose.value === 'Mandir Construction Fund') {
