@@ -20,10 +20,11 @@ setTimeout(() => {
             if (user) {
                 // Check if they are an admin
                 if (ADMIN_PHONE_NUMBERS.includes(user.phoneNumber)) {
-                    document.getElementById('loginScreen').style.display = 'none';
-                    document.getElementById('dashboardScreen').style.display = 'flex';
-                    document.getElementById('statsContainer').style.display = 'flex';
-                    fetchAdminData();
+                    document.getElementById('phoneSection').style.display = 'none';
+                    document.getElementById('otpSection').style.display = 'none';
+                    document.getElementById('passwordSection').style.display = 'block';
+                    document.getElementById('loginError').style.color = "green";
+                    document.getElementById('loginError').innerText = "Session Restored. Enter Admin Password.";
                 } else {
                     document.getElementById('loginError').innerText = "Access Denied: You are not an authorized Admin.";
                     window.signOut(window.firebaseAuth);
