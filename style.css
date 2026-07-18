@@ -2122,7 +2122,7 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 8px;
+    gap: 15px;
     width: 100%;
 }
 .red-navbar .nav-links {
@@ -2303,7 +2303,7 @@ body.lang-english-mode span.lang-en, body.lang-english-mode a.lang-en, body.lang
 .nav-links {
     font-weight: 500 !important;
     letter-spacing: 0.3px;
-    padding: 10px 6px !important;
+    padding: 10px 12px !important;
     border-radius: var(--radius-sm);
     transition: var(--transition-fast) !important;
 }
