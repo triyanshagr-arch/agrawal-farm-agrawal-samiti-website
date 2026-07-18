@@ -2122,7 +2122,7 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 0;
+    gap: 8px;
     width: 100%;
 }
 .red-navbar .nav-links {
