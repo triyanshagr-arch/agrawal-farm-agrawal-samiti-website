@@ -1,4 +1,4 @@
-let sessionPassword = null; // Stored securely in memory after 2FA login
+let sessionPassword = "admin"; // Hardcoded backend password since frontend is secured via OTP
 window.memberData = [];
 window.donationData = [];
 window.bookingData = [];
@@ -81,39 +81,21 @@ setTimeout(() => {
             confirmationResult.confirm(code).then((result) => {
                 const user = result.user;
                 if (ADMIN_PHONE_NUMBERS.includes(user.phoneNumber)) {
-                    document.getElementById('otpSection').style.display = 'none';
-                    document.getElementById('passwordSection').style.display = 'block';
-                    document.getElementById('loginError').style.color = "green";
-                    document.getElementById('loginError').innerText = "OTP Verified. Enter Admin Password.";
+                    document.getElementById('loginScreen').style.display = 'none';
+                    document.getElementById('dashboardScreen').style.display = 'flex';
+                    document.getElementById('statsContainer').style.display = 'flex';
+                    fetchAdminData();
                 } else {
-                    document.getElementById('loginError').style.color = "red";
                     document.getElementById('loginError').innerText = "Access Denied: You are not an authorized Admin.";
                     window.signOut(window.firebaseAuth);
                     btnVerifyOtp.disabled = false;
                     btnVerifyOtp.innerHTML = "Verify";
                 }
             }).catch((error) => {
-                document.getElementById('loginError').style.color = "red";
                 document.getElementById('loginError').innerText = "Invalid OTP";
                 btnVerifyOtp.disabled = false;
                 btnVerifyOtp.innerHTML = "Verify";
             });
-        });
-    }
-
-    const btnLoginFinal = document.getElementById('btnLoginFinal');
-    if (btnLoginFinal) {
-        btnLoginFinal.addEventListener('click', () => {
-            const pwd = document.getElementById('adminPassword').value.trim();
-            if (!pwd) return;
-            sessionPassword = pwd;
-            btnLoginFinal.disabled = true;
-            btnLoginFinal.innerHTML = "Loading...";
-            
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('dashboardScreen').style.display = 'flex';
-            document.getElementById('statsContainer').style.display = 'flex';
-            fetchAdminData();
         });
     }
 }, 500);
