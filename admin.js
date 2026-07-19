@@ -910,6 +910,44 @@ function printApplicationForm(rowNum, lang = 'hi') {
         } catch(e) { return dateStr; }
     };
     
+    const buildTable = (fields) => {
+        let validFields = fields.filter(f => f.val && String(f.val).trim() !== '' && f.val !== 'undefined' && f.val !== 'null' && f.val !== 'N/A');
+        let rows = '';
+        for(let i=0; i<validFields.length; i+=2) {
+            let f1 = validFields[i];
+            let f2 = validFields[i+1];
+            if(f2) {
+                rows += '<tr><th>' + f1.lbl + '</th><td ' + (f1.isBold ? 'style="font-weight: bold;"' : '') + '>' + f1.val + '</td><th>' + f2.lbl + '</th><td>' + f2.val + '</td></tr>';
+            } else {
+                rows += '<tr><th>' + f1.lbl + '</th><td colspan="3" ' + (f1.isBold ? 'style="font-weight: bold;"' : '') + '>' + f1.val + '</td></tr>';
+            }
+        }
+        return rows;
+    };
+
+    let personalFields = [
+        {lbl: t.fullName, val: (m.title ? m.title + ' ' : '') + (m.fullName || '').trim(), isBold: true},
+        {lbl: t.fatherName, val: m.guardianName},
+        {lbl: t.edu, val: m.education},
+        {lbl: t.occ, val: m.occupation},
+        {lbl: t.gotra, val: m.gotra},
+        {lbl: t.domicile, val: m.domicile},
+        {lbl: t.dob, val: m.dob ? formatDate(m.dob) : null},
+        {lbl: t.mDate, val: (m.marriageDate && String(m.marriageDate).trim() !== '' && m.marriageDate !== 'undefined' && m.marriageDate !== 'null') ? formatDate(m.marriageDate) : null},
+        {lbl: t.bg, val: m.bloodGroup},
+        {lbl: t.mobile, val: m.mobileNumber},
+        {lbl: t.email, val: m.emailId}
+    ];
+    
+    let addrFields = [
+        {lbl: t.houseType, val: m.houseType},
+        {lbl: t.offAddr, val: m.officeAddress},
+        {lbl: t.permAddr, val: m.permanentAddress}
+    ];
+
+    let personalTableRows = buildTable(personalFields);
+    let addressTableRows = buildTable(addrFields);
+
     const printWindow = window.open('', '_blank', 'width=800,height=900');
     printWindow.document.write(`
         <html>
@@ -983,42 +1021,12 @@ function printApplicationForm(rowNum, lang = 'hi') {
 
                     <div class="section-title">${t.personal}</div>
                     <table class="info-table">
-                        <tr>
-                            <th>${t.fullName}</th><td colspan="3"><strong>${m.fullName}</strong></td>
-                        </tr>
-                        <tr>
-                            <th>${t.fatherName}</th><td colspan="3">${m.guardianName || ''}</td>
-                        </tr>
-                        <tr>
-                            <th>${t.edu}</th><td>${m.education || ''}</td>
-                            <th>${t.occ}</th><td>${m.occupation || ''}</td>
-                        </tr>
-                        <tr>
-                            <th>${t.gotra}</th><td>${m.gotra || ''}</td>
-                            <th>${t.domicile}</th><td>${m.domicile || ''}</td>
-                        </tr>
-                        <tr>
-                            <th>${t.dob}</th><td>${formatDate(m.dob)}</td>
-                            ${(m.marriageDate && m.marriageDate !== 'undefined' && m.marriageDate !== 'null' && String(m.marriageDate).trim() !== '') 
-                                ? `<th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td>` 
-                                : `<th>${t.maritalStatus}</th><td>${t.unmarried}</td>`}
-                        </tr>
-                        <tr>
-                            <th>${t.bg}</th><td>${m.bloodGroup || ''}</td>
-                            <th>${t.mobile}</th><td>${m.mobileNumber || ''}</td>
-                        </tr>
-                        ${m.emailId ? `<tr><th>${t.email}</th><td colspan="3">${m.emailId}</td></tr>` : ''}
+                        ${personalTableRows}
                     </table>
 
                     <div class="section-title">${t.addressDetails}</div>
                     <table class="info-table">
-                        <tr>
-                            <th>${t.houseType}</th><td>${m.houseType || ''}</td>
-                            ${m.officeAddress ? `<th>${t.offAddr}</th><td>${m.officeAddress}</td>` : '<th colspan="2"></th>'}
-                        </tr>
-                        <tr>
-                            <th>${t.permAddr}</th><td colspan="3">${m.permanentAddress || ''}</td>
-                        </tr>
+                        ${addressTableRows}
                     </table>
 
                     ${familyHtml}

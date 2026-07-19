@@ -10,7 +10,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="style.css?v=1784372501" rel="stylesheet"/>
+<link href="style.css?v=1784439138" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
         .dashboard-section {
@@ -303,6 +303,44 @@
                     } catch(e) { return dateStr; }
                 };
                 
+                const buildTable = (fields) => {
+                    let validFields = fields.filter(f => f.val && String(f.val).trim() !== '' && f.val !== 'undefined' && f.val !== 'null' && f.val !== 'N/A');
+                    let rows = '';
+                    for(let i=0; i<validFields.length; i+=2) {
+                        let f1 = validFields[i];
+                        let f2 = validFields[i+1];
+                        if(f2) {
+                            rows += '<tr><th>' + f1.lbl + '</th><td ' + (f1.isBold ? 'style="font-weight: bold;"' : '') + '>' + f1.val + '</td><th>' + f2.lbl + '</th><td>' + f2.val + '</td></tr>';
+                        } else {
+                            rows += '<tr><th>' + f1.lbl + '</th><td colspan="3" ' + (f1.isBold ? 'style="font-weight: bold;"' : '') + '>' + f1.val + '</td></tr>';
+                        }
+                    }
+                    return rows;
+                };
+
+                let personalFields = [
+                    {lbl: t.fullName, val: (m.title ? m.title + ' ' : '') + (m.fullName || '').trim(), isBold: true},
+                    {lbl: t.fatherName, val: m.guardianName},
+                    {lbl: t.dob, val: m.dob ? formatDate(m.dob) : null},
+                    {lbl: t.gotra, val: m.gotra},
+                    {lbl: t.mobile, val: m.mobileNumber},
+                    {lbl: t.email, val: m.emailId},
+                    {lbl: t.maritalStatus, val: m.maritalStatus},
+                    {lbl: t.mDate, val: (m.marriageDate && String(m.marriageDate).trim() !== '' && m.marriageDate !== 'undefined' && m.marriageDate !== 'null') ? formatDate(m.marriageDate) : null},
+                    {lbl: t.domicile, val: m.domicile},
+                    {lbl: t.edu, val: m.education},
+                    {lbl: t.occ, val: m.occupation}
+                ];
+                
+                let addrFields = [
+                    {lbl: t.houseType, val: m.houseType},
+                    {lbl: t.permAddr, val: m.permanentAddress},
+                    {lbl: t.offAddr, val: m.officeAddress}
+                ];
+
+                let personalTableRows = buildTable(personalFields);
+                let addressTableRows = buildTable(addrFields);
+
                 const printWindow = window.open('', '_blank', 'width=800,height=900');
                 printWindow.document.write(`
                     <html>
@@ -371,18 +409,11 @@
                                 </div>
                                 <div class="section-title">${t.personal}</div>
                                 <table class="info-table">
-                                    <tr><th>${t.fullName}</th><td style="font-weight: bold;">${m.title || ''} ${m.fullName || ''}</td><th>${t.fatherName}</th><td>${m.guardianName || ''}</td></tr>
-                                    <tr><th>${t.dob}</th><td>${formatDate(m.dob)}</td><th>${t.gotra}</th><td>${m.gotra || ''}</td></tr>
-                                    <tr><th>${t.mobile}</th><td>${m.mobileNumber || ''}</td><th>${t.email}</th><td>${m.emailId || 'N/A'}</td></tr>
-                                    <tr><th>${t.maritalStatus}</th><td>${m.maritalStatus || 'N/A'}</td><th>${t.mDate}</th><td>${formatDate(m.marriageDate)}</td></tr>
-                                    <tr><th>${t.domicile}</th><td>${m.domicile || ''}</td><th>${t.edu}</th><td>${m.education || ''}</td></tr>
-                                    <tr><th>${t.occ}</th><td colspan="3">${m.occupation || ''}</td></tr>
+                                    ${personalTableRows}
                                 </table>
                                 <div class="section-title">${t.addressDetails}</div>
                                 <table class="info-table">
-                                    <tr><th>${t.houseType}</th><td colspan="3">${m.houseType || ''}</td></tr>
-                                    <tr><th>${t.permAddr}</th><td colspan="3">${m.permanentAddress || ''}</td></tr>
-                                    <tr><th>${t.offAddr}</th><td colspan="3">${m.officeAddress || ''}</td></tr>
+                                    ${addressTableRows}
                                 </table>
                                 ${familyHtml}
                                 <div style="flex-grow: 1;"></div>
