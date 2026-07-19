@@ -457,6 +457,25 @@
                 }
             }
         }
+
+        function downloadDonationCertificatePDF(index) {
+            const data = window.userDonationsData[index];
+            if (data && data.receiptNo) {
+                Swal.fire({
+                    title: 'Generating Certificate...',
+                    html: 'Please wait...',
+                    allowOutsideClick: false,
+                    didOpen: () => { Swal.showLoading(); }
+                });
+                if (typeof generateHindiDonationCertificate === 'function') {
+                    generateHindiDonationCertificate(data.receiptNo, data)
+                        .then(() => Swal.close())
+                        .catch(e => { console.error(e); Swal.fire('Error', 'Failed to generate certificate', 'error'); });
+                } else {
+                    Swal.fire('Error', 'Certificate generator not loaded', 'error');
+                }
+            }
+        }
     </script>
 <script type="module">
         import { auth, onAuthStateChanged, signOut } from './firebase_auth.js';
@@ -548,7 +567,8 @@
                 
                 let certBtn = '';
                 if ((d.status === 'Approved' || d.status === 'Verified') && d.receiptNo) {
-                    certBtn = `<button onclick="downloadDonationCert(${index})" class="btn btn-secondary" style="font-size: 0.8rem; padding: 5px 10px; margin-top: 5px;"><i class="fas fa-download"></i> Receipt</button>`;
+                    certBtn = `<button onclick="downloadDonationCert(${index})" class="btn btn-secondary" style="font-size: 0.8rem; padding: 5px 10px; margin-top: 5px;"><i class="fas fa-print"></i> Receipt</button>
+                               <button onclick="downloadDonationCertificatePDF(${index})" class="btn btn-secondary" style="font-size: 0.8rem; padding: 5px 10px; margin-top: 5px; margin-left: 5px;"><i class="fas fa-certificate"></i> Certificate</button>`;
                 }
 
                 htmlStr += `

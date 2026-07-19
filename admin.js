@@ -342,10 +342,10 @@ function downloadDonationCertificate(receiptNo) {
     const d = window.donationData.find(x => x.receiptNo === receiptNo);
     if (!d) return alert("Receipt not found");
     
-    if (typeof window.printHindiReceipt === 'function') {
-        window.printHindiReceipt('donation', receiptNo, d);
+    if (typeof generateHindiDonationCertificate === 'function') {
+        generateHindiDonationCertificate(receiptNo, d);
     } else {
-        alert("Receipt generator not loaded.");
+        alert("Certificate generator not loaded.");
     }
 }
 
