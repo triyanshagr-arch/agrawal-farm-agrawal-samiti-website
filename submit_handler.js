@@ -192,7 +192,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Generate Local PDFs and Download (Only Receipt)
                 if (paymentMode !== 'Cash') {
-                    await generateReceiptPDF(membershipNo, dataObj, 'save');
+                    if (typeof window.printHindiReceipt === 'function') {
+                        window.printHindiReceipt('membership', membershipNo, dataObj);
+                    } else {
+                        await generateReceiptPDF(membershipNo, dataObj, 'save'); // Fallback
+                    }
                 }
 
                 // Alert User
@@ -295,7 +299,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Generate Donation Receipt PDF
-                generateDonationReceiptPDF(receiptNo, dataObj, 'save');
+                if (typeof window.printHindiReceipt === 'function') {
+                    window.printHindiReceipt('donation', receiptNo, dataObj);
+                } else {
+                    generateDonationReceiptPDF(receiptNo, dataObj, 'save'); // Fallback
+                }
 
                 // Alert User
                 const isHi = localStorage.getItem('preferredLang') === 'hi';
