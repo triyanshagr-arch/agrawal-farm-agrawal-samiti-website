@@ -212,20 +212,20 @@
 <option data-en="Rented" data-hi="किराए का" value="Rented">Rented / किराए का</option>
 </select>
 </div>
-<div style="display: flex; gap: 10px; align-items: center; position: relative;">
-    <div class="form-group material-filled-group" style="flex: 1; margin-bottom: 0;">
-        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
-        <input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="mobileNumber" maxlength="10" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: transparent;" title="Please enter exactly 10 digits" type="tel"/>
+<div class="form-group material-filled-group">
+    <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
+    <div>
+        <input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="mobileNumber" maxlength="10" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required="" style="width: 100%; border: none; outline: none; background: transparent;" title="Please enter exactly 10 digits" type="tel"/>
+        <button class="btn" id="btnSendOtp" onmouseout="this.style.background='#e0e0e0'" onmouseover="this.style.background='#d0d0d0'" style="background: #e0e0e0; color: #333; border: none; white-space: nowrap; padding: 6px 12px; border-radius: 6px; cursor: pointer; transition: 0.2s; font-size: 13px; font-weight: bold;" type="button">VERIFY SMS</button>
     </div>
-    <button class="btn" id="btnSendOtp" onmouseout="this.style.background='#e0e0e0'" onmouseover="this.style.background='#d0d0d0'" style="background: #e0e0e0; color: #333; border: none; white-space: nowrap; padding: 12px 20px; border-radius: 8px; cursor: pointer; transition: 0.2s; height: 45px; margin-top: 15px;" type="button">Verify SMS</button>
 </div>
-<div id="otpSection" style="display: none; margin-top: 15px;">
-    <div style="display: flex; gap: 10px; align-items: center;">
-        <div class="form-group material-filled-group" style="flex: 1; margin-bottom: 0;">
-            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ओटीपी (OTP) <span style="color:red">*</span></span><span class="lang-en">OTP <span style="color:red">*</span></span></label>
-            <input data-placeholder-en="Enter OTP" data-placeholder-hi="ओटीपी (OTP) दर्ज करें" id="otpInput" maxlength="6" placeholder="Enter OTP" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: transparent;" type="text"/>
+<div id="otpSection" style="display: none;">
+    <div class="form-group material-filled-group">
+        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ओटीपी (OTP) <span style="color:red">*</span></span><span class="lang-en">OTP <span style="color:red">*</span></span></label>
+        <div>
+            <input data-placeholder-en="Enter OTP" data-placeholder-hi="ओटीपी (OTP) दर्ज करें" id="otpInput" maxlength="6" placeholder="Enter OTP" style="width: 100%; border: none; outline: none; background: transparent;" type="text"/>
+            <button class="btn btn-primary" id="btnVerifyOtp" style="white-space: nowrap; padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer; font-size: 13px; font-weight: bold;" type="button">CONFIRM</button>
         </div>
-        <button class="btn btn-primary" id="btnVerifyOtp" style="white-space: nowrap; padding: 12px 20px; border-radius: 8px; border: none; cursor: pointer; height: 45px; margin-top: 15px;" type="button">Confirm</button>
     </div>
 </div>
 <div id="recaptcha-container" style="margin-top: 10px;"></div>
