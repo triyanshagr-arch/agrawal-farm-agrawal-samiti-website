@@ -587,6 +587,152 @@ async function generateHindiDonationCertificate(receiptNo, data) {
     });
 }
 
+// Global Hindi Receipt Generator (HTML Print Window)
+window.printHindiReceipt = function(type, receiptNo, data) {
+    let name = type === 'membership' ? (data.fullName || '') : (data.donorName || '');
+    let mobile = data.mobileNumber || '';
+    let address = type === 'membership' ? (data.permanentAddress || '') : (data.address || '');
+    let amount = type === 'membership' ? (data.amount || '1100') : (data.donationAmount || '0');
+    let purpose = type === 'membership' ? 'आजीवन सदस्यता (Lifetime Membership)' : (data.donationPurpose || 'धर्मार्थ कार्य (Donation)');
+    let dateStr = type === 'membership' ? (data.timestamp || new Date()) : (data.timestamp || new Date());
+    
+    // Format date
+    let formattedDate = '';
+    try {
+        const d = new Date(dateStr);
+        formattedDate = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+        if (formattedDate.includes('NaN')) formattedDate = new Date().toLocaleDateString('en-IN');
+    } catch(e) { formattedDate = dateStr || new Date().toLocaleDateString('en-IN'); }
+
+    // Resolve base path for images when opened in about:blank
+    const basePath = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+
+    const printWindow = window.open('', '_blank', 'width=900,height=600');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>Receipt - ${receiptNo}</title>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap');
+                @media print {
+                    @page { margin: 0; size: A5 landscape; }
+                    body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; margin: 0; padding: 0; }
+                    .receipt-card { border: none !important; box-shadow: none !important; width: 210mm !important; height: 148mm !important; }
+                }
+                body { 
+                    margin: 0; padding: 20px;
+                    display: flex; justify-content: center; align-items: center;
+                    background-color: #f0f0f0;
+                }
+                .receipt-card {
+                    width: 210mm; height: 148mm; /* A5 Landscape */
+                    background: linear-gradient(135deg, #FFD54F 0%, #FF8F00 100%);
+                    position: relative; box-sizing: border-box; padding: 20px 30px;
+                    font-family: 'Tiro Devanagari Hindi', serif;
+                    color: #8B0000; overflow: hidden;
+                    border: 2px solid #fff; box-shadow: 0 0 10px rgba(0,0,0,0.3);
+                }
+                .watermark {
+                    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                    height: 80%; opacity: 0.1; z-index: 0; pointer-events: none; mix-blend-mode: multiply;
+                }
+                .content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; }
+                .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; }
+                .deity-img { width: 100px; height: 120px; object-fit: contain; mix-blend-mode: multiply; }
+                .title-container { text-align: center; flex-grow: 1; }
+                .title-main { font-family: 'Yatra One', cursive; font-size: 30px; color: #8B0000; margin: 0; line-height: 1.1; text-shadow: 1px 1px 0px rgba(255,255,255,0.5); }
+                .title-sub { font-size: 13px; color: #333; margin: 5px 0 0 0; font-weight: bold; }
+                .receipt-heading { text-align: center; margin: 10px 0; }
+                .receipt-heading span { font-family: 'Yatra One', cursive; font-size: 28px; border-bottom: 2px solid #8B0000; padding: 0 20px; color: #D32F2F; }
+                
+                .form-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 18px; font-weight: bold; align-items: flex-end; }
+                .field-group { display: flex; align-items: flex-end; }
+                .dotted-line { 
+                    border-bottom: 2px dotted #D32F2F; 
+                    flex-grow: 1; margin-left: 10px; 
+                    font-family: Arial, sans-serif; color: #333; font-weight: normal; font-size: 16px;
+                    padding-bottom: 2px; text-align: center;
+                }
+                .footer-text { text-align: center; font-size: 18px; font-weight: bold; color: #1565C0; margin-top: auto; }
+                .computer-generated { text-align: center; font-size: 12px; color: #D32F2F; font-weight: bold; margin-top: 5px; }
+            </style>
+        </head>
+        <body>
+            <div class="receipt-card">
+                <img src="${basePath}images/agrasen_full.png" class="watermark" crossorigin="anonymous">
+                <div class="content">
+                    <div class="header">
+                        <img src="${basePath}images/agrasen_full.png" class="deity-img" crossorigin="anonymous">
+                        <div class="title-container">
+                            <h1 class="title-main">अग्रवाल समाज समिति, अग्रवाल फार्म</h1>
+                            <p class="title-sub">अग्र-मन्दिर भवन, सुन्दर नगर प्रथम, इस्कॉन रोड, मानसरोवर, जयपुर-302020<br>पंजीकरण क्र.: 169/93-94</p>
+                        </div>
+                        <img src="${basePath}images/lakshmi.png" class="deity-img" crossorigin="anonymous" style="width: 140px;">
+                    </div>
+                    
+                    <div class="receipt-heading">
+                        <span>रसीद</span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field-group" style="width: 40%;">
+                            <span>क्रमांक:</span>
+                            <div class="dotted-line">${receiptNo}</div>
+                        </div>
+                        <div class="field-group" style="width: 40%;">
+                            <span>दिनांक:</span>
+                            <div class="dotted-line">${formattedDate}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field-group" style="width: 65%;">
+                            <span>श्रीमान/श्रीमती:</span>
+                            <div class="dotted-line" style="text-align: left; padding-left: 10px;">${name}</div>
+                        </div>
+                        <div class="field-group" style="width: 32%;">
+                            <span>मो.:</span>
+                            <div class="dotted-line">${mobile}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field-group" style="width: 100%;">
+                            <span>पता:</span>
+                            <div class="dotted-line" style="text-align: left; padding-left: 10px;">${address || '&nbsp;'}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field-group" style="width: 100%;">
+                            <span>से बावत:</span>
+                            <div class="dotted-line" style="text-align: left; padding-left: 10px;">${purpose}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="margin-bottom: 5px;">
+                        <div class="field-group" style="width: 100%;">
+                            <span>रुपये (अंकों में):</span>
+                            <div class="dotted-line" style="text-align: left; padding-left: 10px; display: flex; justify-content: space-between; align-items: flex-end;">
+                                <span>₹ ${parseFloat(amount || 0).toLocaleString('en-IN')}/-</span>
+                                <span style="font-family: 'Tiro Devanagari Hindi', serif; font-size: 18px; color: #8B0000; font-weight: bold; border-bottom: none;">सधन्यवाद प्राप्त हुए।</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-text">अग्रवाल समाज समिति आपके उज्ज्वल भविष्य की कामना करती है।</div>
+                    <div class="computer-generated">*यह एक कम्प्यूटरीकृत रसीद है अतः हस्ताक्षर की आवश्यकता नहीं है।*</div>
+                </div>
+            </div>
+            <script>
+                setTimeout(() => { window.print(); }, 1000);
+            </script>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+};
+
 
 // Generate Matrimonial PDF
 window.generateMatrimonialPDF = async function(data) {

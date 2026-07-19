@@ -450,15 +450,11 @@
         function downloadDonationCert(index) {
             const data = window.userDonationsData[index];
             if (data && data.receiptNo) {
-                Swal.fire({
-                    title: 'Generating Receipt...',
-                    html: 'Please wait...',
-                    allowOutsideClick: false,
-                    didOpen: () => { Swal.showLoading(); }
-                });
-                generateHindiDonationCertificate(data.receiptNo, data)
-                    .then(() => Swal.close())
-                    .catch(e => { console.error(e); Swal.fire('Error', 'Failed to generate receipt', 'error'); });
+                if (typeof window.printHindiReceipt === 'function') {
+                    window.printHindiReceipt('donation', data.receiptNo, data);
+                } else {
+                    alert("Receipt generator not loaded.");
+                }
             }
         }
     </script>

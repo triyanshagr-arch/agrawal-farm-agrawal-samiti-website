@@ -330,23 +330,22 @@ async function verifyDonation(rowNum) {
 
 function printDonationReceipt(receiptNo) {
     const d = window.donationData.find(x => x.receiptNo === receiptNo);
-    if (!d) return;
-    // Assume pdf_generator.js is loaded
-    if (typeof generateDonationReceiptPDF === 'function') {
-        generateDonationReceiptPDF(receiptNo, d, 'save');
+    if (!d) return alert("Receipt not found");
+    if (typeof window.printHindiReceipt === 'function') {
+        window.printHindiReceipt('donation', receiptNo, d);
     } else {
-        Swal.fire("PDF generator script not found.");
+        alert("Receipt generator not loaded.");
     }
-}
+};
 
 function downloadDonationCertificate(receiptNo) {
     const d = window.donationData.find(x => x.receiptNo === receiptNo);
-    if (!d) return;
-    // Assume pdf_generator.js is loaded
-    if (typeof generateHindiDonationCertificate === 'function') {
-        generateHindiDonationCertificate(receiptNo, d);
+    if (!d) return alert("Receipt not found");
+    
+    if (typeof window.printHindiReceipt === 'function') {
+        window.printHindiReceipt('donation', receiptNo, d);
     } else {
-        Swal.fire("PDF generator script not found.");
+        alert("Receipt generator not loaded.");
     }
 }
 
@@ -474,6 +473,7 @@ function createMemberRow(m, isPending, index) {
     const printHtml = `<button style="${gridBtnStyle}" onclick="printApplicationForm(${m.row}, 'hi')" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-print" style="color:#ef4444; font-size: 14px;"></i>Print</button>`;
     const viewHtml = `<button style="${gridBtnStyle}" onclick="viewProfile(${m.row})" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-eye" style="color:#10b981; font-size: 14px;"></i>View</button>`;
     const editHtml = `<button style="${gridBtnStyle}" onclick="editProfile(${m.row})" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-edit" style="color:#f59e0b; font-size: 14px;"></i>Edit</button>`;
+    const receiptHtml = `<button style="${gridBtnStyle}" onclick="printMembershipReceipt(${m.row})" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-receipt" style="color:#f59e0b; font-size: 14px;"></i>Receipt</button>`;
 
     let actionHtml = '';
     if (isPending) {
@@ -489,10 +489,10 @@ function createMemberRow(m, isPending, index) {
         actionHtml = `
             <div style="color: #10b981; font-weight: bold; text-align: center; margin-bottom: 8px; font-size: 13px;"><i class="fas fa-check-circle"></i> Approved</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                ${viewHtml}
-                ${editHtml}
                 ${printHtml}
+                ${receiptHtml}
                 ${emailBtnHtml}
+                ${editHtml}
             </div>
         `;
     }
@@ -2614,4 +2614,14 @@ function deleteNotice(row) {
                 });
         }
     });
+}
+
+function printMembershipReceipt(row) {
+    const d = window.memberData.find(x => x.row === row);
+    if (!d) return alert("Member not found");
+    if (typeof window.printHindiReceipt === 'function') {
+        window.printHindiReceipt('membership', d.membershipNo, d);
+    } else {
+        alert("Receipt generator not loaded.");
+    }
 }
