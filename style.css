@@ -2733,6 +2733,7 @@ footer a:hover {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     margin-bottom: 15px;
+    align-items: start;
 }
 .form-group {
     margin-bottom: 12px !important;
@@ -2938,6 +2939,7 @@ footer a:hover {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     margin-bottom: 15px;
+    align-items: start;
 }
 
 @media (max-width: 768px) {
@@ -3286,6 +3288,7 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
     box-sizing: border-box !important;
     border: none !important;
     border-bottom: 2px solid transparent !important;
+    height: fit-content !important;
 }
 
 .material-filled-group:focus-within {
