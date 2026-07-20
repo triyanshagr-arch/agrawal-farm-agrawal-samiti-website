@@ -207,7 +207,7 @@
         function initRecaptcha() {
             if (!recaptchaVerifier) {
                 recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                    'size': 'normal',
+                    'size': 'invisible',
                     'callback': (response) => {
                         // reCAPTCHA solved
                     },

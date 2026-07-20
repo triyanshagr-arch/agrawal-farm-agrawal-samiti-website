@@ -51,7 +51,7 @@ setTimeout(() => {
 
             if (!window.recaptchaVerifier) {
                 window.recaptchaVerifier = new window.RecaptchaVerifier(window.firebaseAuth, 'recaptcha-container', {
-                    'size': 'normal',
+                    'size': 'invisible',
                     'callback': (response) => {},
                     'expired-callback': () => { document.getElementById('loginError').innerText = "reCAPTCHA expired. Try again."; }
                 });
