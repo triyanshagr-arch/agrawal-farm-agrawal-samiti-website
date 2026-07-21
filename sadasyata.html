@@ -181,7 +181,7 @@
 <i class="fas fa-camera" style="font-size: 24px; margin-bottom: 8px;"></i>
 <span style="font-size: 14px; font-weight: 600;">Upload Photo</span>
 </label>
-<input accept="image/*" id="applicantPhoto" onchange="previewImage(this, 'applicantPhotoPreview', 'photoUploadLabel')" required="" style="display: none;" type="file"/>
+<input accept="image/*" id="applicantPhoto" onchange="previewImage(this, 'applicantPhotoPreview', 'photoUploadLabel')" required="" style="opacity: 0; width: 0.1px; height: 0.1px; position: absolute; z-index: -1;" type="file"/>
 <img id="applicantPhotoPreview" src="" style="display:none; width: 140px; height: 160px; object-fit: cover; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); box-sizing: border-box;" title="Click to change image"/>
 </div>
 </div>
@@ -401,7 +401,7 @@
 </div>
 <div style="text-align: center;">
 <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
-<button class="btn" disabled="" id="submitButton" style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: not-allowed; background-color: #ccc; box-shadow: none; color: #666; transition: 0.3s;" type="submit"><i class="fas fa-lock" id="submitLockIcon"></i> <span class="lang-hi">फॉर्म जमा करें (पहले फोन वेरीफाई करें)</span><span class="lang-en">Submit Form (Verify Phone First)</span></button>
+<button class="btn" id="submitButton" onclick="if(!window.isPhoneVerified) { Swal.fire('Verification Required', 'Please verify your phone number via SMS before submitting the form.', 'warning'); return false; }" style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: pointer; background-color: #ccc; box-shadow: none; color: #666; transition: 0.3s;" type="submit"><i class="fas fa-lock" id="submitLockIcon"></i> <span class="lang-hi">फॉर्म जमा करें (पहले फोन वेरीफाई करें)</span><span class="lang-en">Submit Form (Verify Phone First)</span></button>
 </div>
 </form>
 </div>
@@ -586,6 +586,7 @@
 
         let confirmationResult = null;
         let isPhoneVerified = false;
+        window.isPhoneVerified = false;
 
         const mobileInput = document.getElementById('mobileNumber');
         const btnSendOtp = document.getElementById('btnSendOtp');
@@ -601,17 +602,16 @@
             mobileInput.addEventListener('input', () => {
                 if (isPhoneVerified) {
                     isPhoneVerified = false;
+                    window.isPhoneVerified = false;
                     phoneStatus.style.display = 'none';
                     btnSendOtp.style.display = 'block';
                     btnSendOtp.innerText = 'Verify SMS';
                     mobileInput.style.borderColor = '#ddd';
                     mobileInput.readOnly = false;
                     
-                    // Disable submit button
+                    // Disable submit button visually
                     if(submitButton) {
-                        submitButton.disabled = true;
                         submitButton.style.backgroundColor = '#ccc';
-                        submitButton.style.cursor = 'not-allowed';
                         submitButton.style.boxShadow = 'none';
                         submitButton.style.color = '#666';
                         if(submitLockIcon) submitLockIcon.className = 'fas fa-lock';
@@ -686,6 +686,7 @@
                 confirmationResult.confirm(code).then((result) => {
                     // User signed in successfully
                     isPhoneVerified = true;
+                    window.isPhoneVerified = true;
                     otpSection.style.display = 'none';
                     
                     // Show success status next to phone input
@@ -695,11 +696,9 @@
                     mobileInput.style.borderColor = '#2e7d32';
                     mobileInput.readOnly = true;
 
-                    // Enable Submit Button
+                    // Enable Submit Button visually
                     if(submitButton) {
-                        submitButton.disabled = false;
                         submitButton.style.backgroundColor = 'var(--primary-color)';
-                        submitButton.style.cursor = 'pointer';
                         submitButton.style.boxShadow = '0 5px 15px rgba(220,53,69,0.3)';
                         submitButton.style.color = '#fff';
                         if(submitLockIcon) submitLockIcon.className = 'fas fa-paper-plane';
