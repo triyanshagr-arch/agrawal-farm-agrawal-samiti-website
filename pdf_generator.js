@@ -592,7 +592,7 @@ window.printHindiReceipt = function(type, receiptNo, data) {
     let name = type === 'membership' ? (data.fullName || '') : (data.donorName || '');
     let mobile = data.mobileNumber || '';
     let address = type === 'membership' ? (data.permanentAddress || '') : (data.address || '');
-    let amount = type === 'membership' ? (data.amount || '1100') : (data.donationAmount || '0');
+    let amount = type === 'membership' ? (data.amount || '501') : (data.donationAmount || '0');
     let purpose = type === 'membership' ? 'आजीवन सदस्यता (Lifetime Membership)' : (data.donationPurpose || 'धर्मार्थ कार्य (Donation)');
     let dateStr = type === 'membership' ? (data.timestamp || new Date()) : (data.timestamp || new Date());
     
