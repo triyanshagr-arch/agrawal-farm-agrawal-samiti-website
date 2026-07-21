@@ -522,11 +522,11 @@
 
         function getStatusBadge(status) {
             if (status === 'Approved' || status === 'Verified') {
-                return `<span style="background: #e8f5e9; color: #2e7d32; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;"><i class="fas fa-check-circle"></i> ${status}</span>`;
+                return `<span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;"><i class="fas fa-check-circle"></i> ${status}</span>`;
             } else if (status === 'Pending') {
-                return `<span style="background: #fff3e0; color: #ef6c00; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;"><i class="fas fa-clock"></i> Pending</span>`;
+                return `<span style="background: #fff3e0; color: #ef6c00; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;"><i class="fas fa-clock"></i> Pending</span>`;
             } else {
-                return `<span style="background: #f1f5f9; color: #475569; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">${status || 'Unknown'}</span>`;
+                return `<span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">${status || 'Unknown'}</span>`;
             }
         }
 
