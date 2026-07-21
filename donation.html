@@ -173,10 +173,10 @@
 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ट्रांजेक्शन आईडी / UTR <span style="color:red">*</span></span><span class="lang-en">Transaction ID / UTR No. <span style="color:red">*</span></span></label>
 <input data-placeholder-en="Enter Transaction ID / UTR No." data-placeholder-hi="ट्रांजेक्शन आईडी / UTR दर्ज करें" id="transactionId" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Enter Transaction ID / UTR No." required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; font-family: inherit;" type="text"/>
 </div>
-<div class="form-group">
+<div class="form-group material-filled-group">
 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">Payment Screenshot <span style="color:red">*</span></span></label>
 <div style="display: flex; gap: 20px; align-items: flex-start; justify-content: flex-end; width: 100%;">
-<input accept="image/*" id="paymentScreenshot" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'paymentScreenshotPreview')" onfocus="this.style.borderColor='var(--primary-color)'" required="" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" type="file"/>
+<input accept="image/*" id="paymentScreenshot" onchange="previewImage(this, 'paymentScreenshotPreview')" required="" style="flex: 1; outline: none; transition: 0.3s; box-sizing: border-box;" type="file"/>
 <img id="paymentScreenshotPreview" src="" style="display:none; margin-left: auto; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"/>
 </div>
 </div>

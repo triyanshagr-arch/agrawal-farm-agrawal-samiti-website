@@ -358,10 +358,10 @@
 <h4 style="margin-bottom: 15px; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 8px;"><span class="lang-hi">भुगतान पुष्टि विवरण</span><span class="lang-en">Payment Confirmation Details</span></h4>
 <div id="onlinePaymentSection">
 <div class="form-grid">
-<div class="form-group">
+<div class="form-group material-filled-group">
 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">UPI / पेमेंट स्क्रीनशॉट <span style="color:red">*</span></span><span class="lang-en">UPI / Payment Screenshot <span style="color:red">*</span></span></label>
 <div style="display: flex; gap: 20px; align-items: flex-start; justify-content: flex-end; width: 100%;">
-<input accept="image/*" id="paymentScreenshot" onblur="this.style.borderColor='#ddd'" onchange="previewImage(this, 'paymentScreenshotPreview')" onfocus="this.style.borderColor='var(--primary-color)'" required="" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; background: #fff;" type="file"/>
+<input accept="image/*" id="paymentScreenshot" onchange="previewImage(this, 'paymentScreenshotPreview')" required="" style="flex: 1; outline: none; transition: 0.3s; box-sizing: border-box;" type="file"/>
 <img id="paymentScreenshotPreview" src="" style="display:none; margin-left: auto; max-height: 150px; border-radius: 8px; border: 2px solid var(--primary-color); padding: 2px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"/>
 </div>
 </div>
