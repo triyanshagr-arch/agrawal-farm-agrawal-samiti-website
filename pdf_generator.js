@@ -615,10 +615,10 @@ window.printHindiReceipt = function(type, receiptNo, data) {
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Yatra+One&display=swap');
                 @media print {
-                    @page { margin: 0.5cm; size: portrait; }
-                    html, body { margin: 0; padding: 0; overflow: hidden; display: block; }
+                    @page { margin: 5mm; size: portrait; }
+                    html, body { margin: 0; padding: 0; display: block; background: #fff; }
                     body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-                    .receipt-card { border: none !important; box-shadow: none !important; width: 100% !important; max-width: 210mm !important; height: auto !important; min-height: 140mm !important; margin: 0 auto; page-break-after: avoid; }
+                    .receipt-card { border: none !important; box-shadow: none !important; width: 100% !important; max-width: 200mm !important; height: 140mm !important; margin: 0 auto; page-break-after: avoid; }
                 }
                 body { 
                     margin: 0; padding: 20px;
