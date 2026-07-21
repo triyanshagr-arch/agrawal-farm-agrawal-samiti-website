@@ -243,7 +243,7 @@
                     confirmationResult = result;
                     document.getElementById('phoneSection').style.display = 'none';
                     document.getElementById('otpSection').style.display = 'block';
-                    Swal.fire('Sent!', 'OTP has been sent to your mobile.', 'success');
+                    Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: 'OTP sent to your mobile'});
                 }).catch((error) => {
                     console.error("Error during signInWithPhoneNumber", error);
                     btn.innerHTML = '<span class="lang-hi">OTP भेजें</span><span class="lang-en">Send OTP</span>';
@@ -273,7 +273,7 @@
             confirmationResult.confirm(otpCode).then((result) => {
                 // User signed in successfully.
                 const user = result.user;
-                Swal.fire('Success', 'Logged in successfully!', 'success').then(() => {
+                Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'success', title: 'Logged in successfully!'}).then(() => {
                     // Redirect to dashboard (or admin if it's admin)
                     // For now, redirect to dashboard.
                     window.location.href = 'dashboard.html';

@@ -664,7 +664,7 @@
                         otpSection.style.display = 'block';
                         btnSendOtp.style.display = 'none';
                         document.getElementById('recaptcha-container').style.display = 'none';
-                        Swal.fire('Sent!', 'OTP has been sent to your phone via SMS.', 'success');
+                        Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: 'OTP sent to your phone via SMS'});
                     }).catch((error) => {
                         console.error("SMS Error:", error);
                         btnSendOtp.disabled = false;
@@ -713,7 +713,7 @@
                         if(en) en.innerText = 'Submit Form';
                     }
 
-                    Swal.fire('Verified!', 'Your phone number has been verified successfully.', 'success');
+                    Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: 'Phone number verified successfully'});
 
                 }).catch((error) => {
                     console.error("OTP Error:", error);
