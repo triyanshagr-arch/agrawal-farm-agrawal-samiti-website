@@ -303,7 +303,7 @@
         });
 
         // Allow pressing Enter to send OTP
-        document.getElementById('phoneNumber').addEventListener('keypress', function (e) {
+        document.getElementById('phoneNumber').addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 document.getElementById('btnSendOtp').click();
@@ -311,7 +311,7 @@
         });
 
         // Allow pressing Enter to verify OTP
-        document.getElementById('otpCode').addEventListener('keypress', function (e) {
+        document.getElementById('otpCode').addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 document.getElementById('btnVerifyOtp').click();
