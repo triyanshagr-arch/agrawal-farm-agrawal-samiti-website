@@ -301,6 +301,22 @@
                 document.getElementById('recaptcha-container').innerHTML = '';
             }
         });
+
+        // Allow pressing Enter to send OTP
+        document.getElementById('phoneNumber').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('btnSendOtp').click();
+            }
+        });
+
+        // Allow pressing Enter to verify OTP
+        document.getElementById('otpCode').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('btnVerifyOtp').click();
+            }
+        });
     </script>
 </body>
 </html>
