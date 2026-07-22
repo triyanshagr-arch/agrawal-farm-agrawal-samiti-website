@@ -3368,4 +3368,42 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
     .mobile-drawer-close {
         display: none !important;
     }
+
+    /* 5. Mobile Navbar Alignment Fix */
+    /* Remove horizontal padding from the drawer container so full-width items don't overflow */
+    .red-navbar .nav-menu {
+        padding: 80px 0 30px 0 !important;
+        align-items: stretch !important; /* Force all list items to stretch to full width */
+    }
+
+    /* Style the list items to take full width cleanly */
+    .nav-menu li {
+        width: 100% !important; 
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    /* Style the links inside the items with padding and left-alignment */
+    .nav-menu li a.nav-links, .nav-menu li a {
+        display: block !important;
+        width: 100% !important;
+        text-align: left !important; /* Align text to the left so all words line up perfectly */
+        padding: 15px 30px !important; /* Generous padding inside the link instead of the ul */
+        box-sizing: border-box !important;
+    }
+
+    /* Ensure the language toggle and its container match the full width and alignment */
+    .nav-item-toggle {
+        margin: 15px 0 0 0 !important;
+        display: block !important;
+        width: 100% !important;
+        padding: 0 30px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .language-toggle {
+        margin: 0 !important;
+        width: 100% !important;
+    }
 }
