@@ -14,7 +14,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-auth.useDeviceLanguage();
+auth.languageCode = 'hi';
 
 // Explicitly force local persistence so it survives across tabs
 setPersistence(auth, browserLocalPersistence).catch((error) => {
