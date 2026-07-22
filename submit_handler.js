@@ -340,6 +340,85 @@ document.addEventListener('DOMContentLoaded', () => {
     // Booking Form Handler
     const bookingForm = document.getElementById('bookingForm');
     if (bookingForm) {
+        let approvedBookingsCache = [];
+        const availMsg = document.getElementById('availabilityMessage');
+        const submitBookingBtn = bookingForm.querySelector('button[type="submit"]');
+        
+        // Fetch approved bookings immediately
+        const GOOGLE_SCRIPT_URL_BASE = "https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec";
+        fetch(`${GOOGLE_SCRIPT_URL_BASE}?action=get_public_bookings`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.bookings) {
+                    approvedBookingsCache = data.bookings;
+                }
+            }).catch(console.error);
+
+        function checkAvailability() {
+            const fac = document.getElementById('facilityRequired').value;
+            const sdStr = document.getElementById('startDate').value;
+            const edStr = document.getElementById('endDate').value;
+            
+            if (!fac || !sdStr || !edStr) {
+                if (availMsg) availMsg.style.display = 'none';
+                if (submitBookingBtn) submitBookingBtn.disabled = false;
+                return;
+            }
+            
+            const reqStart = new Date(sdStr).getTime();
+            const reqEnd = new Date(edStr).getTime();
+            
+            if (reqEnd < reqStart) {
+                if (availMsg) {
+                    availMsg.style.display = 'block';
+                    availMsg.style.color = '#f44336';
+                    availMsg.style.backgroundColor = '#ffebee';
+                    availMsg.innerHTML = '❌ End date cannot be before start date.';
+                }
+                if (submitBookingBtn) submitBookingBtn.disabled = true;
+                return;
+            }
+
+            let isOverlap = false;
+            for (const b of approvedBookingsCache) {
+                if (b.facilityRequired === fac) {
+                    const bStart = new Date(b.startDate).getTime();
+                    const bEnd = new Date(b.endDate).getTime();
+                    
+                    // Check overlap: (StartA <= EndB) and (EndA >= StartB)
+                    if (reqStart <= bEnd && reqEnd >= bStart) {
+                        isOverlap = true;
+                        break;
+                    }
+                }
+            }
+
+            if (isOverlap) {
+                if (availMsg) {
+                    availMsg.style.display = 'block';
+                    availMsg.style.color = '#f44336';
+                    availMsg.style.backgroundColor = '#ffebee';
+                    availMsg.innerHTML = '❌ This facility is already booked for these dates.';
+                }
+                if (submitBookingBtn) submitBookingBtn.disabled = true;
+            } else {
+                if (availMsg) {
+                    availMsg.style.display = 'block';
+                    availMsg.style.color = '#4caf50';
+                    availMsg.style.backgroundColor = '#e8f5e9';
+                    availMsg.innerHTML = '✅ Dates are available!';
+                }
+                if (submitBookingBtn) submitBookingBtn.disabled = false;
+            }
+        }
+
+        const facEl = document.getElementById('facilityRequired');
+        const sdEl = document.getElementById('startDate');
+        const edEl = document.getElementById('endDate');
+        if (facEl) facEl.addEventListener('change', checkAvailability);
+        if (sdEl) sdEl.addEventListener('change', checkAvailability);
+        if (edEl) edEl.addEventListener('change', checkAvailability);
+
         bookingForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             if (typeof grecaptcha !== 'undefined') {
