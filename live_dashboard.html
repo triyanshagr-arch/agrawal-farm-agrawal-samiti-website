@@ -561,7 +561,7 @@
                 localStorage.setItem('agrawalAuthLoggedIn', 'true');
                 document.getElementById('displayPhone').innerText = user.phoneNumber;
                 
-                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxY6kQq6RjVfZfkPCpOLIWF2SojN52zw4jK0N29B2rr4YmvZZg56PyRSjLBVRTSjLhD/exec'; // Ensure this matches their actual URL
+                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec'; // Ensure this matches their actual URL
                 
                 fetch(`${GOOGLE_SCRIPT_URL}?action=get_member_dashboard&phone=${encodeURIComponent(user.phoneNumber)}`)
                     .then(res => res.json())

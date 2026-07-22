@@ -40,7 +40,7 @@ function loadPublicMatrimonialProfiles() {
     const gallery = document.getElementById('profiles-grid');
     if(!loader || !gallery) return;
     
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxY6kQq6RjVfZfkPCpOLIWF2SojN52zw4jK0N29B2rr4YmvZZg56PyRSjLBVRTSjLhD/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec';
 
     // 1. Instantly load from cache if available
     const cachedData = localStorage.getItem('cachedMatrimonialProfiles');
