@@ -755,13 +755,28 @@
     </script>
     <script src="states_districts.js"></script>
     <script>
+        const stateTranslations = {
+            "Andhra Pradesh": "आंध्र प्रदेश", "Arunachal Pradesh": "अरुणाचल प्रदेश", "Assam": "असम", "Bihar": "बिहार",
+            "Chhattisgarh": "छत्तीसगढ़", "Goa": "गोवा", "Gujarat": "गुजरात", "Haryana": "हरियाणा",
+            "Himachal Pradesh": "हिमाचल प्रदेश", "Jammu and Kashmir": "जम्मू और कश्मीर", "Jharkhand": "झारखंड",
+            "Karnataka": "कर्नाटक", "Kerala": "केरल", "Madhya Pradesh": "मध्य प्रदेश", "Maharashtra": "महाराष्ट्र",
+            "Manipur": "मणिपुर", "Meghalaya": "मेघालय", "Mizoram": "मिजोरम", "Nagaland": "नागालैंड",
+            "Odisha": "ओडिशा", "Punjab": "पंजाब", "Rajasthan": "राजस्थान", "Sikkim": "सिक्किम",
+            "Tamil Nadu": "तमिलनाडु", "Telangana": "तेलंगाना", "Tripura": "त्रिपुरा", "Uttar Pradesh": "उत्तर प्रदेश",
+            "Uttarakhand": "उत्तराखंड", "West Bengal": "पश्चिम बंगाल", "Andaman and Nicobar Islands": "अंडमान और निकोबार द्वीप समूह",
+            "Chandigarh": "चंडीगढ़", "Dadra and Nagar Haveli": "दादरा और नगर हवेली", "Daman and Diu": "दमन और दीव",
+            "Delhi": "दिल्ली", "Lakshadweep": "लक्षद्वीप", "Puducherry": "पुडुचेरी"
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
             const stateSelect = document.getElementById('state');
             if (stateSelect && typeof stateDistrictData !== 'undefined' && stateDistrictData.states) {
                 stateDistrictData.states.forEach(st => {
                     const option = document.createElement('option');
                     option.value = st.state;
-                    option.textContent = st.state;
+                    option.setAttribute('data-en', st.state);
+                    option.setAttribute('data-hi', stateTranslations[st.state] || st.state);
+                    option.textContent = document.body.classList.contains('lang-english-mode') ? st.state : (stateTranslations[st.state] || st.state);
                     stateSelect.appendChild(option);
                 });
             }
@@ -781,6 +796,8 @@
                 stateInfo.districts.forEach(dist => {
                     const option = document.createElement('option');
                     option.value = dist;
+                    option.setAttribute('data-en', dist);
+                    option.setAttribute('data-hi', dist); // Districts remain in English for now
                     option.textContent = dist;
                     districtSelect.appendChild(option);
                 });
