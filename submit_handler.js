@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Text fields (removed familyDetails, added marriageDate)
                 const textFields = ['title-dropdown', 'fullName', 'guardianName', 'dob', 'marriageDate', 'bloodGroup', 'gotra', 
-                                    'occupation', 'education', 'domicile', 'permanentAddress', 'officeAddress', 
+                                    'occupation', 'education', 'domicile', 'state', 'district', 'permanentAddress', 'officeAddress', 
                                     'houseType', 'mobileNumber', 'emailId', 'transactionId', 
                                     'utrNo', 'bankAccountName'];
                 

@@ -189,6 +189,22 @@
 </div>
 <!-- Contact Details -->
 <h3 style="color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 25px;"><span class="lang-hi">संपर्क विवरण</span><span class="lang-en">Contact Details</span></h3>
+<div class="form-grid" style="margin-bottom: 20px;">
+    <!-- State Dropdown -->
+    <div class="form-group material-filled-group">
+        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">राज्य <span style="color:red">*</span></span><span class="lang-en">State <span style="color:red">*</span></span></label>
+        <select id="state" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;" onchange="populateDistricts()">
+            <option value="" data-hi="राज्य चुनें" data-en="Select State">Select State / राज्य चुनें</option>
+        </select>
+    </div>
+    <!-- District Dropdown -->
+    <div class="form-group material-filled-group">
+        <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">जिला <span style="color:red">*</span></span><span class="lang-en">District <span style="color:red">*</span></span></label>
+        <select id="district" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box; background: #fff;">
+            <option value="" data-hi="जिला चुनें" data-en="Select District">Select District / जिला चुनें</option>
+        </select>
+    </div>
+</div>
 <div class="form-group material-filled-group" style="margin-bottom: 20px;">
 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">स्थाई पता <span style="color:red">*</span></span><span class="lang-en">Permanent Address <span style="color:red">*</span></span></label>
 <textarea data-placeholder-en="Enter Permanent Address" data-placeholder-hi="स्थाई पता दर्ज करें" id="permanentAddress" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" oninput="if(document.getElementById('sameAsPermanent').checked) document.getElementById('officeAddress').value = this.value;" placeholder="Enter Permanent Address" required="" rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical;"></textarea>
@@ -736,6 +752,44 @@
             }, true); // Use capture phase so this runs BEFORE submit_handler.js
         }
 
+    </script>
+    <script src="states_districts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stateSelect = document.getElementById('state');
+            if (stateSelect && typeof stateDistrictData !== 'undefined' && stateDistrictData.states) {
+                stateDistrictData.states.forEach(st => {
+                    const option = document.createElement('option');
+                    option.value = st.state;
+                    option.textContent = st.state;
+                    stateSelect.appendChild(option);
+                });
+            }
+        });
+
+        function populateDistricts() {
+            const stateSelect = document.getElementById('state');
+            const districtSelect = document.getElementById('district');
+            
+            districtSelect.innerHTML = '<option value="" data-hi="जिला चुनें" data-en="Select District">Select District / जिला चुनें</option>';
+            
+            const selectedState = stateSelect.value;
+            if (!selectedState) return;
+
+            const stateInfo = stateDistrictData.states.find(s => s.state === selectedState);
+            if (stateInfo && stateInfo.districts) {
+                stateInfo.districts.forEach(dist => {
+                    const option = document.createElement('option');
+                    option.value = dist;
+                    option.textContent = dist;
+                    districtSelect.appendChild(option);
+                });
+            }
+            
+            if (typeof updateBilingualOptions === 'function') {
+                updateBilingualOptions(document.body.classList.contains('lang-english-mode'));
+            }
+        }
     </script>
 </body>
 </html>
