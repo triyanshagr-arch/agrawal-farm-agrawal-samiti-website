@@ -608,6 +608,10 @@ window.printHindiReceipt = function(type, receiptNo, data) {
     const basePath = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
 
     const printWindow = window.open('', '_blank', 'width=900,height=600');
+    if (!printWindow) {
+        alert("Pop-up blocked! Please allow pop-ups for this site in your browser settings to view and print the receipt.");
+        return;
+    }
     printWindow.document.write(`
         <html>
         <head>
