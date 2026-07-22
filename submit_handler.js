@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Send data to Google Sheets
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec";
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3ZOJQVzS7K62sse0qz3Xe19onvPrB6BUKdt6GNc7ru2O3rHfGFyVqxRXRRbXWXrAl/exec";
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_membership', data: { membershipNo: membershipNo, photoBase64: compressedPhotoBase64, signatureBase64: compressedSignatureBase64, ...dataObj } })
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const compressedScreenshotBase64 = paymentScreenshotInput.files.length > 0 ? await compressImageAsBase64(paymentScreenshotInput.files[0], 600, 0.7) : null;
 
                 // Send data to Google Sheets
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec";
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3ZOJQVzS7K62sse0qz3Xe19onvPrB6BUKdt6GNc7ru2O3rHfGFyVqxRXRRbXWXrAl/exec";
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_donation', data: { receiptNo: receiptNo, screenshotBase64: compressedScreenshotBase64, ...dataObj } })
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const submitBookingBtn = bookingForm.querySelector('button[type="submit"]');
         
         // Fetch approved bookings immediately
-        const GOOGLE_SCRIPT_URL_BASE = "https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec";
+        const GOOGLE_SCRIPT_URL_BASE = "https://script.google.com/macros/s/AKfycby3ZOJQVzS7K62sse0qz3Xe19onvPrB6BUKdt6GNc7ru2O3rHfGFyVqxRXRRbXWXrAl/exec";
         fetch(`${GOOGLE_SCRIPT_URL_BASE}?action=get_public_bookings`)
             .then(res => res.json())
             .then(data => {
@@ -455,8 +455,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Format Dates for backend mapping if needed (optional, keeping YYYY-MM-DD is often fine for backend, but we can leave as is)
 
                 // Send data to Google Sheets in the background
-                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec";
-                fetch('https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec', {
+                const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby3ZOJQVzS7K62sse0qz3Xe19onvPrB6BUKdt6GNc7ru2O3rHfGFyVqxRXRRbXWXrAl/exec";
+                fetch('https://script.google.com/macros/s/AKfycby3ZOJQVzS7K62sse0qz3Xe19onvPrB6BUKdt6GNc7ru2O3rHfGFyVqxRXRRbXWXrAl/exec', {
                     method: 'POST',
                     body: JSON.stringify({ action: 'add_booking', data: dataObj })
                 }).catch(err => console.error("Sheets Error:", err));
@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     formDataObj.append('photo', formData.photo || '');
                     if (typeof grecaptcha !== 'undefined') formDataObj.append('recaptchaToken', grecaptcha.getResponse());
 
-                    const response = await fetch('https://script.google.com/macros/s/AKfycbzjzpv-slUTVBvbsESE1bKA3-Mt52k8ikuSrPDZsqkTZpkOYKYIJMc-_33p57pzyDon/exec', {
+                    const response = await fetch('https://script.google.com/macros/s/AKfycby3ZOJQVzS7K62sse0qz3Xe19onvPrB6BUKdt6GNc7ru2O3rHfGFyVqxRXRRbXWXrAl/exec', {
                         method: 'POST',
                         body: formDataObj
                     });
