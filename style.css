@@ -3330,3 +3330,42 @@ body.dark-mode .input-field, body.dark-mode textarea { background: #2A2A2A; colo
     gap: 15px;
     align-items: center;
 }
+
+/* --- MOBILE NAVBAR FIXES --- */
+@media (max-width: 992px) {
+    /* 1. Ensure the hamburger button is visible, clickable, and above the drawer */
+    .menu-toggle {
+        display: block !important;
+        position: relative !important;
+        z-index: 10005 !important; 
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    /* 2. Force the hamburger bars to be colored (overrides inline style="background:#fff") */
+    .menu-toggle .bar {
+        background-color: var(--primary-color) !important;
+        width: 25px !important;
+        height: 3px !important;
+        margin: 5px auto !important;
+        display: block !important;
+        border-radius: 2px;
+        transition: 0.3s ease-in-out;
+    }
+
+    /* 3. Hamburger "X" animation state */
+    .menu-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg) !important;
+    }
+    .menu-toggle.is-active .bar:nth-child(2) {
+        opacity: 0 !important;
+    }
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg) !important;
+    }
+
+    /* 4. Hide the redundant 'X' drawer close button since the hamburger turns into an X */
+    .mobile-drawer-close {
+        display: none !important;
+    }
+}
