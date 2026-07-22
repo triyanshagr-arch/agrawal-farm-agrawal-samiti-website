@@ -8,7 +8,8 @@ window.eventData = [];
 
 // ADMIN ALLOWLIST: Add the testing phone numbers (or real admin numbers) here. Must include +91.
 const ADMIN_PHONE_NUMBERS = [
-    "+918764294920" // <--- Update this to your testing number
+    "+918764294920",
+    "+917231897225"
 ];
 
 let confirmationResult = null;
@@ -26,6 +27,7 @@ setTimeout(() => {
                     document.getElementById('loginError').style.color = "green";
                     document.getElementById('loginError').innerText = "Session Restored. Enter Admin Password.";
                 } else {
+                    document.getElementById('loginError').style.color = "red";
                     document.getElementById('loginError').innerText = "Access Denied: You are not an authorized Admin.";
                     window.signOut(window.firebaseAuth);
                 }
@@ -45,6 +47,13 @@ setTimeout(() => {
             }
             
             const formatted = "+91" + phone;
+            
+            if (!ADMIN_PHONE_NUMBERS.includes(formatted)) {
+                document.getElementById('loginError').style.color = "red";
+                document.getElementById('loginError').innerText = "Access Denied: This number is not an authorized Admin.";
+                return;
+            }
+
             btnSendOtp.disabled = true;
             btnSendOtp.innerHTML = "Sending...";
             document.getElementById('loginError').innerText = "";
