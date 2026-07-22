@@ -558,6 +558,7 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 // User is signed in.
+                localStorage.setItem('agrawalAuthLoggedIn', 'true');
                 document.getElementById('displayPhone').innerText = user.phoneNumber;
                 
                 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxY6kQq6RjVfZfkPCpOLIWF2SojN52zw4jK0N29B2rr4YmvZZg56PyRSjLBVRTSjLhD/exec'; // Ensure this matches their actual URL
@@ -692,6 +693,7 @@
 
         document.getElementById('btnLogout').addEventListener('click', () => {
             signOut(auth).then(() => {
+                localStorage.removeItem('agrawalAuthLoggedIn');
                 window.location.href = 'login.html';
             }).catch((error) => {
                 Swal.fire('Error', 'Could not log out. Try again.', 'error');

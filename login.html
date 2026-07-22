@@ -204,6 +204,7 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 // If logged in, send them to dashboard immediately
+                localStorage.setItem('agrawalAuthLoggedIn', 'true');
                 window.location.href = 'dashboard.html';
             }
         });
@@ -273,6 +274,7 @@
             confirmationResult.confirm(otpCode).then((result) => {
                 // User signed in successfully.
                 const user = result.user;
+                localStorage.setItem('agrawalAuthLoggedIn', 'true');
                 Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: 'success', title: 'Logged in successfully!'}).then(() => {
                     // Redirect to dashboard (or admin if it's admin)
                     // For now, redirect to dashboard.

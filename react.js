@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Dynamically update navbar LOGIN link to DASHBOARD if logged in
+    if (localStorage.getItem('agrawalAuthLoggedIn') === 'true') {
+        const loginLinks = document.querySelectorAll('a[href="login.html"]');
+        loginLinks.forEach(link => {
+            link.href = 'dashboard.html';
+            const enSpan = link.querySelector('.lang-en');
+            const hiSpan = link.querySelector('.lang-hi');
+            if (enSpan) enSpan.textContent = 'DASHBOARD';
+            if (hiSpan) hiSpan.textContent = 'डैशबोर्ड';
+        });
+    }
+
     // Mobile Menu Toggle
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.querySelector('.nav-menu');
