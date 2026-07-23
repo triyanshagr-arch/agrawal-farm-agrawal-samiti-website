@@ -63,10 +63,55 @@ function renderPhotos(photos, isGalleryPage, isActivitiesPage) {
     const activitiesGrid = document.getElementById('dynamic-activities-grid');
     
     // Filter photos based on category
-    const mainGalleryPhotos = photos.filter(p => p.category === 'Gallery');
+    // Keep 'Activities' for the activities page
     const activityPhotos = photos.filter(p => p.category === 'Activities');
     
+    // Everything else (Gallery + Custom Events) goes to the Main Gallery
+    const mainGalleryPhotos = photos.filter(p => p.category !== 'Activities');
+    const galleryFilters = document.getElementById('gallery-filters');
+    
     if (isGalleryPage && galleryGrid) {
+        // Setup Filters
+        if (galleryFilters) {
+            galleryFilters.innerHTML = '';
+            const categories = new Set();
+            mainGalleryPhotos.forEach(p => categories.add(p.category || 'Gallery'));
+            
+            if (categories.size > 1) { // Only show filters if there's more than 1 category
+                galleryFilters.innerHTML = '<button class="filter-btn active" data-filter="All">All</button>';
+                categories.forEach(cat => {
+                    const btn = document.createElement('button');
+                    btn.className = 'filter-btn';
+                    btn.dataset.filter = cat;
+                    btn.innerText = cat === 'Gallery' ? 'Main Gallery' : cat;
+                    galleryFilters.appendChild(btn);
+                });
+                
+                const filterBtns = galleryFilters.querySelectorAll('.filter-btn');
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        
+                        const filterValue = e.target.dataset.filter;
+                        let filteredPhotos = mainGalleryPhotos;
+                        if (filterValue !== 'All') {
+                            filteredPhotos = mainGalleryPhotos.filter(p => (p.category || 'Gallery') === filterValue);
+                        }
+                        
+                        galleryGrid.innerHTML = '';
+                        if (filteredPhotos.length === 0) {
+                            galleryGrid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:20px; color:#666;">No photos found.</div>';
+                        } else {
+                            filteredPhotos.forEach((p, index) => {
+                                galleryGrid.appendChild(createPhotoCard(p, index, filteredPhotos));
+                            });
+                        }
+                    });
+                });
+            }
+        }
+    
         galleryGrid.innerHTML = '';
         if (mainGalleryPhotos.length === 0) {
             galleryGrid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:20px; color:#666;">No photos in the gallery yet.</div>';

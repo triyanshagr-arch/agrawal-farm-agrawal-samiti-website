@@ -551,10 +551,11 @@
 </div>
 <div class="form-group material-filled-group" style="margin: 0;">
 <label style="font-weight: 600; color: #444; margin-bottom: 8px; display: block;">Category</label>
-<select class="form-control" id="galleryCategory" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; background: #fff; transition: border-color 0.3s;">
+<input list="categoryOptions" class="form-control" id="galleryCategory" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" placeholder="Select or type a category (e.g. Agrasen Jayanti 2026)" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; background: #fff; transition: border-color 0.3s;" type="text"/>
+<datalist id="categoryOptions">
 <option value="Gallery">Main Gallery (गैलरी)</option>
 <option value="Activities">Activities (गतिविधियाँ)</option>
-</select>
+</datalist>
 </div>
 </div>
 <button class="btn-primary" id="btnUploadGallery" style="width: 100%; padding: 14px; font-size: 16px; border-radius: 8px; box-shadow: 0 4px 15px rgba(211, 47, 47, 0.2); transition: transform 0.2s, box-shadow 0.2s;" type="submit"><i class="fas fa-upload"></i> Upload to Website</button>
