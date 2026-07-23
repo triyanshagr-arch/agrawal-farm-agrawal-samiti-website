@@ -26,18 +26,29 @@
             align-items: center;
         }
         .login-card {
-            background: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255,255,255,0.6);
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .login-card:hover {
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12), 0 5px 15px rgba(0,0,0,0.05);
+            transform: translateY(-4px);
         }
         .login-card h2 {
+            font-family: 'Playfair Display', serif;
             color: var(--primary-color);
             margin-bottom: 20px;
-            font-family: var(--font-primary);
+            font-size: 28px;
+            font-weight: 700;
         }
         .form-group {
             margin-bottom: 20px;
@@ -49,24 +60,64 @@
             font-weight: 500;
             color: var(--text-color);
         }
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px 18px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        .input-wrapper:focus-within {
+            border-color: var(--primary-color);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
+        }
+        .input-wrapper input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            box-shadow: none;
+            padding: 4px 0;
+            font-size: 15px;
+            color: var(--text-dark);
+        }
         .form-control {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: all 0.3s;
+            padding: 15px 18px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+            color: var(--text-dark);
         }
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
             outline: none;
         }
         .btn-full {
             width: 100%;
-            padding: 12px;
+            padding: 15px 20px;
             font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(211, 47, 47, 0.2);
             margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-full:hover {
+            box-shadow: 0 6px 15px rgba(211, 47, 47, 0.3);
+            transform: translateY(-2px);
         }
         #otpSection {
             display: none;
@@ -129,9 +180,9 @@
 <div id="phoneSection">
 <div class="form-group material-filled-group">
 <label><span class="lang-hi">मोबाइल नंबर</span><span class="lang-en">Mobile Number</span></label>
-<div style="display: flex; align-items: center; gap: 10px;">
-<span style="font-weight: bold; color: #333; padding-bottom: 2px; border-right: 1px solid #ccc; padding-right: 10px;">+91</span>
-<input class="form-control" data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="phoneNumber" maxlength="10" placeholder="Enter Mobile Number" type="tel" style="flex: 1; border: none; outline: none; background: transparent; box-shadow: none; padding: 4px 0;"/>
+<div class="input-wrapper">
+<span style="font-weight: bold; color: #333; padding-right: 12px; margin-right: 5px; border-right: 1.5px solid #ddd;">+91</span>
+<input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="phoneNumber" maxlength="10" placeholder="Enter Mobile Number" type="tel"/>
 </div>
 </div>
 <div id="recaptcha-container"></div>
@@ -146,7 +197,7 @@
 </p>
 <div class="form-group material-filled-group">
 <label><span class="lang-hi">OTP दर्ज करें</span><span class="lang-en">Enter OTP</span></label>
-<input class="form-control" data-placeholder-en="Enter OTP" data-placeholder-hi="OTP दर्ज करें" id="otpCode" maxlength="6" placeholder="Enter OTP" style="letter-spacing: 5px; text-align: center; font-size: 20px; font-weight: bold;" type="text"/>
+<input class="form-control otp-input" data-placeholder-en="Enter OTP" data-placeholder-hi="OTP दर्ज करें" id="otpCode" maxlength="6" placeholder="Enter OTP" type="text"/>
 </div>
 <button class="btn btn-primary btn-full" id="btnVerifyOtp">
 <span class="lang-hi">वेरीफाई करें</span><span class="lang-en">Verify OTP</span>
