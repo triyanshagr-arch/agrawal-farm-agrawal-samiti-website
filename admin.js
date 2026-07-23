@@ -2289,7 +2289,7 @@ function loadGallery() {
     fetch(`${GOOGLE_SCRIPT_URL}?action=get_gallery_photos&t=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
-            if (data.success) {
+            if (data.success || data.status === "success") {
                 window.galleryData = data.photos || [];
                 renderGalleryTable();
             } else {
