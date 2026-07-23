@@ -71,8 +71,8 @@ function renderPhotos(photos, isGalleryPage, isActivitiesPage) {
         if (mainGalleryPhotos.length === 0) {
             galleryGrid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:20px; color:#666;">No photos in the gallery yet.</div>';
         } else {
-            mainGalleryPhotos.forEach(p => {
-                galleryGrid.appendChild(createPhotoCard(p));
+            mainGalleryPhotos.forEach((p, index) => {
+                galleryGrid.appendChild(createPhotoCard(p, index, mainGalleryPhotos));
             });
         }
         galleryGrid.style.display = 'grid';
@@ -83,15 +83,15 @@ function renderPhotos(photos, isGalleryPage, isActivitiesPage) {
         if (activityPhotos.length === 0) {
             activitiesGrid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:20px; color:#666;">No activity highlights yet.</div>';
         } else {
-            activityPhotos.forEach(p => {
-                activitiesGrid.appendChild(createPhotoCard(p));
+            activityPhotos.forEach((p, index) => {
+                activitiesGrid.appendChild(createPhotoCard(p, index, activityPhotos));
             });
         }
         activitiesGrid.style.display = 'grid';
     }
 }
 
-function createPhotoCard(photo) {
+function createPhotoCard(photo, index, photoArray) {
     const div = document.createElement('div');
     // We add 'visible' so it doesn't stay hidden by the scroll animation CSS
     div.className = 'gallery-item animate-on-scroll visible';
@@ -114,47 +114,123 @@ function createPhotoCard(photo) {
         div.appendChild(overlay);
     }
     
-    // Simple lightbox functionality
+    // Open Lightbox with navigation
     div.addEventListener('click', () => {
-        const lightbox = document.createElement('div');
-        lightbox.style.position = 'fixed';
-        lightbox.style.top = '0';
-        lightbox.style.left = '0';
-        lightbox.style.width = '100vw';
-        lightbox.style.height = '100vh';
-        lightbox.style.backgroundColor = 'rgba(0,0,0,0.9)';
-        lightbox.style.zIndex = '99999';
-        lightbox.style.display = 'flex';
-        lightbox.style.flexDirection = 'column';
-        lightbox.style.justifyContent = 'center';
-        lightbox.style.alignItems = 'center';
-        lightbox.style.cursor = 'pointer';
-        
-        const lbImg = document.createElement('img');
-        lbImg.src = photo.imageUrl;
-        lbImg.style.maxWidth = '90%';
-        lbImg.style.maxHeight = '85%';
-        lbImg.style.objectFit = 'contain';
-        lbImg.style.borderRadius = '8px';
-        lbImg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-        
-        const lbTitle = document.createElement('div');
-        lbTitle.style.color = 'white';
-        lbTitle.style.marginTop = '15px';
-        lbTitle.style.fontSize = '1.2rem';
-        lbTitle.innerText = photo.title || '';
-        
-        lightbox.appendChild(lbImg);
-        if(photo.title) lightbox.appendChild(lbTitle);
-        
-        lightbox.addEventListener('click', () => {
-            document.body.removeChild(lightbox);
-        });
-        
-        document.body.appendChild(lightbox);
+        openLightbox(index, photoArray);
     });
     
     return div;
+}
+
+function openLightbox(startIndex, photoArray) {
+    let currentIndex = startIndex;
+
+    const lightbox = document.createElement('div');
+    lightbox.style.position = 'fixed';
+    lightbox.style.top = '0';
+    lightbox.style.left = '0';
+    lightbox.style.width = '100vw';
+    lightbox.style.height = '100vh';
+    lightbox.style.backgroundColor = 'rgba(0,0,0,0.9)';
+    lightbox.style.zIndex = '99999';
+    lightbox.style.display = 'flex';
+    lightbox.style.flexDirection = 'column';
+    lightbox.style.justifyContent = 'center';
+    lightbox.style.alignItems = 'center';
+    
+    const lbImg = document.createElement('img');
+    lbImg.style.maxWidth = '90%';
+    lbImg.style.maxHeight = '80%';
+    lbImg.style.objectFit = 'contain';
+    lbImg.style.borderRadius = '8px';
+    lbImg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+    
+    const lbTitle = document.createElement('div');
+    lbTitle.style.color = 'white';
+    lbTitle.style.marginTop = '15px';
+    lbTitle.style.fontSize = '1.2rem';
+    
+    // Navigation Buttons
+    const prevBtn = document.createElement('button');
+    prevBtn.innerHTML = '&#10094;';
+    prevBtn.style.position = 'absolute';
+    prevBtn.style.left = '20px';
+    prevBtn.style.top = '50%';
+    prevBtn.style.transform = 'translateY(-50%)';
+    prevBtn.style.background = 'rgba(255,255,255,0.2)';
+    prevBtn.style.color = 'white';
+    prevBtn.style.border = 'none';
+    prevBtn.style.fontSize = '2rem';
+    prevBtn.style.padding = '10px 20px';
+    prevBtn.style.cursor = 'pointer';
+    prevBtn.style.borderRadius = '5px';
+
+    const nextBtn = document.createElement('button');
+    nextBtn.innerHTML = '&#10095;';
+    nextBtn.style.position = 'absolute';
+    nextBtn.style.right = '20px';
+    nextBtn.style.top = '50%';
+    nextBtn.style.transform = 'translateY(-50%)';
+    nextBtn.style.background = 'rgba(255,255,255,0.2)';
+    nextBtn.style.color = 'white';
+    nextBtn.style.border = 'none';
+    nextBtn.style.fontSize = '2rem';
+    nextBtn.style.padding = '10px 20px';
+    nextBtn.style.cursor = 'pointer';
+    nextBtn.style.borderRadius = '5px';
+
+    // Close Button
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.style.position = 'absolute';
+    closeBtn.style.top = '20px';
+    closeBtn.style.right = '30px';
+    closeBtn.style.background = 'transparent';
+    closeBtn.style.color = 'white';
+    closeBtn.style.border = 'none';
+    closeBtn.style.fontSize = '3rem';
+    closeBtn.style.cursor = 'pointer';
+
+    function updateImage() {
+        lbImg.src = photoArray[currentIndex].imageUrl;
+        lbTitle.innerText = photoArray[currentIndex].title || '';
+        
+        // Hide arrows if at bounds
+        prevBtn.style.display = currentIndex > 0 ? 'block' : 'none';
+        nextBtn.style.display = currentIndex < photoArray.length - 1 ? 'block' : 'none';
+    }
+
+    prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateImage();
+        }
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentIndex < photoArray.length - 1) {
+            currentIndex++;
+            updateImage();
+        }
+    });
+    
+    // Close on background click
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === closeBtn) {
+            document.body.removeChild(lightbox);
+        }
+    });
+
+    lightbox.appendChild(prevBtn);
+    lightbox.appendChild(nextBtn);
+    lightbox.appendChild(closeBtn);
+    lightbox.appendChild(lbImg);
+    lightbox.appendChild(lbTitle);
+    document.body.appendChild(lightbox);
+    
+    updateImage();
 }
 
 function showError(msg) {
