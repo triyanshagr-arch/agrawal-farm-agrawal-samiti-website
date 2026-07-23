@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('option[data-en][data-hi]').forEach(opt => {
             opt.textContent = isEnglish ? opt.getAttribute('data-en') : opt.getAttribute('data-hi');
         });
-        document.querySelectorAll('input[data-placeholder-en][data-placeholder-hi]').forEach(input => {
+        document.querySelectorAll('input[data-placeholder-en][data-placeholder-hi], textarea[data-placeholder-en][data-placeholder-hi]').forEach(input => {
             input.placeholder = isEnglish ? input.getAttribute('data-placeholder-en') : input.getAttribute('data-placeholder-hi');
         });
     }
