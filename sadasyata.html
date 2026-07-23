@@ -304,8 +304,8 @@
                                     const dateInput = tr.querySelector('.fam-dob');
                                     
                                     tbody.appendChild(tr);
-                                    if (typeof updateBilingualOptions === 'function') {
-                                        updateBilingualOptions(document.body.classList.contains('lang-english-mode'));
+                                    if (typeof window.updateBilingualOptions === 'function') {
+                                        window.updateBilingualOptions(document.body.classList.contains('lang-english-mode'));
                                     }
                                 }
                                 
@@ -807,8 +807,8 @@
                 });
             }
             
-            if (typeof updateBilingualOptions === 'function') {
-                updateBilingualOptions(document.body.classList.contains('lang-english-mode'));
+            if (typeof window.updateBilingualOptions === 'function') {
+                window.updateBilingualOptions(document.body.classList.contains('lang-english-mode'));
             }
         }
     </script>

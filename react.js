@@ -418,22 +418,22 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('preferredLang', currentLang);
     }
     
-    function updateBilingualOptions(isEnglish) {
+    window.updateBilingualOptions = function(isEnglish) {
         document.querySelectorAll('option[data-en][data-hi]').forEach(opt => {
             opt.textContent = isEnglish ? opt.getAttribute('data-en') : opt.getAttribute('data-hi');
         });
         document.querySelectorAll('input[data-placeholder-en][data-placeholder-hi], textarea[data-placeholder-en][data-placeholder-hi]').forEach(input => {
             input.placeholder = isEnglish ? input.getAttribute('data-placeholder-en') : input.getAttribute('data-placeholder-hi');
         });
-    }
+    };
 
     if (currentLang === 'en') {
         body.classList.add('lang-english-mode');
         if(langToggleBtn) langToggleBtn.innerHTML = '<i class="fas fa-language"></i> हिंदी';
-        updateBilingualOptions(true);
+        window.updateBilingualOptions(true);
     } else {
         if(langToggleBtn) langToggleBtn.innerHTML = '<i class="fas fa-language"></i> English';
-        updateBilingualOptions(false);
+        window.updateBilingualOptions(false);
     }
 
     if(langToggleBtn) {
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.toggle('lang-english-mode');
             const isEnglish = body.classList.contains('lang-english-mode');
             
-            updateBilingualOptions(isEnglish);
+            window.updateBilingualOptions(isEnglish);
 
             if (isEnglish) {
                 localStorage.setItem('preferredLang', 'en');
