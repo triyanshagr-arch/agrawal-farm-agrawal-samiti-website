@@ -39,7 +39,7 @@ function loadPublicGallery() {
                 if (activitiesLoader) activitiesLoader.style.display = 'none';
             }
             
-            if (data.success && data.photos) {
+            if ((data.success || data.status === "success") && data.photos) {
                 const newDataStr = JSON.stringify(data);
                 if (cachedGalleryStr !== newDataStr) {
                     renderPhotos(data.photos, isGalleryPage, isActivitiesPage);
