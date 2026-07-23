@@ -216,10 +216,32 @@ function openLightbox(startIndex, photoArray) {
         }
     });
     
-    // Close on background click
+    // Keyboard Navigation
+    function handleKeyDown(e) {
+        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            currentIndex--;
+            updateImage();
+        } else if (e.key === 'ArrowRight' && currentIndex < photoArray.length - 1) {
+            currentIndex++;
+            updateImage();
+        } else if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    }
+    
+    document.addEventListener('keydown', handleKeyDown);
+
+    function closeLightbox() {
+        document.removeEventListener('keydown', handleKeyDown);
+        if (document.body.contains(lightbox)) {
+            document.body.removeChild(lightbox);
+        }
+    }
+    
+    // Close on background click or close button
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox || e.target === closeBtn) {
-            document.body.removeChild(lightbox);
+            closeLightbox();
         }
     });
 
