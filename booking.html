@@ -132,6 +132,25 @@
 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">विशेष विवरण / टिप्पणी</span><span class="lang-en">Remarks / Special Requests</span></label>
 <textarea data-placeholder-en="Enter Remarks / Special Requests" data-placeholder-hi="विशेष विवरण / टिप्पणी दर्ज करें" id="remarks" placeholder="Enter Remarks / Special Requests" rows="3" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box; resize: vertical; font-family: inherit;"></textarea>
 </div>
+<div style="background: #fff8f8; padding: 20px; border-radius: 8px; border: 1px solid #ffcccc; margin-bottom: 25px;">
+<h5 style="color: var(--primary-color); margin-top: 0; margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-scroll"></i> <span class="lang-hi">बुकिंग के नियम</span><span class="lang-en">Booking Rules</span></h5>
+<ol style="margin-bottom: 15px; padding-left: 20px; font-size: 0.95rem; color: #444; line-height: 1.6;">
+<li><strong class="lang-hi">भोजन प्रतिबंध:</strong><strong class="lang-en">Food Restrictions:</strong> <span class="lang-hi">केवल पूर्णतः शाकाहारी भोजन। परिसर में मांसाहारी भोजन पूर्णतः वर्जित है।</span><span class="lang-en">Pure vegetarian food only. Strictly no non-vegetarian food is allowed on the premises.</span></li>
+<li><strong class="lang-hi">निषिद्ध सामग्री:</strong><strong class="lang-en">Prohibited Items:</strong> <span class="lang-hi">भवन और परिसर के अंदर शराब, धूम्रपान, और पान/गुटखा सख्त वर्जित है।</span><span class="lang-en">Alcohol, smoking, and pan/gutkha are strictly prohibited inside the building and compound.</span></li>
+<li><strong class="lang-hi">भुगतान और सुरक्षा जमा:</strong><strong class="lang-en">Payments & Security Deposit:</strong> <span class="lang-hi">बुकिंग की पुष्टि के लिए ₹5000 का अग्रिम भुगतान करना अनिवार्य है।</span><span class="lang-en">An advance payment of ₹5000 must be made to confirm the booking.</span></li>
+<li><strong class="lang-hi">समय और ध्वनि:</strong><strong class="lang-en">Timings & Noise:</strong> <span class="lang-hi">डीजे और तेज़ संगीत रात 10:00 बजे तक बंद हो जाना चाहिए (सरकारी नियमों के अनुसार)।</span><span class="lang-en">DJs and loud music must stop by 10:00 PM (as per government rules).</span></li>
+<li><strong class="lang-hi">सफाई और कचरा:</strong><strong class="lang-en">Cleaning & Garbage:</strong> <span class="lang-hi">बचे हुए भोजन और कचरे के निपटान की जिम्मेदारी पार्टी की होगी; अन्यथा सफाई शुल्क लिया जाएगा।</span><span class="lang-en">The party is responsible for disposing of leftover food and garbage; otherwise, a cleaning fee will be charged.</span></li>
+<li><strong class="lang-hi">क्षति दायित्व:</strong><strong class="lang-en">Damage Liability:</strong> <span class="lang-hi">भवन, फर्नीचर, बिजली के सामान, या प्लंबिंग को नुकसान पाए जाने पर जुर्माना लगाया जाएगा।</span><span class="lang-en">Fines will be imposed if any damage to the building, furniture, electrical fittings, or plumbing fittings is found.</span></li>
+<li><strong class="lang-hi">रद्दीकरण:</strong><strong class="lang-en">Cancellations:</strong> <span class="lang-hi">यदि कार्यक्रम से 7 दिन पहले बुकिंग रद्द की जाती है, तो कोई रिफंड नहीं दिया जाएगा।</span><span class="lang-en">If a booking is cancelled within 7 days of the event, no refund will be initiated.</span></li>
+</ol>
+<div style="display: flex; align-items: flex-start; gap: 10px;">
+<input type="checkbox" id="agreeRules" required style="margin-top: 4px; transform: scale(1.2); accent-color: var(--primary-color);">
+<label for="agreeRules" style="font-size: 0.95rem; font-weight: bold; color: #333; cursor: pointer;">
+<span class="lang-hi">मैंने अग्रवाल समाज समिति के सभी नियमों और विनियमों को पढ़ लिया है और मैं उनसे सहमत हूँ। <span style="color:red">*</span></span>
+<span class="lang-en">I have read and agree to all the rules and regulations of Agrawal Samaj Samiti. <span style="color:red">*</span></span>
+</label>
+</div>
+</div>
 <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
 <button class="btn btn-primary" id="submitBookingBtn" style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 8px;" type="submit">
 <span class="lang-hi">बुकिंग अनुरोध सबमिट करें</span><span class="lang-en">Submit Booking Request</span>
