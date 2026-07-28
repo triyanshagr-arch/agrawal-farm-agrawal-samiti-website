@@ -996,7 +996,7 @@ window.printIdCard = function(data) {
         <body>
             <div class="id-card">
                 <div class="header">
-                    <div class="samiti-name">अग्रवाल समाज समिति</div>
+                    <div class="samiti-name">अग्रवाल समाज समिति अग्रवाल फार्म</div>
                     <div class="samiti-reg">पंजीयन संख्या: 169/93-94</div>
                     <div class="samiti-address">अग्र मंदिर भवन, सुंदर नगर 1, इस्कॉन रोड, जयपुर, राजस्थान- 302020</div>
                 </div>
