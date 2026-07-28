@@ -903,8 +903,8 @@ window.printIdCard = function(data) {
                     -webkit-print-color-adjust: exact;
                 }
                 .id-card {
-                    width: 2.125in;
-                    height: 3.375in;
+                    width: 3.375in;
+                    height: 2.125in;
                     background: #fff;
                     border: 1px solid #ccc;
                     border-radius: 8px;
@@ -918,58 +918,69 @@ window.printIdCard = function(data) {
                     background: #e84118;
                     color: white;
                     text-align: center;
-                    padding: 8px 4px;
-                    font-size: 0.75rem;
+                    padding: 4px;
                 }
                 .header .samiti-name {
                     font-weight: bold;
-                    font-size: 0.85rem;
+                    font-size: 0.75rem;
                     margin-bottom: 2px;
                 }
+                .header .samiti-reg {
+                    font-size: 0.5rem;
+                    font-weight: bold;
+                }
                 .header .samiti-address {
-                    font-size: 0.6rem;
+                    font-size: 0.45rem;
+                    line-height: 1.1;
                 }
                 .content {
                     flex-grow: 1;
                     display: flex;
+                    flex-direction: row;
+                    padding: 8px;
+                }
+                .left-col {
+                    flex: 1;
+                    padding-right: 6px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                .right-col {
+                    width: 65px;
+                    display: flex;
                     flex-direction: column;
                     align-items: center;
-                    padding: 10px;
-                    text-align: center;
+                    justify-content: space-between;
                 }
                 .photo {
-                    width: 60px;
-                    height: 75px;
+                    width: 55px;
+                    height: 65px;
                     object-fit: cover;
-                    border: 2px solid #e84118;
+                    border: 1px solid #e84118;
                     border-radius: 4px;
-                    margin-bottom: 8px;
                 }
                 .member-name {
                     font-weight: bold;
-                    font-size: 0.85rem;
+                    font-size: 0.8rem;
                     color: #333;
                     margin-bottom: 2px;
                 }
                 .member-role {
-                    font-size: 0.65rem;
+                    font-size: 0.6rem;
                     color: #e84118;
                     font-weight: bold;
                     margin-bottom: 6px;
                 }
                 .member-detail {
-                    font-size: 0.65rem;
+                    font-size: 0.55rem;
                     color: #555;
-                    margin-bottom: 2px;
-                    width: 100%;
-                }
-                .qr-container {
-                    margin-top: auto;
-                    margin-bottom: 5px;
+                    margin-bottom: 3px;
+                    line-height: 1.2;
                 }
                 .qr-container img {
-                    width: 60px;
-                    height: 60px;
+                    width: 55px;
+                    height: 55px;
                 }
                 @media print {
                     body {
@@ -985,17 +996,22 @@ window.printIdCard = function(data) {
         <body>
             <div class="id-card">
                 <div class="header">
-                    <div class="samiti-name">Agrawal Samaj Samiti</div>
-                    <div class="samiti-address">Agrawal Farm, Jaipur (Reg.)</div>
+                    <div class="samiti-name">अग्रवाल समाज समिति</div>
+                    <div class="samiti-reg">पंजीयन संख्या: 169/93-94</div>
+                    <div class="samiti-address">अग्र मंदिर भवन, सुंदर नगर 1, इस्कॉन रोड, जयपुर, राजस्थान- 302020</div>
                 </div>
                 <div class="content">
-                    <img src="${photoSrc}" class="photo" />
-                    <div class="member-name">${data.fullName}</div>
-                    <div class="member-role">Lifetime Member</div>
-                    <div class="member-detail"><strong>No:</strong> ${data.membershipNo}</div>
-                    <div class="member-detail" style="line-height: 1.1; margin-top: 4px;"><strong>Address:</strong><br>${data.permanentAddress || 'N/A'}</div>
-                    <div class="qr-container">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrData}" />
+                    <div class="left-col">
+                        <div class="member-name">${data.fullName}</div>
+                        <div class="member-role">Lifetime Member</div>
+                        <div class="member-detail"><strong>No:</strong> ${data.membershipNo}</div>
+                        <div class="member-detail"><strong>Address:</strong><br>${data.permanentAddress || 'N/A'}</div>
+                    </div>
+                    <div class="right-col">
+                        <img src="${photoSrc}" class="photo" />
+                        <div class="qr-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrData}" />
+                        </div>
                     </div>
                 </div>
             </div>
