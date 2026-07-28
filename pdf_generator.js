@@ -880,6 +880,7 @@ window.generateMatrimonialPDF = async function(data) {
 window.printIdCard = function(data) {
     const qrData = encodeURIComponent(`Agrawal Samaj Samiti\nName: ${data.fullName}\nMem No: ${data.membershipNo}\nPhone: ${data.mobileNumber}`);
     const photoSrc = data.photoBase64 || 'https://via.placeholder.com/100x120?text=Photo';
+    const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
     
     const printWindow = window.open('', '_blank', 'width=400,height=600');
     if (!printWindow) {
@@ -919,6 +920,18 @@ window.printIdCard = function(data) {
                     color: white;
                     text-align: center;
                     padding: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                .header-img {
+                    width: 30px;
+                    height: 40px;
+                    object-fit: contain;
+                }
+                .header-text {
+                    flex: 1;
+                    padding: 0 4px;
                 }
                 .header .samiti-name {
                     font-weight: bold;
@@ -996,9 +1009,13 @@ window.printIdCard = function(data) {
         <body>
             <div class="id-card">
                 <div class="header">
-                    <div class="samiti-name">अग्रवाल समाज समिति अग्रवाल फार्म</div>
-                    <div class="samiti-reg">पंजीयन संख्या: 169/93-94</div>
-                    <div class="samiti-address">अग्र मंदिर भवन, सुंदर नगर 1, इस्कॉन रोड, जयपुर, राजस्थान- 302020</div>
+                    <img src="${baseUrl}/images/maharaj_agrasen.png" class="header-img" />
+                    <div class="header-text">
+                        <div class="samiti-name">अग्रवाल समाज समिति अग्रवाल फार्म</div>
+                        <div class="samiti-reg">पंजीयन संख्या: 169/93-94</div>
+                        <div class="samiti-address">अग्र मंदिर भवन, सुंदर नगर 1, इस्कॉन रोड, जयपुर, राजस्थान- 302020</div>
+                    </div>
+                    <img src="${baseUrl}/images/lakshmi.png" class="header-img" />
                 </div>
                 <div class="content">
                     <div class="left-col">
