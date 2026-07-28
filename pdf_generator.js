@@ -924,9 +924,14 @@ window.printIdCard = function(data) {
                     align-items: center;
                     justify-content: space-between;
                 }
-                .header-img {
-                    width: 30px;
-                    height: 40px;
+                .agrasen-img {
+                    width: 51px;
+                    height: 42px;
+                    object-fit: contain;
+                }
+                .lakshmi-img {
+                    width: 51px;
+                    height: 42px;
                     object-fit: contain;
                 }
                 .header-text {
@@ -1009,13 +1014,13 @@ window.printIdCard = function(data) {
         <body>
             <div class="id-card">
                 <div class="header">
-                    <img src="${baseUrl}/images/maharaj_agrasen.png" class="header-img" />
+                    <img src="${baseUrl}/images/maharaj_agrasen.png" class="agrasen-img" />
                     <div class="header-text">
                         <div class="samiti-name">अग्रवाल समाज समिति अग्रवाल फार्म</div>
                         <div class="samiti-reg">पंजीयन संख्या: 169/93-94</div>
                         <div class="samiti-address">अग्र मंदिर भवन, सुंदर नगर 1, इस्कॉन रोड, जयपुर, राजस्थान- 302020</div>
                     </div>
-                    <img src="${baseUrl}/images/lakshmi.png" class="header-img" />
+                    <img src="${baseUrl}/images/lakshmi.png" class="lakshmi-img" />
                 </div>
                 <div class="content">
                     <div class="left-col">
