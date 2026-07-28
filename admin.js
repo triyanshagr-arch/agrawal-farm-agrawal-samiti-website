@@ -392,7 +392,7 @@ function renderMembers() {
     tbodyPending.innerHTML = '';
     if(tbodyApproved) tbodyApproved.innerHTML = '';
     
-    const pendingMembers = members.filter(m => m.status === "Pending");
+    const pendingMembers = members.filter(m => m.status === "Pending" || !m.status || m.status.trim() === "");
     const approvedMembers = members.filter(m => m.status === "Approved");
     
     // Stats Update
