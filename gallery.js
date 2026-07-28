@@ -29,7 +29,7 @@ function loadPublicGallery() {
     }
 
     // 2. Fetch fresh data in the background
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3ZOJQVzS7K62sse0qz3Xe19onvPrB6BUKdt6GNc7ru2O3rHfGFyVqxRXRRbXWXrAl/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx5HDH0rvV-PN637P35CASSSntkIRJOykAKndCrqLCtW--_SADRGF__qY5ePvpvMMlR/exec';
     
     fetch(`${GOOGLE_SCRIPT_URL}?action=get_gallery_photos&t=${Date.now()}`)
         .then(res => res.json())
