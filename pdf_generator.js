@@ -1003,9 +1003,9 @@ window.printIdCard = function(data) {
                 <div class="content">
                     <div class="left-col">
                         <div class="member-name">${data.fullName}</div>
-                        <div class="member-role">Lifetime Member</div>
-                        <div class="member-detail"><strong>No:</strong> ${data.membershipNo}</div>
-                        <div class="member-detail"><strong>Address:</strong><br>${data.permanentAddress || 'N/A'}</div>
+                        <div class="member-role">आजीवन सदस्य</div>
+                        <div class="member-detail"><strong>सदस्यता क्र:</strong> ${data.membershipNo}</div>
+                        <div class="member-detail"><strong>पता:</strong><br>${data.permanentAddress || 'N/A'}</div>
                     </div>
                     <div class="right-col">
                         <img src="${photoSrc}" class="photo" />
