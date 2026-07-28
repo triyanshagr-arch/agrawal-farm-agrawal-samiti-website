@@ -497,9 +497,10 @@ function createMemberRow(m, isPending, index) {
     } else {
         actionHtml = `
             <div style="color: #10b981; font-weight: bold; text-align: center; margin-bottom: 8px; font-size: 13px;"><i class="fas fa-check-circle"></i> Approved</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;">
                 ${printHtml}
                 ${receiptHtml}
+                <button style="${gridBtnStyle}" onclick="generateIdCard(${m.row})" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-id-badge" style="color:#8b5cf6; font-size: 14px;"></i>ID Card</button>
                 ${emailBtnHtml}
                 ${editHtml}
             </div>
@@ -2634,3 +2635,13 @@ function printMembershipReceipt(row) {
         alert("Receipt generator not loaded.");
     }
 }
+
+window.generateIdCard = function(row) {
+    const d = window.memberData.find(x => x.row === row);
+    if (!d) return alert("Member not found");
+    if (typeof window.printIdCard === 'function') {
+        window.printIdCard(d);
+    } else {
+        alert("ID Card generator not loaded.");
+    }
+};

@@ -875,3 +875,140 @@ window.generateMatrimonialPDF = async function(data) {
     
     return doc.output('blob');
 };
+
+// Global ID Card Generator (HTML Print Window)
+window.printIdCard = function(data) {
+    const qrData = encodeURIComponent(`Agrawal Samaj Samiti\nName: ${data.fullName}\nMem No: ${data.membershipNo}\nPhone: ${data.mobileNumber}`);
+    const photoSrc = data.photoBase64 || 'https://via.placeholder.com/100x120?text=Photo';
+    
+    const printWindow = window.open('', '_blank', 'width=400,height=600');
+    if (!printWindow) {
+        alert("Pop-up blocked! Please allow pop-ups for this site in your browser settings to view and print the ID card.");
+        return;
+    }
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>ID Card - ${data.membershipNo}</title>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+                body {
+                    font-family: 'Roboto', sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 100vh;
+                    margin: 0;
+                    background: #f0f0f0;
+                    -webkit-print-color-adjust: exact;
+                }
+                .id-card {
+                    width: 2.125in;
+                    height: 3.375in;
+                    background: #fff;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                }
+                .header {
+                    background: #e84118;
+                    color: white;
+                    text-align: center;
+                    padding: 8px 4px;
+                    font-size: 0.75rem;
+                }
+                .header .samiti-name {
+                    font-weight: bold;
+                    font-size: 0.85rem;
+                    margin-bottom: 2px;
+                }
+                .header .samiti-address {
+                    font-size: 0.6rem;
+                }
+                .content {
+                    flex-grow: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 10px;
+                    text-align: center;
+                }
+                .photo {
+                    width: 60px;
+                    height: 75px;
+                    object-fit: cover;
+                    border: 2px solid #e84118;
+                    border-radius: 4px;
+                    margin-bottom: 8px;
+                }
+                .member-name {
+                    font-weight: bold;
+                    font-size: 0.85rem;
+                    color: #333;
+                    margin-bottom: 2px;
+                }
+                .member-role {
+                    font-size: 0.65rem;
+                    color: #e84118;
+                    font-weight: bold;
+                    margin-bottom: 6px;
+                }
+                .member-detail {
+                    font-size: 0.65rem;
+                    color: #555;
+                    margin-bottom: 2px;
+                    width: 100%;
+                }
+                .qr-container {
+                    margin-top: auto;
+                    margin-bottom: 5px;
+                }
+                .qr-container img {
+                    width: 60px;
+                    height: 60px;
+                }
+                @media print {
+                    body {
+                        background: #fff;
+                    }
+                    .id-card {
+                        box-shadow: none;
+                        border: 1px solid #ccc;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="id-card">
+                <div class="header">
+                    <div class="samiti-name">Agrawal Samaj Samiti</div>
+                    <div class="samiti-address">Agrawal Farm, Jaipur (Reg.)</div>
+                </div>
+                <div class="content">
+                    <img src="${photoSrc}" class="photo" />
+                    <div class="member-name">${data.fullName}</div>
+                    <div class="member-role">Lifetime Member</div>
+                    <div class="member-detail"><strong>No:</strong> ${data.membershipNo}</div>
+                    <div class="member-detail" style="line-height: 1.1; margin-top: 4px;"><strong>Address:</strong><br>${data.permanentAddress || 'N/A'}</div>
+                    <div class="qr-container">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrData}" />
+                    </div>
+                </div>
+            </div>
+            <script>
+                // Wait for images to load before printing
+                window.onload = function() {
+                    setTimeout(function() {
+                        window.print();
+                    }, 500);
+                };
+            </script>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+};
