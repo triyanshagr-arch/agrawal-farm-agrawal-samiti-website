@@ -284,12 +284,10 @@ function renderDonations() {
             const hoverOn = "this.style.background='#e5e7eb'";
             const hoverOff = "this.style.background='#f3f4f6'";
             
-            let emailBtn = '';
-            if (hasEmailed) {
-                emailBtn = `<button style="${gridBtnStyle}" onclick="event.preventDefault()"><i class="fas fa-check" style="color:#10b981; font-size: 14px;"></i>Emailed</button>`;
-            } else {
-                emailBtn = d.emailId ? `<button onclick="emailDonationReceipt(this, '${d.receiptNo}')" style="${gridBtnStyle}" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-envelope" style="color:#3b82f6; font-size: 14px;"></i>Email</button>` : `<div style="${gridBtnStyle} background:#e5e7eb; color:#9ca3af; cursor:default;"><i class="fas fa-envelope-slash" style="font-size: 14px;"></i>No Email</div>`;
-            }
+            let waNumberD = String(d.mobileNumber || '').replace(/\\D/g, '');
+            if (waNumberD.length === 10) waNumberD = '91' + waNumberD;
+            let waTextD = encodeURIComponent(`प्रिय ${d.donorName},\nजय श्री अग्रसेन!\nअग्रवाल समाज समिति, जयपुर को ₹${d.donationAmount}/- का उदार दान देने के लिए आपका धन्यवाद।\nआपका पेमेंट सफलतापूर्वक वेरिफ़ाई हो गया है। कृपया इस संदेश के साथ अपना आधिकारिक डोनेशन सर्टिफ़िकेट (नंबर: ${d.receiptNo}) देखें।\nमहाराज अग्रसेन का आशीर्वाद आप पर हमेशा बना रहे।\nशुभकामनाएं, एडमिन टीम, अग्रवाल समाज समिति, अग्रवाल फार्म`);
+            let emailBtn = `<a href=\"https://wa.me/${waNumberD}?text=${waTextD}\" target=\"_blank\" style=\"${gridBtnStyle} text-decoration: none;\" onmouseover=\"${hoverOn}\" onmouseout=\"${hoverOff}\"><i class=\"fab fa-whatsapp\" style=\"color:#25D366; font-size: 14px;\"></i>WhatsApp</a>`;
             
             const printHtml = `<button style="${gridBtnStyle}" onclick="printDonationReceipt('${d.receiptNo}')" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-print" style="color:#ef4444; font-size: 14px;"></i>Print</button>`;
             const certHtml = `<button style="${gridBtnStyle}" onclick="downloadDonationCertificate('${d.receiptNo}')" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-certificate" style="color:#f59e0b; font-size: 14px;"></i>Certificate</button>`;
@@ -468,12 +466,10 @@ function createMemberRow(m, isPending, index) {
     const hoverOn = "this.style.background='#e5e7eb'";
     const hoverOff = "this.style.background='#f3f4f6'";
     
-    let emailBtnHtml;
-    if (hasEmailed) {
-        emailBtnHtml = `<button style="${gridBtnStyle}" onclick="event.preventDefault()"><i class="fas fa-check" style="color:#10b981; font-size: 14px;"></i>Emailed</button>`;
-    } else {
-        emailBtnHtml = m.emailId ? `<button onclick="sendEmail(this, '${m.emailId}', '${m.membershipNo}', '${(m.fullName || '').replace(/'/g, "\\'")}')" style="${gridBtnStyle}" onmouseover="${hoverOn}" onmouseout="${hoverOff}"><i class="fas fa-envelope" style="color:#3b82f6; font-size: 14px;"></i>Email</button>` : `<div style="${gridBtnStyle} background:#e5e7eb; color:#9ca3af; cursor:default;"><i class="fas fa-envelope-slash" style="font-size: 14px;"></i>No Email</div>`;
-    }
+    let waNumberM = String(m.mobileNumber || '').replace(/\\D/g, '');
+    if (waNumberM.length === 10) waNumberM = '91' + waNumberM;
+    let waTextM = encodeURIComponent(`प्रिय ${m.fullName},\nबधाई हो! प्रशासन ने 'अग्रवाल समाज समिति अग्रवाल फार्म, जयपुर' के लिए आपके मेंबरशिप आवेदन को मंज़ूरी दे दी है।\nआपका आधिकारिक मेंबरशिप नंबर है: ${m.membershipNo}\nहम अपनी कम्युनिटी में आपका दिल से स्वागत करते हैं।\nशुभकामनाएं, एडमिन टीम, अग्रवाल समाज समिति, अग्रवाल फार्म`);
+    let emailBtnHtml = `<a href=\"https://wa.me/${waNumberM}?text=${waTextM}\" target=\"_blank\" style=\"${gridBtnStyle} text-decoration: none;\" onmouseover=\"${hoverOn}\" onmouseout=\"${hoverOff}\"><i class=\"fab fa-whatsapp\" style=\"color:#25D366; font-size: 14px;\"></i>WhatsApp</a>`;
 
     const photoHtml = m.photoBase64 ? `<img src="${m.photoBase64}" style="width:40px;height:40px;object-fit:cover;border-radius:50%;cursor:pointer;" onclick="viewProfile(${m.row})">` : '<i class="fas fa-user-circle" style="font-size:40px;color:#ccc;cursor:pointer;" onclick="viewProfile('+m.row+')"></i>';
 
