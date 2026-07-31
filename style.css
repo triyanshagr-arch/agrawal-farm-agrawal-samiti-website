@@ -2641,6 +2641,21 @@ footer a:hover {
     filter: drop-shadow(0 15px 25px rgba(211, 47, 47, 0.25));
 }
 
+@media (max-width: 1350px) and (min-width: 993px) {
+    .agrasen-img {
+        width: 110px;
+        height: auto;
+        margin-left: 15px;
+        margin-top: 0px;
+    }
+    .lakshmi-img {
+        width: 200px;
+        height: auto;
+        margin-right: 0px;
+        margin-top: 10px;
+    }
+}
+
 @media (max-width: 992px) {
     .header-container {
         display: grid !important;
