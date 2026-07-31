@@ -2641,18 +2641,28 @@ footer a:hover {
     filter: drop-shadow(0 15px 25px rgba(211, 47, 47, 0.25));
 }
 
-@media (max-width: 1350px) and (min-width: 993px) {
+@media (max-width: 1450px) and (min-width: 993px) {
+    .header-container {
+        padding-left: 110px;
+        padding-right: 140px;
+    }
+    .header-image-box {
+        left: 5px;
+    }
+    .header-image-box-right {
+        right: 5px;
+    }
     .agrasen-img {
         width: 110px;
         height: auto;
-        margin-left: 15px;
-        margin-top: 0px;
+        margin-left: 0px;
+        margin-top: 10px;
     }
     .lakshmi-img {
-        width: 200px;
+        width: 140px;
         height: auto;
         margin-right: 0px;
-        margin-top: 10px;
+        margin-top: 15px;
     }
 }
 
