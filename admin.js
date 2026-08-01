@@ -1732,6 +1732,7 @@ function updateLetterheadContent() {
     const dateVal = document.getElementById('lhDate').value;
     const refVal = document.getElementById('lhRefNo').value;
     const includeSubject = document.getElementById('lhIncludeSubject').checked;
+    const includeSignature = document.getElementById('lhIncludeSignature').checked;
     const subjectVal = document.getElementById('lhSubject').value;
     const contentVal = quill ? quill.root.innerHTML : '';
 
@@ -1764,6 +1765,11 @@ function updateLetterheadContent() {
         subjectText.innerText = subjectVal;
     } else {
         subjectBox.style.display = 'none';
+    }
+
+    const signaturesBlock = template.querySelector('.lh-signatures');
+    if (signaturesBlock) {
+        signaturesBlock.style.display = includeSignature ? 'flex' : 'none';
     }
 
     template.style.display = 'flex'; // Ensure it can be measured
