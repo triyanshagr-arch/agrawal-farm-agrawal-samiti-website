@@ -47,7 +47,6 @@
 <li><a class="nav-links" href="donation.html"><span class="lang-en">DONATE</span><span class="lang-hi">दान करें</span></a></li>
 <li><a class="nav-links" href="booking.html"><span class="lang-en">BOOKING</span><span class="lang-hi">बुकिंग</span></a></li>
 <li><a class="nav-links" href="contact.html"><span class="lang-en">CONTACT US</span><span class="lang-hi">संपर्क</span></a></li>
-<li><a class="nav-links" href="login.html"><span class="lang-en">LOGIN</span><span class="lang-hi">लॉगिन</span></a></li>
 <li class="nav-item-toggle">
 <button class="language-toggle" id="lang-toggle"><i class="fas fa-language"></i> English</button>
 </li>
@@ -230,18 +229,7 @@
 </div>
 <div class="form-group material-filled-group" style="position: relative;">
 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">मोबाइल नंबर <span style="color:red">*</span></span><span class="lang-en">Mobile Number <span style="color:red">*</span></span></label>
-<div style="display: flex; gap: 10px;">
-<input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="mobileNumber" maxlength="10" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" onkeydown="if(event.key === 'Enter' || event.keyCode === 13) { event.preventDefault(); document.getElementById('btnSendOtp').click(); }" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" title="Please enter exactly 10 digits" type="tel"/>
-<button class="btn" id="btnSendOtp" onmouseout="this.style.background='#e0e0e0'" onmouseover="this.style.background='#d0d0d0'" style="background: #e0e0e0; color: #333; border: none; white-space: nowrap; padding: 0 20px; border-radius: 8px; cursor: pointer; transition: 0.2s;" type="button">Verify SMS</button>
-</div>
-<div id="otpSection" style="display: none; margin-top: 10px;">
-<div style="display: flex; gap: 10px;">
-<input data-placeholder-en="Enter OTP" data-placeholder-hi="ओटीपी दर्ज करें" id="otpInput" maxlength="6" placeholder="Enter OTP" onkeydown="if(event.key === 'Enter' || event.keyCode === 13) { event.preventDefault(); document.getElementById('btnVerifyOtp').click(); }" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; box-sizing: border-box;" type="text"/>
-<button class="btn btn-primary" id="btnVerifyOtp" style="white-space: nowrap; padding: 0 20px; border-radius: 8px; border: none; cursor: pointer;" type="button">Confirm</button>
-</div>
-</div>
-<div id="recaptcha-container" style="margin-top: 10px;"></div>
-<div id="phoneStatus" style="margin-top: 5px; font-size: 0.9em; font-weight: bold; display: none;"></div>
+<input data-placeholder-en="Enter Mobile Number" data-placeholder-hi="मोबाइल नंबर दर्ज करें" id="mobileNumber" maxlength="10" onblur="this.style.borderColor='#ddd'" onfocus="this.style.borderColor='var(--primary-color)'" pattern="[0-9]{10}" placeholder="Enter Mobile Number" required="" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; transition: 0.3s; box-sizing: border-box;" title="Please enter exactly 10 digits" type="tel"/>
 </div>
 <div class="form-group material-filled-group">
 <label style="display: block; font-weight: bold; margin-bottom: 8px; color: #333;"><span class="lang-hi">ईमेल आईडी</span><span class="lang-en">Email ID</span></label>
@@ -417,7 +405,7 @@
 </div>
 <div style="text-align: center;">
 <div class="g-recaptcha" data-sitekey="6LcNtE0tAAAAAK80jnRhwEaVLRAHjp0lmxtD4LKx" style="margin-bottom: 15px;"></div>
-<button class="btn" id="submitButton" onclick="if(!window.isPhoneVerified) { Swal.fire('Verification Required', 'Please verify your phone number via SMS before submitting the form.', 'warning'); return false; }" style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: pointer; background-color: #ccc; box-shadow: none; color: #666; transition: 0.3s;" type="submit"><i class="fas fa-lock" id="submitLockIcon"></i> <span class="lang-hi">फॉर्म जमा करें (पहले फोन वेरीफाई करें)</span><span class="lang-en">Submit Form (Verify Phone First)</span></button>
+<button class="btn" id="submitButton" style="padding: 15px 40px; font-size: 1.2rem; border: none; cursor: pointer; background-color: var(--primary-color); box-shadow: 0 5px 15px rgba(220,53,69,0.3); color: #fff; transition: 0.3s;" type="submit"><i class="fas fa-paper-plane" id="submitLockIcon"></i> <span class="lang-hi">फॉर्म जमा करें</span><span class="lang-en">Submit Form</span></button>
 </div>
 </form>
 </div>
@@ -444,7 +432,6 @@
 <li><a href="activities.html"><span class="lang-hi">गतिविधियाँ</span><span class="lang-en">Activities</span></a></li>
 <li><a href="gallery.html"><span class="lang-hi">गैलरी</span><span class="lang-en">Gallery</span></a></li>
 <li><a href="contact.html"><span class="lang-hi">संपर्क</span><span class="lang-en">Contact</span></a></li>
-<li><a href="login.html"><span class="lang-hi">लॉगिन</span><span class="lang-en">Login</span></a></li>
 </ul>
 </div>
 <div class="footer-contact">
@@ -601,158 +588,7 @@
             }
         }
     </script>
-<!-- Firebase Phone Auth for Form -->
-<script type="module">
-        import { auth, RecaptchaVerifier, signInWithPhoneNumber } from './firebase_auth.js';
 
-        let confirmationResult = null;
-        let isPhoneVerified = false;
-        window.isPhoneVerified = false;
-
-        const mobileInput = document.getElementById('mobileNumber');
-        const btnSendOtp = document.getElementById('btnSendOtp');
-        const otpSection = document.getElementById('otpSection');
-        const otpInput = document.getElementById('otpInput');
-        const btnVerifyOtp = document.getElementById('btnVerifyOtp');
-        const phoneStatus = document.getElementById('phoneStatus');
-        const submitButton = document.getElementById('submitButton');
-        const submitLockIcon = document.getElementById('submitLockIcon');
-
-        // Allow user to change number, resets verification
-        if (mobileInput) {
-            mobileInput.addEventListener('input', () => {
-                if (isPhoneVerified) {
-                    isPhoneVerified = false;
-                    window.isPhoneVerified = false;
-                    phoneStatus.style.display = 'none';
-                    btnSendOtp.style.display = 'block';
-                    btnSendOtp.innerText = 'Verify SMS';
-                    mobileInput.style.borderColor = '#ddd';
-                    mobileInput.readOnly = false;
-                    
-                    // Disable submit button visually
-                    if(submitButton) {
-                        submitButton.style.backgroundColor = '#ccc';
-                        submitButton.style.boxShadow = 'none';
-                        submitButton.style.color = '#666';
-                        if(submitLockIcon) submitLockIcon.className = 'fas fa-lock';
-                        const hi = submitButton.querySelector('.lang-hi');
-                        if(hi) hi.innerText = 'फॉर्म जमा करें (पहले फोन वेरीफाई करें)';
-                        const en = submitButton.querySelector('.lang-en');
-                        if(en) en.innerText = 'Submit Form (Verify Phone First)';
-                    }
-                }
-            });
-        }
-
-        // Setup Recaptcha lazily
-        function initRecaptcha() {
-            if (!window.recaptchaVerifier) {
-                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                    'size': 'invisible',
-                    'callback': (response) => {
-                        // reCAPTCHA solved
-                    },
-                    'expired-callback': () => {
-                        Swal.fire('Error', 'reCAPTCHA expired. Please try again.', 'error');
-                    }
-                });
-            }
-        }
-
-        if (btnSendOtp) {
-            btnSendOtp.addEventListener('click', () => {
-                const phoneNumber = mobileInput.value.trim();
-                if (phoneNumber.length !== 10) {
-                    Swal.fire('Error', 'Please enter a valid 10-digit mobile number.', 'error');
-                    return;
-                }
-
-                const formattedNumber = '+91' + phoneNumber;
-                btnSendOtp.disabled = true;
-                btnSendOtp.innerText = 'Sending...';
-
-                initRecaptcha();
-
-                signInWithPhoneNumber(auth, formattedNumber, window.recaptchaVerifier)
-                    .then((result) => {
-                        confirmationResult = result;
-                        otpSection.style.display = 'block';
-                        btnSendOtp.style.display = 'none';
-                        document.getElementById('recaptcha-container').style.display = 'none';
-                        Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: 'OTP sent to your phone via SMS'});
-                    }).catch((error) => {
-                        console.error("SMS Error:", error);
-                        btnSendOtp.disabled = false;
-                        btnSendOtp.innerText = 'Verify SMS';
-                        window.recaptchaVerifier.render().then(function(widgetId) {
-                            grecaptcha.reset(widgetId);
-                        });
-                        Swal.fire('Error', 'Failed to send OTP. Please check your number and try again.', 'error');
-                    });
-            });
-        }
-
-        if (btnVerifyOtp) {
-            btnVerifyOtp.addEventListener('click', () => {
-                const code = otpInput.value.trim();
-                if (code.length !== 6) {
-                    Swal.fire('Error', 'Please enter a valid 6-digit OTP.', 'error');
-                    return;
-                }
-
-                btnVerifyOtp.disabled = true;
-                btnVerifyOtp.innerText = 'Verifying...';
-
-                confirmationResult.confirm(code).then((result) => {
-                    // User signed in successfully
-                    isPhoneVerified = true;
-                    window.isPhoneVerified = true;
-                    otpSection.style.display = 'none';
-                    
-                    // Show success status next to phone input
-                    phoneStatus.innerHTML = '<i class="fas fa-check-circle"></i> Phone Verified Successfully';
-                    phoneStatus.style.color = '#2e7d32';
-                    phoneStatus.style.display = 'block';
-                    mobileInput.style.borderColor = '#2e7d32';
-                    mobileInput.readOnly = true;
-
-                    // Enable Submit Button visually
-                    if(submitButton) {
-                        submitButton.style.backgroundColor = 'var(--primary-color)';
-                        submitButton.style.boxShadow = '0 5px 15px rgba(220,53,69,0.3)';
-                        submitButton.style.color = '#fff';
-                        if(submitLockIcon) submitLockIcon.className = 'fas fa-paper-plane';
-                        const hi = submitButton.querySelector('.lang-hi');
-                        if(hi) hi.innerText = 'फॉर्म जमा करें';
-                        const en = submitButton.querySelector('.lang-en');
-                        if(en) en.innerText = 'Submit Form';
-                    }
-
-                    Swal.fire({toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, icon: 'success', title: 'Phone number verified successfully'});
-
-                }).catch((error) => {
-                    console.error("OTP Error:", error);
-                    btnVerifyOtp.disabled = false;
-                    btnVerifyOtp.innerText = 'Confirm';
-                    Swal.fire('Error', 'Invalid OTP. Please try again.', 'error');
-                });
-            });
-        }
-
-        // Intercept form submission to double check
-        const form = document.getElementById('membershipForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                if (!isPhoneVerified) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation(); // Ensure it stops submit_handler.js from firing too!
-                    Swal.fire('Verification Required', 'Please verify your phone number via SMS before submitting the form.', 'warning');
-                }
-            }, true); // Use capture phase so this runs BEFORE submit_handler.js
-        }
-
-    </script>
     <script src="states_districts.js"></script>
     <script>
         const stateTranslations = {
